@@ -4,23 +4,34 @@ import matter from 'gray-matter';
 import remark from 'remark';
 import html from 'remark-html';
 
-export async function getStaticPaths() {
-  const plantsDir = path.join(process.cwd(), 'content/plants');
-  let filenames = [];
-  try {
-    filenames = fs.readdirSync(plantsDir);
-  } catch (e) {
-    console.warn("No plants directory found");
-    return { paths: [], fallback: false };
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+  const fullPath = path.join(process.cwd(), 'content/plants', `${slug}.md`);
+  
+  // 检查文件是否存在
+  if (!fs.existsSync(fullPath)) {
+    return { notFound: true };
   }
 
-  const paths = filenames
-    .filter(file => file.endsWith('.md')) // 只处理 .md 文件
-    .map(file => ({
-      params: { slug: file.replace(/\.md$/, '') }
-    }));
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const { data, content } = matter(fileContents);
 
-  return { paths, fallback: false };
+  // 安全访问数组字段
+  const symptoms = Array.isArray(data.symptoms) ? data.symptoms : [];
+
+  const processedContent = await remark().use(html).process(content);
+  const contentHtml = processedContent.toString();
+
+  return { 
+    props: { 
+      plant: { 
+        ...data, 
+        symptoms,
+        contentHtml,
+        slug 
+      } 
+    } 
+  };
 }
 
 export async function getStaticProps({ params }) {
