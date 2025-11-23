@@ -1,0 +1,25 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #333;
+}
+h1, h2, h3 {
+  color: #2c6f3a;
+}
+.card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+}
+.danger {
+  color: #d32f2f;
+  font-weight: bold;
+}
+.safe {
+  color: #2e7d32;
+  font-weight: bold;
+}
