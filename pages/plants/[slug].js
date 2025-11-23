@@ -6,10 +6,20 @@ import html from 'remark-html';
 
 export async function getStaticPaths() {
   const plantsDir = path.join(process.cwd(), 'content/plants');
-  const filenames = fs.readdirSync(plantsDir);
-  const paths = filenames.map(filename => ({
-    params: { slug: filename.replace(/\.md$/, '') }
-  }));
+  let filenames = [];
+  try {
+    filenames = fs.readdirSync(plantsDir);
+  } catch (e) {
+    console.warn("No plants directory found");
+    return { paths: [], fallback: false };
+  }
+
+  const paths = filenames
+    .filter(file => file.endsWith('.md')) // 只处理 .md 文件
+    .map(file => ({
+      params: { slug: file.replace(/\.md$/, '') }
+    }));
+
   return { paths, fallback: false };
 }
 
