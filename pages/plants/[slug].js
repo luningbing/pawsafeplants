@@ -1,51 +1,39 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import remark from 'remark';
+import { remark } from 'remark';
 import html from 'remark-html';
+import Link from 'next/link';
 
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const fullPath = path.join(process.cwd(), 'content/plants', `${slug}.md`);
-  
-  // 检查文件是否存在
   if (!fs.existsSync(fullPath)) {
     return { notFound: true };
   }
-
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
-
-  // 安全访问数组字段
   const symptoms = Array.isArray(data.symptoms) ? data.symptoms : [];
-
   const processedContent = await remark().use(html).process(content);
   const contentHtml = processedContent.toString();
-
-  return { 
-    props: { 
-      plant: { 
-        ...data, 
+  return {
+    props: {
+      plant: {
+        ...data,
         symptoms,
         contentHtml,
-        slug 
-      } 
-    } 
+        slug
+      }
+    }
   };
 }
 
-export async function getStaticProps({ params }) {
-  const { slug } = params;
-  const fullPath = path.join(process.cwd(), 'content/plants', `${slug}.md`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
-
-  const processedContent = await remark()
-    .use(html)
-    .process(content);
-  const contentHtml = processedContent.toString();
-
-  return { props: { plant: { ...data, contentHtml, slug } } };
+export async function getStaticPaths() {
+  const dir = path.join(process.cwd(), 'content/plants');
+  let files = [];
+  try { files = fs.readdirSync(dir).filter((f) => f.endsWith('.md')); } catch {}
+  const paths = files.map((f) => ({ params: { slug: f.replace(/\.md$/, '') } }));
+  return { paths, fallback: 'blocking' };
 }
 
 export default function PlantPage({ plant }) {
