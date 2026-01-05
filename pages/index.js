@@ -1,9 +1,50 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+
+// Image placeholder component
+function SafeImage({ src, alt, fallback, style, containerStyle }) {
+  const [imgSrc, setImgSrc] = useState(src);
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setImgSrc(src);
+    setHasError(false);
+  }, [src]);
+
+  const handleError = () => {
+    setHasError(true);
+    setImgSrc(null);
+  };
+
+  if (hasError || !imgSrc) {
+    return (
+      <div style={{
+        ...style,
+        ...containerStyle,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'linear-gradient(135deg, #87A96B20, #87A96B10)',
+        color: '#87A96B'
+      }}>
+        {fallback || <span style={{ fontSize: '32px' }}>🌿</span>}
+      </div>
+    );
+  }
+
+  return (
+    <img 
+      src={imgSrc} 
+      alt={alt} 
+      style={style}
+      onError={handleError}
+    />
+  );
+}
 
 export async function getServerSideProps(context) {
   const plantsDir = path.join(process.cwd(), 'content/plants');
@@ -128,35 +169,42 @@ export default function Home({ plants, site }) {
         minHeight: '100vh',
         padding: '0 0 40px 0'
       }}>
-      {site?.heroImage ? (
-          <div style={{ margin: '20px 0', borderRadius: borderRadius, overflow: 'hidden', boxShadow: '0 8px 24px rgba(135, 169, 107, 0.15)' }}>
-            <img 
-              src={site.heroImage} 
-              alt="Cat-safe plants for your home" 
-              style={{ 
-                width: '100%', 
-                height: 450, 
-                objectFit: 'cover', 
-                objectPosition: 'center',
-                display: 'block'
-              }} 
-            />
+        <div style={{ margin: '20px 0', borderRadius: borderRadius, overflow: 'hidden', boxShadow: '0 8px 24px rgba(135, 169, 107, 0.15)' }}>
+          <SafeImage
+            src={site?.heroImage || '/images/hero-default.svg'}
+            alt="Cat-safe plants for your home"
+            fallback={
+              <div style={{
+                width: '100%',
+                height: 450,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: `linear-gradient(135deg, ${sageGreen}20, ${sageGreen}10)`,
+                color: sageGreenDark,
+                padding: '40px'
+              }}>
+                <span style={{ fontSize: '64px', marginBottom: '16px' }}>🌿</span>
+                <div style={{ fontSize: '24px', fontWeight: 600, marginBottom: '8px' }}>PawSafePlants</div>
+                <div style={{ fontSize: '16px', textAlign: 'center', maxWidth: '500px' }}>
+                  Creating safe indoor gardens for you and your feline friends
+                </div>
+              </div>
+            }
+            style={{ 
+              width: '100%', 
+              height: 450, 
+              objectFit: 'cover', 
+              objectPosition: 'center',
+              display: 'block'
+            }}
+            containerStyle={{
+              width: '100%',
+              height: 450
+            }}
+          />
         </div>
-      ) : (
-          <div style={{ 
-            margin: '20px 0', 
-            padding: '32px', 
-            background: `linear-gradient(135deg, ${sageGreen}15, ${sageGreen}25)`,
-            borderRadius: borderRadius, 
-            color: sageGreenDark,
-            border: `2px dashed ${sageGreen}40`
-          }}>
-            <div style={{ fontWeight: 600, fontSize: '18px', marginBottom: '8px' }}>Hero Image Not Configured</div>
-            <div style={{ fontSize: '14px', color: '#5A5A5A' }}>
-              Configure your hero image in the <Link href="/admin" style={{ color: sageGreenDark, textDecoration: 'underline' }}>Admin Panel</Link>
-            </div>
-        </div>
-      )}
 
         <div style={{ 
           display: 'grid', 
@@ -182,17 +230,17 @@ export default function Home({ plants, site }) {
           }}>
             <div style={{ fontWeight: 700, marginBottom: 12, fontSize: '18px', color: sageGreenDark }}>Latest Tips</div>
             <div style={{ display: 'grid', gap: 12 }}>
-              <a href="#" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
+              <Link href="/plants/safe" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
                 How to Choose Cat-Safe Indoor Plants →
-              </a>
-              <a href="#" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
+              </Link>
+              <Link href="/plants/toxic" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
                 Identifying Toxic Plants in Your Home →
-              </a>
-              <a href="#" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
+              </Link>
+              <Link href="/about" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
                 Emergency Steps After Plant Ingestion →
-              </a>
-            </div>
+              </Link>
           </div>
+        </div>
 
           <div style={{ 
             border: `2px solid ${warmCreamDark}`, 
@@ -213,13 +261,15 @@ export default function Home({ plants, site }) {
             <div style={{ fontWeight: 700, marginBottom: 16, fontSize: '18px', color: sageGreenDark }}>Popular Plants</div>
             <div style={{ display: 'grid', gap: 14 }}>
             {featured.map((f, i) => (
-                <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: 12 }}>
+                <Link key={i} href={`/plants/${f.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: 12 }}>
                 <div>
-                    <div style={{ fontWeight: 600, fontSize: '15px', marginBottom: '4px' }}>{f.title}</div>
-                    <div style={{ fontSize: '13px', color: '#5A5A5A' }}>{f.desc}</div>
+                      <div style={{ fontWeight: 600, fontSize: '15px', marginBottom: '4px', color: sageGreenDark }}>{f.title}</div>
+                      <div style={{ fontSize: '13px', color: '#5A5A5A' }}>{f.desc}</div>
                 </div>
                 <span style={{ ...tagStyle(f.level) }}>{f.icon} {f.level}</span>
               </div>
+                </Link>
             ))}
           </div>
         </div>
@@ -245,10 +295,10 @@ export default function Home({ plants, site }) {
               <a href="https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants" target="_blank" rel="noopener noreferrer" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
                 ASPCA Toxicity Database →
               </a>
-              <a href="#" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
+              <a href="https://www.avma.org/resources-tools/pet-owners/petcare/veterinary-emergencies" target="_blank" rel="noopener noreferrer" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
                 Find Local Animal Hospitals →
               </a>
-              <a href="#" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
+              <a href="https://www.aspca.org/pet-care/cat-care" target="_blank" rel="noopener noreferrer" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
                 Cat Care Basics & Health →
               </a>
             </div>
@@ -333,14 +383,14 @@ export default function Home({ plants, site }) {
                     fontStyle: 'italic'
                   }}>
                     "Love our pet-safe setup!"
-                  </div>
-                </div>
-              </div>
+          </div>
+        </div>
+      </div>
             ))}
           </div>
           <div style={{ marginTop: 24, textAlign: 'center' }}>
-            <a 
-              href="#" 
+            <Link 
+              href="/community"
               style={{ 
                 display: 'inline-block',
                 padding: '14px 28px',
@@ -364,7 +414,7 @@ export default function Home({ plants, site }) {
               }}
             >
               Share Your Story
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -383,7 +433,7 @@ export default function Home({ plants, site }) {
             gap: 20, 
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' 
           }}>
-            {sorted.map(plant => (
+          {sorted.map(plant => (
               <div 
                 key={plant.slug} 
                 style={{ 
@@ -423,14 +473,14 @@ export default function Home({ plants, site }) {
                     justifyContent: 'center',
                     border: `2px solid ${warmCreamDark}`
                   }}>
-                    {plant.thumbPlant ? (
-                      <img src={plant.thumbPlant} alt={plant.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    ) : plant.image ? (
-                      <img src={plant.image} alt={plant.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    ) : (
-                      <span style={{ fontSize: 32 }}>🌿</span>
-                    )}
-                  </div>
+                    <SafeImage
+                      src={plant.thumbPlant || plant.image}
+                      alt={plant.title}
+                      fallback={<span style={{ fontSize: 32 }}>🌿</span>}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      containerStyle={{ width: '100%', height: '100%' }}
+                    />
+                </div>
                   <div style={{ 
                     width: 80, 
                     height: 80, 
@@ -442,11 +492,13 @@ export default function Home({ plants, site }) {
                     justifyContent: 'center',
                     border: `2px solid ${warmCreamDark}`
                   }}>
-                    {plant.thumbCat ? (
-                      <img src={plant.thumbCat} alt="cat" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    ) : (
-                      <span style={{ fontSize: 32 }}>🐱</span>
-                    )}
+                    <SafeImage
+                      src={plant.thumbCat}
+                      alt="cat"
+                      fallback={<span style={{ fontSize: 32 }}>🐱</span>}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      containerStyle={{ width: '100%', height: '100%' }}
+                    />
                 </div>
                 <div>
                     <div style={{ fontWeight: 700, fontSize: '16px', marginBottom: '6px' }}>
@@ -466,9 +518,9 @@ export default function Home({ plants, site }) {
                       : String(plant.toxicity_level || '').toLowerCase().includes('safe')
                           ? <span style={{ fontSize: '20px' }}>✅</span>
                           : <span style={{ fontSize: '20px' }}>⚠️</span>}
-                    </div>
                   </div>
                 </div>
+              </div>
                 <div style={{ 
                   color: '#5A5A5A', 
                   marginTop: 12, 
@@ -494,8 +546,8 @@ export default function Home({ plants, site }) {
                     Learn More →
                   </Link>
                 </div>
-              </div>
-            ))}
+            </div>
+          ))}
             </div>
         </div>
         
@@ -522,8 +574,8 @@ export default function Home({ plants, site }) {
           >
             About & Disclaimer
           </Link>
-        </footer>
-      </div>
+      </footer>
+    </div>
     </>
   );
 }
