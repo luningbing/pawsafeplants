@@ -1,0 +1,23 @@
+{
+  "slides": [
+    {
+      "id": 1,
+      "image": "/uploads/_247026d4-f09b-4307-9d55-65b40bd2813c.jpg",
+      "link": "",
+      "title": "Default Hero Slide"
+    },
+    {
+      "id": 2,
+      "image": "/uploads/7ae0aff1-4b60-4c05-aa34-fcd6a9ea3dd2_7930717a90c33c714f1ae8d742554593_ComfyUI_033fc57d_00001_.png",
+      "link": "",
+      "title": "Slide 2"
+    },
+    {
+      "id": 3,
+      "image": "/uploads/20250530-190005.jpg",
+      "link": "",
+      "title": "Slide 3"
+    }
+  ],
+  "updatedAt": "2026-01-05T17:11:26.385Z"
+}

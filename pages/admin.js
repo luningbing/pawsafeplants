@@ -1,29 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 
-function ImageDropdown({ images, value, onChange, placeholder = '选择图片路径...', width = 360 }) {
-  const [open, setOpen] = useState(false);
-  const [hover, setHover] = useState('');
-  const sel = String(value || '');
-  const show = String(hover || sel || '');
-  return (
-    <div style={{ position: 'relative', minWidth: width }}>
-      <button type="button" onClick={() => setOpen(!open)} style={{ width: '100%', textAlign: 'left', padding: '6px 8px', border: '1px solid #e5e7eb', borderRadius: 8, background: '#fff' }}>{sel || placeholder}</button>
-      {open && (
-        <div style={{ position: 'absolute', zIndex: 100, top: '100%', left: 0, display: 'grid', gridTemplateColumns: '1fr 110px', gap: 8, background: '#fff', border: '1px solid #e5e7eb', borderRadius: 8, marginTop: 6, padding: 8, boxShadow: '0 8px 20px rgba(0,0,0,0.08)' }}>
-          <div style={{ maxHeight: 220, overflow: 'auto', display: 'grid', gap: 6 }}>
-            {images.map((p) => (
-              <button key={p} type="button" onMouseEnter={() => setHover(p)} onFocus={() => setHover(p)} onClick={() => { onChange(p); setOpen(false); }} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '6px 8px', border: '1px solid #f3f4f6', background: sel === p ? '#eef' : '#fff', borderRadius: 6 }}>{p}</button>
-            ))}
-          </div>
-          <div style={{ width: 110 }}>
-            {show && <img src={show} alt="预览" style={{ width: '100%', height: 100, objectFit: 'cover', borderRadius: 6, border: '1px solid #e5e7eb' }} />}
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
 export default function Admin() {
   const [images, setImages] = useState([]);
   const [plants, setPlants] = useState([]);
@@ -31,107 +9,110 @@ export default function Admin() {
   const [heroSelection, setHeroSelection] = useState('');
   const [logoSelection, setLogoSelection] = useState('');
   const [selPlant, setSelPlant] = useState({});
-  const [selPlant2, setSelPlant2] = useState({});
-  const [selPlant3, setSelPlant3] = useState({});
-  const [selThumbPlant, setSelThumbPlant] = useState({});
-  const [selThumbCat, setSelThumbCat] = useState({});
   const [uploading, setUploading] = useState(false);
   const [uploadFile, setUploadFile] = useState(null);
+  const [uploadPreview, setUploadPreview] = useState('');
   const [msg, setMsg] = useState('');
-  const [stats, setStats] = useState([]);
-  const maxCount = Math.max(1, ...stats.map((s) => Number(s.count || 0)));
-  const [pendingComments, setPendingComments] = useState([]);
-  const [credUser, setCredUser] = useState('');
-  const [credPass, setCredPass] = useState('');
-  const [credMsg, setCredMsg] = useState('');
-  const [activeTab, setActiveTab] = useState('images');
-  const [approvedComments, setApprovedComments] = useState([]);
-  const [replyText, setReplyText] = useState({});
+  const [activeTab, setActiveTab] = useState('hero-carousel');
+  const [copiedPath, setCopiedPath] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  
+  // Hero Carousel states
+  const [heroSlides, setHeroSlides] = useState([
+    { id: 1, image: '', link: '', title: 'Slide 1' },
+    { id: 2, image: '', link: '', title: 'Slide 2' },
+    { id: 3, image: '', link: '', title: 'Slide 3' }
+  ]);
+  const [heroUploading, setHeroUploading] = useState([false, false, false]);
+  const [heroPreviews, setHeroPreviews] = useState(['', '', '']);
+  const [heroMediaOpen, setHeroMediaOpen] = useState([false, false, false]);
+  
+  // Modal states for plant editing
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [editingPlant, setEditingPlant] = useState(null);
+  const [editForm, setEditForm] = useState({
+    title: '',
+    scientific_name: '',
+    toxicity_level: 'Safe',
+    care_difficulty: 'Easy',
+    summary: '',
+    image: '',
+    symptoms: [],
+    what_to_do: '',
+    aspca_link: '',
+    care_tips: '',
+    water_needs: '',
+    light_needs: '',
+    temperature: '',
+    pet_moment: ''
+  });
+  const [editSubmitting, setEditSubmitting] = useState(false);
+
+  // New Plant Form states
+  const [plantName, setPlantName] = useState('');
+  const [scientificName, setScientificName] = useState('');
+  const [toxicityLevel, setToxicityLevel] = useState('Safe');
+  const [careDifficulty, setCareDifficulty] = useState('Easy');
+  const [englishDescription, setEnglishDescription] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [formMessage, setFormMessage] = useState('');
+  const [formSubmitting, setFormSubmitting] = useState(false);
+  
+  // Image handling states
+  const [selectedImageFile, setSelectedImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
+  const [imageUploading, setImageUploading] = useState(false);
+  const [mediaLibraryOpen, setMediaLibraryOpen] = useState(false);
+  const [selectedMediaImage, setSelectedMediaImage] = useState('');
+  
+  // Edit modal image states
+  const [editSelectedImageFile, setEditSelectedImageFile] = useState(null);
+  const [editImagePreview, setEditImagePreview] = useState('');
+  const [editImageUploading, setEditImageUploading] = useState(false);
+  const [editMediaLibraryOpen, setEditMediaLibraryOpen] = useState(false);
+  const [editSelectedMediaImage, setEditSelectedMediaImage] = useState('');
+  
+  // Pet images states
+  const [petImages, setPetImages] = useState([]);
+  const [petLibraryOpen, setPetLibraryOpen] = useState(false);
+
+  // Color palette matching the main site
+  const sageGreen = '#87A96B';
+  const sageGreenDark = '#6B8553';
+  const warmCream = '#FAF7F2';
+  const warmCreamDark = '#F5F1E8';
+  const terracotta = '#C17A5F';
+  const borderRadius = '24px';
+  const borderRadiusSmall = '16px';
 
   useEffect(() => {
     const load = async () => {
       try {
-        const [imgRes, siteRes, plantRes] = await Promise.all([
+        const [imgRes, siteRes, plantRes, heroRes] = await Promise.all([
           fetch('/api/list-images'),
           fetch('/api/site-config'),
-          fetch('/api/plants')
+          fetch('/api/plants'),
+          fetch('/api/hero-carousel')
         ]);
         const imgs = await imgRes.json();
         const s = await siteRes.json();
         const p = await plantRes.json();
+        const hero = await heroRes.json();
         setImages(imgs.paths || []);
         setSite(s || { heroImage: '' });
         setHeroSelection((s || {}).heroImage || '');
         setLogoSelection((s || {}).logo || '');
         setPlants(p.plants || []);
+        
+        // Load hero carousel data
+        if (hero.slides && hero.slides.length > 0) {
+          setHeroSlides(hero.slides);
+          setHeroPreviews(hero.slides.map(slide => slide.image || ''));
+        }
       } catch {}
     };
     load();
   }, []);
-
-  useEffect(() => {
-    const loadStats = async () => {
-      try {
-        const r = await fetch('/api/analytics/stats?days=30');
-        const j = await r.json();
-        setStats(j.stats || []);
-      } catch {}
-    };
-    loadStats();
-  }, []);
-
-  useEffect(() => {
-    const loadPending = async () => {
-      try {
-        const r = await fetch('/api/admin/comments/pending');
-        const j = await r.json();
-        setPendingComments(j.comments || []);
-      } catch {}
-    };
-    loadPending();
-  }, []);
-
-  useEffect(() => {
-    const loadApproved = async () => {
-      try {
-        const r = await fetch('/api/comments/list');
-        const j = await r.json();
-        setApprovedComments(j.comments || []);
-      } catch {}
-    };
-    loadApproved();
-  }, []);
-
-  useEffect(() => {
-    const noop = () => {};
-    noop();
-  }, []);
-
-  const moderate = async (id, action) => {
-    try {
-      await fetch('/api/admin/comments/moderate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, action }) });
-      const r = await fetch('/api/admin/comments/pending');
-      const j = await r.json();
-      setPendingComments(j.comments || []);
-      const r2 = await fetch('/api/comments/list');
-      const j2 = await r2.json();
-      setApprovedComments(j2.comments || []);
-    } catch {}
-  };
-
-  const submitReply = async (id) => {
-    const content = String((replyText || {})[id] || '').trim();
-    if (!content) return;
-    try {
-      const r = await fetch('/api/admin/comments/reply', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, content }) });
-      if (r.ok) {
-        setReplyText((prev) => ({ ...prev, [id]: '' }));
-        const r2 = await fetch('/api/comments/list');
-        const j2 = await r2.json();
-        setApprovedComments(j2.comments || []);
-      }
-    } catch {}
-  };
 
   const onUpload = async (file) => {
     if (!file) return;
@@ -150,7 +131,6 @@ export default function Admin() {
           const j = await res.json();
           const imgs = await (await fetch('/api/list-images')).json();
           setImages(imgs.paths || []);
-          setSite((s) => ({ ...s }));
           return j?.path || '';
         }
         setUploading(false);
@@ -160,353 +140,1921 @@ export default function Admin() {
       setUploading(false);
     }
   };
-
-  const confirmUpload = async () => {
-    if (!uploadFile) return;
-    const p = await onUpload(uploadFile);
-    setUploading(false);
-    if (p) setMsg('已上传到素材库');
-    setUploadFile(null);
+  
+  // Generate filename from plant name
+  const generatePlantFilename = (plantName, originalFile) => {
+    if (!plantName) return originalFile.name;
+    const extension = originalFile.name.split('.').pop();
+    const normalized = plantName
+      .toLowerCase()
+      .replace(/[^a-z0-9\s]/g, '')
+      .replace(/\s+/g, '-');
+    return `${normalized}.${extension}`;
   };
-
-  const onUploadForHero = async (file) => {
-    const p = await onUpload(file);
-    setUploading(false);
-    if (p) await updateHero(p);
-  };
-
-  const onUploadForPlant = async (slug, file) => {
-    const p = await onUpload(file);
-    setUploading(false);
-    if (p) await updatePlantImage(slug, p);
-  };
-
-  const onUploadForThumb = async (slug, field, file) => {
-    const p = await onUpload(file);
-    setUploading(false);
-    if (p) await updatePlantThumbField(slug, field, p);
-  };
-
-  const updateHero = async (path) => {
-    if (!path) return;
-    await fetch('/api/site-config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ heroImage: path }) });
-    const s = await (await fetch('/api/site-config')).json();
-    setSite(s);
-    setHeroSelection(s.heroImage || '');
-    setMsg('已应用到首页大图');
-  };
-
-  const updateLogo = async (path) => {
-    if (!path) return;
-    await fetch('/api/site-config', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ logo: path }) });
-    const s = await (await fetch('/api/site-config')).json();
-    setSite(s);
-    setLogoSelection(s.logo || '');
-    setMsg('站点 Logo 已更新');
-  };
-
-  const applyAndPreviewHero = async () => {
-    const p = heroSelection;
-    await updateHero(p);
-    if (p) window.open('/', '_blank');
-  };
-
-  const updatePlantImage = async (slug, imagePath) => {
-    await fetch('/api/update-plant-image', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug, imagePath }) });
-    const p = await (await fetch('/api/plants')).json();
-    setPlants(p.plants || []);
-    setSelPlant((prev) => ({ ...prev, [slug]: imagePath }));
-    setMsg('已应用到该植物封面图');
-  };
-
-  const updatePlantImage2 = async (slug, imagePath) => {
-    await fetch('/api/update-plant-image', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug, image2: imagePath }) });
-    const p = await (await fetch('/api/plants')).json();
-    setPlants(p.plants || []);
-    setSelPlant2((prev) => ({ ...prev, [slug]: imagePath }));
-    setMsg('已应用到该植物附图 1');
-  };
-
-  const updatePlantImage3 = async (slug, imagePath) => {
-    await fetch('/api/update-plant-image', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug, image3: imagePath }) });
-    const p = await (await fetch('/api/plants')).json();
-    setPlants(p.plants || []);
-    setSelPlant3((prev) => ({ ...prev, [slug]: imagePath }));
-    setMsg('已应用到该植物附图 2');
-  };
-
-  const updatePlantThumbField = async (slug, field, value) => {
-    const body = { slug };
-    if (field === 'thumbPlant') body.thumbPlant = value;
-    if (field === 'thumbCat') body.thumbCat = value;
-    await fetch('/api/update-plant-image', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    const p = await (await fetch('/api/plants')).json();
-    setPlants(p.plants || []);
-    if (field === 'thumbPlant') setSelThumbPlant((prev) => ({ ...prev, [slug]: value }));
-    if (field === 'thumbCat') setSelThumbCat((prev) => ({ ...prev, [slug]: value }));
-    setMsg(field === 'thumbCat' ? '已应用到该植物猫咪缩略图' : '已应用到该植物缩略图');
-  };
-
-  const applyAndPreviewPlant = async (slug) => {
-    const imagePath = selPlant[slug];
-    await updatePlantImage(slug, imagePath);
-    if (slug) window.open(`/plants/${slug}`, '_blank');
-  };
-
-  const updateCred = async () => {
-    setCredMsg('');
+  
+  // Handle plant image upload with auto-naming
+  const handlePlantImageUpload = async (file, isEdit = false) => {
+    if (!file) return;
+    
+    const filename = generatePlantFilename(isEdit ? editForm.title : plantName, file);
+    const uploadPath = filename; // 直接上传到uploads根目录
+    
+    if (isEdit) {
+      setEditImageUploading(true);
+    } else {
+      setImageUploading(true);
+    }
+    
     try {
-      const u = String(credUser || '').trim();
-      const p = String(credPass || '').trim();
-      if (u.length < 2) { setCredMsg('用户名至少 2 个字符'); return; }
-      if (p.length < 6) { setCredMsg('密码至少 6 个字符'); return; }
-      const r = await fetch('/api/admin/credentials/set', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u, password: p }) });
-      if (r.ok) {
-        setCredPass('');
-        setCredMsg('后台账号已更新，请退出并用新账号登录');
-      } else {
-        const j = await r.json().catch(() => ({}));
-        setCredMsg(String(j.error || '更新失败'));
-      }
+      const reader = new FileReader();
+      reader.onload = async () => {
+        const base64 = reader.result;
+        const res = await fetch('/api/upload-base64', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            filename: uploadPath, 
+            data: String(base64 || '') 
+          })
+        });
+        
+        if (res.ok) {
+          const j = await res.json();
+          const imagePath = j?.path || '';
+          
+          if (isEdit) {
+            setEditForm({ ...editForm, image: imagePath });
+            setEditImageUploading(false);
+          } else {
+            setImageUrl(imagePath);
+            setImageUploading(false);
+          }
+          
+          // Refresh images list
+          const imgs = await (await fetch('/api/list-images')).json();
+          setImages(imgs.paths || []);
+        } else {
+          if (isEdit) {
+            setEditImageUploading(false);
+          } else {
+            setImageUploading(false);
+          }
+        }
+      };
+      reader.readAsDataURL(file);
     } catch {
-      setCredMsg('更新失败');
+      if (isEdit) {
+        setEditImageUploading(false);
+      } else {
+        setImageUploading(false);
+      }
+    }
+  };
+  
+  // Handle image file selection
+  const handleImageFileSelect = (file, isEdit = false) => {
+    if (isEdit) {
+      setEditSelectedImageFile(file);
+      const reader = new FileReader();
+      reader.onload = (e) => setEditImagePreview(e.target.result);
+      reader.readAsDataURL(file);
+    } else {
+      setSelectedImageFile(file);
+      const reader = new FileReader();
+      reader.onload = (e) => setImagePreview(e.target.result);
+      reader.readAsDataURL(file);
+    }
+  };
+  
+  // Handle media library selection
+  const handleMediaLibrarySelect = (imagePath, isEdit = false) => {
+    if (isEdit) {
+      setEditSelectedMediaImage(imagePath);
+      setEditForm({ ...editForm, image: imagePath });
+      setEditImagePreview(imagePath); // 同时更新预览
+      setEditMediaLibraryOpen(false);
+    } else {
+      setSelectedMediaImage(imagePath);
+      setImageUrl(imagePath);
+      setImagePreview(imagePath); // 同时更新预览
+      setMediaLibraryOpen(false);
+    }
+  };
+  
+  // Handle pet image selection
+  const handlePetImageSelect = (imagePath) => {
+    setEditForm({ ...editForm, pet_moment: imagePath });
+    setPetLibraryOpen(false);
+  };
+
+  // Hero Carousel handlers
+  const handleHeroImageUpload = async (file, index) => {
+    if (!file) return;
+    
+    const newHeroUploading = [...heroUploading];
+    newHeroUploading[index] = true;
+    setHeroUploading(newHeroUploading);
+    
+    try {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64 = reader.result.split(',')[1];
+        const filename = `hero-${index + 1}-${Date.now()}.jpg`;
+        
+        const res = await fetch('/api/upload-base64', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ filename, base64 })
+        });
+        
+        if (res.ok) {
+          const imageUrl = `/uploads/${filename}`;
+          const newHeroSlides = [...heroSlides];
+          newHeroSlides[index].image = imageUrl;
+          setHeroSlides(newHeroSlides);
+          
+          const newHeroPreviews = [...heroPreviews];
+          newHeroPreviews[index] = imageUrl;
+          setHeroPreviews(newHeroPreviews);
+        }
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error('Hero image upload error:', error);
+    } finally {
+      const newHeroUploading = [...heroUploading];
+      newHeroUploading[index] = false;
+      setHeroUploading(newHeroUploading);
     }
   };
 
-  return (
-    <div style={{ padding: 20 }}>
-      <h1>后台</h1>
-      <p><Link href="/">← 返回首页</Link></p>
-      {msg && <div style={{ margin: '8px 0', color: '#2e7d32' }}>{msg}</div>}
-      <form onSubmit={async (e) => { e.preventDefault(); await fetch('/api/auth/logout', { method: 'POST' }); window.location.href = '/login'; }}>
-        <button type="submit" style={{ marginTop: 8 }}>退出登录</button>
-      </form>
+  const handleHeroMediaSelect = (imagePath, index) => {
+    const newHeroSlides = [...heroSlides];
+    newHeroSlides[index].image = imagePath;
+    setHeroSlides(newHeroSlides);
+    
+    const newHeroPreviews = [...heroPreviews];
+    newHeroPreviews[index] = imagePath;
+    setHeroPreviews(newHeroPreviews);
+    
+    const newHeroMediaOpen = [...heroMediaOpen];
+    newHeroMediaOpen[index] = false;
+    setHeroMediaOpen(newHeroMediaOpen);
+  };
 
-      <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
-        <button type="button" onClick={() => setActiveTab('images')} style={{ padding: '8px 12px', borderRadius: 8, border: '1px solid #e5e7eb', background: activeTab==='images' ? '#eef' : '#fff' }}>图片管理</button>
-        <button type="button" onClick={() => setActiveTab('stats')} style={{ padding: '8px 12px', borderRadius: 8, border: '1px solid #e5e7eb', background: activeTab==='stats' ? '#eef' : '#fff' }}>数据统计</button>
-        <button type="button" onClick={() => setActiveTab('comments')} style={{ padding: '8px 12px', borderRadius: 8, border: '1px solid #e5e7eb', background: activeTab==='comments' ? '#eef' : '#fff' }}>评论管理</button>
-        <button type="button" onClick={() => setActiveTab('tables')} style={{ padding: '8px 12px', borderRadius: 8, border: '1px solid #e5e7eb', background: activeTab==='tables' ? '#eef' : '#fff' }}>数据表</button>
+  const handleHeroLinkChange = (link, index) => {
+    const newHeroSlides = [...heroSlides];
+    newHeroSlides[index].link = link;
+    setHeroSlides(newHeroSlides);
+  };
+
+  const saveHeroCarousel = async () => {
+    try {
+      const res = await fetch('/api/hero-carousel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slides: heroSlides })
+      });
+      
+      if (res.ok) {
+        setMsg('首页轮播图保存成功！');
+        setTimeout(() => setMsg(''), 3000);
+      } else {
+        setMsg('保存失败，请重试');
+      }
+    } catch (error) {
+      console.error('Save hero carousel error:', error);
+      setMsg('保存失败，请重试');
+    }
+  };
+
+  const copyToClipboard = async (text) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedPath(text);
+      setTimeout(() => setCopiedPath(''), 2000);
+    } catch {
+      setMsg('复制失败');
+    }
+  };
+
+  const handleEditPlant = (plant) => {
+    setEditingPlant(plant);
+    setEditForm({
+      title: plant.title || '',
+      scientific_name: plant.scientific_name || '',
+      toxicity_level: plant.toxicity_level || 'Safe',
+      care_difficulty: plant.care_difficulty || 'Easy',
+      summary: plant.summary || '',
+      image: plant.image || '',
+      symptoms: plant.symptoms || [],
+      what_to_do: plant.what_to_do || '',
+      aspca_link: plant.aspca_link || '',
+      care_tips: plant.care_tips || '',
+      water_needs: plant.water_needs || '',
+      light_needs: plant.light_needs || '',
+      temperature: plant.temperature || '',
+      pet_moment: plant.pet_moment || ''
+    });
+    // Set image preview if exists
+    if (plant.image) {
+      setEditImagePreview(plant.image);
+    } else {
+      setEditImagePreview('');
+    }
+    setEditModalOpen(true);
+  };
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    setEditSubmitting(true);
+    try {
+      const res = await fetch('/api/update-plant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: editingPlant.slug,
+          ...editForm
+        })
+      });
+      if (res.ok) {
+        const updatedPlants = await (await fetch('/api/plants')).json();
+        setPlants(updatedPlants.plants || []);
+        setEditModalOpen(false);
+        setMsg('植物信息更新成功！');
+        setTimeout(() => setMsg(''), 3000);
+      }
+    } catch {
+      setMsg('更新失败');
+    } finally {
+      setEditSubmitting(false);
+    }
+  };
+
+  const handleDeletePlant = async (slug) => {
+    if (!confirm('确定要删除这个植物吗？')) return;
+    try {
+      const res = await fetch('/api/delete-plant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug })
+      });
+      if (res.ok) {
+        const updatedPlants = await (await fetch('/api/plants')).json();
+        setPlants(updatedPlants.plants || []);
+        setMsg('植物删除成功！');
+        setTimeout(() => setMsg(''), 3000);
+      }
+    } catch {
+      setMsg('删除失败');
+    }
+  };
+
+  const handleAddPlant = async (e) => {
+    e.preventDefault();
+    setFormSubmitting(true);
+    try {
+      const res = await fetch('/api/save-plant', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: plantName,
+          scientific_name: scientificName,
+          toxicity_level: toxicityLevel,
+          care_difficulty: careDifficulty,
+          summary: englishDescription,
+          image: imageUrl
+        })
+      });
+      if (res.ok) {
+        const updatedPlants = await (await fetch('/api/plants')).json();
+        setPlants(updatedPlants.plants || []);
+        setPlantName('');
+        setScientificName('');
+        setToxicityLevel('Safe');
+        setCareDifficulty('Easy');
+        setEnglishDescription('');
+        setImageUrl('');
+        setFormMessage('植物添加成功！');
+        setTimeout(() => setFormMessage(''), 3000);
+      }
+    } catch {
+      setFormMessage('添加失败');
+    } finally {
+      setFormSubmitting(false);
+    }
+  };
+
+  // Filter plants based on search term
+  const filteredPlants = plants.filter(plant =>
+    plant.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    plant.scientific_name?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Sidebar menu items
+  const menuItems = [
+    { id: 'hero-carousel', label: '首页轮播图', icon: '🎠' },
+    { id: 'add-plant', label: '添加植物', icon: '🌱' },
+    { id: 'plant-list', label: '植物列表', icon: '📋' },
+    { id: 'media-library', label: '媒体库', icon: '🖼️' }
+  ];
+
+  return (
+    <div style={{ minHeight: '100vh', backgroundColor: warmCream, fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+      <Head>
+        <title>管理后台 - PawSafePlants</title>
+        <meta name="description" content="植物安全管理系统" />
+      </Head>
+
+      {/* Header */}
+      <div style={{
+        backgroundColor: sageGreen,
+        color: 'white',
+        padding: '1.5rem 2rem',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+      }}>
+        <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: '600' }}>
+          🌿 PawSafePlants 管理后台
+        </h1>
+        <Link href="/" style={{ color: 'white', textDecoration: 'none', padding: '0.5rem 1rem', borderRadius: '8px', backgroundColor: 'rgba(255,255,255,0.2)' }}>
+          返回首页
+        </Link>
       </div>
 
-      {activeTab === 'images' && (
-      <>
-      <section style={{ marginTop: 20 }}>
-        <h2>上传文件</h2>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <input type="file" accept="image/*" onChange={(e) => setUploadFile(e.target.files?.[0] || null)} />
-          <button type="button" onClick={confirmUpload} disabled={!uploadFile || uploading}>{uploading ? '上传中...' : '确认上传'}</button>
+      <div style={{ display: 'flex', minHeight: 'calc(100vh - 80px)' }}>
+        {/* Sidebar */}
+        <div style={{
+          width: '260px',
+          backgroundColor: 'white',
+          boxShadow: '4px 0 12px rgba(0,0,0,0.08)',
+          padding: '2rem 0'
+        }}>
+          <nav style={{ padding: '0 1rem' }}>
+            {menuItems.map(item => (
+              <button
+                key={item.id}
+                onClick={() => setActiveTab(item.id)}
+                style={{
+                  width: '100%',
+                  padding: '1rem',
+                  marginBottom: '0.5rem',
+                  border: 'none',
+                  borderRadius: borderRadiusSmall,
+                  backgroundColor: activeTab === item.id ? sageGreen : 'transparent',
+                  color: activeTab === item.id ? 'white' : '#333',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.75rem',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  transition: 'all 0.3s ease',
+                  boxShadow: activeTab === item.id ? '0 4px 12px rgba(135, 169, 107, 0.3)' : 'none'
+                }}
+              >
+                <span style={{ fontSize: '1.25rem' }}>{item.icon}</span>
+                {item.label}
+              </button>
+            ))}
+          </nav>
         </div>
-        <div style={{ marginTop: 6, fontSize: 12, color: '#555' }}>上传后会出现在下方下拉列表中，选择对应图位并点击应用。</div>
-      </section>
 
-      <section style={{ marginTop: 20 }}>
-        <h2>首页大图（Hero）</h2>
-        <p>当前：<code>{site?.heroImage || '未设置'}</code></p>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <ImageDropdown images={images} value={heroSelection || site.heroImage || ''} onChange={(p) => setHeroSelection(p)} placeholder="选择图片路径..." width={420} />
-          <button type="button" onClick={() => updateHero(heroSelection || site.heroImage || '')} disabled={!(heroSelection || site.heroImage)} style={{ padding: '6px 10px' }}>应用</button>
-          <button type="button" onClick={applyAndPreviewHero} disabled={!heroSelection} style={{ padding: '6px 10px' }}>应用并预览</button>
-          <div style={{ width: 110 }}>
-            {(heroSelection || site.heroImage) && (
-              <img src={heroSelection || site.heroImage} alt="预览" style={{ width: '100%', height: 60, objectFit: 'cover', borderRadius: 6, border: '1px solid #e5e7eb' }} />
-            )}
-          </div>
-        </div>
-      </section>
+        {/* Main Content */}
+        <div style={{ flex: 1, padding: '2rem', overflowY: 'auto' }}>
+          {/* Success/Error Messages */}
+          {msg && (
+            <div style={{
+              padding: '1rem',
+              marginBottom: '1.5rem',
+              borderRadius: borderRadiusSmall,
+              backgroundColor: sageGreen,
+              color: 'white',
+              boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)',
+              animation: 'slideIn 0.3s ease'
+            }}>
+              {msg}
+            </div>
+          )}
 
-      <section style={{ marginTop: 12 }}>
-        <h2>站点 Logo</h2>
-        <p>当前：<code>{site?.logo || '未设置'}</code></p>
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-          <ImageDropdown images={images} value={logoSelection || site.logo || ''} onChange={(p) => setLogoSelection(p)} placeholder="选择图片路径..." width={420} />
-          <button type="button" onClick={() => updateLogo(logoSelection || site.logo || '')} disabled={!(logoSelection || site.logo)} style={{ padding: '6px 10px' }}>应用</button>
-          <div style={{ width: 110 }}>
-            {(logoSelection || site.logo) && (
-              <img src={logoSelection || site.logo} alt="预览" style={{ width: '100%', height: 60, objectFit: 'cover', borderRadius: 6, border: '1px solid #e5e7eb' }} />
-            )}
-          </div>
-        </div>
-        <div style={{ marginTop: 6, fontSize: 12, color: '#555' }}>建议使用透明背景的 PNG/SVG，系统会自动适配页面底色显示。</div>
-      </section>
+          {/* Hero Carousel Tab */}
+          {activeTab === 'hero-carousel' && (
+            <div style={{
+              backgroundColor: 'white',
+              borderRadius: borderRadius,
+              padding: '2rem',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.08)',
+              minHeight: '600px'
+            }}>
+              <h2 style={{
+                fontSize: '1.5rem',
+                fontWeight: '600',
+                color: sageGreenDark,
+                marginBottom: '1.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                🎠 首页轮播图管理
+              </h2>
 
-      <section style={{ marginTop: 24 }}>
-        <h2>植物图片（详情页封面）</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          {plants.map((pl) => (
-            <div key={pl.slug} style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 12 }}>
-              <div style={{ fontWeight: 600 }}>{pl.title || pl.slug}</div>
-              <div style={{ fontSize: 12, color: '#555' }}>当前图片：<code>{pl.image || '未设置'}</code></div>
-              <div style={{ fontSize: 12, color: '#555', marginTop: 4 }}>附图1：<code>{pl.image2 || '未设置'}</code> ／ 附图2：<code>{pl.image3 || '未设置'}</code></div>
-              <div style={{ marginTop: 6 }}>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <ImageDropdown images={images} value={selPlant[pl.slug] ?? (pl.image || '')} onChange={(p) => setSelPlant((prev) => ({ ...prev, [pl.slug]: p }))} placeholder="选择图片路径..." width={420} />
-                  <button type="button" onClick={() => updatePlantImage(pl.slug, selPlant[pl.slug] ?? (pl.image || ''))} disabled={!((selPlant[pl.slug] ?? (pl.image || '')))} style={{ padding: '6px 10px' }}>应用</button>
-                  <div style={{ width: 110 }}>
-                    {(selPlant[pl.slug] ?? (pl.image || '')) && (
-                      <img src={selPlant[pl.slug] ?? (pl.image || '')} alt="预览" style={{ width: '100%', height: 60, objectFit: 'cover', borderRadius: 6, border: '1px solid #e5e7eb' }} />
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div style={{ marginTop: 10 }}>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <ImageDropdown images={images} value={selPlant2[pl.slug] ?? (pl.image2 || '')} onChange={(p) => setSelPlant2((prev) => ({ ...prev, [pl.slug]: p }))} placeholder="选择图片路径..." width={420} />
-                  <button type="button" onClick={() => updatePlantImage2(pl.slug, selPlant2[pl.slug] ?? (pl.image2 || ''))} disabled={!((selPlant2[pl.slug] ?? (pl.image2 || '')))} style={{ padding: '6px 10px' }}>应用</button>
-                  <div style={{ width: 110 }}>
-                    {(selPlant2[pl.slug] ?? (pl.image2 || '')) && (
-                      <img src={selPlant2[pl.slug] ?? (pl.image2 || '')} alt="预览" style={{ width: '100%', height: 60, objectFit: 'cover', borderRadius: 6, border: '1px solid #e5e7eb' }} />
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div style={{ marginTop: 10 }}>
-                <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                  <ImageDropdown images={images} value={selPlant3[pl.slug] ?? (pl.image3 || '')} onChange={(p) => setSelPlant3((prev) => ({ ...prev, [pl.slug]: p }))} placeholder="选择图片路径..." width={420} />
-                  <button type="button" onClick={() => updatePlantImage3(pl.slug, selPlant3[pl.slug] ?? (pl.image3 || ''))} disabled={!((selPlant3[pl.slug] ?? (pl.image3 || '')))} style={{ padding: '6px 10px' }}>应用</button>
-                  <div style={{ width: 110 }}>
-                    {(selPlant3[pl.slug] ?? (pl.image3 || '')) && (
-                      <img src={selPlant3[pl.slug] ?? (pl.image3 || '')} alt="预览" style={{ width: '100%', height: 60, objectFit: 'cover', borderRadius: 6, border: '1px solid #e5e7eb' }} />
-                    )}
-                  </div>
-                </div>
-              </div>
-              <div style={{ marginTop: 12, borderTop: '1px dashed #e5e7eb', paddingTop: 10 }}>
-                <div style={{ fontSize: 12, color: '#555', marginBottom: 6 }}>当前缩略图：<code>{pl.thumbPlant || '未设置'}</code> ／ 猫咪缩略图：<code>{pl.thumbCat || '未设置'}</code></div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <ImageDropdown images={images} value={selThumbPlant[pl.slug] ?? (pl.thumbPlant || '')} onChange={(p) => setSelThumbPlant((prev) => ({ ...prev, [pl.slug]: p }))} placeholder="选择图片路径..." width={420} />
-                    <button type="button" onClick={() => updatePlantThumbField(pl.slug, 'thumbPlant', selThumbPlant[pl.slug] ?? (pl.thumbPlant || ''))} disabled={!((selThumbPlant[pl.slug] ?? (pl.thumbPlant || '')))} style={{ padding: '6px 10px' }}>应用</button>
-                    <div style={{ width: 110 }}>
-                      {(selThumbPlant[pl.slug] ?? (pl.thumbPlant || '')) && (
-                        <img src={selThumbPlant[pl.slug] ?? (pl.thumbPlant || '')} alt="预览" style={{ width: '100%', height: 60, objectFit: 'cover', borderRadius: 6, border: '1px solid #e5e7eb' }} />
-                      )}
-                    </div>
-                  </div>
-                  <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                    <ImageDropdown images={images} value={selThumbCat[pl.slug] ?? (pl.thumbCat || '')} onChange={(p) => setSelThumbCat((prev) => ({ ...prev, [pl.slug]: p }))} placeholder="选择图片路径..." width={420} />
-                    <button type="button" onClick={() => updatePlantThumbField(pl.slug, 'thumbCat', selThumbCat[pl.slug] ?? (pl.thumbCat || ''))} disabled={!((selThumbCat[pl.slug] ?? (pl.thumbCat || '')))} style={{ padding: '6px 10px' }}>应用</button>
-                    <div style={{ width: 110 }}>
-                      {(selThumbCat[pl.slug] ?? (pl.thumbCat || '')) && (
-                        <img src={selThumbCat[pl.slug] ?? (pl.thumbCat || '')} alt="预览" style={{ width: '100%', height: 60, objectFit: 'cover', borderRadius: 6, border: '1px solid #e5e7eb' }} />
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-      </>
-      )}
-      {activeTab === 'stats' && (
-      <section style={{ marginTop: 24 }}>
-        <h2>数据统计（30天）</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 12 }}>
-            <div style={{ fontWeight: 600, marginBottom: 8 }}>每日访问次数</div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 6 }}>
-              {stats.map(s => (
-                <div key={s.date} style={{ display: 'grid', gridTemplateColumns: '110px 1fr 54px', alignItems: 'center', gap: 8 }}>
-                  <span style={{ color: '#555' }}>{s.date}</span>
-                  <div style={{ background: '#f3f4f6', borderRadius: 999, overflow: 'hidden', height: 10 }}>
-                    <div style={{ width: `${Math.max(2, Math.round((Number(s.count || 0) / maxCount) * 100))}%`, height: '100%', background: 'linear-gradient(90deg, #A8E6CF, #FFD3B6, #DCBFFF)' }}></div>
-                  </div>
-                  <span style={{ fontWeight: 600, textAlign: 'right' }}>{s.count}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-      )}
-      {activeTab === 'comments' && (
-      <section style={{ marginTop: 24 }}>
-        <h2>评论管理</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <div style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 12 }}>
-            <div style={{ fontWeight: 600, marginBottom: 8 }}>待审核</div>
-            <div style={{ display: 'grid', gap: 10 }}>
-              {pendingComments.length === 0 && <div style={{ color: '#777' }}>暂无待审核评论</div>}
-              {pendingComments.map((c) => (
-                <div key={c.id} style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 12 }}>
-                  <div style={{ fontSize: 12, color: '#555' }}>{c.slug} • {c.author || 'Anonymous'} • {new Date(c.created_at).toLocaleString()}</div>
-                  <div style={{ marginTop: 6 }}>{c.content}</div>
-                  <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-                    <button type="button" onClick={() => moderate(c.id, 'approve')}>通过</button>
-                    <button type="button" onClick={() => moderate(c.id, 'delete')}>删除</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 12 }}>
-            <div style={{ fontWeight: 600, marginBottom: 8 }}>已审核</div>
-            <div style={{ display: 'grid', gap: 10 }}>
-              {approvedComments.length === 0 && <div style={{ color: '#777' }}>暂无已审核评论</div>}
-              {approvedComments.map((c) => (
-                <div key={c.id} style={{ border: '1px solid #e5e7eb', borderRadius: 12, padding: 12 }}>
-                  <div style={{ fontSize: 12, color: '#555' }}>{c.slug} • {c.author || 'Anonymous'} • {new Date(c.created_at).toLocaleString()}</div>
-                  <div style={{ marginTop: 6 }}>{c.content}</div>
-                  {Array.isArray(c.replies) && c.replies.length > 0 && (
-                    <div style={{ marginTop: 8, display: 'grid', gap: 6 }}>
-                      {c.replies.map((r) => (
-                        <div key={r.id} style={{ border: '1px dashed #e5e7eb', borderRadius: 8, padding: 8 }}>
-                          <div style={{ fontSize: 12, color: '#555' }}>{r.author || 'Admin'} • {new Date(r.created_at).toLocaleString()}</div>
-                          <div style={{ marginTop: 4 }}>{r.content}</div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', alignItems: 'start' }}>
+                {heroSlides.map((slide, index) => (
+                  <div key={slide.id} style={{
+                    border: `2px solid ${warmCreamDark}`,
+                    borderRadius: borderRadiusSmall,
+                    padding: '1.5rem',
+                    backgroundColor: warmCream
+                  }}>
+                    <h3 style={{
+                      fontSize: '1.1rem',
+                      fontWeight: '600',
+                      color: sageGreenDark,
+                      marginBottom: '1rem'
+                    }}>
+                      轮播图 {index + 1}
+                    </h3>
+
+                    {/* Image Preview */}
+                    <div style={{
+                      width: '100%',
+                      height: '200px',
+                      borderRadius: borderRadiusSmall,
+                      border: `2px dashed ${sageGreen}`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: '1rem',
+                      overflow: 'hidden',
+                      backgroundColor: '#fff'
+                    }}>
+                      {heroPreviews[index] ? (
+                        <img
+                          src={heroPreviews[index]}
+                          alt={`轮播图 ${index + 1}`}
+                          style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                          }}
+                        />
+                      ) : (
+                        <div style={{
+                          textAlign: 'center',
+                          color: '#666'
+                        }}>
+                          <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🖼️</div>
+                          <p>暂无图片</p>
                         </div>
-                      ))}
+                      )}
+                    </div>
+
+                    {/* Upload Button */}
+                    <div style={{ marginBottom: '1rem' }}>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          if (file) handleHeroImageUpload(file, index);
+                        }}
+                        style={{ display: 'none' }}
+                        id={`hero-upload-${index}`}
+                      />
+                      <label
+                        htmlFor={`hero-upload-${index}`}
+                        style={{
+                          display: 'inline-block',
+                          padding: '0.75rem 1rem',
+                          backgroundColor: heroUploading[index] ? '#ccc' : sageGreen,
+                          color: 'white',
+                          borderRadius: borderRadiusSmall,
+                          cursor: heroUploading[index] ? 'not-allowed' : 'pointer',
+                          transition: 'all 0.3s ease',
+                          fontSize: '0.9rem',
+                          fontWeight: '500',
+                          marginRight: '0.5rem'
+                        }}
+                      >
+                        {heroUploading[index] ? '上传中...' : '📤 上传图片'}
+                      </label>
+
+                      <button
+                        onClick={() => {
+                          const newHeroMediaOpen = [...heroMediaOpen];
+                          newHeroMediaOpen[index] = true;
+                          setHeroMediaOpen(newHeroMediaOpen);
+                        }}
+                        style={{
+                          padding: '0.75rem 1rem',
+                          backgroundColor: warmCreamDark,
+                          color: '#333',
+                          border: 'none',
+                          borderRadius: borderRadiusSmall,
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          fontSize: '0.9rem',
+                          fontWeight: '500'
+                        }}
+                      >
+                        📁 从媒体库选择
+                      </button>
+                    </div>
+
+                    {/* Link Input */}
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label style={{
+                        display: 'block',
+                        marginBottom: '0.5rem',
+                        fontWeight: '500',
+                        color: '#333',
+                        fontSize: '0.9rem'
+                      }}>
+                        跳转链接（可选）
+                      </label>
+                      <input
+                        type="text"
+                        value={slide.link}
+                        onChange={(e) => handleHeroLinkChange(e.target.value, index)}
+                        placeholder="例如：/plants/spider-plant"
+                        style={{
+                          width: '100%',
+                          padding: '0.75rem',
+                          border: `2px solid ${warmCreamDark}`,
+                          borderRadius: borderRadiusSmall,
+                          fontSize: '0.9rem'
+                        }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Save Button */}
+              <div style={{
+                marginTop: '2rem',
+                textAlign: 'center'
+              }}>
+                <button
+                  onClick={saveHeroCarousel}
+                  style={{
+                    padding: '1rem 2rem',
+                    backgroundColor: sageGreen,
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.backgroundColor = sageGreenDark;
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.backgroundColor = sageGreen;
+                  }}
+                >
+                  💾 保存轮播图设置
+                </button>
+              </div>
+
+              {/* Hero Media Library Modals */}
+              {heroMediaOpen.map((isOpen, index) =>
+                isOpen && (
+                  <div
+                    key={`hero-modal-${index}`}
+                    style={{
+                      position: 'fixed',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      backgroundColor: 'rgba(0,0,0,0.5)',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      zIndex: 1000
+                    }}
+                    onClick={() => {
+                      const newHeroMediaOpen = [...heroMediaOpen];
+                      newHeroMediaOpen[index] = false;
+                      setHeroMediaOpen(newHeroMediaOpen);
+                    }}
+                  >
+                    <div
+                      style={{
+                        backgroundColor: 'white',
+                        borderRadius: borderRadius,
+                        padding: '2rem',
+                        width: '90%',
+                        maxWidth: '900px',
+                        maxHeight: '90vh',
+                        overflowY: 'auto',
+                        boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
+                      }}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <h3 style={{
+                        color: sageGreen,
+                        marginBottom: '1.5rem',
+                        fontSize: '1.5rem',
+                        fontWeight: '600'
+                      }}>
+                        📁 选择轮播图 {index + 1}
+                      </h3>
+                      <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+                        gap: '1rem',
+                        marginBottom: '2rem'
+                      }}>
+                        {images.filter(img => img.includes('/uploads/')).map((img, idx) => (
+                          <div
+                            key={idx}
+                            onClick={() => handleHeroMediaSelect(img, index)}
+                            style={{
+                              cursor: 'pointer',
+                              borderRadius: borderRadiusSmall,
+                              overflow: 'hidden',
+                              border: heroPreviews[index] === img ? `3px solid ${sageGreen}` : '2px solid #e0e0e0',
+                              transition: 'all 0.3s ease'
+                            }}
+                          >
+                            <img
+                              src={img}
+                              alt={`媒体图片 ${idx + 1}`}
+                              style={{
+                                width: '100%',
+                                height: '120px',
+                                objectFit: 'cover'
+                              }}
+                            />
+                            <div style={{
+                              padding: '0.5rem',
+                              backgroundColor: warmCream,
+                              fontSize: '0.75rem',
+                              color: '#666',
+                              wordBreak: 'break-all'
+                            }}>
+                              {img.split('/').pop()}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <button
+                        onClick={() => {
+                          const newHeroMediaOpen = [...heroMediaOpen];
+                          newHeroMediaOpen[index] = false;
+                          setHeroMediaOpen(newHeroMediaOpen);
+                        }}
+                        style={{
+                          padding: '1rem',
+                          backgroundColor: '#ccc',
+                          color: '#333',
+                          border: 'none',
+                          borderRadius: borderRadiusSmall,
+                          fontSize: '1rem',
+                          fontWeight: '500',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        取消
+                      </button>
+                    </div>
+                  </div>
+                )
+              )}
+            </div>
+          )}
+
+          {/* Add Plant Tab */}
+          {activeTab === 'add-plant' && (
+            <div style={{
+              backgroundColor: 'white',
+              borderRadius: borderRadius,
+              padding: '2rem',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+              animation: 'fadeIn 0.4s ease'
+            }}>
+              <h2 style={{ color: sageGreen, marginBottom: '2rem', fontSize: '1.75rem', fontWeight: '600' }}>
+                添加新植物
+              </h2>
+              <form onSubmit={handleAddPlant} style={{ display: 'grid', gap: '1.5rem' }}>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                    植物名称
+                  </label>
+                  <input
+                    type="text"
+                    value={plantName}
+                    onChange={(e) => setPlantName(e.target.value)}
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      transition: 'border-color 0.3s ease'
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                    拉丁学名
+                  </label>
+                  <input
+                    type="text"
+                    value={scientificName}
+                    onChange={(e) => setScientificName(e.target.value)}
+                    required
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      transition: 'border-color 0.3s ease'
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                    安全性
+                  </label>
+                  <select
+                    value={toxicityLevel}
+                    onChange={(e) => setToxicityLevel(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      transition: 'border-color 0.3s ease'
+                    }}
+                  >
+                    <option value="Safe">安全 (Safe)</option>
+                    <option value="Caution">注意 (Caution)</option>
+                    <option value="Toxic">有毒 (Toxic)</option>
+                  </select>
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                    养育难度
+                  </label>
+                  <select
+                    value={careDifficulty}
+                    onChange={(e) => setCareDifficulty(e.target.value)}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      transition: 'border-color 0.3s ease'
+                    }}
+                  >
+                    <option value="Easy">简单 (Easy)</option>
+                    <option value="Moderate">中等 (Moderate)</option>
+                    <option value="Difficult">困难 (Difficult)</option>
+                  </select>
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                    详细描述
+                  </label>
+                  <textarea
+                    value={englishDescription}
+                    onChange={(e) => setEnglishDescription(e.target.value)}
+                    rows={4}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      resize: 'vertical',
+                      transition: 'border-color 0.3s ease'
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                    植物图片
+                  </label>
+                  <div style={{ display: 'grid', gap: '1rem' }}>
+                    {/* Image Preview */}
+                    {(imagePreview || imageUrl) && (
+                      <div style={{ position: 'relative' }}>
+                        <img
+                          src={imagePreview || imageUrl}
+                          alt="植物图片预览"
+                          style={{
+                            width: '200px',
+                            height: '200px',
+                            objectFit: 'cover',
+                            borderRadius: borderRadiusSmall,
+                            border: '2px solid #e0e0e0'
+                          }}
+                        />
+                        {imageUrl && (
+                          <div style={{
+                            position: 'absolute',
+                            bottom: '8px',
+                            left: '8px',
+                            backgroundColor: 'rgba(0,0,0,0.7)',
+                            color: 'white',
+                            padding: '4px 8px',
+                            borderRadius: '4px',
+                            fontSize: '0.75rem'
+                          }}>
+                            {imageUrl}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    
+                    {/* Upload and Library Buttons */}
+                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            handleImageFileSelect(file, false);
+                          }
+                        }}
+                        style={{ display: 'none' }}
+                        id="plant-image-upload"
+                      />
+                      <label
+                        htmlFor="plant-image-upload"
+                        style={{
+                          padding: '0.75rem 1.5rem',
+                          backgroundColor: sageGreen,
+                          color: 'white',
+                          borderRadius: borderRadiusSmall,
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)',
+                          display: 'inline-block'
+                        }}
+                      >
+                        📁 本地上传
+                      </label>
+                      
+                      <button
+                        type="button"
+                        onClick={() => setMediaLibraryOpen(true)}
+                        style={{
+                          padding: '0.75rem 1.5rem',
+                          backgroundColor: warmCreamDark,
+                          color: '#333',
+                          border: 'none',
+                          borderRadius: borderRadiusSmall,
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          fontSize: '1rem'
+                        }}
+                      >
+                        🖼️ 从媒体库选择
+                      </button>
+                    </div>
+                    
+                    {/* Upload Button for Selected File */}
+                    {selectedImageFile && (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                        <button
+                          type="button"
+                          onClick={() => handlePlantImageUpload(selectedImageFile, false)}
+                          disabled={imageUploading || !plantName}
+                          style={{
+                            padding: '0.75rem 1.5rem',
+                            backgroundColor: imageUploading || !plantName ? '#ccc' : sageGreen,
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: borderRadiusSmall,
+                            cursor: imageUploading || !plantName ? 'not-allowed' : 'pointer',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          {imageUploading ? '上传中...' : `上传为 ${plantName ? generatePlantFilename(plantName, selectedImageFile) : '请先填写植物名称'}`}
+                        </button>
+                        <span style={{ fontSize: '0.875rem', color: '#666' }}>
+                          文件: {selectedImageFile.name}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* Hidden URL field for form submission */}
+                    <input
+                      type="hidden"
+                      value={imageUrl}
+                      onChange={(e) => setImageUrl(e.target.value)}
+                    />
+                  </div>
+                </div>
+                {formMessage && (
+                  <div style={{
+                    padding: '0.75rem',
+                    borderRadius: borderRadiusSmall,
+                    backgroundColor: sageGreen,
+                    color: 'white',
+                    textAlign: 'center'
+                  }}>
+                    {formMessage}
+                  </div>
+                )}
+                <button
+                  type="submit"
+                  disabled={formSubmitting}
+                  style={{
+                    padding: '1rem 2rem',
+                    backgroundColor: sageGreen,
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    cursor: formSubmitting ? 'not-allowed' : 'pointer',
+                    opacity: formSubmitting ? 0.7 : 1,
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)'
+                  }}
+                >
+                  {formSubmitting ? '保存中...' : '保存植物信息'}
+                </button>
+              </form>
+            </div>
+          )}
+
+          {/* Plant List Tab */}
+          {activeTab === 'plant-list' && (
+            <div style={{
+              backgroundColor: 'white',
+              borderRadius: borderRadius,
+              padding: '2rem',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+              animation: 'fadeIn 0.4s ease'
+            }}>
+              <h2 style={{ color: sageGreen, marginBottom: '2rem', fontSize: '1.75rem', fontWeight: '600' }}>
+                植物列表
+              </h2>
+              
+              {/* Search Bar */}
+              <div style={{ marginBottom: '2rem' }}>
+                <input
+                  type="text"
+                  placeholder="搜索植物名称或拉丁学名..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    transition: 'border-color 0.3s ease'
+                  }}
+                />
+              </div>
+
+              {/* Plants Table */}
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <thead>
+                    <tr style={{ backgroundColor: warmCreamDark }}>
+                      <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #e0e0e0' }}>预览</th>
+                      <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #e0e0e0' }}>名称</th>
+                      <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #e0e0e0' }}>拉丁名</th>
+                      <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #e0e0e0' }}>安全等级</th>
+                      <th style={{ padding: '1rem', textAlign: 'left', borderBottom: '2px solid #e0e0e0' }}>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredPlants.map((plant) => (
+                      <tr key={plant.slug} style={{ borderBottom: '1px solid #e0e0e0', transition: 'background-color 0.3s ease' }}>
+                        <td style={{ padding: '1rem' }}>
+                          {plant.image && (
+                            <img
+                              src={plant.image}
+                              alt={plant.title}
+                              style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '8px' }}
+                            />
+                          )}
+                        </td>
+                        <td style={{ padding: '1rem', fontWeight: '500' }}>{plant.title}</td>
+                        <td style={{ padding: '1rem', fontStyle: 'italic', color: '#666' }}>{plant.scientific_name}</td>
+                        <td style={{ padding: '1rem' }}>
+                          <span style={{
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '12px',
+                            fontSize: '0.875rem',
+                            fontWeight: '500',
+                            backgroundColor: 
+                              plant.toxicity_level === 'Safe' ? '#d4edda' :
+                              plant.toxicity_level === 'Caution' ? '#fff3cd' : '#f8d7da',
+                            color: 
+                              plant.toxicity_level === 'Safe' ? '#155724' :
+                              plant.toxicity_level === 'Caution' ? '#856404' : '#721c24'
+                          }}>
+                            {plant.toxicity_level === 'Safe' ? '安全' :
+                             plant.toxicity_level === 'Caution' ? '注意' : '有毒'}
+                          </span>
+                        </td>
+                        <td style={{ padding: '1rem' }}>
+                          <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button
+                              onClick={() => handleEditPlant(plant)}
+                              style={{
+                                padding: '0.5rem 1rem',
+                                backgroundColor: sageGreen,
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '8px',
+                                cursor: 'pointer',
+                                fontSize: '0.875rem',
+                                transition: 'all 0.3s ease'
+                              }}
+                            >
+                              编辑
+                            </button>
+                            <button
+                              onClick={() => handleDeletePlant(plant.slug)}
+                              style={{
+                                padding: '0.5rem 1rem',
+                                backgroundColor: terracotta,
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '8px',
+                                cursor: 'pointer',
+                                fontSize: '0.875rem',
+                                transition: 'all 0.3s ease'
+                              }}
+                            >
+                              删除
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+          {/* Media Library Tab */}
+          {activeTab === 'media-library' && (
+            <div style={{
+              backgroundColor: 'white',
+              borderRadius: borderRadius,
+              padding: '2rem',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+              animation: 'fadeIn 0.4s ease'
+            }}>
+              <h2 style={{ color: sageGreen, marginBottom: '2rem', fontSize: '1.75rem', fontWeight: '600' }}>
+                媒体库
+              </h2>
+
+              {/* Upload Section */}
+              <div style={{ marginBottom: '2rem', padding: '2rem', backgroundColor: warmCream, borderRadius: borderRadiusSmall }}>
+                <h3 style={{ marginBottom: '1rem', color: sageGreen }}>上传新图片</h3>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        setUploadFile(file);
+                        const reader = new FileReader();
+                        reader.onload = (e) => setUploadPreview(e.target.result);
+                        reader.readAsDataURL(file);
+                      }
+                    }}
+                    style={{ display: 'none' }}
+                    id="file-upload"
+                  />
+                  <label
+                    htmlFor="file-upload"
+                    style={{
+                      padding: '0.75rem 1.5rem',
+                      backgroundColor: sageGreen,
+                      color: 'white',
+                      borderRadius: borderRadiusSmall,
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)'
+                    }}
+                  >
+                    选择图片
+                  </label>
+                  {uploadFile && (
+                    <button
+                      onClick={() => onUpload(uploadFile)}
+                      disabled={uploading}
+                      style={{
+                        padding: '0.75rem 1.5rem',
+                        backgroundColor: uploading ? '#ccc' : sageGreen,
+                        color: 'white',
+                        border: 'none',
+                        borderRadius: borderRadiusSmall,
+                        cursor: uploading ? 'not-allowed' : 'pointer',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      {uploading ? '上传中...' : '上传'}
+                    </button>
+                  )}
+                </div>
+                {uploadPreview && (
+                  <div style={{ marginTop: '1rem' }}>
+                    <img
+                      src={uploadPreview}
+                      alt="预览"
+                      style={{ maxWidth: '200px', maxHeight: '200px', borderRadius: borderRadiusSmall }}
+                    />
+                  </div>
+                )}
+              </div>
+
+              {/* Images Grid - Waterfall Layout */}
+              <div className="waterfall-grid">
+                {images.map((img, idx) => (
+                  <div
+                    key={idx}
+                    style={{
+                      breakInside: 'avoid',
+                      marginBottom: '1rem',
+                      backgroundColor: warmCream,
+                      borderRadius: borderRadiusSmall,
+                    }}
+                  >
+                    <img
+                      src={img}
+                      alt={`图片 ${idx}`}
+                      style={{
+                        width: '100%',
+                        height: 'auto',
+                        borderRadius: `${borderRadiusSmall} ${borderRadiusSmall} 0 0`,
+                        cursor: 'pointer'
+                      }}
+                      onClick={() => copyToClipboard(img)}
+                    />
+                    <div style={{ padding: '1rem' }}>
+                      <div style={{ fontSize: '0.875rem', color: '#666', marginBottom: '0.5rem', wordBreak: 'break-all' }}>
+                        {img.split('/').pop()}
+                      </div>
+                      <button
+                        onClick={() => copyToClipboard(img)}
+                        style={{
+                          width: '100%',
+                          padding: '0.5rem',
+                          backgroundColor: copiedPath === img ? '#28a745' : sageGreen,
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '8px',
+                          cursor: 'pointer',
+                          fontSize: '0.875rem',
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        {copiedPath === img ? '已复制!' : '复制路径'}
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Edit Modal */}
+      {editModalOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: borderRadius,
+            padding: '2rem',
+            width: '90%',
+            maxWidth: '600px',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
+          }}>
+            <h3 style={{ color: sageGreen, marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: '600' }}>
+              编辑植物信息
+            </h3>
+            <form onSubmit={handleEditSubmit} style={{ display: 'grid', gap: '1rem' }}>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  植物名称
+                </label>
+                <input
+                  type="text"
+                  value={editForm.title}
+                  onChange={(e) => setEditForm({...editForm, title: e.target.value})}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem'
+                  }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  拉丁学名
+                </label>
+                <input
+                  type="text"
+                  value={editForm.scientific_name}
+                  onChange={(e) => setEditForm({...editForm, scientific_name: e.target.value})}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem'
+                  }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  安全性
+                </label>
+                <select
+                  value={editForm.toxicity_level}
+                  onChange={(e) => setEditForm({...editForm, toxicity_level: e.target.value})}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem'
+                  }}
+                >
+                  <option value="Safe">安全 (Safe)</option>
+                  <option value="Caution">注意 (Caution)</option>
+                  <option value="Toxic">有毒 (Toxic)</option>
+                </select>
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  养育难度
+                </label>
+                <select
+                  value={editForm.care_difficulty}
+                  onChange={(e) => setEditForm({...editForm, care_difficulty: e.target.value})}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem'
+                  }}
+                >
+                  <option value="Easy">简单 (Easy)</option>
+                  <option value="Moderate">中等 (Moderate)</option>
+                  <option value="Difficult">困难 (Difficult)</option>
+                </select>
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  详细描述
+                </label>
+                <textarea
+                  value={editForm.summary}
+                  onChange={(e) => setEditForm({...editForm, summary: e.target.value})}
+                  rows={3}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  植物图片
+                </label>
+                <div style={{ display: 'grid', gap: '1rem' }}>
+                  {/* Image Preview */}
+                  {(editImagePreview || editForm.image) && (
+                    <div style={{ position: 'relative' }}>
+                      <img
+                        src={editImagePreview || editForm.image}
+                        alt="植物图片预览"
+                        style={{
+                          width: '200px',
+                          height: '200px',
+                          objectFit: 'cover',
+                          borderRadius: borderRadiusSmall,
+                          border: '2px solid #e0e0e0'
+                        }}
+                      />
+                      {editForm.image && (
+                        <div style={{
+                          position: 'absolute',
+                          bottom: '8px',
+                          left: '8px',
+                          backgroundColor: 'rgba(0,0,0,0.7)',
+                          color: 'white',
+                          padding: '4px 8px',
+                          borderRadius: '4px',
+                          fontSize: '0.75rem'
+                        }}>
+                          {editForm.image}
+                        </div>
+                      )}
                     </div>
                   )}
-                  <div style={{ display: 'grid', gap: 6, marginTop: 8 }}>
-                    <textarea rows={2} placeholder="回复内容..." value={String((replyText || {})[c.id] || '')} onChange={(e) => setReplyText((prev) => ({ ...prev, [c.id]: e.target.value }))} />
-                    <div style={{ display: 'flex', gap: 8 }}>
-                      <button type="button" onClick={() => submitReply(c.id)} disabled={!String((replyText || {})[c.id] || '').trim()}>回复</button>
-                      <button type="button" onClick={() => moderate(c.id, 'delete')}>删除</button>
+                  
+                  {/* Upload and Library Buttons */}
+                  <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          handleImageFileSelect(file, true);
+                        }
+                      }}
+                      style={{ display: 'none' }}
+                      id="edit-plant-image-upload"
+                    />
+                    <label
+                      htmlFor="edit-plant-image-upload"
+                      style={{
+                        padding: '0.75rem 1.5rem',
+                        backgroundColor: sageGreen,
+                        color: 'white',
+                        borderRadius: borderRadiusSmall,
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)',
+                        display: 'inline-block'
+                      }}
+                    >
+                      📁 本地上传
+                    </label>
+                    
+                    <button
+                      type="button"
+                      onClick={() => setEditMediaLibraryOpen(true)}
+                      style={{
+                        padding: '0.75rem 1.5rem',
+                        backgroundColor: warmCreamDark,
+                        color: '#333',
+                        border: 'none',
+                        borderRadius: borderRadiusSmall,
+                        cursor: 'pointer',
+                        transition: 'all 0.3s ease',
+                        fontSize: '1rem'
+                      }}
+                    >
+                      🖼️ 从媒体库选择
+                    </button>
+                  </div>
+                  
+                  {/* Upload Button for Selected File */}
+                  {editSelectedImageFile && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                      <button
+                        type="button"
+                        onClick={() => handlePlantImageUpload(editSelectedImageFile, true)}
+                        disabled={editImageUploading || !editForm.title}
+                        style={{
+                          padding: '0.75rem 1.5rem',
+                          backgroundColor: editImageUploading || !editForm.title ? '#ccc' : sageGreen,
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: borderRadiusSmall,
+                          cursor: editImageUploading || !editForm.title ? 'not-allowed' : 'pointer',
+                          transition: 'all 0.3s ease'
+                        }}
+                      >
+                        {editImageUploading ? '上传中...' : `上传为 ${editForm.title ? generatePlantFilename(editForm.title, editSelectedImageFile) : '请先填写植物名称'}`}
+                      </button>
+                      <span style={{ fontSize: '0.875rem', color: '#666' }}>
+                        文件: {editSelectedImageFile.name}
+                      </span>
                     </div>
+                  )}
+                  
+                  {/* Manual URL input as fallback */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <input
+                      type="text"
+                      placeholder="或直接输入图片URL..."
+                      value={editForm.image}
+                      onChange={(e) => setEditForm({...editForm, image: e.target.value})}
+                      style={{
+                        flex: 1,
+                        padding: '0.75rem',
+                        border: '2px solid #e0e0e0',
+                        borderRadius: borderRadiusSmall,
+                        fontSize: '1rem'
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  护理技巧
+                </label>
+                <textarea
+                  value={editForm.care_tips}
+                  onChange={(e) => setEditForm({...editForm, care_tips: e.target.value})}
+                  rows={2}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    resize: 'vertical'
+                  }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  水分需求
+                </label>
+                <input
+                  type="text"
+                  value={editForm.water_needs}
+                  onChange={(e) => setEditForm({...editForm, water_needs: e.target.value})}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem'
+                  }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  光照需求
+                </label>
+                <input
+                  type="text"
+                  value={editForm.light_needs}
+                  onChange={(e) => setEditForm({...editForm, light_needs: e.target.value})}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem'
+                  }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  温度要求
+                </label>
+                <input
+                  type="text"
+                  value={editForm.temperature}
+                  onChange={(e) => setEditForm({...editForm, temperature: e.target.value})}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '2px solid #e0e0e0',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem'
+                  }}
+                />
+              </div>
+              <div>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  萌宠时刻图片
+                </label>
+                <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <input
+                    type="text"
+                    value={editForm.pet_moment}
+                    onChange={(e) => setEditForm({...editForm, pet_moment: e.target.value})}
+                    placeholder="输入猫咪与植物合影的图片路径..."
+                    style={{
+                      flex: 1,
+                      padding: '0.75rem',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem'
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setPetLibraryOpen(true)}
+                    style={{
+                      padding: '0.75rem 1rem',
+                      backgroundColor: warmCreamDark,
+                      color: '#333',
+                      border: 'none',
+                      borderRadius: borderRadiusSmall,
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease',
+                      fontSize: '0.875rem',
+                      whiteSpace: 'nowrap'
+                    }}
+                  >
+                    🐱 选择猫咪氛围图
+                  </button>
+                </div>
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+                <button
+                  type="submit"
+                  disabled={editSubmitting}
+                  style={{
+                    flex: 1,
+                    padding: '1rem',
+                    backgroundColor: sageGreen,
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    cursor: editSubmitting ? 'not-allowed' : 'pointer',
+                    opacity: editSubmitting ? 0.7 : 1,
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  {editSubmitting ? '保存中...' : '保存更改'}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setEditModalOpen(false)}
+                  style={{
+                    flex: 1,
+                    padding: '1rem',
+                    backgroundColor: '#ccc',
+                    color: '#333',
+                    border: 'none',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  取消
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Media Library Modal for Add Plant */}
+      {mediaLibraryOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: borderRadius,
+            padding: '2rem',
+            width: '90%',
+            maxWidth: '800px',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
+          }}>
+            <h3 style={{ color: sageGreen, marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: '600' }}>
+              从媒体库选择图片
+            </h3>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+              gap: '1rem',
+              marginBottom: '2rem'
+            }}>
+              {images.filter(img => img.includes('/uploads/')).map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => handleMediaLibrarySelect(img, false)}
+                  style={{
+                    cursor: 'pointer',
+                    borderRadius: borderRadiusSmall,
+                    overflow: 'hidden',
+                    border: selectedMediaImage === img ? `3px solid ${sageGreen}` : '2px solid #e0e0e0',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <img
+                    src={img}
+                    alt={`媒体库图片 ${idx}`}
+                    style={{
+                      width: '100%',
+                      height: '120px',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div style={{
+                    padding: '0.5rem',
+                    backgroundColor: warmCream,
+                    fontSize: '0.75rem',
+                    color: '#666',
+                    wordBreak: 'break-all'
+                  }}>
+                    {img.split('/').pop()}
                   </div>
                 </div>
               ))}
             </div>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <button
+                onClick={() => setMediaLibraryOpen(false)}
+                style={{
+                  flex: 1,
+                  padding: '1rem',
+                  backgroundColor: '#ccc',
+                  color: '#333',
+                  border: 'none',
+                  borderRadius: borderRadiusSmall,
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                取消
+              </button>
+            </div>
           </div>
         </div>
-      </section>
       )}
-      {activeTab === 'tables' && (
-      <>
-      <section style={{ marginTop: 24 }}>
-        <h2>数据表</h2>
-        <div style={{ color: '#555', marginBottom: 8 }}>用户管理（待开发）</div>
-        <div style={{ color: '#555' }}>更多数据类管理项可在此扩展。</div>
-      </section>
-      <section style={{ marginTop: 24 }}>
-        <h2>后台账号设置</h2>
-        <div style={{ display: 'grid', gap: 10, maxWidth: 420 }}>
-          <label style={{ display: 'grid', gap: 6 }}>
-            <span>用户名</span>
-            <input value={credUser} onChange={(e) => setCredUser(e.target.value)} placeholder="" autoComplete="off" inputMode="text" spellCheck={false} autoCapitalize="none" onKeyDown={(e) => { if (e.key === 'Enter') updateCred(); }} />
-          </label>
-          <label style={{ display: 'grid', gap: 6 }}>
-            <span>新密码</span>
-            <input type="password" value={credPass} onChange={(e) => setCredPass(e.target.value)} placeholder="" autoComplete="new-password" spellCheck={false} onKeyDown={(e) => { if (e.key === 'Enter') updateCred(); }} />
-          </label>
-          <button type="button" onClick={updateCred} disabled={!credUser || !credPass}>更新后台账号</button>
-          <div style={{ color: '#666' }}>更新后请退出并用新账号登录。</div>
-          {credMsg && <div style={{ color: credMsg.includes('已更新') ? '#2e7d32' : '#c62828' }}>{credMsg}</div>}
+
+      {/* Media Library Modal for Edit Plant */}
+      {editMediaLibraryOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: borderRadius,
+            padding: '2rem',
+            width: '90%',
+            maxWidth: '800px',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
+          }}>
+            <h3 style={{ color: sageGreen, marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: '600' }}>
+              从媒体库选择图片
+            </h3>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
+              gap: '1rem',
+              marginBottom: '2rem'
+            }}>
+              {images.filter(img => img.includes('/uploads/')).map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => handleMediaLibrarySelect(img, true)}
+                  style={{
+                    cursor: 'pointer',
+                    borderRadius: borderRadiusSmall,
+                    overflow: 'hidden',
+                    border: editSelectedMediaImage === img ? `3px solid ${sageGreen}` : '2px solid #e0e0e0',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <img
+                    src={img}
+                    alt={`媒体库图片 ${idx}`}
+                    style={{
+                      width: '100%',
+                      height: '120px',
+                      objectFit: 'cover'
+                    }}
+                  />
+                  <div style={{
+                    padding: '0.5rem',
+                    backgroundColor: warmCream,
+                    fontSize: '0.75rem',
+                    color: '#666',
+                    wordBreak: 'break-all'
+                  }}>
+                    {img.split('/').pop()}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <button
+                onClick={() => setEditMediaLibraryOpen(false)}
+                style={{
+                  flex: 1,
+                  padding: '1rem',
+                  backgroundColor: '#ccc',
+                  color: '#333',
+                  border: 'none',
+                  borderRadius: borderRadiusSmall,
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                取消
+              </button>
+            </div>
+          </div>
         </div>
-      </section>
-      </>
       )}
+
+      {/* Pet Image Library Modal */}
+      {petLibraryOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000
+        }}>
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: borderRadius,
+            padding: '2rem',
+            width: '90%',
+            maxWidth: '900px',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
+          }}>
+            <h3 style={{ color: sageGreen, marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: '600' }}>
+              🐱 选择猫咪氛围图
+            </h3>
+            {petImages.length === 0 ? (
+              <div style={{
+                textAlign: 'center',
+                padding: '3rem',
+                backgroundColor: warmCream,
+                borderRadius: borderRadiusSmall,
+                color: '#666'
+              }}>
+                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📸</div>
+                <p>还没有上传猫咪图片哦！</p>
+                <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>
+                  请将猫咪与植物的合影图片上传到 <code>/public/images/pets/</code> 目录
+                </p>
+              </div>
+            ) : (
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(180px, 1fr))',
+                gap: '1rem',
+                marginBottom: '2rem'
+              }}>
+                {petImages.map((img, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => handlePetImageSelect(img)}
+                    style={{
+                      cursor: 'pointer',
+                      borderRadius: borderRadiusSmall,
+                      overflow: 'hidden',
+                      border: editForm.pet_moment === img ? `3px solid ${sageGreen}` : '2px solid #e0e0e0',
+                      transition: 'all 0.3s ease',
+                      transform: editForm.pet_moment === img ? 'scale(1.05)' : 'scale(1)'
+                    }}
+                  >
+                    <img
+                      src={img}
+                      alt={`猫咪图片 ${idx + 1}`}
+                      style={{
+                        width: '100%',
+                        height: '140px',
+                        objectFit: 'cover'
+                      }}
+                    />
+                    <div style={{
+                      padding: '0.75rem',
+                      backgroundColor: warmCream,
+                      fontSize: '0.75rem',
+                      color: '#666',
+                      wordBreak: 'break-all',
+                      textAlign: 'center'
+                    }}>
+                      {img.split('/').pop()}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              <button
+                onClick={() => setPetLibraryOpen(false)}
+                style={{
+                  flex: 1,
+                  padding: '1rem',
+                  backgroundColor: '#ccc',
+                  color: '#333',
+                  border: 'none',
+                  borderRadius: borderRadiusSmall,
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                取消
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+          from { opacity: 0; transform: translateX(-20px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .waterfall-grid {
+          column-count: 4;
+          column-gap: 1rem;
+        }
+        
+        @media (max-width: 1200px) {
+          .waterfall-grid {
+            column-count: 3;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .waterfall-grid {
+            column-count: 2;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .waterfall-grid {
+            column-count: 1;
+          }
+        }
+      `}</style>
     </div>
   );
-}
-
-export async function getServerSideProps({ req }) {
-  const cookie = req.headers.cookie || '';
-  const authed = cookie.includes('psp_admin=1');
-  if (!authed) {
-    return { redirect: { destination: '/login', permanent: false } };
-  }
-  return { props: {} };
 }

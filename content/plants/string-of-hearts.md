@@ -1,0 +1,9 @@
+---
+title: "String of Hearts"
+scientific_name: "Ceropegia linearis subsp. woodii"
+toxicity_level: "Safe"
+care_difficulty: "Easy"
+summary: "The String of Hearts (Ceropegia linearis subsp. woodii) is a wonderfully romantic and delicate trailing succulent, celebrated for its enchanting heart-shaped leaves that cascade gracefully down slender, purplish stems. This charming plant is an absolute delight for hanging baskets or shelves, where its trailing habit can be fully appreciated. Pet owners can embrace its beauty without worry, as the String of Hearts is happily non-toxic to both cats and dogs, making it a perfectly safe and visually appealing choice for homes with curious companions. It's also surprisingly low-maintenance, thriving in bright, indirect light and preferring infrequent watering, a true testament to its succulent nature. Its unique, ethereal beauty and pet-friendly status make it a highly coveted addition to any indoor plant collection, bringing a touch of whimsical elegance and peace of mind."
+image: "/images/plants/string-of-hearts.jpg"
+---
+

@@ -1,0 +1,11 @@
+---
+title: "Areca Palm"
+scientific_name: "Areca Palm"
+toxicity_level: "Safe"
+care_difficulty: "Easy"
+summary: "The Areca Palm (Dypsis lutescens), also known as the butterfly palm, is a magnificent indoor plant that brings a vibrant, tropical ambiance to any room. Its gracefully arching, feather-like fronds create a stunning visual impact, making it an ideal choice for filling empty corners or enhancing living spaces with its substantial presence. A significant advantage for pet-loving households is its non-toxic classification for both cats and dogs, ensuring a safe environment for curious companions. While it thrives in bright, indirect light and appreciates consistent moisture and humidity, the Areca Palm's air-purifying capabilities and elegant stature make it a cherished and safe addition to a pet-friendly home."
+image: "/uploads/20250530-190005.jpg"
+---
+
+
+

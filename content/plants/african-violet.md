@@ -1,0 +1,13 @@
+---
+title: "African Violet"
+scientific_name: "African Violet"
+toxicity_level: "Safe"
+care_difficulty: "Easy"
+summary: "The African Violet (Saintpaulia spp.) is a delightful and cherished houseplant, celebrated for its vibrant, velvety blossoms that come in a spectrum of colors, and its fuzzy, deep green leaves. It stands out as one of the rare flowering plants that are entirely non-toxic to cats and dogs, making it a truly special addition for pet owners who desire both floral beauty and peace of mind. These charming plants are relatively easy to care for, thriving in bright, indirect light and requiring careful watering to avoid wetting their leaves. Their compact size makes them perfect for adorning desks, shelves, or windowsills, bringing a splash of continuous color and elegance to any corner of your home, safely enjoyed by all."
+image: "/uploads/20250530-190020.jpg"
+---
+
+
+
+
+

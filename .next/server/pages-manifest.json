@@ -2,5 +2,11 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js"
+  "/": "pages/index.js",
+  "/admin": "pages/admin.js",
+  "/plants/[slug]": "pages/plants/[slug].js",
+  "/api/hero-carousel": "pages/api/hero-carousel.js",
+  "/api/site-config": "pages/api/site-config.js",
+  "/api/upload-base64": "pages/api/upload-base64.js",
+  "/api/analytics/track": "pages/api/analytics/track.js"
 }

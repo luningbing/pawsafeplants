@@ -7,7 +7,18 @@ function readPlant(fp) {
   const raw = fs.readFileSync(fp, 'utf8')
   const { data } = matter(raw)
   const slug = path.basename(fp).replace(/\.md$/, '')
-  return { slug, title: data.title || slug, summary: data.summary || '', toxicity_level: data.toxicity_level || '', image: data.image || '', image2: data.image2 || '', image3: data.image3 || '', thumbPlant: data.thumbPlant || '', thumbCat: data.thumbCat || '' }
+  return { 
+    slug, 
+    title: data.title || slug, 
+    summary: data.summary || '', 
+    toxicity_level: data.toxicity_level || '', 
+    image: data.image || '', 
+    image2: data.image2 || '', 
+    image3: data.image3 || '', 
+    thumbPlant: data.thumbPlant || '', 
+    thumbCat: data.thumbCat || '',
+    pet_moment: data.pet_moment || ''
+  }
 }
 
 export default async function handler(req, res) {

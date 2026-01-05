@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import HeroCarousel from '../components/HeroCarousel';
 
 // Image placeholder component with Unsplash fallback
 function SafeImage({ src, alt, fallback, style, containerStyle, unsplashFallback }) {
@@ -94,6 +95,7 @@ export default function Home({ plants, site }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [heroSlides, setHeroSlides] = useState([]);
   const unsplashPlaceholder = 'https://images.unsplash.com/photo-1545241047-6083a3684587';
 
   // Color palette
@@ -136,6 +138,22 @@ export default function Home({ plants, site }) {
     setSearchResults(results);
     setShowSearchResults(results.length > 0);
   }, [searchQuery, plants]);
+
+  // Load hero carousel data
+  useEffect(() => {
+    const loadHeroSlides = async () => {
+      try {
+        const res = await fetch('/api/hero-carousel');
+        const data = await res.json();
+        if (data.slides && data.slides.length > 0) {
+          setHeroSlides(data.slides);
+        }
+      } catch (error) {
+        console.error('Failed to load hero slides:', error);
+      }
+    };
+    loadHeroSlides();
+  }, []);
 
   useEffect(() => {
     try {
@@ -187,123 +205,13 @@ export default function Home({ plants, site }) {
         background: warmCream,
         minHeight: '100vh'
       }}>
-        {/* Hero Section - Left Text, Right Image */}
+        {/* Hero Carousel */}
         <section style={{
           maxWidth: '1200px',
           margin: '40px auto',
-          padding: '0 20px',
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '48px',
-          alignItems: 'center'
+          padding: '0 20px'
         }}>
-          {/* Left: Text Content */}
-          <div style={{ 
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '24px'
-          }}>
-            <h1 style={{
-              fontSize: '56px',
-              fontWeight: 700,
-              color: sageGreenDark,
-              lineHeight: 1.2,
-              letterSpacing: '-1px',
-              margin: 0
-            }}>
-              Grow Together, Safely.
-            </h1>
-            <p style={{
-              fontSize: '20px',
-              color: '#5A5A5A',
-              lineHeight: 1.6,
-              margin: 0
-            }}>
-              Your Guide to Cat-Friendly Botanicals & Community
-            </p>
-            <div style={{
-              display: 'flex',
-              gap: '16px',
-              flexWrap: 'wrap'
-            }}>
-              <Link 
-                href="/plants/safe"
-                style={{
-                  display: 'inline-block',
-                  padding: '16px 32px',
-                  background: sageGreen,
-                  color: '#fff',
-                  textDecoration: 'none',
-                  borderRadius: borderRadius,
-                  fontWeight: 600,
-                  fontSize: '16px',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 16px rgba(135, 169, 107, 0.3)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = sageGreenDark;
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(135, 169, 107, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = sageGreen;
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(135, 169, 107, 0.3)';
-                }}
-              >
-                Explore Safe Plants
-              </Link>
-              <Link 
-                href="/community"
-                style={{
-                  display: 'inline-block',
-                  padding: '16px 32px',
-                  background: warmCream,
-                  color: sageGreenDark,
-                  textDecoration: 'none',
-                  borderRadius: borderRadius,
-                  fontWeight: 600,
-                  fontSize: '16px',
-                  border: `2px solid ${sageGreen}`,
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = sageGreen + '10';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = warmCream;
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                Share Your Story
-              </Link>
-            </div>
-          </div>
-
-          {/* Right: Hero Image */}
-          <div style={{
-            borderRadius: borderRadiusLarge,
-            overflow: 'hidden',
-            boxShadow: '0 12px 32px rgba(0, 0, 0, 0.15)',
-            height: '500px'
-          }}>
-            <SafeImage
-              src={site?.heroImage || unsplashPlaceholder}
-              alt="Cat-safe plants for your home"
-              unsplashFallback={unsplashPlaceholder}
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover',
-                display: 'block'
-              }}
-              containerStyle={{
-                width: '100%',
-                height: '100%'
-              }}
-            />
-        </div>
+          <HeroCarousel slides={heroSlides} />
         </section>
 
         {/* Global Search Section */}

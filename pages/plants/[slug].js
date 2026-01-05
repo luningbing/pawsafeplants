@@ -7,6 +7,279 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Pet Moments Section Component
+function PetMomentsSection({ plant }) {
+  const [petImages, setPetImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [showPawModal, setShowPawModal] = useState(false);
+  const [modalImage, setModalImage] = useState(null);
+
+  // Cute pet messages for random selection
+  const petMessages = [
+    "{petName} loves this plant because it's safe for her to explore!",
+    "{petName} enjoys napping near this beautiful plant!",
+    "This plant makes {petName} feel safe and happy!",
+    "{petName} thinks this plant is a perfect playground!",
+    "{petName} can't resist sniffing around this pet-friendly plant!",
+    "This plant is {petName}'s favorite spot to relax!",
+    "{petName} feels like a queen with this plant around!",
+    "This plant brings out the curious side of {petName}!",
+    "{petName} approves of this plant choice!",
+    "This plant makes {petName}'s day brighter!"
+  ];
+
+  const petNames = ["Tofu", "Mochi", "Luna", "Milo", "Coco", "Bella", "Max", "Lucy", "Oliver", "Daisy"];
+
+  // Handle image click to show paw modal
+  const handleImageClick = (imageSrc) => {
+    setModalImage(imageSrc);
+    setShowPawModal(true);
+  };
+
+  // Paw Print Component
+  const PawPrint = ({ delay, initialX, initialY }) => (
+    <motion.div
+      initial={{ 
+        scale: 0, 
+        rotate: 0,
+        x: initialX,
+        y: initialY,
+        opacity: 0
+      }}
+      animate={{ 
+        scale: [0, 1.2, 1], 
+        rotate: [0, -10, 10, -5, 0],
+        opacity: [0, 1, 1, 1, 0]
+      }}
+      transition={{ 
+        duration: 1,
+        delay: delay,
+        ease: "easeInOut"
+      }}
+      style={{
+        position: 'fixed',
+        fontSize: '40px',
+        color: '#FFB6C1', // Pink color
+        zIndex: 1000,
+        pointerEvents: 'none',
+        textShadow: '0 0 10px rgba(255, 182, 193, 0.5)'
+      }}
+    >
+      🐾
+    </motion.div>
+  );
+
+  useEffect(() => {
+    const loadPetImages = async () => {
+      try {
+        const res = await fetch('/api/list-pets');
+        const data = await res.json();
+        setPetImages(data.paths || []);
+        
+        // If plant has a specific pet moment image, use it
+        if (plant.pet_moment) {
+          setSelectedImage(plant.pet_moment);
+        } else if (data.paths && data.paths.length > 0) {
+          // Otherwise select a random one
+          const randomIndex = Math.floor(Math.random() * data.paths.length);
+          setSelectedImage(data.paths[randomIndex]);
+        }
+        
+        setLoading(false);
+      } catch (error) {
+        console.error('Failed to load pet images:', error);
+        setLoading(false);
+      }
+    };
+
+    loadPetImages();
+  }, [plant.pet_moment]);
+
+  if (loading) {
+    return (
+      <div style={{
+        background: warmCream,
+        borderRadius: borderRadius,
+        padding: '40px',
+        marginBottom: '32px',
+        textAlign: 'center',
+        color: '#666'
+      }}>
+        <div style={{ fontSize: '24px', marginBottom: '16px' }}>🐱</div>
+        <p>Loading pet moments...</p>
+      </div>
+    );
+  }
+
+  if (!selectedImage || petImages.length === 0) {
+    return null; // Don't show section if no images available
+  }
+
+  // Generate random message
+  const randomPetName = petNames[Math.floor(Math.random() * petNames.length)];
+  const randomMessage = petMessages[Math.floor(Math.random() * petMessages.length)]
+    .replace('{petName}', randomPetName);
+
+  return (
+    <>
+      <div style={{
+        background: warmCream,
+        borderRadius: borderRadius,
+        padding: '40px',
+        marginBottom: '32px',
+        boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+        border: `2px solid ${warmCreamDark}`
+      }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 300px',
+          gap: '40px',
+          alignItems: 'center'
+        }}>
+          {/* Left: Content */}
+          <div>
+            <h2 style={{
+              fontSize: '32px',
+              fontWeight: 700,
+              color: sageGreenDark,
+              marginBottom: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px'
+            }}>
+              🐱 主子实拍 (Pet Moments)
+            </h2>
+            <p style={{
+              fontSize: '18px',
+              lineHeight: 1.6,
+              color: '#2D2D2D',
+              marginBottom: '20px',
+              fontStyle: 'italic'
+            }}>
+              {randomMessage}
+            </p>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '16px',
+              color: '#666',
+              fontSize: '14px'
+            }}>
+              <span style={{
+                background: '#fff',
+                padding: '6px 12px',
+                borderRadius: '20px',
+                border: `1px solid ${sageGreen}30`
+              }}>
+                🌿 Pet-Friendly Plant
+              </span>
+              <span>
+                {plant.toxicity_level?.includes('Safe') ? '✅ Safe for Cats' : '⚠️ Use with Caution'}
+              </span>
+            </div>
+          </div>
+
+          {/* Right: Image */}
+          <div style={{
+            position: 'relative',
+            borderRadius: borderRadiusSmall,
+            overflow: 'hidden',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)'
+          }}>
+            <div 
+              onClick={() => handleImageClick(selectedImage)}
+              style={{ cursor: 'pointer' }}
+            >
+              <SafeImage
+                src={selectedImage}
+                alt={`${randomPetName} with ${plant.title}`}
+                fallback={<span style={{ fontSize: '48px' }}>🐱</span>}
+                style={{
+                  width: '100%',
+                  height: '250px',
+                  objectFit: 'cover',
+                  transition: 'transform 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                }}
+              />
+            </div>
+            <div style={{
+              position: 'absolute',
+              bottom: '0',
+              left: '0',
+              right: '0',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
+              color: 'white',
+              padding: '16px',
+              fontSize: '14px',
+              fontWeight: 500
+            }}>
+              📸 {randomPetName}'s moment with {plant.title}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Paw Modal */}
+      <AnimatePresence>
+        {showPawModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.9)',
+              zIndex: 2000,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+            onClick={() => setShowPawModal(false)}
+          >
+            {/* Paw Prints */}
+            <PawPrint delay={0} initialX={-150} initialY={-100} />
+            <PawPrint delay={0.2} initialX={0} initialY={-150} />
+            <PawPrint delay={0.4} initialX={150} initialY={-100} />
+
+            {/* Main Image */}
+            <motion.img
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ 
+                duration: 0.5,
+                delay: 1 // Start after paw prints
+              }}
+              src={modalImage}
+              alt="Pet moment full screen"
+              style={{
+                maxWidth: '90vw',
+                maxHeight: '90vh',
+                objectFit: 'contain',
+                borderRadius: borderRadiusSmall,
+                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3)'
+              }}
+              onClick={(e) => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
 
 // SafeImage component with Unsplash fallback
 function SafeImage({ src, alt, fallback, style, containerStyle, unsplashFallback }) {
@@ -54,131 +327,19 @@ function SafeImage({ src, alt, fallback, style, containerStyle, unsplashFallback
   );
 }
 
-export async function getStaticProps({ params }) {
-  const { slug } = params;
-  const fullPath = path.join(process.cwd(), 'content/plants', `${slug}.md`);
-  if (fs.existsSync(fullPath)) {
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
-    const symptoms = Array.isArray(data.symptoms) ? data.symptoms : [];
-    const common_names = Array.isArray(data.common_names) ? data.common_names : [];
-    const clinical_signs = Array.isArray(data.clinical_signs) ? data.clinical_signs : [];
-    const safe_alternatives = Array.isArray(data.safe_alternatives) ? data.safe_alternatives : [];
-    const sources = Array.isArray(data.sources) ? data.sources : [];
-    const processedContent = await remark().use(html).process(content);
-    const contentHtml = processedContent.toString();
-    const what_to_do_html = String(data.what_to_do || '').trim()
-      ? (await remark().use(html).process(String(data.what_to_do || ''))).toString()
-      : '';
-    let image = String(data.image || '');
-    let image2 = String(data.image2 || '');
-    let image3 = String(data.image3 || '');
-    let fallbackHero = '/images/hero-default.svg';
-    try {
-      const siteRaw = fs.readFileSync(path.join(process.cwd(), 'content', 'site.json'), 'utf8');
-      const siteJson = JSON.parse(siteRaw);
-      if (siteJson && siteJson.heroImage) fallbackHero = siteJson.heroImage;
-    } catch {}
-    if (!image) image = fallbackHero;
-    if (image) {
-      try {
-        const clean = image.startsWith('/') ? image.slice(1) : image;
-        const abs = path.join(process.cwd(), 'public', clean);
-        if (!fs.existsSync(abs)) image = fallbackHero;
-      } catch {}
-    }
-    if (image2) {
-      try {
-        const clean2 = image2.startsWith('/') ? image2.slice(1) : image2;
-        const abs2 = path.join(process.cwd(), 'public', clean2);
-        if (!fs.existsSync(abs2)) image2 = '';
-      } catch {}
-    }
-    if (image3) {
-      try {
-        const clean3 = image3.startsWith('/') ? image3.slice(1) : image3;
-        const abs3 = path.join(process.cwd(), 'public', clean3);
-        if (!fs.existsSync(abs3)) image3 = '';
-      } catch {}
-    }
-    try {
-      const supabaseUrl = process.env.SUPABASE_URL || ''
-      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || ''
-      if (supabaseUrl && supabaseKey) {
-        const client = createClient(supabaseUrl, supabaseKey)
-        const { data: rows } = await client.from('plant_images').select('image,image2,image3').eq('slug', slug).limit(1)
-        const row = Array.isArray(rows) && rows[0] ? rows[0] : {}
-        image = String(row.image || image || '')
-        image2 = String(row.image2 || image2 || '')
-        image3 = String(row.image3 || image3 || '')
-      }
-    } catch {}
-    return {
-      props: {
-        plant: {
-          ...data,
-          image,
-          image2,
-          image3,
-          symptoms,
-          common_names,
-          clinical_signs,
-          safe_alternatives,
-          sources,
-          contentHtml,
-          what_to_do_html,
-          slug
-        }
-      }
-    };
-  }
-  const fallback = {
-    lily: {
-      title: 'Lily',
-      scientific_name: 'Lilium spp.',
-      toxicity_level: 'DANGER – Highly toxic to cats',
-      summary: 'Even small ingestions can cause acute kidney failure in cats.',
-      symptoms: ['Vomiting', 'Lethargy', 'Loss of appetite', 'Kidney failure'],
-      what_to_do: '<p>Contact your veterinarian immediately. Early decontamination and IV fluids are critical.</p>'
-    },
-    rose: {
-      title: 'Rose',
-      scientific_name: 'Rosa spp.',
-      toxicity_level: 'Safe – generally non-toxic',
-      summary: 'Thorns can cause injury but the plant is generally non-toxic.',
-      symptoms: [],
-      what_to_do: '<p>Monitor for mechanical injury from thorns; toxicity is unlikely.</p>'
-    }
-  }
-  const data = fallback[slug]
-  if (!data) return { notFound: true }
-  return { props: { plant: { ...data, contentHtml: '', slug } } }
-}
-
-export async function getStaticPaths() {
-  const dir = path.join(process.cwd(), 'content/plants');
-  let files = [];
-  try { files = fs.readdirSync(dir).filter((f) => f.endsWith('.md')); } catch {}
-  let paths = files.map((f) => ({ params: { slug: f.replace(/\.md$/, '') } }));
-  if (!paths.length) paths = [{ params: { slug: 'lily' } }, { params: { slug: 'rose' } }]
-  return { paths, fallback: 'blocking' };
-}
+// Color palette
+const sageGreen = '#87A96B';
+const sageGreenDark = '#6B8553';
+const warmCream = '#FAF7F2';
+const warmCreamDark = '#F5F1E8';
+const borderRadius = '24px';
+const borderRadiusSmall = '16px';
 
 export default function PlantPage({ plant }) {
-  const [comments, setComments] = useState([])
-  const [userName, setUserName] = useState('')
-  const [userContent, setUserContent] = useState('')
-  const [submitting, setSubmitting] = useState(false)
-  const [openReplies, setOpenReplies] = useState({})
-  
-  const unsplashPlaceholder = 'https://images.unsplash.com/photo-1545241047-6083a3684587';
-  const sageGreen = '#87A96B';
-  const sageGreenDark = '#6B8553';
-  const warmCream = '#FAF7F2';
-  const warmCreamDark = '#F5F1E8';
-  const terracotta = '#C17A5F';
-  const borderRadius = '24px';
-  const borderRadiusSmall = '16px';
+  const [comments, setComments] = useState([]);
+  const [userName, setUserName] = useState('');
+  const [userContent, setUserContent] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     try {
@@ -290,7 +451,7 @@ export default function PlantPage({ plant }) {
           }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: '40px', alignItems: 'start' }}>
               {/* Left: Plant Info */}
-    <div>
+              <div>
                 <h1 style={{
                   fontSize: '48px',
                   fontWeight: 700,
@@ -300,396 +461,120 @@ export default function PlantPage({ plant }) {
                 }}>
                   {plant.title}
                 </h1>
-                {plant.scientific_name && (
-                  <p style={{
-                    fontSize: '18px',
-                    color: '#5A5A5A',
-                    fontStyle: 'italic',
-                    marginBottom: '24px'
-                  }}>
-                    {plant.scientific_name}
-                  </p>
-                )}
                 <p style={{
                   fontSize: '18px',
-                  color: '#5A5A5A',
+                  color: '#666',
+                  marginBottom: '24px',
+                  lineHeight: 1.6
+                }}>
+                  {plant.scientific_name && (
+                    <span style={{ fontStyle: 'italic', color: '#888' }}>
+                      {plant.scientific_name}
+                    </span>
+                  )}
+                </p>
+
+                {/* Toxicity Badge */}
+                <div style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                  marginBottom: '32px',
+                  padding: '12px 20px',
+                  backgroundColor: toxicity.bg,
+                  color: toxicity.color,
+                  borderRadius: '30px',
+                  fontWeight: 600,
+                  fontSize: '16px',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                }}>
+                  <span style={{ fontSize: '20px', marginRight: '8px' }}>{toxicity.icon}</span>
+                  {toxicity.label}
+                </div>
+
+                {/* Description */}
+                <div style={{
+                  fontSize: '16px',
                   lineHeight: 1.7,
+                  color: '#333',
                   marginBottom: '32px'
                 }}>
                   {plant.summary}
-                </p>
-
-                {/* Toxicity Level Badge */}
-                <div style={{
-                  display: 'inline-block',
-                  padding: '16px 24px',
-                  borderRadius: borderRadiusSmall,
-                  background: toxicity.bg,
-                  color: toxicity.color,
-                  marginBottom: '32px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '12px',
-                    marginBottom: '8px'
-                  }}>
-                    <span style={{ fontSize: '24px' }}>{toxicity.icon}</span>
-                    <span style={{ fontSize: '20px', fontWeight: 700 }}>{toxicity.label}</span>
-                  </div>
-                  <div style={{ fontSize: '14px', opacity: 0.9 }}>
-                    {toxicity.description}
-                  </div>
                 </div>
 
-                {/* Care Guide Icons */}
+                {/* Care Guide */}
                 <div style={{
-                  display: 'flex',
-                  gap: '16px',
-                  flexWrap: 'wrap'
+                  background: warmCream,
+                  borderRadius: borderRadiusSmall,
+                  padding: '24px',
+                  marginBottom: '32px'
                 }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '12px 20px',
-                    background: warmCreamDark,
-                    borderRadius: borderRadiusSmall,
-                    border: `2px solid ${warmCreamDark}`
+                  <h3 style={{
+                    fontSize: '20px',
+                    fontWeight: 600,
+                    color: sageGreenDark,
+                    marginBottom: '16px'
                   }}>
-                    <span style={{ fontSize: '24px' }}>{careGuide.light.icon}</span>
-                    <span style={{ fontSize: '14px', fontWeight: 600, color: '#2D2D2D' }}>{careGuide.light.label}</span>
-                  </div>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '12px 20px',
-                    background: warmCreamDark,
-                    borderRadius: borderRadiusSmall,
-                    border: `2px solid ${warmCreamDark}`
-                  }}>
-                    <span style={{ fontSize: '24px' }}>{careGuide.water.icon}</span>
-                    <span style={{ fontSize: '14px', fontWeight: 600, color: '#2D2D2D' }}>{careGuide.water.label}</span>
-                  </div>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '12px 20px',
-                    background: careGuide.petFriendly.level === 'safe' ? `${sageGreen}20` : `${toxicity.bg}20`,
-                    borderRadius: borderRadiusSmall,
-                    border: `2px solid ${careGuide.petFriendly.level === 'safe' ? sageGreen : toxicity.bg}40`
-                  }}>
-                    <span style={{ fontSize: '24px' }}>{careGuide.petFriendly.icon}</span>
-                    <span style={{ fontSize: '14px', fontWeight: 600, color: '#2D2D2D' }}>{careGuide.petFriendly.label}</span>
+                    🌿 Quick Care Guide
+                  </h3>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    {Object.entries(careGuide).map(([key, value]) => (
+                      <div key={key} style={{ textAlign: 'center' }}>
+                        <div style={{ fontSize: '24px', marginBottom: '8px' }}>{value.icon}</div>
+                        <div style={{ fontSize: '14px', color: '#666' }}>{value.label}</div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
 
               {/* Right: Plant Image */}
-              <div style={{
-                borderRadius: borderRadius,
-                overflow: 'hidden',
-                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.12)',
-                height: '400px'
-              }}>
+              <div>
                 <SafeImage
-                  src={plant.image || unsplashPlaceholder}
+                  src={plant.image}
                   alt={plant.title}
-                  unsplashFallback={unsplashPlaceholder}
+                  unsplashFallback="https://images.unsplash.com/photo-1586952860650-f6c9e65b0a8?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200&h=800&fit=crop"
                   style={{
                     width: '100%',
-                    height: '100%',
-                    objectFit: 'cover'
-                  }}
-                  containerStyle={{
-                    width: '100%',
-                    height: '100%'
+                    height: '300px',
+                    objectFit: 'cover',
+                    borderRadius: borderRadiusSmall,
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.15)'
                   }}
                 />
               </div>
             </div>
           </div>
 
-          {/* Additional Images */}
-      {(plant.image2 || plant.image3) && (
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '24px',
-              marginBottom: '32px'
-            }}>
-          {plant.image2 && (
-                <div style={{
-                  borderRadius: borderRadius,
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-                  height: '280px'
-                }}>
-                  <SafeImage
-                    src={plant.image2}
-                    alt={plant.title + ' - 2'}
-                    unsplashFallback={unsplashPlaceholder}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                    containerStyle={{
-                      width: '100%',
-                      height: '100%'
-                    }}
-                  />
-                </div>
-          )}
-          {plant.image3 && (
-                <div style={{
-                  borderRadius: borderRadius,
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-                  height: '280px'
-                }}>
-                  <SafeImage
-                    src={plant.image3}
-                    alt={plant.title + ' - 3'}
-                    unsplashFallback={unsplashPlaceholder}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                    containerStyle={{
-                      width: '100%',
-                      height: '100%'
-                    }}
-                  />
-                </div>
-          )}
-        </div>
-      )}
+          {/* Pet Moments Section */}
+          <PetMomentsSection plant={plant} />
 
-          {/* Content Sections */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '32px',
-            marginBottom: '32px'
-          }}>
-            {/* Left Column */}
-            <div style={{
-              display: 'grid',
-              gap: '24px'
-            }}>
-      {plant.common_names && plant.common_names.length > 0 && (
-                <div style={{
-                  background: '#fff',
-                  borderRadius: borderRadius,
-                  padding: '24px',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-                  border: `2px solid ${warmCreamDark}`
-                }}>
-                  <h3 style={{
-                    fontSize: '20px',
-                    fontWeight: 700,
-                    color: sageGreenDark,
-                    marginBottom: '16px'
-                  }}>
-                    Also Known As
-                  </h3>
-                  <ul style={{
-                    listStyle: 'none',
-                    padding: 0,
-                    margin: 0,
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '8px'
-                  }}>
-                    {plant.common_names.map((n, i) => (
-                      <li key={i} style={{
-                        padding: '8px 16px',
-                        background: warmCreamDark,
-                        borderRadius: borderRadiusSmall,
-                        fontSize: '14px',
-                        color: '#2D2D2D'
-                      }}>
-                        {n}
-                      </li>
-                    ))}
-          </ul>
-                </div>
-              )}
-
-              {(plant.what_to_do_html || plant.what_to_do) && (
-                <div style={{
-                  background: '#fff',
-                  borderRadius: borderRadius,
-                  padding: '24px',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-                  border: `2px solid ${warmCreamDark}`
-                }}>
-                  <h3 style={{
-                    fontSize: '20px',
-                    fontWeight: 700,
-                    color: sageGreenDark,
-                    marginBottom: '16px'
-                  }}>
-                    What to Do
-                  </h3>
-                  <div 
-                    dangerouslySetInnerHTML={{ __html: plant.what_to_do_html || plant.what_to_do }}
-                    style={{
-                      fontSize: '15px',
-                      color: '#5A5A5A',
-                      lineHeight: 1.7
-                    }}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* Right Column */}
-            <div style={{
-              display: 'grid',
-              gap: '24px'
-            }}>
-              {(plant.symptoms && plant.symptoms.length > 0) && (
-                <div style={{
-                  background: '#fff',
-                  borderRadius: borderRadius,
-                  padding: '24px',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-                  border: `2px solid ${warmCreamDark}`
-                }}>
-                  <h3 style={{
-                    fontSize: '20px',
-                    fontWeight: 700,
-                    color: sageGreenDark,
-                    marginBottom: '16px'
-                  }}>
-                    Symptoms
-                  </h3>
-                  <ul style={{
-                    listStyle: 'none',
-                    padding: 0,
-                    margin: 0,
-                    display: 'grid',
-                    gap: '8px'
-                  }}>
-                    {plant.symptoms.map((s, i) => (
-                      <li key={i} style={{
-                        padding: '12px 16px',
-                        background: warmCreamDark,
-                        borderRadius: borderRadiusSmall,
-                        fontSize: '14px',
-                        color: '#2D2D2D'
-                      }}>
-                        {s}
-                      </li>
-                    ))}
-          </ul>
-                </div>
-      )}
-
-      {plant.safe_alternatives && plant.safe_alternatives.length > 0 && (
-                <div style={{
-                  background: '#fff',
-                  borderRadius: borderRadius,
-                  padding: '24px',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-                  border: `2px solid ${warmCreamDark}`
-                }}>
-                  <h3 style={{
-                    fontSize: '20px',
-                    fontWeight: 700,
-                    color: sageGreenDark,
-                    marginBottom: '16px'
-                  }}>
-                    Safe Alternatives
-                  </h3>
-                  <ul style={{
-                    listStyle: 'none',
-                    padding: 0,
-                    margin: 0,
-                    display: 'grid',
-                    gap: '8px'
-                  }}>
-                    {plant.safe_alternatives.map((s, i) => (
-                      <li key={i} style={{
-                        padding: '12px 16px',
-                        background: `${sageGreen}15`,
-                        borderRadius: borderRadiusSmall,
-                        fontSize: '14px',
-                        color: '#2D2D2D',
-                        border: `1px solid ${sageGreen}30`
-                      }}>
-                        {s}
-                      </li>
-                    ))}
-          </ul>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Full Width Content */}
-          {plant.contentHtml && (
+          {/* What to Do Section */}
+          {plant.what_to_do_html && (
             <div style={{
               background: '#fff',
               borderRadius: borderRadius,
-              padding: '32px',
+              padding: '40px',
               marginBottom: '32px',
               boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
               border: `2px solid ${warmCreamDark}`
             }}>
+              <h2 style={{
+                fontSize: '28px',
+                fontWeight: 600,
+                color: sageGreenDark,
+                marginBottom: '20px'
+              }}>
+                🚨 What to Do If Your Cat Eats This Plant
+              </h2>
               <div 
-                dangerouslySetInnerHTML={{ __html: plant.contentHtml }}
+                dangerouslySetInnerHTML={{ __html: plant.what_to_do_html }}
                 style={{
                   fontSize: '16px',
-                  color: '#5A5A5A',
-                  lineHeight: 1.8
+                  lineHeight: 1.7,
+                  color: '#333'
                 }}
               />
-            </div>
-          )}
-
-          {/* ASPCA Link */}
-      {plant.ascpa_link && (
-            <div style={{
-              background: '#fff',
-              borderRadius: borderRadius,
-              padding: '24px',
-              marginBottom: '32px',
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-              border: `2px solid ${warmCreamDark}`,
-              textAlign: 'center'
-            }}>
-              <a 
-                href={plant.ascpa_link} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-block',
-                  padding: '12px 24px',
-                  background: sageGreen,
-                  color: '#fff',
-                  textDecoration: 'none',
-                  borderRadius: borderRadiusSmall,
-                  fontWeight: 600,
-                  fontSize: '15px',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = sageGreenDark;
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = sageGreen;
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                View on ASPCA.org →
-              </a>
             </div>
           )}
 
@@ -697,107 +582,71 @@ export default function PlantPage({ plant }) {
           <div style={{
             background: '#fff',
             borderRadius: borderRadius,
-            padding: '32px',
+            padding: '40px',
+            marginBottom: '32px',
             boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
             border: `2px solid ${warmCreamDark}`
           }}>
-            <h3 style={{
+            <h2 style={{
               fontSize: '24px',
-              fontWeight: 700,
+              fontWeight: 600,
               color: sageGreenDark,
-              marginBottom: '24px'
+              marginBottom: '20px'
             }}>
-              Comments
-            </h3>
-            {comments.length === 0 && (
-              <div style={{ color: '#888', fontSize: '15px', padding: '20px', textAlign: 'center' }}>
-                No approved comments yet. Be the first to share your experience!
-              </div>
-            )}
-        {comments.map(c => (
-              <div key={c.id} style={{
-                border: `2px solid ${warmCreamDark}`,
-                borderRadius: borderRadiusSmall,
-                padding: '20px',
-                marginBottom: '16px',
-                background: warmCream
-              }}>
-                <div style={{ fontSize: '14px', color: '#888', marginBottom: '8px' }}>
-                  {c.author || 'Anonymous'} • {new Date(c.created_at).toLocaleString()}
-                </div>
-                <div style={{ fontSize: '15px', color: '#2D2D2D', lineHeight: 1.6 }}>
-                  {c.content}
-                </div>
-            {Array.isArray(c.replies) && c.replies.length > 0 && (
-                  <div style={{ marginTop: '16px' }}>
-                    <button 
-                      type="button" 
-                      onClick={() => setOpenReplies(prev => ({ ...prev, [c.id]: !prev[c.id] }))}
-                      style={{
-                        padding: '8px 16px',
-                        background: 'transparent',
-                        border: `2px solid ${sageGreen}`,
-                        borderRadius: borderRadiusSmall,
-                        color: sageGreenDark,
-                        fontWeight: 600,
-                        fontSize: '14px',
-                        cursor: 'pointer',
-                        transition: 'all 0.3s ease'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = sageGreen;
-                        e.currentTarget.style.color = '#fff';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = sageGreenDark;
-                      }}
-                    >
-                      {openReplies[c.id] ? 'Hide Replies' : `Show Replies (${c.replies.length})`}
-                    </button>
-                {openReplies[c.id] && (
-                      <div style={{ marginTop: '12px', display: 'grid', gap: '12px' }}>
-                    {[...c.replies].sort((a,b) => new Date(b.created_at) - new Date(a.created_at)).map(r => (
-                          <div key={r.id} style={{
-                            border: `1px dashed ${warmCreamDark}`,
-                            borderRadius: borderRadiusSmall,
-                            padding: '16px',
-                            background: '#fff'
-                          }}>
-                            <div style={{ fontSize: '13px', color: '#888', marginBottom: '6px' }}>
-                              {r.author || 'Admin'} • {new Date(r.created_at).toLocaleString()}
-                            </div>
-                            <div style={{ fontSize: '14px', color: '#2D2D2D', lineHeight: 1.6 }}>
-                              {r.content}
-                            </div>
-                      </div>
-                    ))}
+              💬 Community Experiences
+            </h2>
+            
+            {/* Comments List */}
+            <div style={{ marginBottom: '24px' }}>
+              {comments.length === 0 ? (
+                <p style={{ color: '#666', fontStyle: 'italic' }}>
+                  No experiences shared yet. Be the first to share your experience!
+                </p>
+              ) : (
+                comments.map((comment, idx) => (
+                  <div key={idx} style={{
+                    background: warmCream,
+                    borderRadius: borderRadiusSmall,
+                    padding: '16px',
+                    marginBottom: '12px'
+                  }}>
+                    <div style={{ fontSize: '14px', fontWeight: 500, marginBottom: '8px', color: '#333' }}>
+                      {comment.user_name}
+                    </div>
+                    <div style={{ fontSize: '14px', lineHeight: 1.5, color: '#666' }}>
+                      {comment.content}
+                    </div>
                   </div>
-                )}
+                ))
+              )}
+            </div>
+
+            {/* Comment Form */}
+            <form onSubmit={onSubmit}>
+              <div style={{ marginBottom: '16px' }}>
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '12px 16px',
+                    borderRadius: borderRadiusSmall,
+                    border: `2px solid ${warmCreamDark}`,
+                    fontSize: '15px',
+                    fontFamily: 'inherit',
+                    outline: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = sageGreen;
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = warmCreamDark;
+                  }}
+                />
               </div>
-            )}
-          </div>
-        ))}
-            <form onSubmit={onSubmit} style={{ marginTop: '24px', display: 'grid', gap: '16px', maxWidth: '600px' }}>
-              <input
-                placeholder="Your nickname (optional)"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                style={{
-                  padding: '12px 16px',
-                  borderRadius: borderRadiusSmall,
-                  border: `2px solid ${warmCreamDark}`,
-                  fontSize: '15px',
-                  outline: 'none',
-                  transition: 'all 0.3s ease'
-                }}
-                onFocus={(e) => {
-                  e.currentTarget.style.borderColor = sageGreen;
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.borderColor = warmCreamDark;
-                }}
-              />
               <textarea
                 placeholder="Write your comment..."
                 value={userContent}
@@ -847,9 +696,9 @@ export default function PlantPage({ plant }) {
               >
                 {submitting ? 'Submitting...' : 'Submit Comment (shown after review)'}
               </button>
-        </form>
-      </div>
-    </div>
+            </form>
+          </div>
+        </div>
 
         <style jsx>{`
           @media (max-width: 968px) {
@@ -864,4 +713,118 @@ export default function PlantPage({ plant }) {
       </div>
     </>
   );
+}
+
+export async function getStaticProps({ params }) {
+  const { slug } = params;
+  const fullPath = path.join(process.cwd(), 'content/plants', `${slug}.md`);
+  if (fs.existsSync(fullPath)) {
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { data, content } = matter(fileContents);
+    const symptoms = Array.isArray(data.symptoms) ? data.symptoms : [];
+    const common_names = Array.isArray(data.common_names) ? data.common_names : [];
+    const clinical_signs = Array.isArray(data.clinical_signs) ? data.clinical_signs : [];
+    const safe_alternatives = Array.isArray(data.safe_alternatives) ? data.safe_alternatives : [];
+    const sources = Array.isArray(data.sources) ? data.sources : [];
+    const processedContent = await remark().use(html).process(content);
+    const contentHtml = processedContent.toString();
+    const what_to_do_html = String(data.what_to_do || '').trim()
+      ? (await remark().use(html).process(String(data.what_to_do || ''))).toString()
+      : '';
+    let image = String(data.image || '');
+    let image2 = String(data.image2 || '');
+    let image3 = String(data.image3 || '');
+    let fallbackHero = '/images/hero-default.svg';
+    try {
+      const siteRaw = fs.readFileSync(path.join(process.cwd(), 'content', 'site.json'), 'utf8');
+      const siteJson = JSON.parse(siteRaw);
+      if (siteJson && siteJson.heroImage) fallbackHero = siteJson.heroImage;
+    } catch {}
+    if (!image) image = fallbackHero;
+    if (image) {
+      try {
+        const clean = image.startsWith('/') ? image.slice(1) : image;
+        const abs = path.join(process.cwd(), 'public', clean);
+        if (!fs.existsSync(abs)) image = fallbackHero;
+      } catch {}
+    }
+    if (image2) {
+      try {
+        const clean2 = image2.startsWith('/') ? image2.slice(1) : image2;
+        const abs2 = path.join(process.cwd(), 'public', clean2);
+        if (!fs.existsSync(abs2)) image2 = '';
+      } catch {}
+    }
+    if (image3) {
+      try {
+        const clean3 = image3.startsWith('/') ? image3.slice(1) : image3;
+        const abs3 = path.join(process.cwd(), 'public', clean3);
+        if (!fs.existsSync(abs3)) image3 = '';
+      } catch {}
+    }
+    try {
+      const supabaseUrl = process.env.SUPABASE_URL || ''
+      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || ''
+      if (supabaseUrl && supabaseKey) {
+        const client = createClient(supabaseUrl, supabaseKey)
+        const { data: rows } = await client.from('plant_images').select('image,image2,image3').eq('slug', slug).limit(1)
+        const row = Array.isArray(rows) && rows[0] ? rows[0] : {}
+        image = String(row.image || image || '')
+        image2 = String(row.image2 || image2 || '')
+        image3 = String(row.image3 || image3 || '')
+      }
+    } catch {}
+    return {
+      props: {
+        plant: {
+          ...data,
+          image,
+          image2,
+          image3,
+          pet_moment: String(data.pet_moment || ''),
+          symptoms,
+          common_names,
+          clinical_signs,
+          safe_alternatives,
+          sources,
+          contentHtml,
+          what_to_do_html,
+          slug
+        }
+      }
+    };
+  }
+  const fallback = {
+    lily: {
+      title: 'Lily',
+      scientific_name: 'Lilium spp.',
+      toxicity_level: 'DANGER – Highly toxic to cats',
+      summary: 'Even small ingestions can cause acute kidney failure in cats.',
+      symptoms: ['Vomiting', 'Lethargy', 'Loss of appetite', 'Kidney failure'],
+      what_to_do: '<p>Contact your veterinarian immediately. Early decontamination and IV fluids are critical.</p>'
+    },
+    rose: {
+      title: 'Rose',
+      scientific_name: 'Rosa spp.',
+      toxicity_level: 'Safe – generally non-toxic',
+      summary: 'Thorns can cause injury but plant is generally non-toxic.',
+      symptoms: [],
+      what_to_do: '<p>While generally safe, monitor for any signs of irritation from thorns.</p>'
+    }
+  };
+  return {
+    props: {
+      plant: fallback[slug] || fallback.lily
+    }
+  };
+}
+
+export async function getStaticPaths() {
+  const fs = require('fs');
+  const path = require('path');
+  const files = fs.readdirSync(path.join(process.cwd(), 'content', 'plants'));
+  const paths = files.filter(f => f.endsWith('.md')).map(f => ({
+    params: { slug: f.replace('.md', '') }
+  }));
+  return { paths, fallback: false };
 }
