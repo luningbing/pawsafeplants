@@ -1,0 +1,11 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/api/analytics/track": "pages/api/analytics/track.js",
+  "/api/plants": "pages/api/plants.js",
+  "/api/site-config": "pages/api/site-config.js",
+  "/plants/[slug]": "pages/plants/[slug].js",
+  "/api/comments/list": "pages/api/comments/list.js"
+}
