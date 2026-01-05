@@ -5,8 +5,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-// Image placeholder component
-function SafeImage({ src, alt, fallback, style, containerStyle }) {
+// Image placeholder component with Unsplash fallback
+function SafeImage({ src, alt, fallback, style, containerStyle, unsplashFallback }) {
   const [imgSrc, setImgSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
 
@@ -16,8 +16,13 @@ function SafeImage({ src, alt, fallback, style, containerStyle }) {
   }, [src]);
 
   const handleError = () => {
-    setHasError(true);
-    setImgSrc(null);
+    if (!hasError && unsplashFallback) {
+      setImgSrc(unsplashFallback);
+      setHasError(false);
+    } else {
+      setHasError(true);
+      setImgSrc(null);
+    }
   };
 
   if (hasError || !imgSrc) {
@@ -86,55 +91,75 @@ export async function getServerSideProps(context) {
 }
 
 export default function Home({ plants, site }) {
-  const featured = [
-    { title: 'Sunflowers', level: 'Safe', desc: 'Bright and cat-safe', slug: 'sunflowers', icon: '✅' },
-    { title: 'Spider Plant', level: 'Safe', desc: 'Generally safe; mild GI upset possible', slug: 'spider-plant', icon: '✅' },
-    { title: 'Aloe Vera', level: 'Caution', desc: 'May cause gastrointestinal upset', slug: 'aloe-vera', icon: '⚠️' }
-  ]
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const unsplashPlaceholder = 'https://images.unsplash.com/photo-1545241047-6083a3684587';
 
-  // Community Stories placeholder data
-  const communityStories = [
-    { id: 1, name: 'Sarah & Max', photo: '/images/placeholder-story1.jpg', plant: 'Spider Plant', location: 'Seattle, WA' },
-    { id: 2, name: 'Emma & Luna', photo: '/images/placeholder-story2.jpg', plant: 'Cat Grass', location: 'Portland, OR' },
-    { id: 3, name: 'James & Whiskers', photo: '/images/placeholder-story3.jpg', plant: 'Boston Fern', location: 'San Francisco, CA' },
-    { id: 4, name: 'Maya & Simba', photo: '/images/placeholder-story4.jpg', plant: 'Areca Palm', location: 'Austin, TX' }
-  ]
+  // Color palette
+  const sageGreen = '#87A96B';
+  const sageGreenDark = '#6B8553';
+  const warmCream = '#FAF7F2';
+  const warmCreamDark = '#F5F1E8';
+  const terracotta = '#C17A5F';
+  const borderRadius = '24px';
+  const borderRadiusLarge = '32px';
+
+  // Get popular/featured plants (4-6 plants)
+  const featuredPlants = useMemo(() => {
+    const sorted = plants.slice().sort((a, b) => {
+      const aTitle = String(a.title || '').toLowerCase();
+      const bTitle = String(b.title || '').toLowerCase();
+      return aTitle.localeCompare(bTitle);
+    });
+    return sorted.slice(0, 6);
+  }, [plants]);
+
+  // Search functionality
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      setShowSearchResults(false);
+      return;
+    }
+
+    const query = searchQuery.toLowerCase();
+    const results = plants
+      .filter(plant => {
+        const title = String(plant.title || '').toLowerCase();
+        const scientific = String(plant.scientific_name || '').toLowerCase();
+        const summary = String(plant.summary || '').toLowerCase();
+        return title.includes(query) || scientific.includes(query) || summary.includes(query);
+      })
+      .slice(0, 5);
+    
+    setSearchResults(results);
+    setShowSearchResults(results.length > 0);
+  }, [searchQuery, plants]);
 
   useEffect(() => {
     try {
       const body = { page_path: window.location.pathname, referrer: document.referrer }
       fetch('/api/analytics/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => {})
     } catch {}
-  }, [])
+  }, []);
 
-  const sorted = useMemo(() => {
-    return plants.slice().sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')))
-  }, [plants])
+  const getToxicityLevel = (level) => {
+    const L = String(level || '').toLowerCase();
+    if (L.includes('safe')) return { label: 'Safe', color: sageGreen, bg: `${sageGreen}20`, icon: '✅' };
+    if (L.includes('danger') || L.includes('toxic') || L.includes('extreme')) return { label: 'Dangerous', color: '#E85D5D', bg: '#E85D5D20', icon: '❌' };
+    return { label: 'Caution', color: '#F5C842', bg: '#F5C84220', icon: '⚠️' };
+  };
 
-  const tagStyle = (level) => {
-    const L = String(level || '').toLowerCase()
-    const safe = L.includes('safe')
-    const danger = L.includes('danger') || L.includes('toxic') || L.includes('extreme')
-    const caution = !safe && !danger
-    const bg = safe ? '#87A96B' : caution ? '#F5C842' : '#E85D5D'
-    const color = safe ? '#fff' : caution ? '#2D2D2D' : '#fff'
-    return { 
-      display: 'inline-block', 
-      padding: '6px 12px', 
-      borderRadius: '16px', 
-      background: bg, 
-      color,
-      fontSize: '13px',
-      fontWeight: 600
-    }
-  }
-
-  const sageGreen = '#87A96B'
-  const sageGreenDark = '#6B8553'
-  const warmCream = '#FAF7F2'
-  const warmCreamDark = '#F5F1E8'
-  const borderRadius = '24px'
-  const borderRadiusSmall = '16px'
+  // Community Stories placeholder data (3 columns) with Unsplash images
+  const communityStories = [
+    { id: 1, name: 'Sarah & Max', plant: 'Spider Plant', location: 'Seattle, WA', image: 'https://images.unsplash.com/photo-1545241047-6083a3684587?w=400&h=400&fit=crop' },
+    { id: 2, name: 'Emma & Luna', plant: 'Cat Grass', location: 'Portland, OR', image: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&h=400&fit=crop' },
+    { id: 3, name: 'James & Whiskers', plant: 'Boston Fern', location: 'San Francisco, CA', image: 'https://images.unsplash.com/photo-1522276498395-f4f68f7f8454?w=400&h=400&fit=crop' },
+    { id: 4, name: 'Maya & Simba', plant: 'Areca Palm', location: 'Austin, TX', image: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=400&h=400&fit=crop' },
+    { id: 5, name: 'Olivia & Pepper', plant: 'Prayer Plant', location: 'Denver, CO', image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=400&fit=crop' },
+    { id: 6, name: 'Chris & Tigger', plant: 'African Violet', location: 'Miami, FL', image: 'https://images.unsplash.com/photo-1512428813834-c702c7702b78?w=400&h=400&fit=crop' }
+  ];
 
   return (
     <>
@@ -154,428 +179,521 @@ export default function Home({ plants, site }) {
           content="Comprehensive guide to cat-safe and toxic plants. Keep your furry friends safe while enjoying beautiful indoor plants." 
         />
         <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="PawSafePlants - Cat-Safe Plant Guide" />
-        <meta 
-          name="twitter:description" 
-          content="Discover which plants are safe for your cats. Expert guide to pet-friendly indoor gardening." 
-        />
         <link rel="canonical" href="https://pawsafeplants.com" />
       </Head>
 
       <div style={{ 
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif',
         background: warmCream,
-        minHeight: '100vh',
-        padding: '0 0 40px 0'
+        minHeight: '100vh'
       }}>
-        <div style={{ margin: '20px 0', borderRadius: borderRadius, overflow: 'hidden', boxShadow: '0 8px 24px rgba(135, 169, 107, 0.15)' }}>
-          <SafeImage
-            src={site?.heroImage || '/images/hero-default.svg'}
-            alt="Cat-safe plants for your home"
-            fallback={
-              <div style={{
-                width: '100%',
-                height: 450,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: `linear-gradient(135deg, ${sageGreen}20, ${sageGreen}10)`,
-                color: sageGreenDark,
-                padding: '40px'
-              }}>
-                <span style={{ fontSize: '64px', marginBottom: '16px' }}>🌿</span>
-                <div style={{ fontSize: '24px', fontWeight: 600, marginBottom: '8px' }}>PawSafePlants</div>
-                <div style={{ fontSize: '16px', textAlign: 'center', maxWidth: '500px' }}>
-                  Creating safe indoor gardens for you and your feline friends
-                </div>
-              </div>
-            }
-            style={{ 
-              width: '100%', 
-              height: 450, 
-              objectFit: 'cover', 
-              objectPosition: 'center',
-              display: 'block'
-            }}
-            containerStyle={{
-              width: '100%',
-              height: 450
-            }}
-          />
-        </div>
-
-        <div style={{ 
-          display: 'grid', 
-          gap: 20, 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-          marginTop: 24 
+        {/* Hero Section - Left Text, Right Image */}
+        <section style={{
+          maxWidth: '1200px',
+          margin: '40px auto',
+          padding: '0 20px',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: '48px',
+          alignItems: 'center'
         }}>
+          {/* Left: Text Content */}
           <div style={{ 
-            border: `2px solid ${warmCreamDark}`, 
-            borderRadius: borderRadius, 
-            padding: 24, 
-            background: '#fff', 
-            boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-4px)'
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(135, 169, 107, 0.12)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.06)'
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px'
           }}>
-            <div style={{ fontWeight: 700, marginBottom: 12, fontSize: '18px', color: sageGreenDark }}>Latest Tips</div>
-            <div style={{ display: 'grid', gap: 12 }}>
-              <Link href="/plants/safe" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
-                How to Choose Cat-Safe Indoor Plants →
+            <h1 style={{
+              fontSize: '56px',
+              fontWeight: 700,
+              color: sageGreenDark,
+              lineHeight: 1.2,
+              letterSpacing: '-1px',
+              margin: 0
+            }}>
+              Grow Together, Safely.
+            </h1>
+            <p style={{
+              fontSize: '20px',
+              color: '#5A5A5A',
+              lineHeight: 1.6,
+              margin: 0
+            }}>
+              Your Guide to Cat-Friendly Botanicals & Community
+            </p>
+            <div style={{
+              display: 'flex',
+              gap: '16px',
+              flexWrap: 'wrap'
+            }}>
+              <Link 
+                href="/plants/safe"
+                style={{
+                  display: 'inline-block',
+                  padding: '16px 32px',
+                  background: sageGreen,
+                  color: '#fff',
+                  textDecoration: 'none',
+                  borderRadius: borderRadius,
+                  fontWeight: 600,
+                  fontSize: '16px',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 16px rgba(135, 169, 107, 0.3)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = sageGreenDark;
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(135, 169, 107, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = sageGreen;
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(135, 169, 107, 0.3)';
+                }}
+              >
+                Explore Safe Plants
               </Link>
-              <Link href="/plants/toxic" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
-                Identifying Toxic Plants in Your Home →
+              <Link 
+                href="/community"
+                style={{
+                  display: 'inline-block',
+                  padding: '16px 32px',
+                  background: warmCream,
+                  color: sageGreenDark,
+                  textDecoration: 'none',
+                  borderRadius: borderRadius,
+                  fontWeight: 600,
+                  fontSize: '16px',
+                  border: `2px solid ${sageGreen}`,
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = sageGreen + '10';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = warmCream;
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                Share Your Story
               </Link>
-              <Link href="/about" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
-                Emergency Steps After Plant Ingestion →
-              </Link>
-          </div>
-        </div>
-
-          <div style={{ 
-            border: `2px solid ${warmCreamDark}`, 
-            borderRadius: borderRadius, 
-            padding: 24, 
-            background: '#fff', 
-            boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-4px)'
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(135, 169, 107, 0.12)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.06)'
-          }}>
-            <div style={{ fontWeight: 700, marginBottom: 16, fontSize: '18px', color: sageGreenDark }}>Popular Plants</div>
-            <div style={{ display: 'grid', gap: 14 }}>
-            {featured.map((f, i) => (
-                <Link key={i} href={`/plants/${f.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: 12 }}>
-                <div>
-                      <div style={{ fontWeight: 600, fontSize: '15px', marginBottom: '4px', color: sageGreenDark }}>{f.title}</div>
-                      <div style={{ fontSize: '13px', color: '#5A5A5A' }}>{f.desc}</div>
-                </div>
-                <span style={{ ...tagStyle(f.level) }}>{f.icon} {f.level}</span>
-              </div>
-                </Link>
-            ))}
-          </div>
-        </div>
-
-          <div style={{ 
-            border: `2px solid ${warmCreamDark}`, 
-            borderRadius: borderRadius, 
-            padding: 24, 
-            background: '#fff', 
-            boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
-            transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'translateY(-4px)'
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(135, 169, 107, 0.12)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'translateY(0)'
-            e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.06)'
-          }}>
-            <div style={{ fontWeight: 700, marginBottom: 12, fontSize: '18px', color: sageGreenDark }}>Resources</div>
-            <div style={{ display: 'grid', gap: 12 }}>
-              <a href="https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants" target="_blank" rel="noopener noreferrer" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
-                ASPCA Toxicity Database →
-              </a>
-              <a href="https://www.avma.org/resources-tools/pet-owners/petcare/veterinary-emergencies" target="_blank" rel="noopener noreferrer" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
-                Find Local Animal Hospitals →
-              </a>
-              <a href="https://www.aspca.org/pet-care/cat-care" target="_blank" rel="noopener noreferrer" style={{ color: sageGreenDark, textDecoration: 'none', fontSize: '15px', lineHeight: 1.6 }}>
-                Cat Care Basics & Health →
-              </a>
             </div>
           </div>
-        </div>
 
-        {/* Community Stories Section */}
-        <div style={{ marginTop: 48 }}>
-          <h2 style={{ 
-            fontSize: '32px', 
-            color: sageGreenDark, 
-            marginBottom: 8,
+          {/* Right: Hero Image */}
+          <div style={{
+            borderRadius: borderRadiusLarge,
+            overflow: 'hidden',
+            boxShadow: '0 12px 32px rgba(0, 0, 0, 0.15)',
+            height: '500px'
+          }}>
+            <SafeImage
+              src={site?.heroImage || unsplashPlaceholder}
+              alt="Cat-safe plants for your home"
+              unsplashFallback={unsplashPlaceholder}
+              style={{ 
+                width: '100%', 
+                height: '100%', 
+                objectFit: 'cover',
+                display: 'block'
+              }}
+              containerStyle={{
+                width: '100%',
+                height: '100%'
+              }}
+            />
+        </div>
+        </section>
+
+        {/* Global Search Section */}
+        <section style={{
+          maxWidth: '1200px',
+          margin: '0 auto 48px auto',
+          padding: '0 20px',
+          position: 'relative'
+        }}>
+          <div style={{
+            position: 'relative',
+            maxWidth: '700px',
+            margin: '0 auto'
+          }}>
+            <input
+              type="text"
+              placeholder="Search by plant name..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{
+                width: '100%',
+                padding: '18px 24px',
+                fontSize: '16px',
+                borderRadius: borderRadius,
+                border: `2px solid ${warmCreamDark}`,
+                background: '#fff',
+                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+                outline: 'none',
+                transition: 'all 0.3s ease'
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.borderColor = sageGreen;
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(135, 169, 107, 0.2)';
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.borderColor = warmCreamDark;
+                e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.08)';
+              }}
+            />
+            
+            {/* Search Results Dropdown */}
+            {showSearchResults && searchResults.length > 0 && (
+              <div style={{
+                position: 'absolute',
+                top: '100%',
+                left: 0,
+                right: 0,
+                background: '#fff',
+                borderRadius: borderRadius,
+                marginTop: '8px',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
+                border: `2px solid ${warmCreamDark}`,
+                zIndex: 100,
+                maxHeight: '400px',
+                overflow: 'auto'
+              }}>
+                {searchResults.map(plant => {
+                  const toxicity = getToxicityLevel(plant.toxicity_level);
+                  return (
+                    <Link
+                      key={plant.slug}
+                      href={`/plants/${plant.slug}`}
+                      style={{
+                        display: 'block',
+                        padding: '16px 20px',
+                        textDecoration: 'none',
+                        color: '#2D2D2D',
+                        borderBottom: `1px solid ${warmCreamDark}`,
+                        transition: 'background 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = warmCream;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = '#fff';
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div>
+                          <div style={{ fontWeight: 600, fontSize: '16px', marginBottom: '4px' }}>
+                            {plant.title}
+        </div>
+                          <div style={{ fontSize: '14px', color: '#5A5A5A' }}>
+                            {plant.summary?.substring(0, 60)}...
+          </div>
+        </div>
+                        <span style={{
+                          padding: '4px 12px',
+                          borderRadius: '12px',
+                          fontSize: '12px',
+                          fontWeight: 600,
+                          background: toxicity.bg,
+                          color: toxicity.color
+                        }}>
+                          {toxicity.icon} {toxicity.label}
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
+                </div>
+            )}
+              </div>
+        </section>
+
+        {/* Featured Plants Grid */}
+        <section style={{
+          maxWidth: '1200px',
+          margin: '0 auto 64px auto',
+          padding: '0 20px'
+        }}>
+          <h2 style={{
+            fontSize: '40px',
             fontWeight: 700,
-            letterSpacing: '-0.5px'
+            color: sageGreenDark,
+            marginBottom: '32px',
+            textAlign: 'center'
+          }}>
+            Popular Plants
+          </h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '24px'
+          }}>
+            {featuredPlants.map(plant => {
+              const toxicity = getToxicityLevel(plant.toxicity_level);
+              return (
+                <div
+                  key={plant.slug}
+                  style={{
+                    background: '#fff',
+                    borderRadius: borderRadius,
+                    overflow: 'hidden',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+                    transition: 'all 0.3s ease',
+                    border: `2px solid ${warmCreamDark}`
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.15)';
+                    e.currentTarget.style.borderColor = sageGreen + '40';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.08)';
+                    e.currentTarget.style.borderColor = warmCreamDark;
+                  }}
+                >
+                  {/* Plant Image */}
+                  <div style={{ height: '240px', overflow: 'hidden', background: warmCreamDark }}>
+                    <SafeImage
+                      src={plant.image || plant.thumbPlant || unsplashPlaceholder}
+                      alt={plant.title}
+                      unsplashFallback={unsplashPlaceholder}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover'
+                      }}
+                      containerStyle={{
+                        width: '100%',
+                        height: '100%'
+                      }}
+                    />
+          </div>
+                  
+                  {/* Plant Info */}
+                  <div style={{ padding: '24px' }}>
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      marginBottom: '12px'
+                    }}>
+                      <h3 style={{
+                        fontSize: '20px',
+                        fontWeight: 700,
+                        color: sageGreenDark,
+                        margin: 0
+                      }}>
+                        {plant.title}
+                      </h3>
+                      <span style={{
+                        padding: '6px 12px',
+                        borderRadius: '16px',
+                        fontSize: '13px',
+                        fontWeight: 600,
+                        background: toxicity.bg,
+                        color: toxicity.color,
+                        whiteSpace: 'nowrap'
+                      }}>
+                        {toxicity.icon} {toxicity.label}
+                      </span>
+        </div>
+                    <p style={{
+                      fontSize: '15px',
+                      color: '#5A5A5A',
+                      lineHeight: 1.6,
+                      marginBottom: '20px',
+                      minHeight: '48px'
+                    }}>
+                      {plant.summary || 'Learn more about this plant and its safety for cats.'}
+                    </p>
+                    <Link
+                      href={`/plants/${plant.slug}`}
+                      style={{
+                        display: 'inline-block',
+                        padding: '12px 24px',
+                        background: sageGreen,
+                        color: '#fff',
+                        textDecoration: 'none',
+                        borderRadius: borderRadius,
+                        fontWeight: 600,
+                        fontSize: '15px',
+                        transition: 'all 0.3s ease',
+                        textAlign: 'center',
+                        width: '100%'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.background = sageGreenDark;
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.background = sageGreen;
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }}
+                    >
+                      View Details
+                    </Link>
+          </div>
+        </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Community Stories - 3 Column Grid */}
+        <section style={{
+          maxWidth: '1200px',
+          margin: '0 auto 64px auto',
+          padding: '0 20px'
+        }}>
+          <h2 style={{
+            fontSize: '40px',
+            fontWeight: 700,
+            color: sageGreenDark,
+            marginBottom: '16px',
+            textAlign: 'center'
           }}>
             Community Stories
           </h2>
-          <p style={{ 
-            fontSize: '16px', 
-            color: '#5A5A5A', 
-            marginBottom: 24,
-            maxWidth: '600px',
-            lineHeight: 1.6
+          <p style={{
+            fontSize: '18px',
+            color: '#5A5A5A',
+            textAlign: 'center',
+            marginBottom: '40px'
           }}>
-            See how fellow cat owners are creating beautiful, pet-safe indoor gardens. Share your own story and inspire others!
+            See how fellow cat owners are creating beautiful, pet-safe indoor gardens
           </p>
-          <div style={{ 
-            display: 'grid', 
-            gap: 20, 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))' 
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '24px'
           }}>
-            {communityStories.map((story) => (
-              <div 
+            {communityStories.map(story => (
+              <div
                 key={story.id}
-                style={{ 
+                style={{
                   background: '#fff',
                   borderRadius: borderRadius,
                   overflow: 'hidden',
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+                  transition: 'all 0.3s ease',
                   border: `2px solid ${warmCreamDark}`
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)'
-                  e.currentTarget.style.boxShadow = '0 12px 32px rgba(135, 169, 107, 0.15)'
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.12)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.06)'
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.08)';
                 }}
               >
-                <div style={{ 
-                  width: '100%', 
-                  height: 200, 
-                  background: `linear-gradient(135deg, ${sageGreen}20, ${sageGreen}10)`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '48px'
+                <div style={{
+                  height: '280px',
+                  overflow: 'hidden',
+                  background: warmCreamDark
                 }}>
-                  <span>📸</span>
-                </div>
+                  <SafeImage
+                    src={story.image || unsplashPlaceholder}
+                    alt={`${story.name} with ${story.plant}`}
+                    unsplashFallback={unsplashPlaceholder}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                    containerStyle={{
+                      width: '100%',
+                      height: '100%',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '64px'
+                    }}
+                    fallback={<span>📸</span>}
+                  />
+      </div>
                 <div style={{ padding: '20px' }}>
-                  <div style={{ 
-                    fontWeight: 700, 
-                    fontSize: '18px', 
+                  <div style={{
+                    fontWeight: 700,
+                    fontSize: '18px',
                     color: sageGreenDark,
-                    marginBottom: '6px'
-                  }}>
-                    {story.name}
-                  </div>
-                  <div style={{ 
-                    fontSize: '14px', 
-                    color: '#5A5A5A',
                     marginBottom: '8px'
                   }}>
-                    {story.plant} · {story.location}
+                    {story.name}
+                </div>
+                  <div style={{
+                    fontSize: '14px',
+                    color: '#5A5A5A',
+                    marginBottom: '4px'
+                  }}>
+                    {story.plant}
+                </div>
+                  <div style={{
+                    fontSize: '13px',
+                    color: '#888'
+                  }}>
+                    {story.location}
                   </div>
-                  <div style={{ 
-                    fontSize: '13px', 
-                    color: '#888',
-                    fontStyle: 'italic'
-                  }}>
-                    "Love our pet-safe setup!"
-          </div>
-        </div>
-      </div>
-            ))}
-          </div>
-          <div style={{ marginTop: 24, textAlign: 'center' }}>
-            <Link 
-              href="/community"
-              style={{ 
-                display: 'inline-block',
-                padding: '14px 28px',
-                background: sageGreen,
-                color: '#fff',
-                textDecoration: 'none',
-                borderRadius: borderRadius,
-                fontWeight: 600,
-                fontSize: '16px',
-                transition: 'all 0.3s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = sageGreenDark
-                e.currentTarget.style.transform = 'translateY(-2px)'
-                e.currentTarget.style.boxShadow = '0 6px 20px rgba(135, 169, 107, 0.3)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = sageGreen
-                e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.boxShadow = 'none'
-              }}
-            >
-              Share Your Story
-            </Link>
-          </div>
-        </div>
-
-        <div id="all-plants" style={{ marginTop: 56 }}>
-          <h2 style={{ 
-            fontSize: '32px', 
-            color: sageGreenDark, 
-            marginBottom: 24,
-            fontWeight: 700,
-            letterSpacing: '-0.5px'
-          }}>
-            All Plants
-          </h2>
-          <div style={{ 
-            display: 'grid', 
-            gap: 20, 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' 
-          }}>
-          {sorted.map(plant => (
-              <div 
-                key={plant.slug} 
-                style={{ 
-                  border: `2px solid ${warmCreamDark}`, 
-                  borderRadius: borderRadius, 
-                  padding: 20, 
-                  background: '#fff', 
-                  boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)'
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(135, 169, 107, 0.12)'
-                  e.currentTarget.style.borderColor = sageGreen + '40'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)'
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.06)'
-                  e.currentTarget.style.borderColor = warmCreamDark
-                }}
-              >
-                <div style={{ 
-                  display: 'grid', 
-                  gridTemplateColumns: '80px 80px 1fr', 
-                  alignItems: 'center', 
-                  gap: 12,
-                  marginBottom: 12
-                }}>
-                  <div style={{ 
-                    width: 80, 
-                    height: 80, 
-                    borderRadius: borderRadiusSmall, 
-                    overflow: 'hidden', 
-                    background: warmCreamDark, 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center',
-                    border: `2px solid ${warmCreamDark}`
-                  }}>
-                    <SafeImage
-                      src={plant.thumbPlant || plant.image}
-                      alt={plant.title}
-                      fallback={<span style={{ fontSize: 32 }}>🌿</span>}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      containerStyle={{ width: '100%', height: '100%' }}
-                    />
-                </div>
-                  <div style={{ 
-                    width: 80, 
-                    height: 80, 
-                    borderRadius: borderRadiusSmall, 
-                    overflow: 'hidden', 
-                    background: warmCreamDark, 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'center',
-                    border: `2px solid ${warmCreamDark}`
-                  }}>
-                    <SafeImage
-                      src={plant.thumbCat}
-                      alt="cat"
-                      fallback={<span style={{ fontSize: 32 }}>🐱</span>}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      containerStyle={{ width: '100%', height: '100%' }}
-                    />
-                </div>
-                <div>
-                    <div style={{ fontWeight: 700, fontSize: '16px', marginBottom: '6px' }}>
-                      <Link 
-                        href={`/plants/${plant.slug}`} 
-                        style={{ 
-                          color: sageGreenDark, 
-                          textDecoration: 'none'
-                        }}
-                      >
-                        {plant.title}
-                      </Link>
-                    </div>
-                    <div style={{ marginTop: 4 }}>
-                    {String(plant.toxicity_level || 'Unknown').includes('DANGER')
-                        ? <span style={{ fontSize: '20px' }}>❌</span>
-                      : String(plant.toxicity_level || '').toLowerCase().includes('safe')
-                          ? <span style={{ fontSize: '20px' }}>✅</span>
-                          : <span style={{ fontSize: '20px' }}>⚠️</span>}
-                  </div>
-                </div>
-              </div>
-                <div style={{ 
-                  color: '#5A5A5A', 
-                  marginTop: 12, 
-                  minHeight: 48,
-                  lineHeight: 1.6,
-                  fontSize: '14px'
-                }}>
-                  {plant.summary}
-                </div>
-                <div style={{ marginTop: 16 }}>
-                  <Link 
-                    href={`/plants/${plant.slug}`}
-                    style={{ 
-                      color: sageGreenDark, 
-                      textDecoration: 'none',
-                      fontWeight: 600,
-                      fontSize: '15px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '6px'
-                    }}
-                  >
-                    Learn More →
-                  </Link>
                 </div>
             </div>
           ))}
-            </div>
         </div>
-        
-        <footer style={{ 
-          marginTop: 64, 
-          fontSize: '15px', 
-          color: '#5A5A5A', 
-          padding: '32px 24px',
+        </section>
+
+        {/* Footer */}
+        <footer style={{
           background: '#fff',
-          borderRadius: borderRadius,
-          border: `2px solid ${warmCreamDark}`,
+          borderTop: `2px solid ${warmCreamDark}`,
+          padding: '40px 20px',
+          marginTop: '64px',
           textAlign: 'center'
         }}>
-          <p style={{ marginBottom: 16, fontWeight: 600, color: '#E85D5D' }}>
+          <p style={{
+            marginBottom: '16px',
+            fontWeight: 600,
+            color: '#E85D5D',
+            fontSize: '16px'
+          }}>
             ⚠️ If your cat ingested a plant, contact your veterinarian immediately.
           </p>
-          <Link 
-            href="/about" 
-            style={{ 
-              color: sageGreenDark, 
+          <Link
+            href="/about"
+            style={{
+              color: sageGreenDark,
               textDecoration: 'none',
-              fontWeight: 500
+              fontWeight: 500,
+              fontSize: '15px'
             }}
           >
             About & Disclaimer
           </Link>
       </footer>
     </div>
+
+      <style jsx>{`
+        @media (max-width: 968px) {
+          section:first-of-type {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+          section:first-of-type > div:last-child {
+            height: 400px !important;
+          }
+          section:nth-of-type(4) > div:last-of-type {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+        @media (max-width: 640px) {
+          h1 {
+            font-size: 40px !important;
+          }
+          section:nth-of-type(4) > div:last-of-type {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </>
   );
 }
