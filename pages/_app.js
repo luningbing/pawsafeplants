@@ -78,7 +78,7 @@ export default function App({ Component, pageProps }) {
             <Link href="/" className="logo" style={{ fontWeight: 700, fontSize: 20 }}>🐾 PawSafePlants</Link>
           )}
           <div className="search-box">
-            <input id="global-search-input" type="text" placeholder="Search by name, scientific name..." value={q} onChange={(e) => setQ(e.target.value)} />
+            <input id="global-search-input" type="text" placeholder="Search plants by name or scientific name..." value={q} onChange={(e) => setQ(e.target.value)} />
             <button type="button" onClick={onSearch} aria-label="Search">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                 <circle cx="11" cy="11" r="7" stroke="#fff" strokeWidth="2" />
@@ -90,7 +90,7 @@ export default function App({ Component, pageProps }) {
         <nav className="nav-menu">
           <div className="nav-item-wrapper" onMouseEnter={() => { if (!isMobile) setOpenMenu(prev => ({ ...prev, safe: true })) }} onMouseLeave={() => { if (!isMobile) setOpenMenu(prev => ({ ...prev, safe: false })) }}>
             <Link href="/plants/safe" className="nav-item" onClick={(e) => { if (isMobile) { e.preventDefault(); toggleMenu('safe') } }}>
-              Purr-fect Picks 🌸 (猫猫友好花花)
+              Cat-Safe Plants 🌸
             </Link>
             {openMenu.safe && (
               <div className="dropdown">
@@ -102,7 +102,7 @@ export default function App({ Component, pageProps }) {
           </div>
           <div className="nav-item-wrapper" onMouseEnter={() => { if (!isMobile) setOpenMenu(prev => ({ ...prev, toxic: true })) }} onMouseLeave={() => { if (!isMobile) setOpenMenu(prev => ({ ...prev, toxic: false })) }}>
             <Link href="/plants/toxic" className="nav-item" onClick={(e) => { if (isMobile) { e.preventDefault(); toggleMenu('toxic') } }}>
-              Oops! Keep Away 🚫 (猫猫不能碰的花花)
+              Toxic Plants 🚫
             </Link>
             {openMenu.toxic && (
               <div className="dropdown">
@@ -114,7 +114,7 @@ export default function App({ Component, pageProps }) {
           </div>
           <div className="nav-item-wrapper" onMouseEnter={() => { if (!isMobile) setOpenMenu(prev => ({ ...prev, caution: true })) }} onMouseLeave={() => { if (!isMobile) setOpenMenu(prev => ({ ...prev, caution: false })) }}>
             <Link href="/plants/caution" className="nav-item" onClick={(e) => { if (isMobile) { e.preventDefault(); toggleMenu('caution') } }}>
-              Moderate Risk (猫猫警惕的植物)
+              Moderate Risk ⚠️
             </Link>
             {openMenu.caution && (
               <div className="dropdown">
@@ -124,7 +124,7 @@ export default function App({ Component, pageProps }) {
               </div>
             )}
           </div>
-          <Link href="/items" className="nav-item">More Fun Stuff 🎀 (其他物品)</Link>
+          <Link href="/items" className="nav-item">More Products 🎀</Link>
         </nav>
       </header>
       <Component {...pageProps} />
