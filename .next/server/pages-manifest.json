@@ -2,5 +2,11 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/admin": "pages/admin.js"
+  "/api/list-images": "pages/api/list-images.js",
+  "/api/hero-carousel-db": "pages/api/hero-carousel-db.js",
+  "/api/site-config": "pages/api/site-config.js",
+  "/api/ultimate-hero": "pages/api/ultimate-hero.js",
+  "/admin": "pages/admin.js",
+  "/api/plants": "pages/api/plants.js",
+  "/api/auth/login": "pages/api/auth/login.js"
 }
