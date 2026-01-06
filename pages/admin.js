@@ -27,6 +27,16 @@ export default function Admin() {
   const [heroPreviews, setHeroPreviews] = useState(['', '', '']);
   const [heroMediaOpen, setHeroMediaOpen] = useState([false, false, false]);
   
+  // Ultimate Hero Carousel states
+  const [ultimateHeroSlides, setUltimateHeroSlides] = useState([
+    { imageUrl: '', title: '', subtitle: '', link: '' },
+    { imageUrl: '', title: '', subtitle: '', link: '' },
+    { imageUrl: '', title: '', subtitle: '', link: '' }
+  ]);
+  const [ultimateHeroUploading, setUltimateHeroUploading] = useState([false, false, false]);
+  const [ultimateHeroPreviews, setUltimateHeroPreviews] = useState(['', '', '']);
+  const [ultimateHeroMediaOpen, setUltimateHeroMediaOpen] = useState([false, false, false]);
+  
   // Modal states for plant editing
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editingPlant, setEditingPlant] = useState(null);
@@ -100,16 +110,18 @@ export default function Admin() {
   useEffect(() => {
     const load = async () => {
       try {
-        const [imgRes, siteRes, plantRes, heroRes] = await Promise.all([
+        const [imgRes, siteRes, plantRes, heroRes, ultimateHeroRes] = await Promise.all([
           fetch('/api/list-images'),
           fetch('/api/site-config'),
           fetch('/api/plants'),
           fetch('/api/hero-carousel-db'),
+          fetch('/api/ultimate-hero'),
         ]);
         const imgs = await imgRes.json();
         const s = await siteRes.json();
         const p = await plantRes.json();
         const hero = await heroRes.json();
+        const ultimateHero = await ultimateHeroRes.json();
         setImages(imgs.paths || []);
         setSite(s || { heroImage: '' });
         setHeroSelection((s || {}).heroImage || '');
@@ -117,11 +129,21 @@ export default function Admin() {
         setPlants(p.plants || []);
         
         // Load hero carousel data
-        if (hero.slides && hero.slides.length > 0) {
+        if (hero.slides && Array.isArray(hero.slides)) {
           setHeroSlides(hero.slides);
-          setHeroPreviews(hero.slides.map(slide => slide.imageUrl || ''));
+          const previews = hero.slides.map(slide => slide.imageUrl || '');
+          setHeroPreviews(previews);
         }
-      } catch {}
+        
+        // Load ultimate hero carousel data
+        if (ultimateHero.slides && Array.isArray(ultimateHero.slides)) {
+          setUltimateHeroSlides(ultimateHero.slides);
+          const ultimatePreviews = ultimateHero.slides.map(slide => slide.imageUrl || '');
+          setUltimateHeroPreviews(ultimatePreviews);
+        }
+      } catch (error) {
+        console.error('Load error:', error);
+      }
     };
     load();
   }, []);
@@ -418,6 +440,130 @@ export default function Admin() {
       } else {
         setMsg('保存失败: ' + error.message);
       }
+      setTimeout(() => setMsg(''), 5000);
+    }
+  };
+
+  // Ultimate Hero Carousel handlers
+  const handleUltimateHeroImageUpload = async (file, index) => {
+    if (!file) return;
+    
+    // Check file size (50MB limit)
+    const maxSize = 50 * 1024 * 1024; // 50MB in bytes
+    if (file.size > maxSize) {
+      setMsg('文件大小不能超过50MB，请选择较小的图片');
+      setTimeout(() => setMsg(''), 3000);
+      return;
+    }
+    
+    const newUltimateHeroUploading = [...ultimateHeroUploading];
+    newUltimateHeroUploading[index] = true;
+    setUltimateHeroUploading(newUltimateHeroUploading);
+    
+    try {
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64 = reader.result.split(',')[1];
+        const filename = `ultimate-hero-${index + 1}-${Date.now()}.jpg`;
+        
+        const res = await fetch('/api/upload-chunked', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ filename, data: base64 })
+        });
+        
+        if (res.ok) {
+          const j = await res.json();
+          const newUltimateHeroSlides = [...ultimateHeroSlides];
+          newUltimateHeroSlides[index].imageUrl = j.path;
+          setUltimateHeroSlides(newUltimateHeroSlides);
+          
+          const newUltimateHeroPreviews = [...ultimateHeroPreviews];
+          newUltimateHeroPreviews[index] = j.path;
+          setUltimateHeroPreviews(newUltimateHeroPreviews);
+        }
+        
+        const newUltimateHeroUploading = [...ultimateHeroUploading];
+        newUltimateHeroUploading[index] = false;
+        setUltimateHeroUploading(newUltimateHeroUploading);
+      };
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error('Ultimate Hero image upload error:', error);
+      const newUltimateHeroUploading = [...ultimateHeroUploading];
+      newUltimateHeroUploading[index] = false;
+      setUltimateHeroUploading(newUltimateHeroUploading);
+    }
+  };
+
+  const handleUltimateHeroMediaSelect = (imagePath, index) => {
+    const newUltimateHeroSlides = [...ultimateHeroSlides];
+    newUltimateHeroSlides[index].imageUrl = imagePath;
+    setUltimateHeroSlides(newUltimateHeroSlides);
+    
+    const newUltimateHeroPreviews = [...ultimateHeroPreviews];
+    newUltimateHeroPreviews[index] = imagePath;
+    setUltimateHeroPreviews(newUltimateHeroPreviews);
+    
+    const newUltimateHeroMediaOpen = [...ultimateHeroMediaOpen];
+    newUltimateHeroMediaOpen[index] = false;
+    setUltimateHeroMediaOpen(newUltimateHeroMediaOpen);
+  };
+
+  const handleUltimateHeroTitleChange = (title, index) => {
+    const newUltimateHeroSlides = [...ultimateHeroSlides];
+    newUltimateHeroSlides[index].title = title;
+    setUltimateHeroSlides(newUltimateHeroSlides);
+  };
+
+  const handleUltimateHeroSubtitleChange = (subtitle, index) => {
+    const newUltimateHeroSlides = [...ultimateHeroSlides];
+    newUltimateHeroSlides[index].subtitle = subtitle;
+    setUltimateHeroSlides(newUltimateHeroSlides);
+  };
+
+  const handleUltimateHeroLinkChange = (link, index) => {
+    const newUltimateHeroSlides = [...ultimateHeroSlides];
+    newUltimateHeroSlides[index].link = link;
+    setUltimateHeroSlides(newUltimateHeroSlides);
+  };
+
+  const saveUltimateHeroCarousel = async () => {
+    try {
+      console.log('Saving ultimate hero carousel:', ultimateHeroSlides);
+      
+      // Validate all slides have required fields
+      for (let i = 0; i < 3; i++) {
+        const slide = ultimateHeroSlides[i];
+        if (!slide.imageUrl || !slide.title || !slide.subtitle) {
+          setMsg(`第${i + 1}张轮播图缺少必需字段`);
+          setTimeout(() => setMsg(''), 3000);
+          return;
+        }
+      }
+      
+      const res = await fetch('/api/ultimate-hero', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slides: ultimateHeroSlides })
+      });
+      
+      console.log('Ultimate Hero save response status:', res.status);
+      
+      if (res.ok) {
+        const result = await res.json();
+        console.log('Ultimate Hero save response:', result);
+        setMsg('终极首页轮播图保存成功！');
+        setTimeout(() => setMsg(''), 3000);
+      } else {
+        const errorText = await res.text();
+        console.error('Ultimate Hero save failed:', res.status, errorText);
+        setMsg('保存失败: ' + errorText);
+        setTimeout(() => setMsg(''), 5000);
+      }
+    } catch (error) {
+      console.error('Save ultimate hero carousel error:', error);
+      setMsg('保存失败: ' + error.message);
       setTimeout(() => setMsg(''), 5000);
     }
   };

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import HeroCarousel from '../components/HeroCarousel';
+import UltimateHeroCarousel from '../components/UltimateHeroCarousel';
 
 // Image placeholder component with Unsplash fallback
 function SafeImage({ src, alt, fallback, style, containerStyle, unsplashFallback }) {
@@ -139,22 +139,22 @@ export default function Home({ plants, site }) {
     setShowSearchResults(results.length > 0);
   }, [searchQuery, plants]);
 
-  // Load hero carousel data
+  // Load ultimate hero carousel data
   useEffect(() => {
     const loadHeroSlides = async () => {
       try {
-        console.log('Loading hero slides from database...');
-        const res = await fetch('/api/hero-carousel-db');
+        console.log('Loading ultimate hero slides from file...');
+        const res = await fetch('/api/ultimate-hero');
         const data = await res.json();
-        console.log('Hero slides response:', data);
+        console.log('Ultimate hero slides response:', data);
         if (data.slides && data.slides.length > 0) {
-          console.log('Setting hero slides:', data.slides);
+          console.log('Setting ultimate hero slides:', data.slides);
           setHeroSlides(data.slides);
         } else {
-          console.log('No slides found in response');
+          console.log('No ultimate hero slides found');
         }
       } catch (error) {
-        console.error('Failed to load hero slides:', error);
+        console.error('Failed to load ultimate hero slides:', error);
       }
     };
     loadHeroSlides();
@@ -210,13 +210,15 @@ export default function Home({ plants, site }) {
         background: warmCream,
         minHeight: '100vh'
       }}>
-        {/* Hero Carousel */}
+        {/* Hero Carousel - Full Screen */}
         <section style={{
-          maxWidth: '1200px',
-          margin: '40px auto',
-          padding: '0 20px'
+          width: '100%',
+          height: '100vh',
+          margin: 0,
+          padding: 0,
+          position: 'relative'
         }}>
-          <HeroCarousel slides={heroSlides} />
+          <UltimateHeroCarousel slides={heroSlides} />
         </section>
 
         {/* Global Search Section */}
