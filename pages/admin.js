@@ -132,23 +132,55 @@ export default function Admin() {
     try {
       const reader = new FileReader();
       reader.onload = async () => {
-        const base64 = reader.result;
-        const filename = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-        const res = await fetch('/api/upload-base64', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ filename, data: String(base64 || '') })
-        });
-        if (res.ok) {
-          const j = await res.json();
-          const imgs = await (await fetch('/api/list-images')).json();
-          setImages(imgs.paths || []);
-          return j?.path || '';
+        try {
+          const base64 = reader.result;
+          const filename = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+          console.log('Uploading file:', filename, 'Size:', file.size);
+          
+          const res = await fetch('/api/upload-base64', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ filename, data: String(base64 || '') })
+          });
+          
+          console.log('Upload response status:', res.status);
+          
+          if (res.ok) {
+            const j = await res.json();
+            console.log('Upload response:', j);
+            
+            const imgs = await (await fetch('/api/list-images')).json();
+            setImages(imgs.paths || []);
+            setUploadFile(null);
+            setUploadPreview('');
+            setMsg('图片上传成功！');
+            setTimeout(() => setMsg(''), 3000);
+            return j?.path || '';
+          } else {
+            const errorText = await res.text();
+            console.error('Upload failed:', res.status, errorText);
+            setMsg('上传失败: ' + errorText);
+            setTimeout(() => setMsg(''), 3000);
+          }
+        } catch (error) {
+          console.error('Upload error:', error);
+          setMsg('上传失败: ' + error.message);
+          setTimeout(() => setMsg(''), 3000);
+        } finally {
+          setUploading(false);
         }
+      };
+      reader.onerror = () => {
+        console.error('FileReader error');
+        setMsg('文件读取失败');
+        setTimeout(() => setMsg(''), 3000);
         setUploading(false);
       };
       reader.readAsDataURL(file);
-    } catch {
+    } catch (error) {
+      console.error('Upload setup error:', error);
+      setMsg('上传设置失败: ' + error.message);
+      setTimeout(() => setMsg(''), 3000);
       setUploading(false);
     }
   };
@@ -1362,11 +1394,18 @@ export default function Admin() {
                     accept="image/*"
                     onChange={(e) => {
                       const file = e.target.files?.[0];
+                      console.log('File selected:', file?.name, 'Size:', file?.size, 'Type:', file?.type);
                       if (file) {
                         setUploadFile(file);
                         const reader = new FileReader();
-                        reader.onload = (e) => setUploadPreview(e.target.result);
+                        reader.onload = (e) => {
+                          console.log('FileReader loaded, preview length:', e.target.result?.length);
+                          setUploadPreview(e.target.result);
+                        };
+                        reader.onerror = (e) => console.error('FileReader error:', e);
                         reader.readAsDataURL(file);
+                      } else {
+                        console.log('No file selected');
                       }
                     }}
                     style={{ display: 'none' }}
