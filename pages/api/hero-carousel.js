@@ -3,15 +3,19 @@ import path from 'path';
 
 export default async function handler(req, res) {
   try {
+    console.log('Hero carousel API called:', req.method);
+    
     const settingsDir = path.join(process.cwd(), 'content', 'settings');
     const heroFile = path.join(settingsDir, 'hero.json');
     
     // 确保目录存在
     if (!fs.existsSync(settingsDir)) {
+      console.log('Creating settings directory:', settingsDir);
       fs.mkdirSync(settingsDir, { recursive: true });
     }
     
     if (req.method === 'GET') {
+      console.log('Reading hero carousel data');
       // 读取轮播图配置
       let heroData = {
         slides: [
@@ -38,6 +42,7 @@ export default async function handler(req, res) {
       
       try {
         if (fs.existsSync(heroFile)) {
+          console.log('Hero file exists, reading:', heroFile);
           const data = fs.readFileSync(heroFile, 'utf8');
           const savedData = JSON.parse(data);
           // 确保总是有3个slide
@@ -60,14 +65,19 @@ export default async function handler(req, res) {
         console.error('Error reading hero file:', error);
       }
       
+      console.log('Returning hero data:', heroData);
       return res.status(200).json(heroData);
     }
     
     if (req.method === 'POST') {
+      console.log('Saving hero carousel data');
       // 保存轮播图配置
       const { slides } = req.body;
       
+      console.log('Received slides:', slides);
+      
       if (!slides || !Array.isArray(slides)) {
+        console.error('Invalid slides data:', slides);
         return res.status(400).json({ error: 'Invalid slides data' });
       }
       
@@ -88,13 +98,23 @@ export default async function handler(req, res) {
         updatedAt: new Date().toISOString()
       };
       
-      fs.writeFileSync(heroFile, JSON.stringify(heroData, null, 2));
+      console.log('Writing hero data to file:', heroFile);
+      console.log('Hero data to write:', heroData);
+      
+      try {
+        fs.writeFileSync(heroFile, JSON.stringify(heroData, null, 2));
+        console.log('Hero data saved successfully');
+      } catch (writeError) {
+        console.error('Error writing hero file:', writeError);
+        return res.status(500).json({ error: 'Failed to save hero data: ' + writeError.message });
+      }
+      
       return res.status(200).json(heroData);
     }
     
     return res.status(405).json({ error: 'Method not allowed' });
   } catch (error) {
     console.error('Hero carousel API error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error: ' + error.message });
   }
 }

@@ -384,11 +384,19 @@ export default function Admin() {
   const saveHeroCarousel = async () => {
     try {
       console.log('Saving hero carousel:', heroSlides);
+      
+      // Add timeout to prevent hanging requests
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+      
       const res = await fetch('/api/hero-carousel', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slides: heroSlides })
+        body: JSON.stringify({ slides: heroSlides }),
+        signal: controller.signal
       });
+      
+      clearTimeout(timeoutId);
       
       console.log('Save response status:', res.status);
       
@@ -401,12 +409,16 @@ export default function Admin() {
         const errorText = await res.text();
         console.error('Save failed:', res.status, errorText);
         setMsg('保存失败: ' + errorText);
-        setTimeout(() => setMsg(''), 3000);
+        setTimeout(() => setMsg(''), 5000);
       }
     } catch (error) {
       console.error('Save hero carousel error:', error);
-      setMsg('保存失败: ' + error.message);
-      setTimeout(() => setMsg(''), 3000);
+      if (error.name === 'AbortError') {
+        setMsg('保存超时，请重试');
+      } else {
+        setMsg('保存失败: ' + error.message);
+      }
+      setTimeout(() => setMsg(''), 5000);
     }
   };
 
