@@ -6,6 +6,7 @@ const nextConfig = {
     bodyParser: {
       sizeLimit: '10mb',
     },
+    externalResolver: true,
   },
 }
 

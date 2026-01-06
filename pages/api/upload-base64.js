@@ -2,6 +2,13 @@ import fs from 'fs'
 import path from 'path'
 import { createClient } from '@supabase/supabase-js'
 
+// Disable body parser for this API to handle large files
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+}
+
 function parseDataUrl(s) {
   const m = String(s || '').match(/^data:(.+?);base64,(.+)$/)
   if (!m) return { mime: '', buf: Buffer.from([]) }
@@ -19,16 +26,22 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: 'Method not allowed' })
     }
     
-    let body = req.body
-    if (typeof body === 'string') { 
-      try { body = JSON.parse(body) } catch (e) {
-        console.error('JSON parse error:', e);
-        return res.status(400).json({ error: 'Invalid JSON body' })
-      }
+    // Parse the body manually since bodyParser is disabled
+    let body = '';
+    for await (const chunk of req) {
+      body += chunk.toString();
     }
     
-    const filename = String((body || {}).filename || '').trim().replace(/[^a-zA-Z0-9._-]/g, '_')
-    const data = String((body || {}).data || '')
+    let parsedBody;
+    try {
+      parsedBody = JSON.parse(body);
+    } catch (e) {
+      console.error('JSON parse error:', e);
+      return res.status(400).json({ error: 'Invalid JSON body' })
+    }
+    
+    const filename = String((parsedBody || {}).filename || '').trim().replace(/[^a-zA-Z0-9._-]/g, '_')
+    const data = String((parsedBody || {}).data || '')
     
     console.log('Processing upload:', filename, 'Data length:', data.length);
     
