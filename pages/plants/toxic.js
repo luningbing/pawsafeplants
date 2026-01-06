@@ -32,44 +32,44 @@ export default function ToxicPlants({ plants }) {
   }
   return (
     <div>
-      <h1>🚫 Oops! Keep Away (猫猫不能碰的花花)</h1>
+      <h1>🚫 Toxic Plants for Cats</h1>
       <div style={{ background: '#fdecea', color: '#b71c1c', border: '1px solid #f44336', borderRadius: 8, padding: '10px 12px', margin: '8px 0 12px' }}>
-        ⚠️ 如果您的猫咪接触了这些植物，请立即就医！
+        ⚠️ If your cat comes into contact with these plants, seek veterinary care immediately!
       </div>
-      <div style={{ color: '#b71c1c', marginBottom: 8 }}>❌ 高毒性！ 即使少量接触或舔舐也可能导致呕吐、肾衰竭甚至死亡</div>
+      <div style={{ color: '#b71c1c', marginBottom: 8 }}>❌ Highly toxic! Even small amounts can cause vomiting, kidney failure, or death</div>
       <div style={{ margin: '10px 0 16px' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
-              <th style={{ textAlign: 'left', padding: '6px 8px' }}>植物名称（英文）</th>
-              <th style={{ textAlign: 'left', padding: '6px 8px' }}>中文名</th>
-              <th style={{ textAlign: 'left', padding: '6px 8px' }}>风险说明</th>
+              <th style={{ textAlign: 'left', padding: '6px 8px' }}>Plant Name</th>
+              <th style={{ textAlign: 'left', padding: '6px 8px' }}>Common Name</th>
+              <th style={{ textAlign: 'left', padding: '6px 8px' }}>Risk Level</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td style={{ padding: '6px 8px' }}><Link href="/plants/lily">Lilies</Link></td>
-              <td style={{ padding: '6px 8px' }}>百合 / 萱草</td>
-              <td style={{ padding: '6px 8px' }}>⚠️ 对猫极度危险！ 所有部分（花、叶、花粉、水）都可能导致急性肾衰竭</td>
+              <td style={{ padding: '6px 8px' }}>Lily</td>
+              <td style={{ padding: '6px 8px' }}>Lily</td>
+              <td style={{ padding: '6px 8px' }}>⚠️ Extremely dangerous to cats! All parts (flowers, leaves, pollen, water) can cause acute kidney failure</td>
             </tr>
             <tr>
-              <td style={{ padding: '6px 8px' }}><Link href="/plants/oleander">Oleander</Link></td>
-              <td style={{ padding: '6px 8px' }}>夹竹桃</td>
-              <td style={{ padding: '6px 8px' }}>心脏毒素，极少量即可致命</td>
+              <td style={{ padding: '6px 8px' }}>Oleander</td>
+              <td style={{ padding: '6px 8px' }}>Oleander</td>
+              <td style={{ padding: '6px 8px' }}>Cardiac toxin, even tiny amounts can be fatal</td>
             </tr>
             <tr>
-              <td style={{ padding: '6px 8px' }}><Link href="/plants/sago-palm">Sago Palm</Link></td>
-              <td style={{ padding: '6px 8px' }}>苏铁</td>
-              <td style={{ padding: '6px 8px' }}>种子毒性最强，可致肝衰竭</td>
+              <td style={{ padding: '6px 8px' }}>Sago Palm</td>
+              <td style={{ padding: '6px 8px' }}>Sago Palm</td>
+              <td style={{ padding: '6px 8px' }}>Seeds are most toxic, can cause liver failure</td>
             </tr>
             <tr>
-              <td style={{ padding: '6px 8px' }}><Link href="/plants/tulips">Tulips</Link></td>
-              <td style={{ padding: '6px 8px' }}>郁金香</td>
-              <td style={{ padding: '6px 8px' }}>鳞茎毒性最强，会引起流涎、抽搐、心律不齐</td>
+              <td style={{ padding: '6px 8px' }}>Tulips</td>
+              <td style={{ padding: '6px 8px' }}>Tulips</td>
+              <td style={{ padding: '6px 8px' }}>Bulbs are most toxic, cause drooling, seizures, irregular heartbeat</td>
             </tr>
           </tbody>
         </table>
-        <div style={{ marginTop: 6, color: '#b71c1c' }}>🚨 紧急提示：如果猫咪接触了以上任何植物，请立即联系兽医或宠物毒物控制中心！</div>
+        <div style={{ marginTop: 6, color: '#b71c1c' }}>🚨 Emergency: If your cat contacts any of these plants, contact your veterinarian or pet poison control immediately!</div>
       </div>
       <div style={{ display: 'grid', gap: 12, gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
         {plants.map(p => (

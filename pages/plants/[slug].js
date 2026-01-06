@@ -150,7 +150,7 @@ function PetMomentsSection({ plant }) {
               alignItems: 'center',
               gap: '12px'
             }}>
-              🐱 主子实拍 (Pet Moments)
+              🐱 Pet Moments
             </h2>
             <p style={{
               fontSize: '18px',

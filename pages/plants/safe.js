@@ -29,36 +29,36 @@ export default function SafePlants({ plants }) {
   }
   return (
     <div>
-      <h1>🌸 Purr-fect Picks (猫猫友好花花)</h1>
-      <div style={{ color: '#2e7d32', marginBottom: 8 }}>✅ 对猫咪安全，可放心养在家中</div>
+      <h1>🌸 Cat-Safe Plants</h1>
+      <div style={{ color: '#2e7d32', marginBottom: 8 }}>✅ Safe for cats, perfect for your home</div>
       <div style={{ margin: '10px 0 16px' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead>
             <tr>
-              <th style={{ textAlign: 'left', padding: '6px 8px' }}>植物名称（英文）</th>
-              <th style={{ textAlign: 'left', padding: '6px 8px' }}>中文名</th>
-              <th style={{ textAlign: 'left', padding: '6px 8px' }}>备注</th>
+              <th style={{ textAlign: 'left', padding: '6px 8px' }}>Plant Name</th>
+              <th style={{ textAlign: 'left', padding: '6px 8px' }}>Common Name</th>
+              <th style={{ textAlign: 'left', padding: '6px 8px' }}>Notes</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td style={{ padding: '6px 8px' }}><Link href="/plants/spider-plant">Spider Plant</Link></td>
-              <td style={{ padding: '6px 8px' }}>吊兰</td>
-              <td style={{ padding: '6px 8px' }}>净化空气，猫咪喜欢玩叶子</td>
+              <td style={{ padding: '6px 8px' }}>Spider Plant</td>
+              <td style={{ padding: '6px 8px' }}>Air purifying, cats love playing with leaves</td>
             </tr>
             <tr>
               <td style={{ padding: '6px 8px' }}><Link href="/plants/sunflowers">Sunflowers</Link></td>
-              <td style={{ padding: '6px 8px' }}>向日葵</td>
-              <td style={{ padding: '6px 8px' }}>花朵和茎叶均无毒</td>
+              <td style={{ padding: '6px 8px' }}>Sunflowers</td>
+              <td style={{ padding: '6px 8px' }}>Flowers and stems are non-toxic</td>
             </tr>
             <tr>
               <td style={{ padding: '6px 8px' }}><Link href="/plants/roses">Roses</Link></td>
-              <td style={{ padding: '6px 8px' }}>玫瑰</td>
-              <td style={{ padding: '6px 8px' }}>虽有刺，但植物本身对猫无毒（注意别误食大量花瓣）</td>
+              <td style={{ padding: '6px 8px' }}>Roses</td>
+              <td style={{ padding: '6px 8px' }}>Thorns can cause injury, but plant is non-toxic (avoid eating large amounts of petals)</td>
             </tr>
           </tbody>
         </table>
-        <div style={{ marginTop: 6, color: '#555' }}>💡 小贴士：即使“安全”，也建议不要让猫咪大量啃食任何植物，可能引起轻微肠胃不适。</div>
+        <div style={{ marginTop: 6, color: '#555' }}>💡 Tip: Even "safe" plants shouldn't be eaten in large quantities by cats, as they may cause mild digestive upset.</div>
       </div>
       <div style={{ display: 'grid', gap: 12, gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))' }}>
         {plants.map(p => (

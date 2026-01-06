@@ -76,6 +76,18 @@ export default function Admin() {
   const [petImages, setPetImages] = useState([]);
   const [petLibraryOpen, setPetLibraryOpen] = useState(false);
 
+  // Mobile responsive hook
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Color palette matching the main site
   const sageGreen = '#87A96B';
   const sageGreenDark = '#6B8553';
@@ -484,13 +496,17 @@ export default function Admin() {
         </Link>
       </div>
 
-      <div style={{ display: 'flex', minHeight: 'calc(100vh - 80px)' }}>
+      <div style={{ 
+        display: isMobile ? 'block' : 'flex', 
+        minHeight: 'calc(100vh - 80px)' 
+      }}>
         {/* Sidebar */}
         <div style={{
-          width: '260px',
+          width: isMobile ? '100%' : '260px',
           backgroundColor: 'white',
-          boxShadow: '4px 0 12px rgba(0,0,0,0.08)',
-          padding: '2rem 0'
+          boxShadow: isMobile ? 'none' : '4px 0 12px rgba(0,0,0,0.08)',
+          padding: isMobile ? '1rem' : '2rem 0',
+          borderBottom: isMobile ? `1px solid ${warmCreamDark}` : 'none'
         }}>
           <nav style={{ padding: '0 1rem' }}>
             {menuItems.map(item => (
@@ -523,7 +539,12 @@ export default function Admin() {
         </div>
 
         {/* Main Content */}
-        <div style={{ flex: 1, padding: '2rem', overflowY: 'auto' }}>
+        <div style={{ 
+          flex: 1, 
+          padding: isMobile ? '1rem' : '2rem', 
+          overflowY: 'auto',
+          width: isMobile ? '100%' : 'auto'
+        }}>
           {/* Success/Error Messages */}
           {msg && (
             <div style={{
@@ -560,7 +581,12 @@ export default function Admin() {
                 🎠 首页轮播图管理
               </h2>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', alignItems: 'start' }}>
+              <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(350px, 1fr))', 
+        gap: isMobile ? '1rem' : '2rem', 
+        alignItems: 'start' 
+      }}>
                 {heroSlides.map((slide, index) => (
                   <div key={slide.id} style={{
                     border: `2px solid ${warmCreamDark}`,
@@ -580,7 +606,7 @@ export default function Admin() {
                     {/* Image Preview */}
                     <div style={{
                       width: '100%',
-                      height: '200px',
+                      height: isMobile ? '150px' : '200px',
                       borderRadius: borderRadiusSmall,
                       border: `2px dashed ${sageGreen}`,
                       display: 'flex',
@@ -626,21 +652,24 @@ export default function Admin() {
                       <label
                         htmlFor={`hero-upload-${index}`}
                         style={{
-                          display: 'inline-block',
-                          padding: '0.75rem 1rem',
+                          display: isMobile ? 'block' : 'inline-block',
+                          width: isMobile ? '100%' : 'auto',
+                          padding: isMobile ? '1rem' : '0.75rem 1rem',
                           backgroundColor: heroUploading[index] ? '#ccc' : sageGreen,
                           color: 'white',
                           borderRadius: borderRadiusSmall,
                           cursor: heroUploading[index] ? 'not-allowed' : 'pointer',
-                          transition: 'all 0.3s ease',
-                          fontSize: '0.9rem',
-                          fontWeight: '500',
-                          marginRight: '0.5rem'
+                          fontSize: isMobile ? '1rem' : '0.9rem',
+                          textAlign: 'center',
+                          transition: 'all 0.3s ease'
                         }}
                       >
-                        {heroUploading[index] ? '上传中...' : '📤 上传图片'}
+                        {heroUploading[index] ? '上传中...' : '📁 选择图片'}
                       </label>
+                    </div>
 
+                    {/* Media Library Button */}
+                    <div style={{ marginBottom: '1rem' }}>
                       <button
                         onClick={() => {
                           const newHeroMediaOpen = [...heroMediaOpen];
@@ -648,18 +677,19 @@ export default function Admin() {
                           setHeroMediaOpen(newHeroMediaOpen);
                         }}
                         style={{
-                          padding: '0.75rem 1rem',
-                          backgroundColor: warmCreamDark,
-                          color: '#333',
-                          border: 'none',
+                          display: isMobile ? 'block' : 'inline-block',
+                          width: isMobile ? '100%' : 'auto',
+                          padding: isMobile ? '1rem' : '0.75rem 1rem',
+                          backgroundColor: warmCream,
+                          color: sageGreenDark,
+                          border: `2px solid ${sageGreen}`,
                           borderRadius: borderRadiusSmall,
                           cursor: 'pointer',
-                          transition: 'all 0.3s ease',
-                          fontSize: '0.9rem',
-                          fontWeight: '500'
+                          fontSize: isMobile ? '1rem' : '0.9rem',
+                          transition: 'all 0.3s ease'
                         }}
                       >
-                        📁 从媒体库选择
+                        🖼️ 从媒体库选择
                       </button>
                     </div>
 
@@ -700,12 +730,14 @@ export default function Admin() {
                 <button
                   onClick={saveHeroCarousel}
                   style={{
-                    padding: '1rem 2rem',
+                    display: isMobile ? 'block' : 'inline-block',
+                    width: isMobile ? '100%' : 'auto',
+                    padding: isMobile ? '1.2rem 2rem' : '1rem 2rem',
                     backgroundColor: sageGreen,
                     color: 'white',
                     border: 'none',
                     borderRadius: borderRadiusSmall,
-                    fontSize: '1rem',
+                    fontSize: isMobile ? '1.1rem' : '1rem',
                     fontWeight: '600',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
@@ -749,10 +781,10 @@ export default function Admin() {
                       style={{
                         backgroundColor: 'white',
                         borderRadius: borderRadius,
-                        padding: '2rem',
-                        width: '90%',
-                        maxWidth: '900px',
-                        maxHeight: '90vh',
+                        padding: isMobile ? '1rem' : '2rem',
+                        width: isMobile ? '95%' : '90%',
+                        maxWidth: isMobile ? 'none' : '900px',
+                        maxHeight: isMobile ? '95vh' : '90vh',
                         overflowY: 'auto',
                         boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
                       }}
@@ -768,8 +800,8 @@ export default function Admin() {
                       </h3>
                       <div style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
-                        gap: '1rem',
+                        gridTemplateColumns: isMobile ? 'repeat(auto-fill, minmax(100px, 1fr))' : 'repeat(auto-fill, minmax(150px, 1fr))',
+                        gap: isMobile ? '0.5rem' : '1rem',
                         marginBottom: '2rem'
                       }}>
                         {images.filter(img => img.includes('/uploads/')).map((img, idx) => (
@@ -837,16 +869,21 @@ export default function Admin() {
             <div style={{
               backgroundColor: 'white',
               borderRadius: borderRadius,
-              padding: '2rem',
+              padding: isMobile ? '1rem' : '2rem',
               boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
               animation: 'fadeIn 0.4s ease'
             }}>
-              <h2 style={{ color: sageGreen, marginBottom: '2rem', fontSize: '1.75rem', fontWeight: '600' }}>
+              <h2 style={{ 
+                color: sageGreen, 
+                marginBottom: '2rem', 
+                fontSize: isMobile ? '1.5rem' : '1.75rem', 
+                fontWeight: '600' 
+              }}>
                 添加新植物
               </h2>
               <form onSubmit={handleAddPlant} style={{ display: 'grid', gap: '1.5rem' }}>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
                     植物名称
                   </label>
                   <input
@@ -856,16 +893,16 @@ export default function Admin() {
                     required
                     style={{
                       width: '100%',
-                      padding: '0.75rem',
+                      padding: isMobile ? '1rem' : '0.75rem',
                       border: '2px solid #e0e0e0',
                       borderRadius: borderRadiusSmall,
-                      fontSize: '1rem',
+                      fontSize: isMobile ? '1rem' : '1rem',
                       transition: 'border-color 0.3s ease'
                     }}
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
                     拉丁学名
                   </label>
                   <input
@@ -875,16 +912,16 @@ export default function Admin() {
                     required
                     style={{
                       width: '100%',
-                      padding: '0.75rem',
+                      padding: isMobile ? '1rem' : '0.75rem',
                       border: '2px solid #e0e0e0',
                       borderRadius: borderRadiusSmall,
-                      fontSize: '1rem',
+                      fontSize: isMobile ? '1rem' : '1rem',
                       transition: 'border-color 0.3s ease'
                     }}
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
                     安全性
                   </label>
                   <select
@@ -892,10 +929,10 @@ export default function Admin() {
                     onChange={(e) => setToxicityLevel(e.target.value)}
                     style={{
                       width: '100%',
-                      padding: '0.75rem',
+                      padding: isMobile ? '1rem' : '0.75rem',
                       border: '2px solid #e0e0e0',
                       borderRadius: borderRadiusSmall,
-                      fontSize: '1rem',
+                      fontSize: isMobile ? '1rem' : '1rem',
                       transition: 'border-color 0.3s ease'
                     }}
                   >
@@ -905,7 +942,7 @@ export default function Admin() {
                   </select>
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
                     养育难度
                   </label>
                   <select
@@ -913,10 +950,10 @@ export default function Admin() {
                     onChange={(e) => setCareDifficulty(e.target.value)}
                     style={{
                       width: '100%',
-                      padding: '0.75rem',
+                      padding: isMobile ? '1rem' : '0.75rem',
                       border: '2px solid #e0e0e0',
                       borderRadius: borderRadiusSmall,
-                      fontSize: '1rem',
+                      fontSize: isMobile ? '1rem' : '1rem',
                       transition: 'border-color 0.3s ease'
                     }}
                   >
@@ -926,26 +963,26 @@ export default function Admin() {
                   </select>
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
                     详细描述
                   </label>
                   <textarea
                     value={englishDescription}
                     onChange={(e) => setEnglishDescription(e.target.value)}
-                    rows={4}
+                    rows={isMobile ? 6 : 4}
                     style={{
                       width: '100%',
-                      padding: '0.75rem',
+                      padding: isMobile ? '1rem' : '0.75rem',
                       border: '2px solid #e0e0e0',
                       borderRadius: borderRadiusSmall,
-                      fontSize: '1rem',
+                      fontSize: isMobile ? '1rem' : '1rem',
                       resize: 'vertical',
                       transition: 'border-color 0.3s ease'
                     }}
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
                     植物图片
                   </label>
                   <div style={{ display: 'grid', gap: '1rem' }}>
@@ -956,8 +993,8 @@ export default function Admin() {
                           src={imagePreview || imageUrl}
                           alt="植物图片预览"
                           style={{
-                            width: '200px',
-                            height: '200px',
+                            width: isMobile ? '150px' : '200px',
+                            height: isMobile ? '150px' : '200px',
                             objectFit: 'cover',
                             borderRadius: borderRadiusSmall,
                             border: '2px solid #e0e0e0'
@@ -981,7 +1018,7 @@ export default function Admin() {
                     )}
                     
                     {/* Upload and Library Buttons */}
-                    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'grid', gap: isMobile ? '0.75rem' : '1rem', gridTemplateColumns: isMobile ? '1fr' : 'auto auto' }}>
                       <input
                         type="file"
                         accept="image/*"
@@ -997,14 +1034,17 @@ export default function Admin() {
                       <label
                         htmlFor="plant-image-upload"
                         style={{
-                          padding: '0.75rem 1.5rem',
+                          display: isMobile ? 'block' : 'inline-block',
+                          width: isMobile ? '100%' : 'auto',
+                          padding: isMobile ? '1rem' : '0.75rem 1.5rem',
                           backgroundColor: sageGreen,
                           color: 'white',
                           borderRadius: borderRadiusSmall,
                           cursor: 'pointer',
                           transition: 'all 0.3s ease',
                           boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)',
-                          display: 'inline-block'
+                          textAlign: 'center',
+                          fontSize: isMobile ? '1rem' : '0.9rem'
                         }}
                       >
                         📁 本地上传
@@ -1014,17 +1054,20 @@ export default function Admin() {
                         type="button"
                         onClick={() => setMediaLibraryOpen(true)}
                         style={{
-                          padding: '0.75rem 1.5rem',
-                          backgroundColor: warmCreamDark,
-                          color: '#333',
-                          border: 'none',
+                          display: isMobile ? 'block' : 'inline-block',
+                          width: isMobile ? '100%' : 'auto',
+                          padding: isMobile ? '1rem' : '0.75rem 1.5rem',
+                          backgroundColor: warmCream,
+                          color: sageGreenDark,
+                          border: `2px solid ${sageGreen}`,
                           borderRadius: borderRadiusSmall,
                           cursor: 'pointer',
                           transition: 'all 0.3s ease',
-                          fontSize: '1rem'
+                          textAlign: 'center',
+                          fontSize: isMobile ? '1rem' : '0.9rem'
                         }}
                       >
-                        🖼️ 从媒体库选择
+                        🖼️ 媒体库
                       </button>
                     </div>
                     
@@ -1076,12 +1119,14 @@ export default function Admin() {
                   type="submit"
                   disabled={formSubmitting}
                   style={{
-                    padding: '1rem 2rem',
+                    display: isMobile ? 'block' : 'inline-block',
+                    width: isMobile ? '100%' : 'auto',
+                    padding: isMobile ? '1.2rem 2rem' : '1rem 2rem',
                     backgroundColor: sageGreen,
                     color: 'white',
                     border: 'none',
                     borderRadius: borderRadiusSmall,
-                    fontSize: '1rem',
+                    fontSize: isMobile ? '1.1rem' : '1rem',
                     fontWeight: '500',
                     cursor: formSubmitting ? 'not-allowed' : 'pointer',
                     opacity: formSubmitting ? 0.7 : 1,
@@ -1100,11 +1145,16 @@ export default function Admin() {
             <div style={{
               backgroundColor: 'white',
               borderRadius: borderRadius,
-              padding: '2rem',
+              padding: isMobile ? '1rem' : '2rem',
               boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
               animation: 'fadeIn 0.4s ease'
             }}>
-              <h2 style={{ color: sageGreen, marginBottom: '2rem', fontSize: '1.75rem', fontWeight: '600' }}>
+              <h2 style={{ 
+                color: sageGreen, 
+                marginBottom: '2rem', 
+                fontSize: isMobile ? '1.5rem' : '1.75rem', 
+                fontWeight: '600' 
+              }}>
                 植物列表
               </h2>
               
@@ -1117,10 +1167,10 @@ export default function Admin() {
                   onChange={(e) => setSearchTerm(e.target.value)}
                   style={{
                     width: '100%',
-                    padding: '1rem',
+                    padding: isMobile ? '1rem' : '1rem',
                     border: '2px solid #e0e0e0',
                     borderRadius: borderRadiusSmall,
-                    fontSize: '1rem',
+                    fontSize: isMobile ? '1rem' : '1rem',
                     transition: 'border-color 0.3s ease'
                   }}
                 />
@@ -1216,18 +1266,33 @@ export default function Admin() {
             <div style={{
               backgroundColor: 'white',
               borderRadius: borderRadius,
-              padding: '2rem',
+              padding: isMobile ? '1rem' : '2rem',
               boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
               animation: 'fadeIn 0.4s ease'
             }}>
-              <h2 style={{ color: sageGreen, marginBottom: '2rem', fontSize: '1.75rem', fontWeight: '600' }}>
+              <h2 style={{ 
+                color: sageGreen, 
+                marginBottom: '2rem', 
+                fontSize: isMobile ? '1.5rem' : '1.75rem', 
+                fontWeight: '600' 
+              }}>
                 媒体库
               </h2>
 
               {/* Upload Section */}
-              <div style={{ marginBottom: '2rem', padding: '2rem', backgroundColor: warmCream, borderRadius: borderRadiusSmall }}>
-                <h3 style={{ marginBottom: '1rem', color: sageGreen }}>上传新图片</h3>
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ 
+                marginBottom: '2rem', 
+                padding: isMobile ? '1rem' : '2rem', 
+                backgroundColor: warmCream, 
+                borderRadius: borderRadiusSmall 
+              }}>
+                <h3 style={{ marginBottom: '1rem', color: sageGreen, fontSize: isMobile ? '1.2rem' : '1.3rem' }}>上传新图片</h3>
+                <div style={{ 
+                  display: 'grid', 
+                  gap: isMobile ? '0.75rem' : '1rem', 
+                  gridTemplateColumns: isMobile ? '1fr' : 'auto auto',
+                  alignItems: 'center' 
+                }}>
                   <input
                     type="file"
                     accept="image/*"
