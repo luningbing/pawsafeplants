@@ -200,6 +200,14 @@ export default function Admin() {
   const handlePlantImageUpload = async (file, isEdit = false) => {
     if (!file) return;
     
+    // Check file size (10MB limit)
+    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+    if (file.size > maxSize) {
+      setMsg('文件大小不能超过10MB，请选择较小的图片');
+      setTimeout(() => setMsg(''), 3000);
+      return;
+    }
+    
     const filename = generatePlantFilename(isEdit ? editForm.title : plantName, file);
     const uploadPath = filename; // 直接上传到uploads根目录
     
@@ -294,6 +302,14 @@ export default function Admin() {
   // Hero Carousel handlers
   const handleHeroImageUpload = async (file, index) => {
     if (!file) return;
+    
+    // Check file size (10MB limit)
+    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+    if (file.size > maxSize) {
+      setMsg('文件大小不能超过10MB，请选择较小的图片');
+      setTimeout(() => setMsg(''), 3000);
+      return;
+    }
     
     const newHeroUploading = [...heroUploading];
     newHeroUploading[index] = true;
@@ -708,7 +724,7 @@ export default function Admin() {
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        {heroUploading[index] ? '上传中...' : '📁 选择图片'}
+                        {heroUploading[index] ? '上传中...' : '📁 选择图片 (最大10MB)'}
                       </label>
                     </div>
 
@@ -1395,6 +1411,19 @@ export default function Admin() {
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       console.log('File selected:', file?.name, 'Size:', file?.size, 'Type:', file?.type);
+                      
+                      // Check file size (10MB limit)
+                      const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+                      if (file && file.size > maxSize) {
+                        setMsg('文件大小不能超过10MB，请选择较小的图片');
+                        setTimeout(() => setMsg(''), 3000);
+                        // Clear the file input
+                        e.target.value = '';
+                        setUploadFile(null);
+                        setUploadPreview('');
+                        return;
+                      }
+                      
                       if (file) {
                         setUploadFile(file);
                         const reader = new FileReader();
@@ -1423,7 +1452,7 @@ export default function Admin() {
                       boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)'
                     }}
                   >
-                    选择图片
+                    选择图片 (最大10MB)
                   </label>
                   {uploadFile && (
                     <button
