@@ -28,6 +28,16 @@ export default async function handler(req, res) {
         if (data && data.length > 0) {
           const heroData = data[0].content;
           console.log('Found hero data in database:', heroData);
+          
+          // Convert image paths to new format
+          if (heroData.slides && Array.isArray(heroData.slides)) {
+            heroData.slides = heroData.slides.map(slide => ({
+              ...slide,
+              imageUrl: convertImagePath(slide.imageUrl)
+            }));
+          }
+          
+          console.log('Converted hero data:', heroData);
           return res.status(200).json(heroData);
         } else {
           console.log('No hero data found, using default');
@@ -127,23 +137,42 @@ function getDefaultHeroData() {
   return {
     slides: [
       {
-        imageUrl: '/images/hero-1.jpg',
+        imageUrl: '/uploads/20250530-190020.jpg',
         title: 'Cat-Safe Plants for Your Home',
         subtitle: 'Create a beautiful, pet-friendly living space',
         link: '/plants/safe'
       },
       {
-        imageUrl: '/images/hero-2.jpg',
+        imageUrl: '/uploads/_247026d4-f09b-4307-9d55-65b40bd2813c.jpg',
         title: 'Toxic Plants to Avoid', 
         subtitle: 'Protect your feline friends from harmful plants',
         link: '/plants/toxic'
       },
       {
-        imageUrl: '/images/hero-3.jpg',
+        imageUrl: '/uploads/7ae0aff1-4b60-4c05-aa34-fcd6a9ea3dd2_7930717a90c33c714f1ae8d742554593_ComfyUI_033fc57d_00001_.png',
         title: 'Plant Care Guide',
         subtitle: 'Learn how to care for your green companions', 
         link: '/plants/caution'
       }
     ]
   };
+}
+
+// Function to convert old image paths to new paths
+function convertImagePath(imageUrl) {
+  if (!imageUrl) return imageUrl;
+  
+  // Convert /images/plants/ to /uploads/
+  if (imageUrl.startsWith('/images/plants/')) {
+    const filename = imageUrl.split('/').pop();
+    return `/uploads/${filename}`;
+  }
+  
+  // Convert /images/ to /uploads/
+  if (imageUrl.startsWith('/images/') && !imageUrl.startsWith('/images/plants/')) {
+    const filename = imageUrl.split('/').pop();
+    return `/uploads/${filename}`;
+  }
+  
+  return imageUrl;
 }
