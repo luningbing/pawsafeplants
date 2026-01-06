@@ -104,7 +104,7 @@ export default function Admin() {
           fetch('/api/list-images'),
           fetch('/api/site-config'),
           fetch('/api/plants'),
-          fetch('/api/hero-carousel-db'),
+          fetch('/api/hero-carousel-env'),
         ]);
         const imgs = await imgRes.json();
         const s = await siteRes.json();
@@ -389,7 +389,7 @@ export default function Admin() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
       
-      const res = await fetch('/api/hero-carousel-db', {
+      const res = await fetch('/api/hero-carousel-env', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ slides: heroSlides }),
@@ -403,8 +403,22 @@ export default function Admin() {
       if (res.ok) {
         const result = await res.json();
         console.log('Save response:', result);
-        setMsg('首页轮播图保存成功！');
-        setTimeout(() => setMsg(''), 3000);
+        
+        if (result.message) {
+          // Show environment variable setup instructions
+          const envData = result.data;
+          setMsg('请设置环境变量 HERO_CAROUSEL_DATA: ' + envData.substring(0, 100) + '...');
+          // Copy to clipboard
+          try {
+            await navigator.clipboard.writeText(envData);
+            setTimeout(() => setMsg('环境变量已复制到剪贴板！请在Vercel中设置 HERO_CAROUSEL_DATA'), 5000);
+          } catch {
+            setTimeout(() => setMsg('请手动复制环境变量并在Vercel中设置 HERO_CAROUSEL_DATA'), 8000);
+          }
+        } else {
+          setMsg('首页轮播图保存成功！');
+          setTimeout(() => setMsg(''), 3000);
+        }
       } else {
         const errorText = await res.text();
         console.error('Save failed:', res.status, errorText);
