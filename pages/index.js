@@ -143,7 +143,7 @@ export default function Home({ plants, site }) {
   useEffect(() => {
     const loadHeroSlides = async () => {
       try {
-        const res = await fetch('/api/hero-carousel');
+        const res = await fetch('/api/hero-carousel-db');
         const data = await res.json();
         if (data.slides && data.slides.length > 0) {
           setHeroSlides(data.slides);

@@ -104,7 +104,7 @@ export default function Admin() {
           fetch('/api/list-images'),
           fetch('/api/site-config'),
           fetch('/api/plants'),
-          fetch('/api/hero-carousel')
+          fetch('/api/hero-carousel-db'),
         ]);
         const imgs = await imgRes.json();
         const s = await siteRes.json();
@@ -389,7 +389,7 @@ export default function Admin() {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
       
-      const res = await fetch('/api/hero-carousel', {
+      const res = await fetch('/api/hero-carousel-db', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ slides: heroSlides }),
