@@ -7,6 +7,8 @@ const HeroCarousel = ({ slides = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
+  console.log('HeroCarousel rendered with slides:', slides);
+
   // Auto-play functionality
   useEffect(() => {
     if (!isAutoPlaying || slides.length <= 1) return;
@@ -96,9 +98,13 @@ const HeroCarousel = ({ slides = [] }) => {
                   objectFit: 'cover'
                 }}
                 onError={(e) => {
+                  console.error('Image load error:', currentSlide.imageUrl, e);
                   // Fallback for image load errors
                   e.target.style.display = 'none';
                   e.target.parentElement.style.background = 'linear-gradient(135deg, #87A96B20, #87A96B10)';
+                }}
+                onLoad={() => {
+                  console.log('Image loaded successfully:', currentSlide.imageUrl);
                 }}
               />
               

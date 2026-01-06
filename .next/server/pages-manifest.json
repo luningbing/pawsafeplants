@@ -3,9 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/admin": "pages/admin.js",
-  "/": "pages/index.js",
-  "/api/list-images": "pages/api/list-images.js",
-  "/api/site-config": "pages/api/site-config.js",
-  "/api/hero-carousel-db": "pages/api/hero-carousel-db.js",
-  "/api/plants": "pages/api/plants.js"
+  "/": "pages/index.js"
 }

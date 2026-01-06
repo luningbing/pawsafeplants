@@ -143,10 +143,15 @@ export default function Home({ plants, site }) {
   useEffect(() => {
     const loadHeroSlides = async () => {
       try {
+        console.log('Loading hero slides from database...');
         const res = await fetch('/api/hero-carousel-db');
         const data = await res.json();
+        console.log('Hero slides response:', data);
         if (data.slides && data.slides.length > 0) {
+          console.log('Setting hero slides:', data.slides);
           setHeroSlides(data.slides);
+        } else {
+          console.log('No slides found in response');
         }
       } catch (error) {
         console.error('Failed to load hero slides:', error);
