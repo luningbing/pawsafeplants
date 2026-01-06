@@ -190,6 +190,12 @@ function validateImagePath(imageUrl) {
     '/uploads/7ae0aff1-4b60-4c05-aa34-fcd6a9ea3dd2_7930717a90c33c714f1ae8d742554593_ComfyUI_033fc57d_00001_.png'
   ];
   
+  // Handle Supabase storage URLs
+  if (imageUrl.includes('supabase.co/storage/v1/object/public/uploads/')) {
+    console.log('Found Supabase URL, keeping as is:', imageUrl);
+    return imageUrl; // Keep Supabase URLs as they are
+  }
+  
   if (knownValidImages.includes(imageUrl)) {
     return imageUrl;
   }
