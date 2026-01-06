@@ -17,6 +17,8 @@ export default async function handler(req, res) {
     
     if (req.method === 'GET') {
       console.log('Reading ultimate hero carousel data');
+      console.log('Supabase URL:', process.env.SUPABASE_URL);
+      console.log('Supabase Key exists:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
       
       // 直接从Supabase数据库读取你的配置
       try {
@@ -33,6 +35,8 @@ export default async function handler(req, res) {
             .order('created_at', { ascending: false })
             .limit(1);
           
+          console.log('Supabase response:', { data, error });
+          
           if (error) {
             console.error('Database read error:', error);
           } else if (data && data.length > 0) {
@@ -40,6 +44,7 @@ export default async function handler(req, res) {
             console.log('Found hero data in database:', heroData);
             
             if (heroData.slides && Array.isArray(heroData.slides) && heroData.slides.length >= 3) {
+              console.log('Processing slides:', heroData.slides);
               // 使用现有的前3张轮播图数据
               const ultimateData = {
                 slides: heroData.slides.slice(0, 3).map(slide => ({
@@ -51,6 +56,8 @@ export default async function handler(req, res) {
                 updatedAt: new Date().toISOString()
               };
               
+              console.log('Ultimate data prepared:', ultimateData);
+              
               // 保存到ultimate-hero.json文件
               try {
                 fs.writeFileSync(heroFile, JSON.stringify(ultimateData, null, 2));
@@ -60,8 +67,14 @@ export default async function handler(req, res) {
               }
               
               return res.status(200).json(ultimateData);
+            } else {
+              console.log('Invalid slides data in database');
             }
+          } else {
+            console.log('No data found in database');
           }
+        } else {
+          console.log('Missing Supabase credentials');
         }
       } catch (dbError) {
         console.error('Database connection error:', dbError);
