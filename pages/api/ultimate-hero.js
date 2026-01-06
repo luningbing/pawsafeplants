@@ -17,23 +17,73 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
       console.log('Reading ultimate hero carousel data');
       
-      // 默认数据 - 3张高质量猫咪/植物图片
-      let heroData = {
+      // 首先尝试从现有的hero-carousel-db API获取数据
+      try {
+        const existingHeroRes = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/hero-carousel-db`);
+        if (existingHeroRes.ok) {
+          const existingData = await existingHeroRes.json();
+          console.log('Found existing hero data:', existingData);
+          
+          if (existingData.slides && Array.isArray(existingData.slides) && existingData.slides.length >= 3) {
+            // 使用现有的前3张轮播图数据
+            const ultimateData = {
+              slides: existingData.slides.slice(0, 3).map(slide => ({
+                imageUrl: slide.imageUrl,
+                title: slide.title,
+                subtitle: slide.subtitle,
+                link: slide.link || '/plants/safe'
+              })),
+              updatedAt: new Date().toISOString()
+            };
+            
+            // 保存到ultimate-hero.json文件
+            try {
+              fs.writeFileSync(heroFile, JSON.stringify(ultimateData, null, 2));
+              console.log('Saved existing data to ultimate-hero.json');
+            } catch (writeError) {
+              console.error('Error writing ultimate hero file:', writeError);
+            }
+            
+            return res.status(200).json(ultimateData);
+          }
+        }
+      } catch (fetchError) {
+        console.log('Could not fetch existing data, using file or default');
+      }
+      
+      // 如果无法获取现有数据，尝试从文件读取
+      try {
+        if (fs.existsSync(heroFile)) {
+          console.log('Reading from ultimate hero file:', heroFile);
+          const data = fs.readFileSync(heroFile, 'utf8');
+          const savedData = JSON.parse(data);
+          
+          if (savedData.slides && Array.isArray(savedData.slides) && savedData.slides.length === 3) {
+            console.log('Using saved ultimate hero data:', savedData);
+            return res.status(200).json(savedData);
+          }
+        }
+      } catch (fileError) {
+        console.error('Error reading ultimate hero file:', fileError);
+      }
+      
+      // 最后的默认数据 - 使用你现有的图片路径
+      const defaultData = {
         slides: [
           {
-            imageUrl: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=1920&h=1080&fit=crop&crop=entropy&auto=format',
+            imageUrl: '/uploads/20250530-190020.jpg',
             title: '给猫咪一个森林',
             subtitle: '创造安全、绿色的猫咪生活空间，让它们自由探索自然之美',
             link: '/plants/safe'
           },
           {
-            imageUrl: 'https://images.unsplash.com/photo-1552728089-a57bddab0c2f?w=1920&h=1080&fit=crop&crop=entropy&auto=format',
+            imageUrl: '/uploads/_247026d4-f09b-4307-9d55-65b40bd2813c.jpg',
             title: '避开这些致命红线',
             subtitle: '识别对猫咪有毒的植物，保护爱宠远离潜在危险',
             link: '/plants/toxic'
           },
           {
-            imageUrl: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1920&h=1080&fit=crop&crop=entropy&auto=format',
+            imageUrl: '/uploads/7ae0aff1-4b60-4c05-aa34-fcd6a9ea3dd2_7930717a90c33c714f1ae8d742554593_ComfyUI_033fc57d_00001_.png',
             title: '植物养护指南',
             subtitle: '学习如何照顾绿色伴侣，打造人宠和谐的美好家园',
             link: '/plants/caution'
@@ -42,25 +92,8 @@ export default async function handler(req, res) {
         updatedAt: new Date().toISOString()
       };
       
-      try {
-        if (fs.existsSync(heroFile)) {
-          console.log('Hero file exists, reading:', heroFile);
-          const data = fs.readFileSync(heroFile, 'utf8');
-          const savedData = JSON.parse(data);
-          
-          // 验证数据结构
-          if (savedData.slides && Array.isArray(savedData.slides) && savedData.slides.length === 3) {
-            heroData = savedData;
-            console.log('Using saved hero data:', heroData);
-          } else {
-            console.log('Invalid saved data, using default');
-          }
-        }
-      } catch (error) {
-        console.error('Error reading hero file:', error);
-      }
-      
-      return res.status(200).json(heroData);
+      console.log('Using default data with existing image paths');
+      return res.status(200).json(defaultData);
     }
     
     if (req.method === 'POST') {
