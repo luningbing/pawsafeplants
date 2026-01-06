@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { createClient } from '@supabase/supabase-js'
 
 export default async function handler(req, res) {
   try {
@@ -17,38 +18,53 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
       console.log('Reading ultimate hero carousel data');
       
-      // 首先尝试从现有的hero-carousel-db API获取数据
+      // 直接从Supabase数据库读取你的配置
       try {
-        const existingHeroRes = await fetch(`${process.env.NEXT_PUBLIC_URL || 'http://localhost:3000'}/api/hero-carousel-db`);
-        if (existingHeroRes.ok) {
-          const existingData = await existingHeroRes.json();
-          console.log('Found existing hero data:', existingData);
+        const supabaseUrl = process.env.SUPABASE_URL || '';
+        const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || '';
+        
+        if (supabaseUrl && supabaseKey) {
+          console.log('Reading from Supabase database');
+          const client = createClient(supabaseUrl, supabaseKey);
           
-          if (existingData.slides && Array.isArray(existingData.slides) && existingData.slides.length >= 3) {
-            // 使用现有的前3张轮播图数据
-            const ultimateData = {
-              slides: existingData.slides.slice(0, 3).map(slide => ({
-                imageUrl: slide.imageUrl,
-                title: slide.title,
-                subtitle: slide.subtitle,
-                link: slide.link || '/plants/safe'
-              })),
-              updatedAt: new Date().toISOString()
-            };
+          const { data, error } = await client
+            .from('hero_carousel')
+            .select('*')
+            .order('created_at', { ascending: false })
+            .limit(1);
+          
+          if (error) {
+            console.error('Database read error:', error);
+          } else if (data && data.length > 0) {
+            const heroData = data[0].content;
+            console.log('Found hero data in database:', heroData);
             
-            // 保存到ultimate-hero.json文件
-            try {
-              fs.writeFileSync(heroFile, JSON.stringify(ultimateData, null, 2));
-              console.log('Saved existing data to ultimate-hero.json');
-            } catch (writeError) {
-              console.error('Error writing ultimate hero file:', writeError);
+            if (heroData.slides && Array.isArray(heroData.slides) && heroData.slides.length >= 3) {
+              // 使用现有的前3张轮播图数据
+              const ultimateData = {
+                slides: heroData.slides.slice(0, 3).map(slide => ({
+                  imageUrl: slide.imageUrl,
+                  title: slide.title,
+                  subtitle: slide.subtitle,
+                  link: slide.link || '/plants/safe'
+                })),
+                updatedAt: new Date().toISOString()
+              };
+              
+              // 保存到ultimate-hero.json文件
+              try {
+                fs.writeFileSync(heroFile, JSON.stringify(ultimateData, null, 2));
+                console.log('Saved existing data to ultimate-hero.json');
+              } catch (writeError) {
+                console.error('Error writing ultimate hero file:', writeError);
+              }
+              
+              return res.status(200).json(ultimateData);
             }
-            
-            return res.status(200).json(ultimateData);
           }
         }
-      } catch (fetchError) {
-        console.log('Could not fetch existing data, using file or default');
+      } catch (dbError) {
+        console.error('Database connection error:', dbError);
       }
       
       // 如果无法获取现有数据，尝试从文件读取
@@ -72,20 +88,20 @@ export default async function handler(req, res) {
         slides: [
           {
             imageUrl: '/uploads/20250530-190020.jpg',
-            title: '给猫咪一个森林',
-            subtitle: '创造安全、绿色的猫咪生活空间，让它们自由探索自然之美',
+            title: 'Cat-Safe Plants for Your Home',
+            subtitle: 'Create a beautiful, pet-friendly living space',
             link: '/plants/safe'
           },
           {
             imageUrl: '/uploads/_247026d4-f09b-4307-9d55-65b40bd2813c.jpg',
-            title: '避开这些致命红线',
-            subtitle: '识别对猫咪有毒的植物，保护爱宠远离潜在危险',
+            title: 'Toxic Plants to Avoid',
+            subtitle: 'Protect your feline friends from harmful plants',
             link: '/plants/toxic'
           },
           {
             imageUrl: '/uploads/7ae0aff1-4b60-4c05-aa34-fcd6a9ea3dd2_7930717a90c33c714f1ae8d742554593_ComfyUI_033fc57d_00001_.png',
-            title: '植物养护指南',
-            subtitle: '学习如何照顾绿色伴侣，打造人宠和谐的美好家园',
+            title: 'Plant Care Guide',
+            subtitle: 'Learn how to care for your green companions',
             link: '/plants/caution'
           }
         ],
