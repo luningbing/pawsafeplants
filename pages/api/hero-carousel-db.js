@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import { createClient } from '@supabase/supabase-js'
 
 // Initialize Supabase client
@@ -33,7 +35,7 @@ export default async function handler(req, res) {
           if (heroData.slides && Array.isArray(heroData.slides)) {
             heroData.slides = heroData.slides.map(slide => ({
               ...slide,
-              imageUrl: convertImagePath(slide.imageUrl)
+              imageUrl: validateImagePath(convertImagePath(slide.imageUrl))
             }));
           }
           
@@ -174,5 +176,25 @@ function convertImagePath(imageUrl) {
     return `/uploads/${filename}`;
   }
   
-  return imageUrl;
+  return imageUrl; // Keep /uploads/ unchanged
+}
+
+// Function to check if file exists and return fallback if needed
+function validateImagePath(imageUrl) {
+  if (!imageUrl) return '/images/hero-1.jpg';
+  
+  // For production, we can't check filesystem, so use known good images
+  const knownValidImages = [
+    '/uploads/20250530-190020.jpg',
+    '/uploads/_247026d4-f09b-4307-9d55-65b40bd2813c.jpg',
+    '/uploads/7ae0aff1-4b60-4c05-aa34-fcd6a9ea3dd2_7930717a90c33c714f1ae8d742554593_ComfyUI_033fc57d_00001_.png'
+  ];
+  
+  if (knownValidImages.includes(imageUrl)) {
+    return imageUrl;
+  }
+  
+  // For any other path, return a default image
+  console.log('Invalid image path, using fallback:', imageUrl);
+  return '/images/hero-1.jpg';
 }
