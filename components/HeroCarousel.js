@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const HeroCarousel = ({ slides = [] }) => {
@@ -23,9 +24,7 @@ const HeroCarousel = ({ slides = [] }) => {
   };
 
   const goToPrevious = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
-    );
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
     setIsAutoPlaying(false);
   };
 
@@ -34,74 +33,23 @@ const HeroCarousel = ({ slides = [] }) => {
     setIsAutoPlaying(false);
   };
 
-  // If no slides, show default hero
-  if (slides.length === 0) {
+  if (!slides.length) {
     return (
       <div style={{
-        position: 'relative',
         width: '100%',
-        height: '500px',
-        backgroundColor: '#87A96B',
+        height: '400px',
+        borderRadius: '24px',
+        background: 'linear-gradient(135deg, #87A96B20, #87A96B10)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: '0 0 24px 24px',
+        position: 'relative',
         overflow: 'hidden'
       }}>
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(135deg, #87A96B 0%, #6B8553 100%)',
-          opacity: 0.9
-        }} />
-        <div style={{
-          position: 'relative',
-          textAlign: 'center',
-          color: 'white',
-          padding: '2rem',
-          maxWidth: '800px'
-        }}>
-          <h1 style={{
-            fontSize: '3.5rem',
-            fontWeight: '700',
-            marginBottom: '1rem',
-            textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-          }}>
-            🐱 PawSafePlants
-          </h1>
-          <p style={{
-            fontSize: '1.5rem',
-            marginBottom: '2rem',
-            opacity: 0.9,
-            lineHeight: 1.6
-          }}>
-            Keep your cats safe around houseplants
-          </p>
-          <Link
-            href="/plants"
-            style={{
-              display: 'inline-block',
-              padding: '1rem 2rem',
-              backgroundColor: 'white',
-              color: '#87A96B',
-              textDecoration: 'none',
-              borderRadius: '50px',
-              fontWeight: '600',
-              fontSize: '1.1rem',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-            }}
-          >
-            Explore Plants →
-          </Link>
+        <div style={{ textAlign: 'center', color: '#87A96B' }}>
+          <div style={{ fontSize: '48px', marginBottom: '1rem' }}>🌿</div>
+          <h2 style={{ fontSize: '24px', margin: 0 }}>Cat-Safe Plants</h2>
+          <p style={{ fontSize: '16px', margin: '0.5rem 0', opacity: 0.8 }}>Creating pet-friendly spaces</p>
         </div>
       </div>
     );
@@ -111,183 +59,147 @@ const HeroCarousel = ({ slides = [] }) => {
 
   return (
     <div style={{
-      position: 'relative',
       width: '100%',
-      height: '500px',
-      borderRadius: '0 0 24px 24px',
+      height: '400px',
+      borderRadius: '24px',
+      position: 'relative',
       overflow: 'hidden',
-      backgroundColor: '#f5f5f5'
+      background: '#f5f5f5'
     }}>
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 1.05 }}
+          transition={{
+            duration: 0.8,
+            ease: [0.4, 0, 0.2, 1]
+          }}
           style={{
             position: 'absolute',
-            inset: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%'
           }}
         >
-          {currentSlide.image ? (
+          {/* Image with next/image and priority */}
+          {currentSlide.imageUrl ? (
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-              <img
-                src={currentSlide.image}
+              <Image
+                src={currentSlide.imageUrl}
                 alt={`Hero slide ${currentIndex + 1}`}
+                fill
+                priority={currentIndex === 0} // Priority for first slide
                 style={{
-                  width: '100%',
-                  height: '100%',
                   objectFit: 'cover'
                 }}
+                onError={(e) => {
+                  // Fallback for image load errors
+                  e.target.style.display = 'none';
+                  e.target.parentElement.style.background = 'linear-gradient(135deg, #87A96B20, #87A96B10)';
+                }}
               />
+              
+              {/* Overlay for text readability */}
               <div style={{
                 position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <div style={{
-                  textAlign: 'center',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+                background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%)'
+              }} />
+              
+              {/* Text Content */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.2, // Delay text animation
+                  ease: [0.4, 0, 0.2, 1]
+                }}
+                style={{
+                  position: 'absolute',
+                  bottom: '2rem',
+                  left: '2rem',
+                  right: '2rem',
                   color: 'white',
-                  padding: '2rem',
-                  maxWidth: '800px'
+                  textShadow: '0 2px 4px rgba(0,0,0,0.5)',
+                  zIndex: 2
+                }}
+              >
+                <h2 style={{
+                  fontSize: '2.5rem',
+                  fontWeight: '700',
+                  margin: '0 0 0.5rem 0',
+                  lineHeight: '1.2'
                 }}>
-                  <h1 style={{
-                    fontSize: '3.5rem',
-                    fontWeight: '700',
-                    marginBottom: '1rem',
-                    textShadow: '0 2px 4px rgba(0,0,0,0.5)'
-                  }}>
-                    🐱 PawSafePlants
-                  </h1>
-                  <p style={{
-                    fontSize: '1.5rem',
-                    marginBottom: '2rem',
-                    opacity: 0.9,
-                    lineHeight: 1.6
-                  }}>
-                    Keep your cats safe around houseplants
-                  </p>
-                  {currentSlide.link ? (
-                    <Link
-                      href={currentSlide.link}
-                      style={{
+                  {currentSlide.title || 'Cat-Safe Plants'}
+                </h2>
+                <p style={{
+                  fontSize: '1.25rem',
+                  margin: '0 0 1rem 0',
+                  lineHeight: '1.4',
+                  opacity: 0.95
+                }}>
+                  {currentSlide.subtitle || 'Creating pet-friendly spaces'}
+                </p>
+                {currentSlide.link && (
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Link href={currentSlide.link}>
+                      <div style={{
                         display: 'inline-block',
-                        padding: '1rem 2rem',
-                        backgroundColor: 'white',
-                        color: '#87A96B',
+                        padding: '0.75rem 1.5rem',
+                        backgroundColor: '#87A96B',
+                        color: 'white',
                         textDecoration: 'none',
-                        borderRadius: '50px',
+                        borderRadius: '12px',
                         fontWeight: '600',
-                        fontSize: '1.1rem',
+                        fontSize: '1rem',
                         transition: 'all 0.3s ease',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-                      }}
-                      onMouseOver={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
-                      }}
-                      onMouseOut={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-                      }}
-                    >
-                      Learn More →
+                        boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)',
+                        cursor: 'pointer'
+                      }}>
+                        Learn More →
+                      </div>
                     </Link>
-                  ) : (
-                    <Link
-                      href="/plants"
-                      style={{
-                        display: 'inline-block',
-                        padding: '1rem 2rem',
-                        backgroundColor: 'white',
-                        color: '#87A96B',
-                        textDecoration: 'none',
-                        borderRadius: '50px',
-                        fontWeight: '600',
-                        fontSize: '1.1rem',
-                        transition: 'all 0.3s ease',
-                        boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-                      }}
-                      onMouseOver={(e) => {
-                        e.currentTarget.style.transform = 'translateY(-2px)';
-                        e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
-                      }}
-                      onMouseOut={(e) => {
-                        e.currentTarget.style.transform = 'translateY(0)';
-                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-                      }}
-                    >
-                      Explore Plants →
-                    </Link>
-                  )}
-                </div>
-              </div>
+                  </motion.div>
+                )}
+              </motion.div>
             </div>
           ) : (
-            // Fallback when no image is provided
+            // Fallback when no image
             <div style={{
               width: '100%',
               height: '100%',
-              background: 'linear-gradient(135deg, #87A96B 0%, #6B8553 100%)',
+              background: 'linear-gradient(135deg, #87A96B20, #87A96B10)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center'
             }}>
-              <div style={{
-                textAlign: 'center',
-                color: 'white',
-                padding: '2rem',
-                maxWidth: '800px'
-              }}>
-                <h1 style={{
-                  fontSize: '3.5rem',
-                  fontWeight: '700',
-                  marginBottom: '1rem',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-                }}>
-                  🐱 PawSafePlants
-                </h1>
-                <p style={{
-                  fontSize: '1.5rem',
-                  marginBottom: '2rem',
-                  opacity: 0.9,
-                  lineHeight: 1.6
-                }}>
-                  Keep your cats safe around houseplants
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.2
+                }}
+                style={{ textAlign: 'center', color: '#87A96B' }}
+              >
+                <div style={{ fontSize: '48px', marginBottom: '1rem' }}>🌿</div>
+                <h2 style={{ fontSize: '24px', margin: 0 }}>
+                  {currentSlide.title || 'Cat-Safe Plants'}
+                </h2>
+                <p style={{ fontSize: '16px', margin: '0.5rem 0', opacity: 0.8 }}>
+                  {currentSlide.subtitle || 'Creating pet-friendly spaces'}
                 </p>
-                <Link
-                  href="/plants"
-                  style={{
-                    display: 'inline-block',
-                    padding: '1rem 2rem',
-                    backgroundColor: 'white',
-                    color: '#87A96B',
-                    textDecoration: 'none',
-                    borderRadius: '50px',
-                    fontWeight: '600',
-                    fontSize: '1.1rem',
-                    transition: 'all 0.3s ease',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.3)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-                  }}
-                >
-                  Explore Plants →
-                </Link>
-              </div>
+              </motion.div>
             </div>
           )}
         </motion.div>
@@ -296,115 +208,91 @@ const HeroCarousel = ({ slides = [] }) => {
       {/* Navigation Arrows */}
       {slides.length > 1 && (
         <>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={goToPrevious}
             style={{
               position: 'absolute',
-              left: '20px',
+              left: '1rem',
               top: '50%',
               transform: 'translateY(-50%)',
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
-              border: 'none',
+              width: '48px',
+              height: '48px',
               borderRadius: '50%',
-              width: '50px',
-              height: '50px',
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              border: 'none',
+              cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: 'pointer',
-              fontSize: '1.5rem',
+              fontSize: '20px',
               color: '#87A96B',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-              zIndex: 10
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = 'white';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              zIndex: 3,
+              transition: 'all 0.3s ease'
             }}
           >
-            ‹
-          </button>
+            ←
+          </motion.button>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={goToNext}
             style={{
               position: 'absolute',
-              right: '20px',
+              right: '1rem',
               top: '50%',
               transform: 'translateY(-50%)',
-              backgroundColor: 'rgba(255, 255, 255, 0.8)',
-              border: 'none',
+              width: '48px',
+              height: '48px',
               borderRadius: '50%',
-              width: '50px',
-              height: '50px',
+              backgroundColor: 'rgba(255, 255, 255, 0.9)',
+              border: 'none',
+              cursor: 'pointer',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              cursor: 'pointer',
-              fontSize: '1.5rem',
+              fontSize: '20px',
               color: '#87A96B',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-              zIndex: 10
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = 'white';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)';
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-              e.currentTarget.style.transform = 'translateY(-50%) scale(1)';
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              zIndex: 3,
+              transition: 'all 0.3s ease'
             }}
           >
-            ›
-          </button>
+            →
+          </motion.button>
         </>
       )}
 
-      {/* Dots Indicator */}
+      {/* Navigation Dots */}
       {slides.length > 1 && (
         <div style={{
           position: 'absolute',
-          bottom: '20px',
+          bottom: '1rem',
           left: '50%',
           transform: 'translateX(-50%)',
           display: 'flex',
-          gap: '8px',
-          zIndex: 10
+          gap: '0.5rem',
+          zIndex: 3
         }}>
           {slides.map((_, index) => (
-            <button
+            <motion.button
               key={index}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.8 }}
               onClick={() => goToSlide(index)}
               style={{
-                width: '12px',
+                width: currentIndex === index ? '32px' : '12px',
                 height: '12px',
-                borderRadius: '50%',
+                borderRadius: '6px',
+                backgroundColor: currentIndex === index ? '#87A96B' : 'rgba(255, 255, 255, 0.5)',
                 border: 'none',
-                backgroundColor: index === currentIndex 
-                  ? 'white' 
-                  : 'rgba(255, 255, 255, 0.5)',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: index === currentIndex 
-                  ? '0 2px 8px rgba(0,0,0,0.3)' 
-                  : '0 2px 4px rgba(0,0,0,0.2)'
+                transition: 'all 0.3s ease'
               }}
-              onMouseOver={(e) => {
-                if (index !== currentIndex) {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-                }
-              }}
-              onMouseOut={(e) => {
-                if (index !== currentIndex) {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-                }
-              }}
+              layout
             />
           ))}
         </div>

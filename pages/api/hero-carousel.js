@@ -15,9 +15,24 @@ export default async function handler(req, res) {
       // 读取轮播图配置
       let heroData = {
         slides: [
-          { id: 1, image: '', link: '', title: 'Slide 1' },
-          { id: 2, image: '', link: '', title: 'Slide 2' },
-          { id: 3, image: '', link: '', title: 'Slide 3' }
+          {
+            imageUrl: '/images/hero-1.jpg',
+            title: 'Cat-Safe Plants for Your Home',
+            subtitle: 'Create a beautiful, pet-friendly living space',
+            link: '/plants/safe'
+          },
+          {
+            imageUrl: '/images/hero-2.jpg',
+            title: 'Toxic Plants to Avoid', 
+            subtitle: 'Protect your feline friends from harmful plants',
+            link: '/plants/toxic'
+          },
+          {
+            imageUrl: '/images/hero-3.jpg',
+            title: 'Plant Care Guide',
+            subtitle: 'Learn how to care for your green companions', 
+            link: '/plants/caution'
+          }
         ]
       };
       
@@ -29,13 +44,13 @@ export default async function handler(req, res) {
           if (savedData.slides && Array.isArray(savedData.slides)) {
             // 合并保存的数据和默认数据，确保有3个slide
             const mergedSlides = [];
-            for (let i = 1; i <= 3; i++) {
-              const savedSlide = savedData.slides.find(s => s.id === i);
+            for (let i = 0; i < 3; i++) {
+              const savedSlide = savedData.slides[i];
               mergedSlides.push(savedSlide || {
-                id: i,
-                image: '',
-                link: '',
-                title: `Slide ${i}`
+                imageUrl: `/images/hero-${i + 1}.jpg`,
+                title: `Slide ${i + 1}`,
+                subtitle: 'Default subtitle',
+                link: ''
               });
             }
             heroData.slides = mergedSlides;
@@ -58,13 +73,13 @@ export default async function handler(req, res) {
       
       // 确保总是有3个slide
       const validSlides = [];
-      for (let i = 1; i <= 3; i++) {
-        const slide = slides.find(s => s.id === i);
+      for (let i = 0; i < 3; i++) {
+        const slide = slides[i];
         validSlides.push(slide || {
-          id: i,
-          image: '',
-          link: '',
-          title: `Slide ${i}`
+          imageUrl: `/images/hero-${i + 1}.jpg`,
+          title: `Slide ${i + 1}`,
+          subtitle: 'Default subtitle',
+          link: ''
         });
       }
       

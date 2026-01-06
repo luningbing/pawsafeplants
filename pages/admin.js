@@ -19,9 +19,9 @@ export default function Admin() {
   
   // Hero Carousel states
   const [heroSlides, setHeroSlides] = useState([
-    { id: 1, image: '', link: '', title: 'Slide 1' },
-    { id: 2, image: '', link: '', title: 'Slide 2' },
-    { id: 3, image: '', link: '', title: 'Slide 3' }
+    { imageUrl: '', title: '', subtitle: '', link: '' },
+    { imageUrl: '', title: '', subtitle: '', link: '' },
+    { imageUrl: '', title: '', subtitle: '', link: '' }
   ]);
   const [heroUploading, setHeroUploading] = useState([false, false, false]);
   const [heroPreviews, setHeroPreviews] = useState(['', '', '']);
@@ -119,7 +119,7 @@ export default function Admin() {
         // Load hero carousel data
         if (hero.slides && hero.slides.length > 0) {
           setHeroSlides(hero.slides);
-          setHeroPreviews(hero.slides.map(slide => slide.image || ''));
+          setHeroPreviews(hero.slides.map(slide => slide.imageUrl || ''));
         }
       } catch {}
     };
@@ -282,7 +282,7 @@ export default function Admin() {
         if (res.ok) {
           const imageUrl = `/uploads/${filename}`;
           const newHeroSlides = [...heroSlides];
-          newHeroSlides[index].image = imageUrl;
+          newHeroSlides[index].imageUrl = imageUrl;
           setHeroSlides(newHeroSlides);
           
           const newHeroPreviews = [...heroPreviews];
@@ -302,7 +302,7 @@ export default function Admin() {
 
   const handleHeroMediaSelect = (imagePath, index) => {
     const newHeroSlides = [...heroSlides];
-    newHeroSlides[index].image = imagePath;
+    newHeroSlides[index].imageUrl = imagePath;
     setHeroSlides(newHeroSlides);
     
     const newHeroPreviews = [...heroPreviews];
@@ -317,6 +317,18 @@ export default function Admin() {
   const handleHeroLinkChange = (link, index) => {
     const newHeroSlides = [...heroSlides];
     newHeroSlides[index].link = link;
+    setHeroSlides(newHeroSlides);
+  };
+
+  const handleHeroTitleChange = (title, index) => {
+    const newHeroSlides = [...heroSlides];
+    newHeroSlides[index].title = title;
+    setHeroSlides(newHeroSlides);
+  };
+
+  const handleHeroSubtitleChange = (subtitle, index) => {
+    const newHeroSlides = [...heroSlides];
+    newHeroSlides[index].subtitle = subtitle;
     setHeroSlides(newHeroSlides);
   };
 
@@ -709,6 +721,58 @@ export default function Admin() {
                         value={slide.link}
                         onChange={(e) => handleHeroLinkChange(e.target.value, index)}
                         placeholder="例如：/plants/spider-plant"
+                        style={{
+                          width: '100%',
+                          padding: '0.75rem',
+                          border: `2px solid ${warmCreamDark}`,
+                          borderRadius: borderRadiusSmall,
+                          fontSize: '0.9rem'
+                        }}
+                      />
+                    </div>
+
+                    {/* Title Input */}
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label style={{
+                        display: 'block',
+                        marginBottom: '0.5rem',
+                        fontWeight: '500',
+                        color: '#333',
+                        fontSize: '0.9rem'
+                      }}>
+                        标题
+                      </label>
+                      <input
+                        type="text"
+                        value={slide.title}
+                        onChange={(e) => handleHeroTitleChange(e.target.value, index)}
+                        placeholder="例如：Cat-Safe Plants"
+                        style={{
+                          width: '100%',
+                          padding: '0.75rem',
+                          border: `2px solid ${warmCreamDark}`,
+                          borderRadius: borderRadiusSmall,
+                          fontSize: '0.9rem'
+                        }}
+                      />
+                    </div>
+
+                    {/* Subtitle Input */}
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label style={{
+                        display: 'block',
+                        marginBottom: '0.5rem',
+                        fontWeight: '500',
+                        color: '#333',
+                        fontSize: '0.9rem'
+                      }}>
+                        副标题
+                      </label>
+                      <input
+                        type="text"
+                        value={slide.subtitle}
+                        onChange={(e) => handleHeroSubtitleChange(e.target.value, index)}
+                        placeholder="例如：Create a beautiful, pet-friendly living space"
                         style={{
                           width: '100%',
                           padding: '0.75rem',
