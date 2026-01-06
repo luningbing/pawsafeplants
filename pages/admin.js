@@ -1,8 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 export default function Admin() {
+  const router = useRouter();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [images, setImages] = useState([]);
   const [plants, setPlants] = useState([]);
   const [site, setSite] = useState({ heroImage: '', logo: '' });
@@ -106,6 +110,45 @@ export default function Admin() {
   const terracotta = '#C17A5F';
   const borderRadius = '24px';
   const borderRadiusSmall = '16px';
+
+  // Check authentication status
+  useEffect(() => {
+    const checkAuth = async () => {
+      const token = localStorage.getItem('adminToken');
+      if (token) {
+        try {
+          // Verify token with server
+          const response = await fetch('/api/login', {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          });
+          
+          const data = await response.json();
+          
+          if (data.message === 'Token is valid') {
+            setIsAuthenticated(true);
+          } else {
+            // Invalid token, remove it and redirect to login
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('adminUser');
+            router.push('/login');
+          }
+        } catch {
+          // Token verification failed, remove it and redirect
+          localStorage.removeItem('adminToken');
+          localStorage.removeItem('adminUser');
+          router.push('/login');
+        }
+      } else {
+        // No token, redirect to login
+        router.push('/login');
+      }
+      setLoading(false);
+    };
+
+    checkAuth();
+  }, [router]);
 
   useEffect(() => {
     const load = async () => {
@@ -703,8 +746,54 @@ export default function Admin() {
     <div style={{ minHeight: '100vh', backgroundColor: warmCream, fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       <Head>
         <title>管理后台 - PawSafePlants</title>
-        <meta name="description" content="植物安全管理系统" />
+        <meta name="description" content="PawSafePlants 管理后台" />
       </Head>
+
+      {/* Loading State */}
+      {loading && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(255, 255, 255, 0.9)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999
+        }}>
+          <div style={{
+            textAlign: 'center',
+            padding: '2rem',
+            backgroundColor: 'white',
+            borderRadius: '24px',
+            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.1)'
+          }}>
+            <div style={{
+              width: '60px',
+              height: '60px',
+              backgroundColor: sageGreen,
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 1rem',
+              fontSize: '2rem',
+              color: 'white',
+              animation: 'spin 1s linear infinite'
+            }}>
+              🌿
+            </div>
+            <h2 style={{ color: sageGreen, margin: '0 0 0.5rem 0' }}>
+              验证中...
+            </h2>
+            <p style={{ color: '#666', margin: 0 }}>
+              正在验证登录状态
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* Header */}
       <div style={{
