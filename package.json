@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",
+    "formidable": "^3.5.4",
     "framer-motion": "^12.24.0",
     "gray-matter": "^4.0.3",
     "next": "14.2.3",

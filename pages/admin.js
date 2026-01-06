@@ -130,57 +130,55 @@ export default function Admin() {
     if (!file) return;
     setUploading(true);
     try {
-      const reader = new FileReader();
-      reader.onload = async () => {
-        try {
-          const base64 = reader.result;
-          const filename = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-          console.log('Uploading file:', filename, 'Size:', file.size);
-          
-          const res = await fetch('/api/upload-base64', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ filename, data: String(base64 || '') })
-          });
-          
-          console.log('Upload response status:', res.status);
-          
-          if (res.ok) {
-            const j = await res.json();
-            console.log('Upload response:', j);
-            
-            const imgs = await (await fetch('/api/list-images')).json();
-            setImages(imgs.paths || []);
-            setUploadFile(null);
-            setUploadPreview('');
-            setMsg('图片上传成功！');
-            setTimeout(() => setMsg(''), 3000);
-            return j?.path || '';
-          } else {
-            const errorText = await res.text();
-            console.error('Upload failed:', res.status, errorText);
-            setMsg('上传失败: ' + errorText);
-            setTimeout(() => setMsg(''), 3000);
-          }
-        } catch (error) {
-          console.error('Upload error:', error);
-          setMsg('上传失败: ' + error.message);
-          setTimeout(() => setMsg(''), 3000);
-        } finally {
-          setUploading(false);
-        }
-      };
-      reader.onerror = () => {
-        console.error('FileReader error');
-        setMsg('文件读取失败');
+      console.log('Uploading file:', file.name, 'Size:', file.size, 'Type:', file.type);
+      
+      // Check file size (50MB limit)
+      const maxSize = 50 * 1024 * 1024; // 50MB in bytes
+      if (file && file.size > maxSize) {
+        setMsg('文件大小不能超过50MB，请选择较小的图片');
         setTimeout(() => setMsg(''), 3000);
-        setUploading(false);
-      };
-      reader.readAsDataURL(file);
+        // Clear the file input
+        const fileInput = document.getElementById('file-upload');
+        if (fileInput) fileInput.value = '';
+        setUploadFile(null);
+        setUploadPreview('');
+        return;
+      }
+      
+      // Use FormData for chunked upload
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('filename', file.name.replace(/[^a-zA-Z0-9._-]/g, '_'));
+      
+      const res = await fetch('/api/upload-chunked', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      console.log('Upload response status:', res.status);
+      
+      if (res.ok) {
+        const j = await res.json();
+        console.log('Upload response:', j);
+        
+        const imgs = await (await fetch('/api/list-images')).json();
+        setImages(imgs.paths || []);
+        setUploadFile(null);
+        setUploadPreview('');
+        setMsg('图片上传成功！');
+        setTimeout(() => setMsg(''), 3000);
+        return j?.path || '';
+      } else {
+        const errorText = await res.text();
+        console.error('Upload failed:', res.status, errorText);
+        setMsg('上传失败: ' + errorText);
+        setTimeout(() => setMsg(''), 3000);
+      }
     } catch (error) {
-      console.error('Upload setup error:', error);
-      setMsg('上传设置失败: ' + error.message);
+      console.error('Upload error:', error);
+      setMsg('上传失败: ' + error.message);
       setTimeout(() => setMsg(''), 3000);
+    } finally {
       setUploading(false);
     }
   };
@@ -724,7 +722,7 @@ export default function Admin() {
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        {heroUploading[index] ? '上传中...' : '📁 选择图片 (最大10MB)'}
+                        {heroUploading[index] ? '上传中...' : '📁 选择图片 (最大50MB)'}
                       </label>
                     </div>
 
@@ -1452,7 +1450,7 @@ export default function Admin() {
                       boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)'
                     }}
                   >
-                    选择图片 (最大10MB)
+                    选择图片 (最大50MB)
                   </label>
                   {uploadFile && (
                     <button
