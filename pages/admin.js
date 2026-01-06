@@ -347,13 +347,16 @@ export default function Admin() {
   };
 
   const handleHeroMediaSelect = (imagePath, index) => {
+    console.log('Hero media select:', { imagePath, index });
     const newHeroSlides = [...heroSlides];
     newHeroSlides[index].imageUrl = imagePath;
     setHeroSlides(newHeroSlides);
+    console.log('Updated hero slides:', newHeroSlides);
     
     const newHeroPreviews = [...heroPreviews];
     newHeroPreviews[index] = imagePath;
     setHeroPreviews(newHeroPreviews);
+    console.log('Updated hero previews:', newHeroPreviews);
     
     const newHeroMediaOpen = [...heroMediaOpen];
     newHeroMediaOpen[index] = false;
@@ -380,21 +383,30 @@ export default function Admin() {
 
   const saveHeroCarousel = async () => {
     try {
+      console.log('Saving hero carousel:', heroSlides);
       const res = await fetch('/api/hero-carousel', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ slides: heroSlides })
       });
       
+      console.log('Save response status:', res.status);
+      
       if (res.ok) {
+        const result = await res.json();
+        console.log('Save response:', result);
         setMsg('首页轮播图保存成功！');
         setTimeout(() => setMsg(''), 3000);
       } else {
-        setMsg('保存失败，请重试');
+        const errorText = await res.text();
+        console.error('Save failed:', res.status, errorText);
+        setMsg('保存失败: ' + errorText);
+        setTimeout(() => setMsg(''), 3000);
       }
     } catch (error) {
       console.error('Save hero carousel error:', error);
-      setMsg('保存失败，请重试');
+      setMsg('保存失败: ' + error.message);
+      setTimeout(() => setMsg(''), 3000);
     }
   };
 
@@ -914,7 +926,10 @@ export default function Admin() {
                         gap: isMobile ? '0.5rem' : '1rem',
                         marginBottom: '2rem'
                       }}>
-                        {images.filter(img => img.includes('/uploads/')).map((img, idx) => (
+                        {images.filter(img => {
+                          console.log('Filtering hero image:', img);
+                          return img && (img.includes('/uploads/') || img.includes('/storage/'));
+                        }).map((img, idx) => (
                           <div
                             key={idx}
                             onClick={() => handleHeroMediaSelect(img, index)}
