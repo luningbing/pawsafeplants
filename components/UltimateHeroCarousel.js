@@ -267,7 +267,7 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    探索更多
+                    Explore More
                   </motion.button>
                 </Link>
               </motion.div>
