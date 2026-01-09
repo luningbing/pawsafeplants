@@ -37,6 +37,8 @@ export default function Admin() {
   const [renamingMedia, setRenamingMedia] = useState(null);
   const [renameValue, setRenameValue] = useState('');
   const [mediaLoading, setMediaLoading] = useState(false);
+  const [renameLoading, setRenameLoading] = useState(false);
+  const [globalToast, setGlobalToast] = useState(null);
   
   // Hero Carousel states
   const [heroSlides, setHeroSlides] = useState([
@@ -824,6 +826,11 @@ export default function Admin() {
       const data = await response.json();
       if (response.ok) {
         setMediaMetadata(data.media || []);
+        
+        // Auto-create missing metadata after a short delay
+        setTimeout(() => {
+          ensureAllMetadata();
+        }, 1000);
       }
     } catch (error) {
       console.error('Failed to load media metadata:', error);
@@ -847,33 +854,114 @@ export default function Admin() {
       
       if (response.ok) {
         await loadMediaMetadata(); // Refresh the list
+        setGlobalToast({ 
+          type: 'success', 
+          message: `✅ 已创建元数据: ${displayName}` 
+        });
+        setTimeout(() => setGlobalToast(null), 2000);
       }
     } catch (error) {
       console.error('Failed to save media metadata:', error);
+      setGlobalToast({ 
+        type: 'error', 
+        message: `❌ 创建元数据失败: ${displayName}` 
+      });
+      setTimeout(() => setGlobalToast(null), 2000);
     }
   };
 
   const updateMediaDisplayName = async (id, displayName) => {
+    if (!id) {
+      console.error('❌ No metadata ID provided for:', displayName);
+      setGlobalToast({ type: 'error', message: '❌ 无法重命名：图片元数据缺失' });
+      return;
+    }
+
+    if (!displayName || displayName.trim().length === 0) {
+      console.error('❌ Empty display name provided');
+      setGlobalToast({ type: 'error', message: '❌ 名称不能为空' });
+      return;
+    }
+
+    setRenameLoading(true);
+    
+    console.log('🔄 Starting rename operation:', { id, displayName });
+    
     try {
-      const response = await fetch('/api/admin/media-metadata', {
-        method: 'PUT',
+      const response = await fetch('/api/media/rename', {
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, display_name: displayName })
+        body: JSON.stringify({ 
+          fileId: id, 
+          displayName: displayName.trim() 
+        })
       });
       
+      const data = await response.json();
+      
       if (response.ok) {
-        await loadMediaMetadata(); // Refresh the list
+        // Update local state immediately for better UX
+        setMediaMetadata(prev => 
+          prev.map(item => 
+            item.id === id ? { ...item, display_name: displayName.trim() } : item
+          )
+        );
+        
+        setGlobalToast({ type: 'success', message: '✅ 重命名成功' });
         setRenamingMedia(null);
         setRenameValue('');
+        
+        // Clear success message after 3 seconds
+        setTimeout(() => setGlobalToast(null), 3000);
+        
+        console.log('✅ Media renamed successfully:', data.media);
+      } else {
+        setGlobalToast({ type: 'error', message: `❌ ${data.error || '保存失败，请检查网络或权限'}` });
+        console.error('❌ Rename failed:', data);
       }
     } catch (error) {
-      console.error('Failed to update media display name:', error);
+      console.error('❌ Network error during rename:', error);
+      setGlobalToast({ type: 'error', message: '❌ 保存失败，请检查网络或权限' });
+    } finally {
+      setRenameLoading(false);
     }
   };
 
   const getDisplayName = (filePath) => {
     const metadata = mediaMetadata.find(m => m.file_path === filePath);
     return metadata?.display_name || filePath.split('/').pop();
+  };
+
+  // Auto-create missing metadata
+  const ensureAllMetadata = async () => {
+    if (!images || images.length === 0) {
+      console.log('📝 No images to process');
+      return;
+    }
+    
+    const missingImages = images.filter(img => 
+      !mediaMetadata.some(m => m.file_path === img)
+    );
+    
+    if (missingImages.length > 0) {
+      console.log('📝 Auto-creating metadata for', missingImages.length, 'missing images');
+      
+      for (const img of missingImages) {
+        try {
+          await saveMediaMetadata(img, img.split('/').pop(), 0, 'image/unknown');
+          console.log('✅ Created metadata for:', img);
+        } catch (error) {
+          console.error('❌ Failed to create metadata for:', img, error);
+        }
+      }
+      
+      // Refresh metadata after creating all
+      setTimeout(() => {
+        loadMediaMetadata();
+      }, 500);
+    } else {
+      console.log('✅ All images have metadata');
+    }
   };
 
   // Sidebar menu items
@@ -891,6 +979,28 @@ export default function Admin() {
         <title>管理后台 - PawSafePlants</title>
         <meta name="description" content="PawSafePlants 管理后台" />
       </Head>
+
+      {/* Global Toast Component */}
+      {globalToast && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          zIndex: 9999,
+          padding: '1rem 1.5rem',
+          borderRadius: '8px',
+          fontSize: '0.9rem',
+          fontWeight: '500',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+          backgroundColor: globalToast.type === 'success' ? '#d4edda' : '#f8d7da',
+          color: globalToast.type === 'success' ? '#155724' : '#721c24',
+          border: `1px solid ${globalToast.type === 'success' ? '#c3e6cb' : '#f5c6cb'}`,
+          animation: 'slideInRight 0.3s ease',
+          maxWidth: '300px'
+        }}>
+          {globalToast.message}
+        </div>
+      )}
 
       {/* Loading State */}
       {loading && (
@@ -1930,6 +2040,12 @@ export default function Admin() {
                   const metadata = mediaMetadata.find(m => m.file_path === img);
                   const displayName = getDisplayName(img);
                   const isRenaming = renamingMedia === img;
+                  const metadataId = metadata?.id;
+                  
+                  // Debug logging
+                  if (!metadataId) {
+                    console.log('⚠️ No metadata found for image:', img, 'Available metadata:', mediaMetadata.length);
+                  }
                   
                   return (
                     <div
@@ -2024,30 +2140,32 @@ export default function Admin() {
                               value={renameValue}
                               onChange={(e) => setRenameValue(e.target.value)}
                               onKeyDown={(e) => {
-                                if (e.key === 'Enter') {
-                                  updateMediaDisplayName(metadata?.id, renameValue);
+                                if (e.key === 'Enter' && !renameLoading) {
+                                  updateMediaDisplayName(metadataId, renameValue);
                                 } else if (e.key === 'Escape') {
                                   setRenamingMedia(null);
                                   setRenameValue('');
                                 }
                               }}
                               onBlur={() => {
-                                setTimeout(() => {
-                                  if (renameValue.trim()) {
-                                    updateMediaDisplayName(metadata?.id, renameValue);
-                                  } else {
-                                    setRenamingMedia(null);
-                                    setRenameValue('');
-                                  }
-                                }, 200);
+                                if (!renameLoading && renameValue.trim()) {
+                                  updateMediaDisplayName(metadataId, renameValue);
+                                } else if (!renameLoading) {
+                                  setRenamingMedia(null);
+                                  setRenameValue('');
+                                }
                               }}
+                              disabled={renameLoading}
+                              placeholder={renameLoading ? '保存中...' : '输入新名称'}
                               style={{
                                 width: '100%',
                                 padding: '0.5rem',
-                                border: `2px solid ${sageGreen}`,
+                                border: `2px solid ${renameLoading ? '#ccc' : sageGreen}`,
                                 borderRadius: '6px',
                                 fontSize: '0.9rem',
-                                fontWeight: '500'
+                                fontWeight: '500',
+                                backgroundColor: renameLoading ? '#f8f9fa' : 'white',
+                                opacity: renameLoading ? 0.7 : 1
                               }}
                               autoFocus
                             />
@@ -2111,27 +2229,55 @@ export default function Admin() {
                           >
                             {copiedPath === img ? '已复制!' : '复制'}
                           </button>
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setRenamingMedia(img);
-                              setRenameValue(displayName);
-                            }}
-                            style={{
-                              flex: 1,
-                              padding: '0.5rem',
-                              backgroundColor: '#f8f9fa',
-                              color: '#333',
-                              border: `1px solid ${sageGreen}50`,
-                              borderRadius: '6px',
-                              cursor: 'pointer',
-                              fontSize: '0.75rem',
-                              fontWeight: '500',
-                              transition: 'all 0.3s ease'
-                            }}
-                          >
-                            重命名
-                          </button>
+                          
+                          {metadataId ? (
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                if (!renameLoading) {
+                                  setRenamingMedia(img);
+                                  setRenameValue(displayName);
+                                }
+                              }}
+                              disabled={renameLoading}
+                              style={{
+                                flex: 1,
+                                padding: '0.5rem',
+                                backgroundColor: renameLoading ? '#e9ecef' : '#f8f9fa',
+                                color: renameLoading ? '#6c757d' : '#333',
+                                border: `1px solid ${renameLoading ? '#dee2e6' : sageGreen}50`,
+                                borderRadius: '6px',
+                                cursor: renameLoading ? 'not-allowed' : 'pointer',
+                                fontSize: '0.75rem',
+                                fontWeight: '500',
+                                transition: 'all 0.3s ease',
+                                opacity: renameLoading ? 0.6 : 1
+                              }}
+                            >
+                              {renameLoading ? '保存中...' : '重命名'}
+                            </button>
+                          ) : (
+                            <button
+                              onClick={async (e) => {
+                                e.stopPropagation();
+                                await saveMediaMetadata(img, img.split('/').pop(), 0, 'image/unknown');
+                              }}
+                              style={{
+                                flex: 1,
+                                padding: '0.5rem',
+                                backgroundColor: '#ffc107',
+                                color: '#212529',
+                                border: '1px solid #e0a800',
+                                borderRadius: '6px',
+                                cursor: 'pointer',
+                                fontSize: '0.75rem',
+                                fontWeight: '500',
+                                transition: 'all 0.3s ease'
+                              }}
+                            >
+                              创建元数据
+                            </button>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -3088,6 +3234,10 @@ export default function Admin() {
         }
         @keyframes slideIn {
           from { opacity: 0; transform: translateX(-20px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+          from { opacity: 0; transform: translateX(20px); }
           to { opacity: 1; transform: translateX(0); }
         }
         

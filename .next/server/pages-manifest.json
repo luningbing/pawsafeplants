@@ -2,11 +2,15 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/list-images": "pages/api/list-images.js",
-  "/api/hero-carousel-db": "pages/api/hero-carousel-db.js",
-  "/api/site-config": "pages/api/site-config.js",
-  "/api/ultimate-hero": "pages/api/ultimate-hero.js",
   "/admin": "pages/admin.js",
+  "/api/hero-carousel-db": "pages/api/hero-carousel-db.js",
+  "/api/list-images": "pages/api/list-images.js",
+  "/api/site-config": "pages/api/site-config.js",
+  "/api/login": "pages/api/login.js",
   "/api/plants": "pages/api/plants.js",
-  "/api/auth/login": "pages/api/auth/login.js"
+  "/api/ultimate-hero": "pages/api/ultimate-hero.js",
+  "/api/admin/media-metadata": "pages/api/admin/media-metadata.js",
+  "/api/media/rename": "pages/api/media/rename.js",
+  "/": "pages/index.js",
+  "/api/analytics/track": "pages/api/analytics/track.js"
 }

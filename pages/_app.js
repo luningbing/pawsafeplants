@@ -29,10 +29,18 @@ export default function App({ Component, pageProps }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [q])
   useEffect(() => {
+    // Startup logging
+    console.log('🚀 PawSafePlants 启动中...');
+    console.log('📁 环境配置检查:');
+    console.log(`   NEXT_PUBLIC_SUPABASE_URL: ${process.env.NEXT_PUBLIC_SUPABASE_URL ? '✅ 已配置' : '❌ 缺失'}`);
+    console.log(`   SUPABASE_SERVICE_ROLE_KEY: ${process.env.SUPABASE_SERVICE_ROLE_KEY ? '✅ 已配置' : '❌ 缺失'}`);
+    
     const load = async () => {
       try {
+        console.log('🌿 加载植物数据...');
         const j = await (await fetch('/api/plants')).json()
         const list = j.plants || []
+        console.log(`✅ 成功加载 ${list.length} 个植物数据`);
         setAllPlants(list)
         const lower = (t) => String(t || '').toLowerCase()
         setSafeList(list.filter(p => lower(p.toxicity_level).includes('safe')))
@@ -46,17 +54,32 @@ export default function App({ Component, pageProps }) {
           const d = t.includes('danger') || t.includes('extreme') || t.includes('toxic') || t.includes('fatal')
           return !s && !d
         }))
-      } catch {}
+        
+        // Test database connectivity
+        console.log('🔍 测试数据库连接...');
+        const siteRes = await fetch('/api/site-config');
+        if (siteRes.ok) {
+          console.log('✅ 数据库连接正常');
+        } else {
+          console.log('❌ 数据库连接异常');
+        }
+      } catch (error) {
+        console.error('❌ 数据加载失败:', error.message);
+      }
     }
+    
     load()
+    
     const loadSite = async () => {
       try {
         const s = await (await fetch('/api/site-config')).json()
         const logo = String((s || {}).logo || '')
         setSiteLogo(logo)
+        console.log('🎨 网站配置加载完成');
       } catch {}
     }
     loadSite()
+    
     const onResize = () => { try { setIsMobile(window.innerWidth <= 767) } catch {} }
     onResize()
     window.addEventListener('resize', onResize)

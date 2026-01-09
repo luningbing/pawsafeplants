@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev:force": "taskkill /F /IM node.exe 2>nul || true && npm run dev",
+    "dev:clean": "taskkill /F /IM node.exe /T 2>nul || true && Remove-Item -Recurse -Force .next -ErrorAction SilentlyContinue && echo '🧹 已清理所有Node进程和缓存' && npm run dev",
     "build": "next build",
     "start": "next start"
   },
