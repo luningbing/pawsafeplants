@@ -21,6 +21,16 @@ export default function Admin() {
   const [copiedPath, setCopiedPath] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   
+  // Password change states
+  const [passwordForm, setPasswordForm] = useState({
+    oldPassword: '',
+    newPassword: '',
+    confirmPassword: ''
+  });
+  const [passwordChanging, setPasswordChanging] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordSuccess, setPasswordSuccess] = useState('');
+  
   // Hero Carousel states
   const [heroSlides, setHeroSlides] = useState([
     { imageUrl: '', title: '', subtitle: '', link: '' },
@@ -734,12 +744,72 @@ export default function Admin() {
     plant.scientific_name?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Handle password change
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+    setPasswordError('');
+    setPasswordSuccess('');
+
+    // Validation
+    if (!passwordForm.oldPassword || !passwordForm.newPassword || !passwordForm.confirmPassword) {
+      setPasswordError('请填写所有字段');
+      return;
+    }
+
+    if (passwordForm.newPassword.length < 6) {
+      setPasswordError('新密码至少需要 6 位字符');
+      return;
+    }
+
+    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
+      setPasswordError('新密码与确认密码不匹配');
+      return;
+    }
+
+    setPasswordChanging(true);
+
+    try {
+      const response = await fetch('/api/admin/change-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+        },
+        body: JSON.stringify({
+          oldPassword: passwordForm.oldPassword,
+          newPassword: passwordForm.newPassword
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setPasswordSuccess('密码修改成功！即将退出登录...');
+        setPasswordForm({ oldPassword: '', newPassword: '', confirmPassword: '' });
+        
+        // Auto logout after 2 seconds
+        setTimeout(() => {
+          localStorage.removeItem('adminToken');
+          localStorage.removeItem('adminUser');
+          router.push('/login');
+        }, 2000);
+      } else {
+        setPasswordError(data.error || '密码修改失败');
+      }
+    } catch (error) {
+      setPasswordError('网络错误，请重试');
+    } finally {
+      setPasswordChanging(false);
+    }
+  };
+
   // Sidebar menu items
   const menuItems = [
     { id: 'hero-carousel', label: '首页轮播图', icon: '🎠' },
     { id: 'add-plant', label: '添加植物', icon: '🌱' },
     { id: 'plant-list', label: '植物列表', icon: '📋' },
-    { id: 'media-library', label: '媒体库', icon: '🖼️' }
+    { id: 'media-library', label: '媒体库', icon: '🖼️' },
+    { id: 'security', label: '安全设置', icon: '🔒' }
   ];
 
   return (
@@ -1789,6 +1859,236 @@ export default function Admin() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* Security Settings Tab */}
+          {activeTab === 'security' && (
+            <div style={{
+              backgroundColor: 'white',
+              borderRadius: borderRadius,
+              padding: '2rem',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
+              animation: 'fadeIn 0.4s ease',
+              maxWidth: '600px',
+              margin: '0 auto'
+            }}>
+              <h2 style={{
+                fontSize: '1.5rem',
+                fontWeight: '600',
+                color: sageGreenDark,
+                marginBottom: '1.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                🔒 安全设置
+              </h2>
+
+              {/* Password Change Form */}
+              <form onSubmit={handlePasswordChange} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div>
+                  <label style={{
+                    display: 'block',
+                    marginBottom: '0.5rem',
+                    color: '#333',
+                    fontWeight: '500',
+                    fontSize: '0.95rem'
+                  }}>
+                    当前密码
+                  </label>
+                  <input
+                    type="password"
+                    value={passwordForm.oldPassword}
+                    onChange={(e) => setPasswordForm({...passwordForm, oldPassword: e.target.value})}
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      transition: 'all 0.3s ease',
+                      backgroundColor: 'white'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = sageGreen;
+                      e.target.style.boxShadow = `0 0 0 3px ${sageGreen}20`;
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = '#e0e0e0';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                    placeholder="输入当前密码"
+                    disabled={passwordChanging}
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label style={{
+                    display: 'block',
+                    marginBottom: '0.5rem',
+                    color: '#333',
+                    fontWeight: '500',
+                    fontSize: '0.95rem'
+                  }}>
+                    新密码
+                  </label>
+                  <input
+                    type="password"
+                    value={passwordForm.newPassword}
+                    onChange={(e) => setPasswordForm({...passwordForm, newPassword: e.target.value})}
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      transition: 'all 0.3s ease',
+                      backgroundColor: 'white'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = sageGreen;
+                      e.target.style.boxShadow = `0 0 0 3px ${sageGreen}20`;
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = '#e0e0e0';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                    placeholder="输入新密码（至少6位字符）"
+                    disabled={passwordChanging}
+                    required
+                    minLength={6}
+                  />
+                </div>
+
+                <div>
+                  <label style={{
+                    display: 'block',
+                    marginBottom: '0.5rem',
+                    color: '#333',
+                    fontWeight: '500',
+                    fontSize: '0.95rem'
+                  }}>
+                    确认新密码
+                  </label>
+                  <input
+                    type="password"
+                    value={passwordForm.confirmPassword}
+                    onChange={(e) => setPasswordForm({...passwordForm, confirmPassword: e.target.value})}
+                    style={{
+                      width: '100%',
+                      padding: '1rem',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      transition: 'all 0.3s ease',
+                      backgroundColor: 'white'
+                    }}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = sageGreen;
+                      e.target.style.boxShadow = `0 0 0 3px ${sageGreen}20`;
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = '#e0e0e0';
+                      e.target.style.boxShadow = 'none';
+                    }}
+                    placeholder="再次输入新密码"
+                    disabled={passwordChanging}
+                    required
+                    minLength={6}
+                  />
+                </div>
+
+                {/* Password Strength Indicator */}
+                {passwordForm.newPassword && (
+                  <div style={{
+                    fontSize: '0.875rem',
+                    color: passwordForm.newPassword.length >= 6 ? '#52c41a' : '#ff4d4f',
+                    marginTop: '-0.5rem'
+                  }}>
+                    {passwordForm.newPassword.length >= 6 ? '✅ 密码强度符合要求' : '❌ 密码至少需要6位字符'}
+                  </div>
+                )}
+
+                {/* Error/Success Messages */}
+                {passwordError && (
+                  <div style={{
+                    backgroundColor: '#fee',
+                    color: '#c53030',
+                    padding: '1rem',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '0.9rem',
+                    textAlign: 'center'
+                  }}>
+                    {passwordError}
+                  </div>
+                )}
+
+                {passwordSuccess && (
+                  <div style={{
+                    backgroundColor: '#f0f9ff',
+                    color: '#1e40af',
+                    padding: '1rem',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '0.9rem',
+                    textAlign: 'center',
+                    border: '1px solid #3b82f6'
+                  }}>
+                    {passwordSuccess}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={passwordChanging}
+                  style={{
+                    width: '100%',
+                    padding: '1rem',
+                    backgroundColor: passwordChanging ? '#ccc' : sageGreen,
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1.1rem',
+                    fontWeight: '600',
+                    cursor: passwordChanging ? 'not-allowed' : 'pointer',
+                    transition: 'all 0.3s ease',
+                    boxShadow: passwordChanging ? 'none' : `0 8px 32px ${sageGreen}30%`
+                  }}
+                >
+                  {passwordChanging ? '修改中...' : '修改密码'}
+                </button>
+              </form>
+
+              {/* Security Tips */}
+              <div style={{
+                marginTop: '2rem',
+                padding: '1.5rem',
+                backgroundColor: warmCream,
+                borderRadius: borderRadiusSmall,
+                border: `1px solid ${sageGreen}30`
+              }}>
+                <h4 style={{
+                  color: sageGreen,
+                  marginBottom: '1rem',
+                  fontSize: '1.1rem',
+                  fontWeight: '600'
+                }}>
+                  🔐 安全提示
+                </h4>
+                <ul style={{
+                  margin: 0,
+                  paddingLeft: '1.5rem',
+                  color: '#666',
+                  fontSize: '0.9rem',
+                  lineHeight: '1.6'
+                }}>
+                  <li>密码修改成功后，系统将自动退出登录</li>
+                  <li>请使用新密码重新登录管理后台</li>
+                  <li>建议定期更换密码以确保账户安全</li>
+                  <li>密码长度至少为6位字符</li>
+                </ul>
               </div>
             </div>
           )}
