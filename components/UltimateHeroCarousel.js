@@ -145,10 +145,10 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
                   alt={`Hero slide ${currentIndex + 1}`}
                   fill
                   priority={currentIndex === 0}
-                  placeholder="blur"
                   style={{
                     objectFit: 'cover',
-                    objectPosition: 'center'
+                    objectPosition: 'center',
+                    backgroundColor: '#f3f4f6'
                   }}
                   onError={(e) => {
                     console.error('Image load error:', currentSlide.imageUrl, e);

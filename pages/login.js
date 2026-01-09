@@ -376,7 +376,7 @@ export default function Login() {
                   用户名: <span style={{ color: sageGreen }}>laifu</span>
                 </p>
                 <p style={{ margin: 0, fontWeight: '500' }}>
-                  密码: <span style={{ color: sageGreen }}>laifu</span>
+                  密码: <span style={{ color: sageGreen }}>laifu123</span>
                 </p>
               </motion.div>
             </motion.div>

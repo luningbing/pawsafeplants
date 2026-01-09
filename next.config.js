@@ -9,12 +9,6 @@ const nextConfig = {
     ],
     formats: ['image/webp', 'image/avif'],
   },
-  api: {
-    bodyParser: {
-      sizeLimit: '10mb',
-    },
-    externalResolver: true,
-  },
 }
 
 module.exports = nextConfig

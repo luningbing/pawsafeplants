@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:force": "taskkill /F /IM node.exe 2>nul || true && npm run dev",
     "build": "next build",
     "start": "next start"
   },

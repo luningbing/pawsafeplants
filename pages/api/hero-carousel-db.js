@@ -1,11 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { createClient } from '@supabase/supabase-js'
-
-// Initialize Supabase client
-const supabaseUrl = process.env.SUPABASE_URL || ''
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || ''
-const supabase = createClient(supabaseUrl, supabaseKey)
+import { createSupabaseClient } from '../../lib/supabase';
 
 export default async function handler(req, res) {
   try {
@@ -15,6 +10,7 @@ export default async function handler(req, res) {
       console.log('Reading hero carousel data from database');
       
       try {
+        const supabase = createSupabaseClient();
         const { data, error } = await supabase
           .from('hero_carousel')
           .select('*')

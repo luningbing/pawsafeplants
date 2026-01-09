@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { createClient } from '@supabase/supabase-js';
+import { createSupabaseClient } from '../../lib/supabase';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 
@@ -22,36 +22,34 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Username and password are required' });
       }
 
-      // Connect to Supabase
-      const supabaseUrl = process.env.SUPABASE_URL;
-      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY;
+      const supabase = createSupabaseClient();
 
-      if (!supabaseUrl || !supabaseKey) {
-        console.error('Missing Supabase configuration');
-        return res.status(500).json({ error: 'Database configuration missing' });
-      }
-
-      const supabase = createClient(supabaseUrl, supabaseKey);
-
-      // Find user by username
+      // Find user by username from admin_credentials table
       const { data: users, error } = await supabase
-        .from('admin_users')
+        .from('admin_credentials')
         .select('*')
-        .eq('username', username)
-        .single();
+        .eq('username', username);
 
       if (error) {
         console.error('Database error:', error);
         return res.status(500).json({ error: 'Database error' });
       }
 
-      if (!users) {
+      if (!users || users.length === 0) {
         console.log('User not found:', username);
         return res.status(401).json({ error: 'Invalid credentials' });
       }
 
-      // Verify password
-      const isValidPassword = await bcrypt.compare(password, users.password_hash);
+      const user = users[0];
+
+      // Verify password - check if field name is hash, password_hash or password
+      const passwordField = user.hash || user.password_hash || user.password;
+      if (!passwordField) {
+        console.error('Password field not found in admin_credentials table');
+        return res.status(500).json({ error: 'Database configuration error' });
+      }
+      
+      const isValidPassword = await bcrypt.compare(password, passwordField);
 
       if (!isValidPassword) {
         console.log('Invalid password for user:', username);
@@ -61,8 +59,8 @@ export default async function handler(req, res) {
       // Generate JWT token
       const token = jwt.sign(
         { 
-          id: users.id, 
-          username: users.username 
+          id: user.id, 
+          username: user.username 
         },
         JWT_SECRET,
         { expiresIn: '24h' }
@@ -73,9 +71,9 @@ export default async function handler(req, res) {
         message: 'Login successful',
         token,
         user: {
-          id: users.id,
-          username: users.username,
-          created_at: users.created_at
+          id: user.id,
+          username: user.username,
+          created_at: user.created_at
         }
       });
 

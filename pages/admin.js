@@ -905,7 +905,7 @@ export default function Admin() {
         alignItems: 'start' 
       }}>
                 {heroSlides.map((slide, index) => (
-                  <div key={slide.id} style={{
+                  <div key={`hero-slide-${index}`} style={{
                     border: `2px solid ${warmCreamDark}`,
                     borderRadius: borderRadiusSmall,
                     padding: '1.5rem',
