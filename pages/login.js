@@ -373,10 +373,10 @@ export default function Login() {
                   默认登录信息
                 </p>
                 <p style={{ margin: 0, fontWeight: '500' }}>
-                  用户名: <span style={{ color: sageGreen }}>laifu</span>
+                  用户名：<span style={{ color: sageGreen }}>猫猫名字</span>
                 </p>
                 <p style={{ margin: 0, fontWeight: '500' }}>
-                  密码: <span style={{ color: sageGreen }}>laifu123</span>
+                  密码：<span style={{ color: sageGreen }}>你猜</span>
                 </p>
               </motion.div>
             </motion.div>

@@ -31,6 +31,13 @@ export default function Admin() {
   const [passwordError, setPasswordError] = useState('');
   const [passwordSuccess, setPasswordSuccess] = useState('');
   
+  // Media library states
+  const [mediaMetadata, setMediaMetadata] = useState([]);
+  const [uploadDisplayName, setUploadDisplayName] = useState('');
+  const [renamingMedia, setRenamingMedia] = useState(null);
+  const [renameValue, setRenameValue] = useState('');
+  const [mediaLoading, setMediaLoading] = useState(false);
+  
   // Hero Carousel states
   const [heroSlides, setHeroSlides] = useState([
     { imageUrl: '', title: '', subtitle: '', link: '' },
@@ -199,6 +206,7 @@ export default function Admin() {
       }
     };
     load();
+    loadMediaMetadata(); // Load media metadata
   }, []);
 
   const onUpload = async (file) => {
@@ -236,10 +244,15 @@ export default function Admin() {
         const j = await res.json();
         console.log('Upload response:', j);
         
+        // Save media metadata with display name
+        const displayName = uploadDisplayName || file.name;
+        await saveMediaMetadata(j.path, displayName, file.size, file.type);
+        
         const imgs = await (await fetch('/api/list-images')).json();
         setImages(imgs.paths || []);
         setUploadFile(null);
         setUploadPreview('');
+        setUploadDisplayName(''); // Reset display name input
         setMsg('图片上传成功！');
         setTimeout(() => setMsg(''), 3000);
         return j?.path || '';
@@ -801,6 +814,66 @@ export default function Admin() {
     } finally {
       setPasswordChanging(false);
     }
+  };
+
+  // Media metadata management functions
+  const loadMediaMetadata = async () => {
+    setMediaLoading(true);
+    try {
+      const response = await fetch('/api/admin/media-metadata');
+      const data = await response.json();
+      if (response.ok) {
+        setMediaMetadata(data.media || []);
+      }
+    } catch (error) {
+      console.error('Failed to load media metadata:', error);
+    } finally {
+      setMediaLoading(false);
+    }
+  };
+
+  const saveMediaMetadata = async (filePath, displayName, fileSize, fileType) => {
+    try {
+      const response = await fetch('/api/admin/media-metadata', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          file_path: filePath,
+          display_name: displayName,
+          file_size: fileSize,
+          file_type: fileType
+        })
+      });
+      
+      if (response.ok) {
+        await loadMediaMetadata(); // Refresh the list
+      }
+    } catch (error) {
+      console.error('Failed to save media metadata:', error);
+    }
+  };
+
+  const updateMediaDisplayName = async (id, displayName) => {
+    try {
+      const response = await fetch('/api/admin/media-metadata', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, display_name: displayName })
+      });
+      
+      if (response.ok) {
+        await loadMediaMetadata(); // Refresh the list
+        setRenamingMedia(null);
+        setRenameValue('');
+      }
+    } catch (error) {
+      console.error('Failed to update media display name:', error);
+    }
+  };
+
+  const getDisplayName = (filePath) => {
+    const metadata = mediaMetadata.find(m => m.file_path === filePath);
+    return metadata?.display_name || filePath.split('/').pop();
   };
 
   // Sidebar menu items
@@ -1802,64 +1875,293 @@ export default function Admin() {
                     </button>
                   )}
                 </div>
-                {uploadPreview && (
+                {uploadFile && (
                   <div style={{ marginTop: '1rem' }}>
                     <img
                       src={uploadPreview}
                       alt="预览"
                       style={{ maxWidth: '200px', maxHeight: '200px', borderRadius: borderRadiusSmall }}
                     />
+                    <div style={{ marginTop: '1rem' }}>
+                      <label style={{
+                        display: 'block',
+                        marginBottom: '0.5rem',
+                        color: '#333',
+                        fontWeight: '500',
+                        fontSize: '0.9rem'
+                      }}>
+                        图片名称
+                      </label>
+                      <input
+                        type="text"
+                        value={uploadDisplayName}
+                        onChange={(e) => setUploadDisplayName(e.target.value)}
+                        placeholder="输入图片名称（可选）"
+                        style={{
+                          width: '100%',
+                          padding: '0.5rem',
+                          border: '2px solid #e0e0e0',
+                          borderRadius: '8px',
+                          fontSize: '0.9rem',
+                          transition: 'all 0.3s ease'
+                        }}
+                        onFocus={(e) => {
+                          e.target.style.borderColor = sageGreen;
+                          e.target.style.boxShadow = `0 0 0 3px ${sageGreen}20`;
+                        }}
+                        onBlur={(e) => {
+                          e.target.style.borderColor = '#e0e0e0';
+                          e.target.style.boxShadow = 'none';
+                        }}
+                      />
+                    </div>
                   </div>
                 )}
               </div>
 
-              {/* Images Grid - Waterfall Layout */}
-              <div className="waterfall-grid">
-                {images.map((img, idx) => (
-                  <div
-                    key={idx}
-                    style={{
-                      breakInside: 'avoid',
-                      marginBottom: '1rem',
-                      backgroundColor: warmCream,
-                      borderRadius: borderRadiusSmall,
-                    }}
-                  >
-                    <img
-                      src={img}
-                      alt={`图片 ${idx}`}
+              {/* Images Grid - Unified Preview Layout */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? 'repeat(auto-fill, minmax(150px, 1fr))' : 'repeat(auto-fill, minmax(200px, 1fr))',
+                gap: '1.5rem',
+                padding: '1rem 0'
+              }}>
+                {images.map((img, idx) => {
+                  const metadata = mediaMetadata.find(m => m.file_path === img);
+                  const displayName = getDisplayName(img);
+                  const isRenaming = renamingMedia === img;
+                  
+                  return (
+                    <div
+                      key={idx}
                       style={{
-                        width: '100%',
-                        height: 'auto',
-                        borderRadius: `${borderRadiusSmall} ${borderRadiusSmall} 0 0`,
+                        backgroundColor: 'white',
+                        borderRadius: borderRadiusSmall,
+                        border: `2px solid ${sageGreen}30`,
+                        overflow: 'hidden',
+                        transition: 'all 0.3s ease',
                         cursor: 'pointer'
                       }}
-                      onClick={() => copyToClipboard(img)}
-                    />
-                    <div style={{ padding: '1rem' }}>
-                      <div style={{ fontSize: '0.875rem', color: '#666', marginBottom: '0.5rem', wordBreak: 'break-all' }}>
-                        {img.split('/').pop()}
-                      </div>
-                      <button
-                        onClick={() => copyToClipboard(img)}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = 'translateY(-4px)';
+                        e.currentTarget.style.boxShadow = '0 8px 24px rgba(135, 169, 107, 0.2)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
+                    >
+                      {/* Square Image Container */}
+                      <div
                         style={{
+                          position: 'relative',
                           width: '100%',
-                          padding: '0.5rem',
-                          backgroundColor: copiedPath === img ? '#28a745' : sageGreen,
-                          color: 'white',
-                          border: 'none',
-                          borderRadius: '8px',
-                          cursor: 'pointer',
-                          fontSize: '0.875rem',
-                          transition: 'all 0.3s ease'
+                          paddingTop: '100%', // 1:1 aspect ratio
+                          backgroundColor: '#f8f9fa',
+                          overflow: 'hidden'
                         }}
+                        onClick={() => copyToClipboard(img)}
                       >
-                        {copiedPath === img ? '已复制!' : '复制路径'}
-                      </button>
+                        <img
+                          src={img}
+                          alt={displayName}
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            transition: 'transform 0.3s ease'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.target.style.transform = 'scale(1.05)';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.target.style.transform = 'scale(1)';
+                          }}
+                        />
+                        
+                        {/* Overlay on hover */}
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%)',
+                            opacity: 0,
+                            transition: 'opacity 0.3s ease',
+                            display: 'flex',
+                            alignItems: 'flex-end',
+                            padding: '0.5rem'
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.opacity = '1';
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.opacity = '0';
+                          }}
+                        >
+                          <span style={{
+                            color: 'white',
+                            fontSize: '0.75rem',
+                            fontWeight: '500'
+                          }}>
+                            点击复制链接
+                          </span>
+                        </div>
+                      </div>
+                      
+                      {/* Info Section */}
+                      <div style={{ padding: '1rem' }}>
+                        {/* Display Name */}
+                        {isRenaming ? (
+                          <div style={{ marginBottom: '0.75rem' }}>
+                            <input
+                              type="text"
+                              value={renameValue}
+                              onChange={(e) => setRenameValue(e.target.value)}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                  updateMediaDisplayName(metadata?.id, renameValue);
+                                } else if (e.key === 'Escape') {
+                                  setRenamingMedia(null);
+                                  setRenameValue('');
+                                }
+                              }}
+                              onBlur={() => {
+                                setTimeout(() => {
+                                  if (renameValue.trim()) {
+                                    updateMediaDisplayName(metadata?.id, renameValue);
+                                  } else {
+                                    setRenamingMedia(null);
+                                    setRenameValue('');
+                                  }
+                                }, 200);
+                              }}
+                              style={{
+                                width: '100%',
+                                padding: '0.5rem',
+                                border: `2px solid ${sageGreen}`,
+                                borderRadius: '6px',
+                                fontSize: '0.9rem',
+                                fontWeight: '500'
+                              }}
+                              autoFocus
+                            />
+                          </div>
+                        ) : (
+                          <div style={{ marginBottom: '0.75rem' }}>
+                            <div
+                              style={{
+                                fontSize: '0.9rem',
+                                fontWeight: '600',
+                                color: '#333',
+                                marginBottom: '0.25rem',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                                cursor: 'text'
+                              }}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setRenamingMedia(img);
+                                setRenameValue(displayName);
+                              }}
+                              title="点击重命名"
+                            >
+                              {displayName}
+                            </div>
+                            <div
+                              style={{
+                                fontSize: '0.75rem',
+                                color: '#999',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap'
+                              }}
+                              title={img}
+                            >
+                              {img.split('/').pop()}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Action Buttons */}
+                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              copyToClipboard(img);
+                            }}
+                            style={{
+                              flex: 1,
+                              padding: '0.5rem',
+                              backgroundColor: copiedPath === img ? '#28a745' : sageGreen,
+                              color: 'white',
+                              border: 'none',
+                              borderRadius: '6px',
+                              cursor: 'pointer',
+                              fontSize: '0.75rem',
+                              fontWeight: '500',
+                              transition: 'all 0.3s ease'
+                            }}
+                          >
+                            {copiedPath === img ? '已复制!' : '复制'}
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setRenamingMedia(img);
+                              setRenameValue(displayName);
+                            }}
+                            style={{
+                              flex: 1,
+                              padding: '0.5rem',
+                              backgroundColor: '#f8f9fa',
+                              color: '#333',
+                              border: `1px solid ${sageGreen}50`,
+                              borderRadius: '6px',
+                              cursor: 'pointer',
+                              fontSize: '0.75rem',
+                              fontWeight: '500',
+                              transition: 'all 0.3s ease'
+                            }}
+                          >
+                            重命名
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
+              
+              {/* Loading State */}
+              {mediaLoading && (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '2rem',
+                  color: '#666'
+                }}>
+                  <div style={{ marginBottom: '1rem' }}>加载媒体库中...</div>
+                </div>
+              )}
+              
+              {/* Empty State */}
+              {!mediaLoading && images.length === 0 && (
+                <div style={{
+                  textAlign: 'center',
+                  padding: '3rem',
+                  color: '#666'
+                }}>
+                  <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📷</div>
+                  <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>还没有上传任何图片</div>
+                  <div style={{ fontSize: '0.9rem' }}>点击上方按钮开始上传</div>
+                </div>
+              )}
             </div>
           )}
 
