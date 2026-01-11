@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import AtmosphereImageManager from '../../components/AtmosphereImageManager';
 
 export default function Admin() {
   const router = useRouter();
@@ -970,6 +971,7 @@ export default function Admin() {
     { id: 'add-plant', label: '添加植物', icon: '🌱' },
     { id: 'plant-list', label: '植物列表', icon: '📋' },
     { id: 'media-library', label: '媒体库', icon: '🖼️' },
+    { id: 'atmosphere', label: '氛围图管理', icon: '🌸' },
     { id: 'security', label: '安全设置', icon: '🔒' }
   ];
 
@@ -2309,6 +2311,18 @@ export default function Admin() {
                 </div>
               )}
             </div>
+          )}
+
+          {/* Atmosphere Management Tab */}
+          {activeTab === 'atmosphere' && (
+            <AtmosphereImageManager 
+              mediaMetadata={mediaMetadata}
+              onAtmosphereChange={() => {
+                // Refresh media metadata after atmosphere changes
+                loadMediaMetadata();
+              }}
+              loading={mediaLoading}
+            />
           )}
 
           {/* Security Settings Tab */}

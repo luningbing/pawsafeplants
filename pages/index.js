@@ -96,6 +96,7 @@ export default function Home({ plants, site }) {
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [heroSlides, setHeroSlides] = useState([]);
+  const [atmosphereImages, setAtmosphereImages] = useState([]);
   const unsplashPlaceholder = 'https://images.unsplash.com/photo-1545241047-6083a3684587';
 
   // Color palette
@@ -158,6 +159,63 @@ export default function Home({ plants, site }) {
       }
     };
     loadHeroSlides();
+  }, []);
+
+  // Load atmosphere images
+  useEffect(() => {
+    const loadAtmosphereImages = async () => {
+      try {
+        console.log('Loading atmosphere images...');
+        const res = await fetch('/api/atmosphere-images');
+        const data = await res.json();
+        console.log('Atmosphere images response:', data);
+        if (data.atmosphere_images && data.atmosphere_images.length > 0) {
+          console.log('Setting atmosphere images:', data.atmosphere_images);
+          setAtmosphereImages(data.atmosphere_images);
+        } else {
+          console.log('No atmosphere images found, using defaults');
+          // 设置默认氛围图
+          setAtmosphereImages([
+            {
+              url: 'https://images.unsplash.com/photo-1514888074191-9c2e2c8bf77?w=400&h=400&fit=crop',
+              title: '慵懒的猫咪',
+              createdAt: new Date().toISOString()
+            },
+            {
+              url: 'https://images.unsplash.com/photo-1574158610182-6e2bae4e9d3?w=400&h=400&fit=crop',
+              title: '窗边的小猫',
+              createdAt: new Date().toISOString()
+            },
+            {
+              url: 'https://images.unsplash.com/photo-1596854406854-1c2f7b2b2a9?w=400&h=400&fit=crop',
+              title: '花丛中的猫咪',
+              createdAt: new Date().toISOString()
+            }
+          ]);
+        }
+      } catch (error) {
+        console.error('Failed to load atmosphere images:', error);
+        // 设置默认氛围图作为后备
+        setAtmosphereImages([
+          {
+            url: 'https://images.unsplash.com/photo-1514888074191-9c2e2c8bf77?w=400&h=400&fit=crop',
+            title: '慵懒的猫咪',
+            createdAt: new Date().toISOString()
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1574158610182-6e2bae4e9d3?w=400&h=400&fit=crop',
+            title: '窗边的小猫',
+            createdAt: new Date().toISOString()
+          },
+          {
+            url: 'https://images.unsplash.com/photo-1596854406854-1c2f7b2b2a9?w=400&h=400&fit=crop',
+            title: '花丛中的猫咪',
+            createdAt: new Date().toISOString()
+          }
+        ]);
+      }
+    };
+    loadAtmosphereImages();
   }, []);
 
   useEffect(() => {
@@ -453,6 +511,98 @@ export default function Home({ plants, site }) {
         </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* Atmosphere Images Section */}
+        <section style={{
+          maxWidth: '1200px',
+          margin: '0 auto 48px auto',
+          padding: '0 20px'
+        }}>
+          <h2 style={{
+            fontSize: '32px',
+            fontWeight: 700,
+            color: sageGreenDark,
+            marginBottom: '24px',
+            textAlign: 'center'
+          }}>
+            🌸 猫猫氛围
+          </h2>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '16px',
+            marginBottom: '32px'
+          }}>
+            {atmosphereImages.map((image, index) => (
+              <div
+                key={index}
+                style={{
+                  position: 'relative',
+                  backgroundColor: '#fff',
+                  borderRadius: borderRadius,
+                  overflow: 'hidden',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)',
+                  transition: 'all 0.3s ease',
+                  border: `2px solid ${warmCreamDark}`
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 16px 40px rgba(135, 169, 107, 0.2)';
+                  e.currentTarget.style.borderColor = sageGreen + '40';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.08)';
+                  e.currentTarget.style.borderColor = warmCreamDark;
+                }}
+              >
+                <div style={{
+                  height: '200px',
+                  overflow: 'hidden',
+                  background: warmCreamDark
+                }}>
+                  <SafeImage
+                    src={image.url}
+                    alt={image.title}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                    containerStyle={{
+                      width: '100%',
+                      height: '100%'
+                    }}
+                  />
+                </div>
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)',
+                  color: '#fff',
+                  padding: '16px',
+                  textAlign: 'center'
+                }}>
+                  <div style={{
+                    fontSize: '16px',
+                    fontWeight: 600,
+                    marginBottom: '4px'
+                  }}>
+                    {image.title}
+                  </div>
+                  <div style={{
+                    fontSize: '12px',
+                    opacity: 0.8
+                  }}>
+                    营造温馨氛围
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
