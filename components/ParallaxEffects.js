@@ -136,7 +136,7 @@ function AtmosphereParallax({ image, title, index, className = '' }) {
             transform: `translateY(${isHovered ? '0' : '8px'})`,
             transition: 'all 0.3s ease 0.1s'
           }}>
-            营造温馨氛围 🌸
+            Create a cozy home 🌸
           </div>
         </div>
         

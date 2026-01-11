@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     console.log('=== ENVIRONMENT DEBUG ===');
     console.log('DB URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
     console.log('DB Key exists:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    console.log('Service Role Key exists:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
     console.log('All env vars:', Object.keys(process.env).filter(k => k.includes('SUPABASE')));
     console.log('=== END DEBUG ===');
     
@@ -33,7 +34,8 @@ export default async function handler(req, res) {
         
         if (supabaseUrl && supabaseKey) {
           console.log('Reading from Supabase database');
-          const client = createClient(supabaseUrl, supabaseKey);
+          const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+          const client = createClient(supabaseUrl, serviceRoleKey || supabaseKey);
           
           const { data, error } = await client
             .from('hero_carousel')
@@ -96,17 +98,11 @@ export default async function handler(req, res) {
         console.error('Database connection error:', dbError);
       }
       
-      // 如果无法获取现有数据，尝试从文件读取
+      // 强制从数据库拉取，不使用本地缓存
       try {
         if (fs.existsSync(heroFile)) {
-          console.log('Reading from ultimate hero file:', heroFile);
-          const data = fs.readFileSync(heroFile, 'utf8');
-          const savedData = JSON.parse(data);
-          
-          if (savedData.slides && Array.isArray(savedData.slides) && savedData.slides.length === 3) {
-            console.log('Using saved ultimate hero data:', savedData);
-            return res.status(200).json(savedData);
-          }
+          console.log('Deleting local cache to force database refresh');
+          fs.unlinkSync(heroFile); // 删除本地缓存
         }
       } catch (fileError) {
         console.error('Error reading ultimate hero file:', fileError);
