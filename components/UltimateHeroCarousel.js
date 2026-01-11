@@ -153,8 +153,13 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
                   }}
                   onError={(e) => {
                     console.error('Image load error:', currentSlide.imageUrl, e);
-                    e.target.style.display = 'none';
-                    e.target.parentElement.style.background = 'linear-gradient(135deg, #87A96B20, #87A96B10)';
+                    // 使用备用的高清Unsplash图片
+                    const fallbackImages = [
+                      'https://images.unsplash.com/photo-1574158610182-6e2bae4e4d3b?w=1920&h=1080&fit=crop',
+                      'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=1920&h=1080&fit=crop',
+                      'https://images.unsplash.com/photo-1545241047-6083a3684587?w=1920&h=1080&fit=crop'
+                    ];
+                    e.target.src = fallbackImages[currentIndex % fallbackImages.length];
                   }}
                   onLoad={() => {
                     console.log('Image loaded successfully:', currentSlide.imageUrl);

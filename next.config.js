@@ -10,6 +10,8 @@ const nextConfig = {
       'rczfbgzghwiqpxihlexs.supabase.co',
       'supabase.co',
       'images.unsplash.com',
+      'images.pexels.com',
+      'googleusercontent.com',
       'localhost'
     ],
     formats: ['image/webp', 'image/avif'],
