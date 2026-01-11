@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { createSupabaseClient } from '../../lib/supabase'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
@@ -18,7 +19,7 @@ export default async function handler(req, res) {
       return res.status(405).json({ error: 'Method not allowed' });
     }
 
-    const supabase = createClient(supabaseUrl, supabaseKey);
+    const supabase = createSupabaseClient();
 
     // 获取氛围图
     const { data, error } = await supabase
