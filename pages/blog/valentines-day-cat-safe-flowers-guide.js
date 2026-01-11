@@ -8,7 +8,7 @@ import { ASPCAReference, ASPCABadge } from '../../components/ASPCAReference'
 export default function ValentinesDayCatSafeFlowersGuide() {
   const [safeFlowers, setSafeFlowers] = useState([])
   const [atmosphereImages, setAtmosphereImages] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
 
   // Color palette
   const sageGreen = '#87A96B'
@@ -111,8 +111,8 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                 border: `3px solid #fff`
               }}>
                 <OptimizedImage
-                  src="https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format"
-                  alt="Real life kitten proposal Brianna and Rigo orange tabby cat"
+                  src={post.mainImage || 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format'}
+                  alt="A heartwarming proposal scene with a cat and pet-safe bouquet"
                   width={600}
                   height={400}
                   style={{
@@ -120,6 +120,8 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                     height: '100%',
                     objectFit: 'cover'
                   }}
+                  onLoad={() => console.log('Blog image loaded successfully:', post.mainImage)}
+                  onError={(e) => console.error('Blog image load error:', e)}
                 />
                 <div style={{
                   position: 'absolute',
@@ -497,7 +499,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                           <div style={{ width: '80px', height: '80px' }}>
                             <OptimizedImage
                               src={flower.file_path}
-                              alt={flower.display_name}
+                              alt={`Professional guide to pet-friendly Valentine's Day flowers including ${flower.display_name.toLowerCase()}`}
                               width={80}
                               height={80}
                               style={{

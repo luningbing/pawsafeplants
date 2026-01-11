@@ -120,7 +120,8 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                     height: '100%',
                     objectFit: 'cover'
                   }}
-                />
+                  onLoad={() => console.log('Blog image loaded successfully:', 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format')}
+                  onError={(e) => console.error('Blog image load error:', e)}
                 <div style={{
                   position: 'absolute',
                   bottom: '0',
