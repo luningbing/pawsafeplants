@@ -156,6 +156,7 @@ export default function App({ Component, pageProps }) {
               </div>
             )}
           </div>
+          <Link href="/blog" className="nav-item">Blog 📝</Link>
           <Link href="/items" className="nav-item">More Products 🎀</Link>
         </nav>
       </header>

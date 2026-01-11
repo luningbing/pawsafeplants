@@ -17,13 +17,13 @@ export default async function handler(req, res) {
     
     if (req.method === 'GET') {
       console.log('Reading ultimate hero carousel data');
-      console.log('Supabase URL:', process.env.SUPABASE_URL);
-      console.log('Supabase Key exists:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
+      console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+      console.log('Supabase Key exists:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
       
       // 直接从Supabase数据库读取你的配置
       try {
-        const supabaseUrl = process.env.SUPABASE_URL || '';
-        const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || '';
+        const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+        const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
         
         if (supabaseUrl && supabaseKey) {
           console.log('Reading from Supabase database');
