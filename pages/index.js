@@ -182,17 +182,17 @@ export default function Home({ plants, site }) {
           setAtmosphereImages([
             {
               url: 'https://images.unsplash.com/photo-1514888074191-9c2e2c8bf77?w=400&h=400&fit=crop',
-              title: '慵懒的猫咪',
+              title: 'Cozy Cat Corner',
               createdAt: new Date().toISOString()
             },
             {
               url: 'https://images.unsplash.com/photo-1574158610182-6e2bae4e9d3?w=400&h=400&fit=crop',
-              title: '窗边的小猫',
+              title: 'Window Cat',
               createdAt: new Date().toISOString()
             },
             {
               url: 'https://images.unsplash.com/photo-1596854406854-1c2f7b2b2a9?w=400&h=400&fit=crop',
-              title: '花丛中的猫咪',
+              title: 'Cat in Garden',
               createdAt: new Date().toISOString()
             }
           ]);
@@ -203,17 +203,17 @@ export default function Home({ plants, site }) {
         setAtmosphereImages([
           {
             url: 'https://images.unsplash.com/photo-1514888074191-9c2e2c8bf77?w=400&h=400&fit=crop',
-            title: '慵懒的猫咪',
+            title: 'Cozy Cat Corner',
             createdAt: new Date().toISOString()
           },
           {
             url: 'https://images.unsplash.com/photo-1574158610182-6e2bae4e9d3?w=400&h=400&fit=crop',
-            title: '窗边的小猫',
+            title: 'Window Cat',
             createdAt: new Date().toISOString()
           },
           {
             url: 'https://images.unsplash.com/photo-1596854406854-1c2f7b2b2a9?w=400&h=400&fit=crop',
-            title: '花丛中的猫咪',
+            title: 'Cat in Garden',
             createdAt: new Date().toISOString()
           }
         ]);
