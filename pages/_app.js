@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import Link from 'next/link';
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
 
 export default function App({ Component, pageProps }) {
@@ -89,7 +90,15 @@ export default function App({ Component, pageProps }) {
     setOpenMenu(prev => ({ ...prev, [key]: !prev[key] }))
   }
   return (
-    <div>
+    <div className="app-container">
+      <Head>
+        <title>PawSafePlants - Cat-Safe Plants Guide</title>
+        <meta name="description" content="Complete guide to cat-safe plants. Keep your feline friends safe with our comprehensive plant toxicity database." />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/icon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <header className="header">
         <div className="header-inner">
           {siteLogo ? (

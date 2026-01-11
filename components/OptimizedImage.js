@@ -8,6 +8,7 @@ function OptimizedImage({
   width, 
   height, 
   priority = false,
+  loading = 'lazy',
   className = '',
   style = {},
   sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw',
@@ -15,6 +16,9 @@ function OptimizedImage({
 }) {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
+
+  // 自动设置加载策略：priority=true时使用eager，否则使用lazy
+  const loadingStrategy = priority ? 'eager' : loading
 
   // 生成 blurDataURL (简单的占位符)
   const generateBlurDataURL = (width, height) => {
@@ -60,6 +64,7 @@ function OptimizedImage({
         width={width || 400}
         height={height || 300}
         priority={priority}
+        loading={loadingStrategy}
         sizes={sizes}
         placeholder="blur"
         blurDataURL={blurDataURL}

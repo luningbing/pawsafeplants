@@ -421,7 +421,7 @@ export default function PlantPage({ plant }) {
         background: warmCream,
         minHeight: '100vh',
         padding: '20px 0 40px 0'
-      }}>
+      }} className="plant-detail-container">
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 20px' }}>
           {/* Back Link */}
           <Link 
@@ -436,6 +436,7 @@ export default function PlantPage({ plant }) {
               fontWeight: 500,
               fontSize: '15px'
             }}
+            className="back-link"
           >
             ← Back to all plants
           </Link>
@@ -448,7 +449,7 @@ export default function PlantPage({ plant }) {
             marginBottom: '32px',
             boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
             border: `2px solid ${warmCreamDark}`
-          }}>
+          }} className="plant-detail-header">
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 400px', gap: '40px', alignItems: 'start' }}>
               {/* Left: Plant Info */}
               <div>
@@ -458,7 +459,7 @@ export default function PlantPage({ plant }) {
                   color: sageGreenDark,
                   marginBottom: '12px',
                   lineHeight: 1.2
-                }}>
+                }} className="plant-title">
                   {plant.title}
                 </h1>
                 <p style={{
@@ -466,7 +467,7 @@ export default function PlantPage({ plant }) {
                   color: '#666',
                   marginBottom: '24px',
                   lineHeight: 1.6
-                }}>
+                }} className="plant-scientific-name">
                   {plant.scientific_name && (
                     <span style={{ fontStyle: 'italic', color: '#888' }}>
                       {plant.scientific_name}
@@ -487,7 +488,7 @@ export default function PlantPage({ plant }) {
                   fontWeight: 600,
                   fontSize: '16px',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-                }}>
+                }} className="toxicity-badge">
                   <span style={{ fontSize: '20px', marginRight: '8px' }}>{toxicity.icon}</span>
                   {toxicity.label}
                 </div>
@@ -498,7 +499,7 @@ export default function PlantPage({ plant }) {
                   lineHeight: 1.7,
                   color: '#333',
                   marginBottom: '32px'
-                }}>
+                }} className="content-text">
                   {plant.summary}
                 </div>
 
@@ -508,13 +509,13 @@ export default function PlantPage({ plant }) {
                   borderRadius: borderRadiusSmall,
                   padding: '24px',
                   marginBottom: '32px'
-                }}>
+                }} className="care-guide">
                   <h3 style={{
                     fontSize: '20px',
                     fontWeight: 600,
                     color: sageGreenDark,
                     marginBottom: '16px'
-                  }}>
+                  }} className="section-title">
                     🌿 Quick Care Guide
                   </h3>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
@@ -541,6 +542,7 @@ export default function PlantPage({ plant }) {
                     borderRadius: borderRadiusSmall,
                     boxShadow: '0 8px 24px rgba(0,0,0,0.15)'
                   }}
+                  className="plant-image"
                 />
               </div>
             </div>
@@ -828,3 +830,136 @@ export async function getStaticPaths() {
   }));
   return { paths, fallback: false };
 }
+
+const responsiveStyles = `
+  @media (max-width: 768px) {
+    .plant-detail-container {
+      padding: 10px 0 20px 0 !important;
+    }
+    
+    .plant-detail-header {
+      grid-template-columns: 1fr !important;
+      gap: 24px !important;
+      padding: 24px !important;
+    }
+    
+    .plant-title {
+      font-size: 32px !important;
+      margin-bottom: 8px !important;
+    }
+    
+    .plant-scientific-name {
+      font-size: 16px !important;
+      margin-bottom: 16px !important;
+    }
+    
+    .plant-image {
+      height: 200px !important;
+    }
+    
+    .care-guide {
+      grid-template-columns: 1fr !important;
+      gap: 12px !important;
+      padding: 16px !important;
+    }
+    
+    .content-section {
+      padding: 24px !important;
+      margin-bottom: 20px !important;
+    }
+    
+    .section-title {
+      font-size: 24px !important;
+      margin-bottom: 16px !important;
+    }
+    
+    .content-text {
+      font-size: 15px !important;
+      line-height: 1.6 !important;
+    }
+    
+    .comments-section {
+      padding: 24px !important;
+    }
+    
+    .comments-title {
+      font-size: 20px !important;
+    }
+    
+    .back-link {
+      font-size: 14px !important;
+      margin-bottom: 16px !important;
+    }
+    
+    .toxicity-badge {
+      font-size: 14px !important;
+      padding: 8px 16px !important;
+      margin-bottom: 20px !important;
+    }
+    
+    .pet-moments-grid {
+      grid-template-columns: 1fr !important;
+      gap: 16px !important;
+    }
+    
+    .pet-moment-image {
+      height: 180px !important;
+    }
+    
+    .pet-moment-modal {
+      width: 90% !important;
+      max-width: 400px !important;
+    }
+    
+    .pet-moment-modal-image {
+      height: 250px !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .plant-detail-header {
+      padding: 16px !important;
+    }
+    
+    .plant-title {
+      font-size: 28px !important;
+    }
+    
+    .plant-image {
+      height: 150px !important;
+    }
+    
+    .care-guide {
+      padding: 12px !important;
+    }
+    
+    .content-section {
+      padding: 16px !important;
+    }
+    
+    .section-title {
+      font-size: 20px !important;
+    }
+    
+    .content-text {
+      font-size: 14px !important;
+    }
+    
+    .comments-section {
+      padding: 16px !important;
+    }
+    
+    .pet-moment-image {
+      height: 150px !important;
+    }
+    
+    .pet-moment-modal {
+      width: 95% !important;
+      max-width: 350px !important;
+    }
+    
+    .pet-moment-modal-image {
+      height: 200px !important;
+    }
+  }
+`;
