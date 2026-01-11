@@ -161,7 +161,7 @@ export default function App({ Component, pageProps }) {
           </div>
           <Link href="/blog/valentines-day-cat-safe-flowers-guide" className="nav-item">Latest Stories 💕</Link>
           <Link href="/cat-safe-flowers" className="nav-item">Safe Bouquets 🌸</Link>
-          <Link href="/blog" className="nav-item">Blog 📝</Link>
+          <Link href="/blog/valentines-day-cat-safe-flowers-guide" className="nav-item">Blog 📝</Link>
           <Link href="/items" className="nav-item">More Products 🎀</Link>
         </nav>
       </header>

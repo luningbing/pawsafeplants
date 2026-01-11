@@ -211,10 +211,14 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
               position: 'absolute',
               bottom: '15%',
               left: '8%',
-              right: '8%',
+              right: '40%', // 改为左对齐，右侧留空
               zIndex: 10,
               color: 'white',
-              textShadow: '2px 2px 4px rgba(0,0,0,0.8)'
+              textAlign: 'left', // 强制左对齐
+              background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 70%, transparent 100%)', // 半透明渐变底色
+              padding: '40px 30px',
+              borderRadius: '20px',
+              backdropFilter: 'blur(10px)'
             }}
           >
             <motion.h1

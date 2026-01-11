@@ -55,7 +55,7 @@ function SafeImage({ src, alt, fallback, style, containerStyle, unsplashFallback
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps() {
   const plantsDir = path.join(process.cwd(), 'content/plants');
   let plants = [];
   try {
@@ -85,13 +85,14 @@ export async function getServerSideProps(context) {
     ];
   }
   let heroImage = '/images/hero-default.svg';
-  try {
-    const origin = (process.env.VERCEL_URL ? ('https://' + process.env.VERCEL_URL) : (`${context.req.headers['x-forwarded-proto'] || 'http'}://${context.req.headers.host}`))
-    const r = await fetch(origin + '/api/site-config')
-    const j = await r.json()
-    heroImage = String((j || {}).heroImage || heroImage)
-  } catch {}
-  return { props: { plants, site: { heroImage } } };
+  
+  return { 
+    props: { 
+      plants, 
+      site: { heroImage } 
+    },
+    revalidate: 10 // 10秒重新生成一次，启用ISR
+  };
 }
 
 export default function Home({ plants, site }) {
@@ -248,21 +249,27 @@ export default function Home({ plants, site }) {
   return (
     <PageTransition>
       <Head>
-        <title>PawSafePlants - Cat-Safe Plant Guide for Pet Owners</title>
+        <title>PawSafe Plants | Cat-Safe Flowers & Pet-Friendly Home Decor Guide</title>
         <meta 
           name="description" 
-          content="Discover which plants are safe for your cats. Comprehensive guide to cat-safe and toxic plants, with expert tips for creating a pet-friendly indoor garden." 
+          content="Protect your feline friends without sacrificing style. Discover vet-verified cat-safe flowers, toxic plant alerts, and heartwarming stories from our community. From Valentine's bouquets to indoor jungles, we make pet-parenting safer." 
         />
         <meta 
           name="keywords" 
-          content="cat safe plants, toxic plants for cats, pet friendly plants, indoor plants cats, houseplants safe for cats, cat plant guide" 
+          content="cat safe plants, toxic plants for cats, pet friendly plants, indoor plants cats, houseplants safe for cats, cat plant guide, cat safe flowers, valentine flowers for cats" 
         />
-        <meta property="og:title" content="PawSafePlants - Cat-Safe Plant Guide for Pet Owners" />
+        <meta property="og:title" content="PawSafe Plants | Cat-Safe Flowers & Pet-Friendly Home Decor Guide" />
         <meta 
           property="og:description" 
-          content="Comprehensive guide to cat-safe and toxic plants. Keep your furry friends safe while enjoying beautiful indoor plants." 
+          content="Protect your feline friends without sacrificing style. Discover vet-verified cat-safe flowers, toxic plant alerts, and heartwarming stories from our community." 
         />
         <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.pawsafeplants.com/images/hero-default.svg" />
+        <meta property="og:url" content="https://www.pawsafeplants.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="PawSafe Plants | Cat-Safe Flowers & Pet-Friendly Home Decor Guide" />
+        <meta name="twitter:description" content="Protect your feline friends without sacrificing style. Discover vet-verified cat-safe flowers, toxic plant alerts, and heartwarming stories from our community." />
+        <meta name="twitter:image" content="https://www.pawsafeplants.com/images/hero-default.svg" />
         <link rel="canonical" href="https://www.pawsafeplants.com" />
       </Head>
 
@@ -282,12 +289,13 @@ export default function Home({ plants, site }) {
           <UltimateHeroCarousel slides={heroSlides} />
         </section>
 
-        {/* Global Search Section */}
+        {/* Global Search Section - Floating */}
         <section style={{
           maxWidth: '1200px',
-          margin: '0 auto 48px auto',
+          margin: '-60px auto 48px auto', // 向上偏移，悬浮在轮播图上
           padding: '0 20px',
-          position: 'relative'
+          position: 'relative',
+          zIndex: 20
         }}>
           <FadeIn delay={0.2}>
             <div style={{
@@ -302,22 +310,24 @@ export default function Home({ plants, site }) {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
                   width: '100%',
-                  padding: '18px 24px',
-                  fontSize: '16px',
-                  borderRadius: borderRadius,
-                  border: `2px solid ${warmCreamDark}`,
-                  background: '#fff',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
+                  padding: '20px 28px',
+                  fontSize: '18px',
+                  fontFamily: "'Inter', sans-serif",
+                  borderRadius: '16px',
+                  border: 'none',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1)',
                   outline: 'none',
-                  transition: 'all 0.3s ease'
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  backdropFilter: 'blur(20px)'
                 }}
                 onFocus={(e) => {
-                  e.currentTarget.style.borderColor = sageGreen;
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(135, 169, 107, 0.2)';
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)';
                 }}
                 onBlur={(e) => {
-                  e.currentTarget.style.borderColor = warmCreamDark;
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.08)';
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1)';
                 }}
               />
               
@@ -662,6 +672,99 @@ export default function Home({ plants, site }) {
               </ListItemAnimation>
             ))}
           </div>
+        </section>
+
+        {/* Social Proof - Brianna's Story */}
+        <section style={{
+          maxWidth: '1200px',
+          margin: '0 auto 64px auto',
+          padding: '0 20px'
+        }}>
+          <FadeIn delay={0.8}>
+            <blockquote style={{
+              background: 'linear-gradient(135deg, #3A5A4010, #DAD7CD30)',
+              border: '2px solid #3A5A4030',
+              borderRadius: '20px',
+              padding: '40px',
+              position: 'relative',
+              textAlign: 'center',
+              fontFamily: "'Playfair Display', serif"
+            }}>
+              <div style={{
+                position: 'absolute',
+                top: '-20px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '80px',
+                height: '80px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                border: '4px solid #fff',
+                boxShadow: '0 8px 24px rgba(58, 90, 64, 0.2)'
+              }}>
+                <img
+                  src="https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=160&h=160&fit=crop&crop=face"
+                  alt="Brianna and Rigo's proposal with their dream kitten"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </div>
+              
+              <div style={{
+                fontSize: '32px',
+                fontWeight: 700,
+                color: '#3A5A40',
+                marginBottom: '20px',
+                lineHeight: 1.3,
+                fontStyle: 'italic'
+              }}>
+                {'"Because every celebration should be safe for them."'}
+              </div>
+              
+              <div style={{
+                fontSize: '18px',
+                color: '#5A5A5A',
+                marginBottom: '24px',
+                fontFamily: "'Inter', sans-serif",
+                lineHeight: 1.6
+              }}>
+                From Valentine's proposals to everyday moments, we help you celebrate without compromising your feline friend's safety.
+              </div>
+              
+              <Link
+                href="/blog/valentines-day-cat-safe-flowers-guide"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '12px 24px',
+                  background: '#3A5A40',
+                  color: '#fff',
+                  textDecoration: 'none',
+                  borderRadius: '12px',
+                  fontWeight: 600,
+                  fontSize: '16px',
+                  fontFamily: "'Inter', sans-serif",
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 4px 12px rgba(58, 90, 64, 0.3)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(58, 90, 64, 0.4)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(58, 90, 64, 0.3)';
+                }}
+              >
+                Read Their Story
+                <span style={{ fontSize: '18px' }}>→</span>
+              </Link>
+            </blockquote>
+          </FadeIn>
         </section>
 
         {/* Footer */}
