@@ -145,6 +145,7 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
                   alt={`Hero slide ${currentIndex + 1}`}
                   fill
                   priority={currentIndex === 0}
+                  className="hero-pulse"
                   style={{
                     objectFit: 'cover',
                     objectPosition: 'center',
@@ -224,7 +225,9 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
                 fontSize: 'clamp(2rem, 5vw, 4rem)',
                 fontWeight: '700',
                 margin: '0 0 1rem 0',
-                lineHeight: '1.1'
+                lineHeight: '1.1',
+                fontFamily: "'Playfair Display', serif",
+                textShadow: '0 2px 10px rgba(0,0,0,0.5)'
               }}
             >
               {currentSlide.title}
@@ -238,7 +241,9 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
                 fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
                 margin: '0 0 2rem 0',
                 lineHeight: '1.4',
-                maxWidth: '600px'
+                maxWidth: '600px',
+                fontFamily: "'Inter', sans-serif",
+                textShadow: '0 1px 4px rgba(0,0,0,0.4)'
               }}
             >
               {currentSlide.subtitle}

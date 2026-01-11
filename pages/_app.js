@@ -98,6 +98,9 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="apple-touch-icon" href="/icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
       <header className="header">
         <div className="header-inner">
@@ -156,6 +159,8 @@ export default function App({ Component, pageProps }) {
               </div>
             )}
           </div>
+          <Link href="/blog/valentines-day-cat-safe-flowers-guide" className="nav-item">Latest Stories 💕</Link>
+          <Link href="/cat-safe-flowers" className="nav-item">Safe Bouquets 🌸</Link>
           <Link href="/blog" className="nav-item">Blog 📝</Link>
           <Link href="/items" className="nav-item">More Products 🎀</Link>
         </nav>

@@ -55,13 +55,51 @@ function SafeImage({ src, alt, fallback, style, containerStyle, unsplashFallback
   );
 }
 
+export async function getServerSideProps(context) {
+  const plantsDir = path.join(process.cwd(), 'content/plants');
+  let plants = [];
+  try {
+    const filenames = fs.readdirSync(plantsDir).filter((f) => f.endsWith('.md'));
+    plants = filenames.map(filename => {
+      const slug = filename.replace(/\.md$/, '');
+      const fullPath = path.join(plantsDir, filename);
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data } = matter(fileContents);
+      return { slug, ...data };
+    });
+  } catch {}
+  if (!plants.length) {
+    plants = [
+      {
+        slug: 'lily',
+        title: 'Lily',
+        toxicity_level: 'DANGER – Highly toxic to cats',
+        summary: 'Even small ingestions can cause acute kidney failure in cats.'
+      },
+      {
+        slug: 'rose',
+        title: 'Rose',
+        toxicity_level: 'Safe – generally non-toxic',
+        summary: 'Thorns can cause injury but the plant is generally non-toxic.'
+      }
+    ];
+  }
+  let heroImage = '/images/hero-default.svg';
+  try {
+    const origin = (process.env.VERCEL_URL ? ('https://' + process.env.VERCEL_URL) : (`${context.req.headers['x-forwarded-proto'] || 'http'}://${context.req.headers.host}`))
+    const r = await fetch(origin + '/api/site-config')
+    const j = await r.json()
+    heroImage = String((j || {}).heroImage || heroImage)
+  } catch {}
+  return { props: { plants, site: { heroImage } } };
+}
+
 export default function Home({ plants, site }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [heroSlides, setHeroSlides] = useState([]);
   const [atmosphereImages, setAtmosphereImages] = useState([]);
-  const [catSafeFlowers, setCatSafeFlowers] = useState([]);
   const unsplashPlaceholder = 'https://images.unsplash.com/photo-1545241047-6083a3684587';
 
   // Color palette
@@ -69,8 +107,6 @@ export default function Home({ plants, site }) {
   const sageGreenDark = '#6B8553';
   const warmCream = '#FAF7F2';
   const warmCreamDark = '#F5F1E8';
-  const valentineRed = '#e91e63';
-  const valentinePink = '#f8bbd9';
   const terracotta = '#C17A5F';
   const borderRadius = '24px';
   const borderRadiusLarge = '32px';
@@ -183,63 +219,6 @@ export default function Home({ plants, site }) {
       }
     };
     loadAtmosphereImages();
-  }, []);
-
-  // Load cat-safe flowers data
-  useEffect(() => {
-    const loadCatSafeFlowers = async () => {
-      try {
-        console.log('Loading cat-safe flowers...');
-        const res = await fetch('/api/cat-safe-flowers');
-        const data = await res.json();
-        console.log('Cat-safe flowers response:', data);
-        if (data.success && data.flowers) {
-          console.log('Setting cat-safe flowers:', data.flowers);
-          setCatSafeFlowers(data.flowers);
-        } else {
-          console.log('No cat-safe flowers found, using defaults');
-          // 设置默认花朵数据
-          setCatSafeFlowers([
-            {
-              id: 1,
-              name: 'Rose',
-              image: 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=400&h=400&fit=crop',
-              category: 'flower',
-              is_flower: true,
-              toxicity_level: 'Safe – generally non-toxic to cats',
-              summary: 'Classic roses are safe for cats. Perfect for romantic cat-safe bouquets.',
-              scenarios: ['bouquets', 'gift', 'weddings', 'valentines']
-            },
-            {
-              id: 2,
-              name: 'Sunflower',
-              image: 'https://images.unsplash.com/photo-1506805945078-4b0c4d8d71b6?w=400&h=400&fit=crop',
-              category: 'flower',
-              is_flower: true,
-              toxicity_level: 'Safe – generally non-toxic to cats',
-              summary: 'Bright sunflowers are completely safe for cats. Great for sunny arrangements.',
-              scenarios: ['bouquets', 'gift', 'summer', 'birthdays']
-            }
-          ]);
-        }
-      } catch (error) {
-        console.error('Failed to load cat-safe flowers:', error);
-        // 设置默认花朵数据作为后备
-        setCatSafeFlowers([
-          {
-            id: 1,
-            name: 'Rose',
-            image: 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=400&h=400&fit=crop',
-            category: 'flower',
-            is_flower: true,
-            toxicity_level: 'Safe – generally non-toxic to cats',
-            summary: 'Classic roses are safe for cats. Perfect for romantic cat-safe bouquets.',
-            scenarios: ['bouquets', 'gift', 'weddings', 'valentines']
-          }
-        ]);
-      }
-    };
-    loadCatSafeFlowers();
   }, []);
 
   useEffect(() => {
@@ -580,242 +559,6 @@ export default function Home({ plants, site }) {
           </div>
         </section>
 
-        {/* Cat-Safe Flowers - Featured Section */}
-        <section style={{
-          maxWidth: '1200px',
-          margin: '0 auto 64px auto',
-          padding: '0 20px'
-        }}>
-          <FadeIn delay={0.55}>
-            <div style={{
-              background: 'linear-gradient(135deg, #87A96B15, #87A96B05)',
-              borderRadius: borderRadiusLarge,
-              padding: '48px',
-              border: `2px solid ${sageGreen}20`,
-              textAlign: 'center',
-              marginBottom: '40px'
-            }}>
-              <h2 style={{
-                fontSize: '42px',
-                fontWeight: 700,
-                color: sageGreenDark,
-                marginBottom: '16px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '12px'
-              }}>
-                🌸 Cat-Safe Flowers
-              </h2>
-              <p style={{
-                fontSize: '18px',
-                color: '#5A5A5A',
-                maxWidth: '600px',
-                margin: '0 auto 24px auto',
-                lineHeight: 1.6
-              }}>
-                Discover beautiful flowers that are completely safe for your cats. Perfect for bouquets, gifts, and arrangements that won't harm your feline friends.
-              </p>
-              <Link
-                href="/cat-safe-flowers"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '14px 28px',
-                  background: sageGreen,
-                  color: '#fff',
-                  textDecoration: 'none',
-                  borderRadius: borderRadius,
-                  fontWeight: 600,
-                  fontSize: '16px',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 4px 16px rgba(135, 169, 107, 0.3)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = sageGreenDark;
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(135, 169, 107, 0.4)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = sageGreen;
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(135, 169, 107, 0.3)';
-                }}
-              >
-                Explore All Flowers
-                <span style={{ fontSize: '18px' }}>→</span>
-              </Link>
-            </div>
-          </FadeIn>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '24px'
-          }}>
-            {catSafeFlowers.slice(0, 6).map((flower, index) => (
-              <ListItemAnimation key={flower.id} index={index}>
-                <div
-                  style={{
-                    background: '#fff',
-                    borderRadius: borderRadius,
-                    overflow: 'hidden',
-                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-                    transition: 'all 0.3s ease',
-                    border: `2px solid ${warmCreamDark}`,
-                    position: 'relative'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-8px)';
-                    e.currentTarget.style.boxShadow = '0 12px 32px rgba(135, 169, 107, 0.15)';
-                    e.currentTarget.style.borderColor = sageGreen + '40';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.08)';
-                    e.currentTarget.style.borderColor = warmCreamDark;
-                  }}
-                >
-                  {/* Flower Badge */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '12px',
-                    right: '12px',
-                    background: sageGreen,
-                    color: '#fff',
-                    padding: '6px 12px',
-                    borderRadius: '20px',
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    zIndex: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px'
-                  }}>
-                    🌸 Cat Safe
-                  </div>
-                  
-                  {/* Flower Image */}
-                  <div style={{ height: '220px', overflow: 'hidden', background: warmCreamDark }}>
-                    <SafeImage
-                      src={flower.image}
-                      alt={`${flower.name} - Cat Safe Flower`}
-                      unsplashFallback={unsplashPlaceholder}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover'
-                      }}
-                      containerStyle={{
-                        width: '100%',
-                        height: '100%'
-                      }}
-                    />
-                  </div>
-                  
-                  {/* Flower Info */}
-                  <div style={{ padding: '24px' }}>
-                    <h3 style={{
-                      fontSize: '20px',
-                      fontWeight: 700,
-                      color: sageGreenDark,
-                      marginBottom: '8px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px'
-                    }}>
-                      {flower.name}
-                      <span style={{
-                        fontSize: '14px',
-                        color: '#87A96B',
-                        background: '#87A96B15',
-                        padding: '2px 8px',
-                        borderRadius: '12px'
-                      }}>
-                        Safe
-                      </span>
-                    </h3>
-                    
-                    <p style={{
-                      fontSize: '14px',
-                      color: '#5A5A5A',
-                      lineHeight: 1.5,
-                      marginBottom: '16px',
-                      minHeight: '48px'
-                    }}>
-                      {flower.summary}
-                    </p>
-                    
-                    {/* Scenarios Tags */}
-                    {flower.scenarios && flower.scenarios.length > 0 && (
-                      <div style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: '6px',
-                        marginBottom: '16px'
-                      }}>
-                        {flower.scenarios.slice(0, 3).map((scenario, idx) => (
-                          <span
-                            key={idx}
-                            style={{
-                              fontSize: '11px',
-                              color: '#666',
-                              background: '#f5f5f5',
-                              padding: '4px 8px',
-                              borderRadius: '8px',
-                              textTransform: 'capitalize'
-                            }}
-                          >
-                            {scenario}
-                          </span>
-                        ))}
-                        {flower.scenarios.length > 3 && (
-                          <span style={{
-                            fontSize: '11px',
-                            color: '#999',
-                            padding: '4px 8px'
-                          }}>
-                            +{flower.scenarios.length - 3} more
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    
-                    <Link
-                      href={`/plants/${flower.name.toLowerCase().replace(/\s+/g, '-')}`}
-                      style={{
-                        display: 'inline-block',
-                        padding: '10px 20px',
-                        background: 'transparent',
-                        color: sageGreen,
-                        textDecoration: 'none',
-                        borderRadius: borderRadius,
-                        fontWeight: 600,
-                        fontSize: '14px',
-                        transition: 'all 0.3s ease',
-                        border: `2px solid ${sageGreen}`,
-                        textAlign: 'center',
-                        width: '100%'
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.background = sageGreen;
-                        e.currentTarget.style.color = '#fff';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.background = 'transparent';
-                        e.currentTarget.style.color = sageGreen;
-                      }}
-                    >
-                      View Details
-                    </Link>
-                  </div>
-                </div>
-              </ListItemAnimation>
-            ))}
-          </div>
-        </section>
-
         {/* Community Stories - 3 Column Grid */}
         <section style={{
           maxWidth: '1200px',
@@ -921,121 +664,6 @@ export default function Home({ plants, site }) {
           </div>
         </section>
 
-        {/* Latest Stories - Valentine's Blog */}
-        <section style={{
-          maxWidth: '1200px',
-          margin: '0 auto 48px auto',
-          padding: '0 20px'
-        }}>
-          <FadeIn>
-            <h2 style={{
-              fontSize: '32px',
-              fontWeight: 700,
-              color: valentineRed,
-              marginBottom: '32px',
-              textAlign: 'center'
-            }}>
-              💕 Latest Stories
-            </h2>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr',
-              gap: '32px',
-              maxWidth: '800px',
-              margin: '0 auto'
-            }}>
-              <div style={{
-                background: '#fff',
-                borderRadius: borderRadius,
-                padding: '32px',
-                boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08)',
-                border: `2px solid ${warmCreamDark}`,
-                textAlign: 'center'
-              }}>
-                <div style={{
-                  width: '100%',
-                  height: '200px',
-                  marginBottom: '24px',
-                  borderRadius: borderRadius,
-                  overflow: 'hidden',
-                  position: 'relative'
-                }}>
-                  <OptimizedImage
-                    src="https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format"
-                    alt="Brianna and Rigo's viral proposal featuring their dream kitten"
-                    width={600}
-                    height={400}
-                    priority={true}
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover'
-                    }}
-                  />
-                  <div style={{
-                    position: 'absolute',
-                    bottom: '0',
-                    left: '0',
-                    right: '0',
-                    background: 'rgba(0, 0, 0, 0.7)',
-                    color: '#fff',
-                    padding: '12px',
-                    fontSize: '14px',
-                    textAlign: 'center',
-                    fontStyle: 'italic'
-                  }}>
-                    Brianna and Rigo's viral proposal featuring their dream kitten
-                  </div>
-                </div>
-                <h3 style={{
-                  fontSize: '24px',
-                  fontWeight: 600,
-                  color: sageGreenDark,
-                  marginBottom: '16px'
-                }}>
-                  💕 The Story of Brianna & Rigo
-                </h3>
-                <p style={{
-                  fontSize: '16px',
-                  color: '#666',
-                  lineHeight: 1.6,
-                  marginBottom: '24px'
-                }}>
-                  A heartwarming tale of love, proposals, and a little orange kitten who became the most important marriage witness. 
-                  Discover how Brianna and Rigo's viral proposal story is changing the way we think about romance and pet safety.
-                </p>
-                <Link
-                  href="/blog/valentines-day-cat-safe-flowers-guide"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    padding: '12px 24px',
-                    background: valentineRed,
-                    color: '#fff',
-                    textDecoration: 'none',
-                    borderRadius: borderRadius,
-                    fontWeight: 600,
-                    fontSize: '16px',
-                    transition: 'all 0.3s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)'
-                    e.currentTarget.style.boxShadow = '0 6px 16px rgba(233, 30, 99, 0.3)'
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)'
-                    e.currentTarget.style.boxShadow = '0 4px 12px rgba(233, 30, 99, 0.2)'
-                  }}
-                >
-                  Read Full Story
-                  <span style={{ fontSize: '18px' }}>→</span>
-                </Link>
-              </div>
-            </div>
-          </FadeIn>
-        </section>
-
         {/* Footer */}
         <footer style={{
           background: '#fff',
@@ -1090,44 +718,4 @@ export default function Home({ plants, site }) {
       `}</style>
     </PageTransition>
   );
-}
-
-export async function getStaticProps() {
-  try {
-    // 读取植物数据
-    const plantsDirectory = path.join(process.cwd(), 'content', 'plants');
-    const filenames = fs.readdirSync(plantsDirectory);
-    
-    const plants = filenames
-      .filter(filename => filename.endsWith('.md'))
-      .map(filename => {
-        const filePath = path.join(plantsDirectory, filename);
-        const fileContents = fs.readFileSync(filePath, 'utf8');
-        const matterResult = matter(fileContents);
-        
-        return {
-          slug: filename.replace('.md', ''),
-          title: matterResult.data.title || '',
-          scientific_name: matterResult.data.scientific_name || '',
-          summary: matterResult.data.summary || '',
-          toxicity_level: matterResult.data.toxicity_level || '',
-          image: matterResult.data.image || ''
-        };
-      });
-
-    return {
-      props: {
-        plants,
-      },
-      revalidate: 10, // 10秒重新生成一次
-    };
-  } catch (error) {
-    console.error('Error in getStaticProps:', error);
-    return {
-      props: {
-        plants: [],
-      },
-      revalidate: 10,
-    };
-  }
 }

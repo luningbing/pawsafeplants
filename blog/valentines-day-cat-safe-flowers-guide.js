@@ -808,3 +808,10 @@ export default function ValentinesDayCatSafeFlowersGuide() {
     </PageTransition>
   )
 }
+
+export async function getStaticProps() {
+  return {
+    props: {},
+    revalidate: 10, // 10秒重新生成一次
+  }
+}
