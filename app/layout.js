@@ -64,7 +64,24 @@ export default function RootLayout({
     <html lang="zh-CN">
       <head>
         <link rel="canonical" href="https://www.pawsafeplants.com" />
+        
+        {/* Hreflang tags for international SEO */}
+        <link rel="alternate" hreflang="en" href="https://www.pawsafeplants.com/en" />
         <link rel="alternate" hreflang="zh-CN" href="https://www.pawsafeplants.com" />
+        <link rel="alternate" hreflang="zh" href="https://www.pawsafeplants.com/zh" />
+        <link rel="alternate" hreflang="ja" href="https://www.pawsafeplants.com/ja" />
+        <link rel="alternate" hreflang="x-default" href="https://www.pawsafeplants.com" />
+        
+        {/* Domain-specific alternates for future subdomain strategy */}
+        <link rel="alternate" hreflang="en" href="https://www.pawsafeplants.com" />
+        <link rel="alternate" hreflang="zh-CN" href="https://zh.pawsafeplants.com" />
+        <link rel="alternate" hreflang="ja" href="https://ja.pawsafeplants.com" />
+        
+        {/* Flower-specific hreflang for cat-safe-flowers pages */}
+        <link rel="alternate" hreflang="en" href="https://www.pawsafeplants.com/cat-safe-flowers" />
+        <link rel="alternate" hreflang="zh-CN" href="https://www.pawsafeplants.com/cat-safe-flowers" />
+        <link rel="alternate" hreflang="ja" href="https://www.pawsafeplants.com/cat-safe-flowers" />
+        
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

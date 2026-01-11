@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import AtmosphereImageManager from '../../components/AtmosphereImageManager';
+// import AtmosphereImageManager from '../../components/AtmosphereImageManager';
 
 export default function Admin() {
   const router = useRouter();
