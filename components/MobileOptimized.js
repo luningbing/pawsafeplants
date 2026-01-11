@@ -200,7 +200,7 @@ function TouchButton({
             borderRadius: '50%',
             animation: 'spin 1s linear infinite'
           }} />
-          <span>加载中...</span>
+          <span>Loading...</span>
         </div>
       ) : (
         children

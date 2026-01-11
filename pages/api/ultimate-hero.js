@@ -51,14 +51,24 @@ export default async function handler(req, res) {
             
             if (heroData.slides && Array.isArray(heroData.slides) && heroData.slides.length >= 3) {
               console.log('Processing slides:', heroData.slides);
-              // 使用现有的前3张轮播图数据
+              // 确保第一张是布里亚娜求婚照
+              const briannaSlide = {
+                imageUrl: 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=1920&h=1080&fit=crop&auto=format',
+                title: 'A Proposal, A Kitten, and A Safe Bouquet',
+                subtitle: 'Real love story: Brianna, Rigo, and their dream kitten',
+                link: '/blog/valentines-day-cat-safe-flowers-guide'
+              };
+              
+              // 使用现有的后2张轮播图数据
+              const otherSlides = heroData.slides.slice(1, 3).map(slide => ({
+                imageUrl: slide.imageUrl,
+                title: slide.title,
+                subtitle: slide.subtitle,
+                link: slide.link || '/plants/safe'
+              }));
+              
               const ultimateData = {
-                slides: heroData.slides.slice(0, 3).map(slide => ({
-                  imageUrl: slide.imageUrl,
-                  title: slide.title,
-                  subtitle: slide.subtitle,
-                  link: slide.link || '/plants/safe'
-                })),
+                slides: [briannaSlide, ...otherSlides],
                 updatedAt: new Date().toISOString()
               };
               
@@ -102,26 +112,26 @@ export default async function handler(req, res) {
         console.error('Error reading ultimate hero file:', fileError);
       }
       
-      // 最后的默认数据 - 使用你现有的图片路径
+      // 最后的默认数据 - 使用硬编码的高清图片URL
       const defaultData = {
         slides: [
           {
-            imageUrl: '/uploads/20250530-190020.jpg',
+            imageUrl: 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=1920&h=1080&fit=crop&auto=format',
+            title: 'A Proposal, A Kitten, and A Safe Bouquet',
+            subtitle: 'Real love story: Brianna, Rigo, and their dream kitten',
+            link: '/blog/valentines-day-cat-safe-flowers-guide'
+          },
+          {
+            imageUrl: 'https://images.unsplash.com/photo-1574158610182-6e2bae4e4d3b?w=1920&h=1080&fit=crop&auto=format',
             title: 'Cat-Safe Plants for Your Home',
             subtitle: 'Create a beautiful, pet-friendly living space',
             link: '/plants/safe'
           },
           {
-            imageUrl: '/uploads/_247026d4-f09b-4307-9d55-65b40bd2813c.jpg',
+            imageUrl: 'https://images.unsplash.com/photo-1545241047-6083a3684587?w=1920&h=1080&fit=crop&auto=format',
             title: 'Toxic Plants to Avoid',
             subtitle: 'Protect your feline friends from harmful plants',
             link: '/plants/toxic'
-          },
-          {
-            imageUrl: '/uploads/7ae0aff1-4b60-4c05-aa34-fcd6a9ea3dd2_7930717a90c33c714f1ae8d742554593_ComfyUI_033fc57d_00001_.png',
-            title: 'Plant Care Guide',
-            subtitle: 'Learn how to care for your green companions',
-            link: '/plants/caution'
           }
         ],
         updatedAt: new Date().toISOString()

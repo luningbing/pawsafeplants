@@ -104,7 +104,7 @@ function AtmosphereParallax({ image, title, index, className = '' }) {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <div style={{ color: '#999', fontSize: '12px' }}>🌸 加载中...</div>
+            <div style={{ color: '#999', fontSize: '12px' }}>🌸 Loading...</div>
           </div>
         )}
         

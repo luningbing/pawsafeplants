@@ -289,10 +289,10 @@ export default function Home({ plants, site }) {
           <UltimateHeroCarousel slides={heroSlides} />
         </section>
 
-        {/* Global Search Section - Floating */}
+        {/* Global Search Section - Professional Plant Encyclopedia */}
         <section style={{
-          maxWidth: '1200px',
-          margin: '-60px auto 48px auto', // 向上偏移，悬浮在轮播图上
+          maxWidth: '1000px',
+          margin: '-40px auto 48px auto', // 向上偏移，悬浮在轮播图上
           padding: '0 20px',
           position: 'relative',
           zIndex: 20
@@ -300,36 +300,57 @@ export default function Home({ plants, site }) {
           <FadeIn delay={0.2}>
             <div style={{
               position: 'relative',
-              maxWidth: '700px',
+              maxWidth: '800px',
               margin: '0 auto'
             }}>
-              <input
-                type="text"
-                placeholder="Search by plant name..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: '100%',
-                  padding: '20px 28px',
-                  fontSize: '18px',
-                  fontFamily: "'Inter', sans-serif",
-                  borderRadius: '16px',
-                  border: 'none',
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1)',
-                  outline: 'none',
-                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  backdropFilter: 'blur(20px)'
-                }}
-                onFocus={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.2), 0 12px 24px rgba(0, 0, 0, 0.15)';
-                }}
-                onBlur={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 16px rgba(0, 0, 0, 0.1)';
-                }}
-              />
+              <div style={{
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+                background: 'rgba(255, 255, 255, 0.98)',
+                borderRadius: '24px',
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15), 0 12px 24px rgba(0, 0, 0, 0.1)',
+                border: '1px solid rgba(58, 90, 64, 0.1)',
+                overflow: 'hidden'
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  left: '20px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  fontSize: '24px',
+                  zIndex: 10
+                }}>
+                  🔍
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search plant encyclopedia..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '20px 28px 20px 60px',
+                    fontSize: '18px',
+                    fontFamily: "'Inter', sans-serif",
+                    borderRadius: '24px',
+                    border: 'none',
+                    background: 'transparent',
+                    outline: 'none',
+                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    color: '#2D2D2D'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.parentElement.style.boxShadow = '0 30px 60px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.15)';
+                    e.currentTarget.parentElement.style.border = '1px solid rgba(58, 90, 64, 0.2)';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.parentElement.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15), 0 12px 24px rgba(0, 0, 0, 0.1)';
+                    e.currentTarget.parentElement.style.border = '1px solid rgba(58, 90, 64, 0.1)';
+                  }}
+                />
               
               {/* Search Results Dropdown */}
               {showSearchResults && searchResults.length > 0 && (
@@ -394,6 +415,7 @@ export default function Home({ plants, site }) {
                 </div>
               )}
             </div>
+          </div>
           </FadeIn>
         </section>
 
@@ -547,7 +569,7 @@ export default function Home({ plants, site }) {
               marginBottom: '24px',
               textAlign: 'center'
             }}>
-              🌸 猫猫氛围
+              🌸 Cat Vibes
             </h2>
           </FadeIn>
           
@@ -577,6 +599,7 @@ export default function Home({ plants, site }) {
         }}>
           <FadeIn delay={0.6}>
             <h2 style={{
+              fontFamily: "'Playfair Display', serif",
               fontSize: '40px',
               fontWeight: 700,
               color: sageGreenDark,
