@@ -4,6 +4,12 @@ import { createClient } from '@supabase/supabase-js'
 
 export default async function handler(req, res) {
   try {
+    console.log('=== ENVIRONMENT DEBUG ===');
+    console.log('DB URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+    console.log('DB Key exists:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    console.log('All env vars:', Object.keys(process.env).filter(k => k.includes('SUPABASE')));
+    console.log('=== END DEBUG ===');
+    
     console.log('Ultimate Hero API called:', req.method);
     
     const settingsDir = path.join(process.cwd(), 'content', 'settings');
