@@ -10,6 +10,15 @@ export default function ValentinesDayCatSafeFlowersGuide() {
   const [atmosphereImages, setAtmosphereImages] = useState([])
   const [loading, setLoading] = useState(false)
 
+  // 防御性判断 - 确保post对象存在
+  const post = {
+    mainImage: 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format'
+  };
+
+  if (!post) {
+    return <div>Article not found.</div>;
+  }
+
   // Color palette
   const sageGreen = '#87A96B'
   const sageGreenDark = '#6B8553'
@@ -111,7 +120,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                 border: `3px solid #fff`
               }}>
                 <OptimizedImage
-                  src={post.mainImage || 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format'}
+                  src={post?.mainImage || 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format'}
                   alt="A heartwarming proposal scene with a cat and pet-safe bouquet"
                   width={600}
                   height={400}
@@ -120,7 +129,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                     height: '100%',
                     objectFit: 'cover'
                   }}
-                  onLoad={() => console.log('Blog image loaded successfully:', post.mainImage)}
+                  onLoad={() => console.log('Blog image loaded successfully:', post?.mainImage)}
                   onError={(e) => console.error('Blog image load error:', e)}
                 />
                 <div style={{
