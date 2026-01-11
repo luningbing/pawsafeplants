@@ -12,7 +12,8 @@ const nextConfig = {
       'images.unsplash.com',
       'images.pexels.com',
       'googleusercontent.com',
-      'localhost'
+      'localhost',
+      'www.pawsafeplants.com' // 添加本地域名支持
     ],
     formats: ['image/webp', 'image/avif'],
     // Enable image optimization for faster loading
