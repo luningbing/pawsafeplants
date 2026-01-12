@@ -1,4 +1,4 @@
-// File: E:\paws\pawsafeplants\app\sitemap.xml\route.js
+// File: D:\paws\pawsafeplants\app\sitemap.xml\route.js
 import * as entry from '../../../../app/sitemap.xml/route.js'
 import type { NextRequest } from 'next/server.js'
 

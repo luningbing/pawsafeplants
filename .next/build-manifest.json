@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/NLoW4OGpx5TyAhqgDjyYI/_buildManifest.js",
-    "static/NLoW4OGpx5TyAhqgDjyYI/_ssgManifest.js"
+    "static/MaIlW6iVauYhtkv8QBSXi/_buildManifest.js",
+    "static/MaIlW6iVauYhtkv8QBSXi/_ssgManifest.js"
   ],
   "rootMainFiles": [
     "static/chunks/webpack-646ffc8569317452.js",
@@ -18,8 +18,8 @@
       "static/chunks/webpack-646ffc8569317452.js",
       "static/chunks/framework-7481cec556a2e00a.js",
       "static/chunks/main-f9cd579946c3ea93.js",
-      "static/chunks/681-276148985c4f5390.js",
-      "static/chunks/461-d27b02e71de11dd1.js",
+      "static/chunks/681-5fcb72151a90202c.js",
+      "static/chunks/461-42a862fa8ad5319f.js",
       "static/chunks/873-090090dc39af6054.js",
       "static/chunks/870-54b6d62e9144af52.js",
       "static/chunks/pages/index-73b3c38409e21bce.js"
@@ -28,7 +28,7 @@
       "static/chunks/webpack-646ffc8569317452.js",
       "static/chunks/framework-7481cec556a2e00a.js",
       "static/chunks/main-f9cd579946c3ea93.js",
-      "static/chunks/681-276148985c4f5390.js",
+      "static/chunks/681-5fcb72151a90202c.js",
       "static/chunks/pages/404-3b5f188ad4c88a80.js"
     ],
     "/_app": [
@@ -54,7 +54,7 @@
       "static/chunks/webpack-646ffc8569317452.js",
       "static/chunks/framework-7481cec556a2e00a.js",
       "static/chunks/main-f9cd579946c3ea93.js",
-      "static/chunks/pages/admin-412ede0c5be34dc1.js"
+      "static/chunks/pages/admin-15dfba6a4da1c5fe.js"
     ],
     "/admin-login": [
       "static/chunks/webpack-646ffc8569317452.js",
@@ -66,8 +66,8 @@
       "static/chunks/webpack-646ffc8569317452.js",
       "static/chunks/framework-7481cec556a2e00a.js",
       "static/chunks/main-f9cd579946c3ea93.js",
-      "static/chunks/681-276148985c4f5390.js",
-      "static/chunks/461-d27b02e71de11dd1.js",
+      "static/chunks/681-5fcb72151a90202c.js",
+      "static/chunks/461-42a862fa8ad5319f.js",
       "static/chunks/873-090090dc39af6054.js",
       "static/chunks/pages/blog/valentines-day-cat-safe-flowers-guide-2883e63336e7abd0.js"
     ],
@@ -75,8 +75,8 @@
       "static/chunks/webpack-646ffc8569317452.js",
       "static/chunks/framework-7481cec556a2e00a.js",
       "static/chunks/main-f9cd579946c3ea93.js",
-      "static/chunks/681-276148985c4f5390.js",
-      "static/chunks/461-d27b02e71de11dd1.js",
+      "static/chunks/681-5fcb72151a90202c.js",
+      "static/chunks/461-42a862fa8ad5319f.js",
       "static/chunks/873-090090dc39af6054.js",
       "static/chunks/pages/cat-safe-flowers-e71a8bdd56419cb3.js"
     ],
@@ -96,8 +96,8 @@
       "static/chunks/webpack-646ffc8569317452.js",
       "static/chunks/framework-7481cec556a2e00a.js",
       "static/chunks/main-f9cd579946c3ea93.js",
-      "static/chunks/681-276148985c4f5390.js",
-      "static/chunks/461-d27b02e71de11dd1.js",
+      "static/chunks/681-5fcb72151a90202c.js",
+      "static/chunks/461-42a862fa8ad5319f.js",
       "static/chunks/873-090090dc39af6054.js",
       "static/chunks/870-54b6d62e9144af52.js",
       "static/chunks/pages/index-optimized-def0b18214deebdc.js"
@@ -112,24 +112,24 @@
       "static/chunks/webpack-646ffc8569317452.js",
       "static/chunks/framework-7481cec556a2e00a.js",
       "static/chunks/main-f9cd579946c3ea93.js",
-      "static/chunks/681-276148985c4f5390.js",
-      "static/chunks/461-d27b02e71de11dd1.js",
+      "static/chunks/681-5fcb72151a90202c.js",
+      "static/chunks/461-42a862fa8ad5319f.js",
       "static/chunks/pages/login-4a8b4f080451d1f1.js"
     ],
     "/plants/[slug]": [
       "static/chunks/webpack-646ffc8569317452.js",
       "static/chunks/framework-7481cec556a2e00a.js",
       "static/chunks/main-f9cd579946c3ea93.js",
-      "static/chunks/681-276148985c4f5390.js",
-      "static/chunks/461-d27b02e71de11dd1.js",
+      "static/chunks/681-5fcb72151a90202c.js",
+      "static/chunks/461-42a862fa8ad5319f.js",
       "static/chunks/pages/plants/[slug]-455e040849af9927.js"
     ],
     "/plants/[slug]-2026": [
       "static/chunks/webpack-646ffc8569317452.js",
       "static/chunks/framework-7481cec556a2e00a.js",
       "static/chunks/main-f9cd579946c3ea93.js",
-      "static/chunks/681-276148985c4f5390.js",
-      "static/chunks/461-d27b02e71de11dd1.js",
+      "static/chunks/681-5fcb72151a90202c.js",
+      "static/chunks/461-42a862fa8ad5319f.js",
       "static/chunks/873-090090dc39af6054.js",
       "static/chunks/pages/plants/[slug]-2026-e5ac97055d727bf2.js"
     ],

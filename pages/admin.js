@@ -1204,7 +1204,7 @@ export default function Admin() {
                           color: '#666'
                         }}>
                           <div style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>🖼️</div>
-                          <p>暂无图片</p>
+                          <p>No image</p>
                         </div>
                       )}
                     </div>

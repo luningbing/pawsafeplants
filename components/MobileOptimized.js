@@ -7,7 +7,7 @@ function ResponsiveTable({
   className = '',
   tableClassName = '',
   cardClassName = '',
-  emptyMessage = '暂无数据'
+  emptyMessage = 'No data available'
 }) {
   const [isMobile, setIsMobile] = useState(false)
 

@@ -1,4 +1,4 @@
-// File: E:\paws\pawsafeplants\app\robots.txt\route.js
+// File: D:\paws\pawsafeplants\app\robots.txt\route.js
 import * as entry from '../../../../app/robots.txt/route.js'
 import type { NextRequest } from 'next/server.js'
 
