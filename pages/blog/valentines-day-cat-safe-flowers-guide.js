@@ -12,7 +12,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
 
   // 防御性判断 - 确保post对象存在
   const post = {
-    mainImage: 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format'
+    mainImage: '/images/blog/brianna-kitten-proposal.jpg'
   };
 
   if (!post) {
@@ -120,7 +120,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                 border: `3px solid #fff`
               }}>
                 <OptimizedImage
-                  src={post?.mainImage || 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format'}
+                  src="/images/blog/brianna-kitten-proposal.jpg"
                   alt="A heartwarming proposal scene with a cat and pet-safe bouquet"
                   width={600}
                   height={400}
@@ -256,7 +256,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                     The "Ring Bearer"
                   </div>
                   <OptimizedImage
-                    src="https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=300&h=300&fit=crop&auto=format"
+                    src="/images/blog/brianna-kitten-ring-bearer.jpg"
                     alt="Orange tabby cat with Will you marry my Dad sign"
                     width={200}
                     height={200}
@@ -284,7 +284,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                     The Magical Moment
                   </div>
                   <OptimizedImage
-                    src="https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=300&h=300&fit=crop&auto=format"
+                    src="/images/blog/proposal-magical-moment.jpg"
                     alt="Man proposing with small kitten in arms"
                     width={200}
                     height={200}
@@ -312,7 +312,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                     Forest Witnesses
                   </div>
                   <OptimizedImage
-                    src="https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=300&h=300&fit=crop&auto=format"
+                    src="/images/blog/proposal-forest-witnesses.jpg"
                     alt="Cow cat witnessing proposal in forest"
                     width={200}
                     height={200}
@@ -340,7 +340,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                     The Little Helper
                   </div>
                   <OptimizedImage
-                    src="https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=300&h=300&fit=crop&auto=format"
+                    src="/images/blog/proposal-little-helper.jpg"
                     alt="Small kitten helping with ring box"
                     width={200}
                     height={200}
