@@ -1,5 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
-import { getSupabaseClient } from '../../lib/supabase';
+
+// Force service role key as fallback
+const SUPABASE_URL = 'https://rczfbgzghwiqpxihlexs.supabase.co';
+const SERVICE_ROLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjemZiZ3pnaHdpcXB4aWhsZXhzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2Mzk5NDUwMSwiZXhwIjoyMDc1NTcwNTAxfQ.uF3IofVn0ZkFSM6aSYsWCmOWHl26ybxv_bwMST3Zsio';
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -12,7 +15,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const supabase = getSupabaseClient();
+    // Force service role key for admin operations
+    const supabase = createClient(SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY || SERVICE_ROLE_KEY);
 
     if (req.method === 'GET') {
       // Fetch hero carousel slides
