@@ -1,1 +1,1 @@
-{"version":1,"functions":{"/api/upload-chunked":{},"/api/upload-base64":{},"/docs/prd":{},"/plants/caution":{},"/plants/[slug]":{},"/index-optimized":{},"/plants/toxic":{},"/plants/[slug]-2026":{},"/":{},"/plants/safe":{}}}
+{"version":1,"functions":{"/api/upload-base64":{},"/api/upload-chunked":{},"/docs/prd":{},"/":{},"/plants/[slug]-2026":{},"/plants/caution":{},"/plants/safe":{},"/plants/[slug]":{},"/index-optimized":{},"/plants/toxic":{}}}
