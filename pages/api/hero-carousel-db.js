@@ -23,10 +23,41 @@ export default async function handler(req, res) {
       }
 
       console.log('✅ Hero data fetched:', { hasData: !!data?.[0], contentKeys: data?.[0] ? Object.keys(data[0].content || {}) : [] });
+      
+      // Field mapping: database image_url -> frontend imageUrl
+      const heroData = data?.[0];
+      if (heroData && heroData.content && heroData.content.slides) {
+        // Map database fields back to frontend format
+        const mappedSlides = heroData.content.slides.map(slide => ({
+          imageUrl: slide.image_url || slide.imageUrl, // Prefer image_url, fallback to imageUrl
+          title: slide.title || '',
+          subtitle: slide.subtitle || '',
+          link: slide.link || ''
+        }));
+        
+        const mappedData = {
+          ...heroData,
+          content: {
+            slides: mappedSlides
+          }
+        };
+        
+        console.log('🔄 Mapped slides for frontend:', { 
+          originalCount: heroData.content.slides.length,
+          mappedCount: mappedSlides.length,
+          sample: mappedSlides[0] 
+        });
+        
+        return res.status(200).json({ 
+          success: true, 
+          data: mappedData
+        });
+      }
+      
       return res.status(200).json({ 
         success: true, 
-        data: data?.[0] || null
-      })
+        data: heroData || null
+      });
     }
 
     if (req.method === 'POST') {

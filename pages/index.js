@@ -151,16 +151,27 @@ export default function Home({ plants, site }) {
         console.log('Loading hero slides from hero-carousel-db...');
         const res = await fetch('/api/hero-carousel-db');
         const data = await res.json();
-        console.log('Hero carousel response:', data);
+        console.log('🎠 Hero carousel response:', data);
         
         if (data.data && data.data.content && data.data.content.slides) {
-          console.log('Setting hero slides from hero_carousel:', data.data.content.slides);
-          setHeroSlides(data.data.content.slides);
+          console.log('🖼️ Setting hero slides from hero_carousel:', data.data.content.slides);
+          const slides = data.data.content.slides;
+          slides.forEach((slide, index) => {
+            console.log(`📸 Slide ${index}:`, { imageUrl: slide.imageUrl, hasImage: !!slide.imageUrl });
+          });
+          setHeroSlides(slides);
         } else {
-          console.log('No hero slides found, using defaults');
+          console.log('❌ No hero slides found, using defaults');
+          // 使用默认图片
+          setHeroSlides([{
+            imageUrl: '/images/hero/cat-main.jpg',
+            title: 'PawSafePlants Hero',
+            subtitle: 'Your feline friends deserve the best',
+            link: '/plants/cat-safe'
+          }]);
         }
       } catch (error) {
-        console.error('Failed to load ultimate hero slides:', error);
+        console.error('❌ Failed to load ultimate hero slides:', error);
       }
     };
     loadHeroSlides();

@@ -193,8 +193,12 @@ export default function Admin() {
         
         // Load hero carousel data
         if (hero.slides && Array.isArray(hero.slides)) {
+          console.log('🎠 Frontend received hero slides:', hero.slides);
           setHeroSlides(hero.slides);
-          const previews = hero.slides.map(slide => slide.imageUrl || '');
+          const previews = hero.slides.map((slide, index) => {
+            console.log(`🖼️ Slide ${index}:`, { imageUrl: slide.imageUrl, hasImage: !!slide.imageUrl });
+            return slide.imageUrl || '';
+          });
           setHeroPreviews(previews);
         }
         
