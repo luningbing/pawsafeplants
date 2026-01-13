@@ -118,7 +118,7 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
           }}
         >
           {/* Ken Burns Effect Image */}
-          {currentSlide.imageUrl && (
+          {currentSlide && (
             <div style={{ position: 'relative', width: '100%', height: '100%' }}>
               <motion.div
                 animate={{
@@ -140,29 +140,23 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
                   height: '120%',
                 }}
               >
-                <Image
-                  src={currentSlide.imageUrl}
+                <img
+                  src={currentSlide.image_url || currentSlide.imageUrl || currentSlide.url || '/images/hero/cat-main.jpg'}
                   alt={`Hero slide ${currentIndex + 1}`}
-                  fill
-                  priority={currentIndex === 0}
-                  className="hero-pulse"
                   style={{
+                    width: '100%',
+                    height: '100%',
                     objectFit: 'cover',
                     objectPosition: 'center',
                     backgroundColor: '#f3f4f6'
                   }}
                   onError={(e) => {
-                    console.error('Image load error:', currentSlide.imageUrl, e);
-                    // 使用备用的高清Unsplash图片
-                    const fallbackImages = [
-                      'https://images.unsplash.com/photo-1574158610182-6e2bae4e4d3b?w=1920&h=1080&fit=crop',
-                      'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=1920&h=1080&fit=crop',
-                      'https://images.unsplash.com/photo-1545241047-6083a3684587?w=1920&h=1080&fit=crop'
-                    ];
-                    e.target.src = fallbackImages[currentIndex % fallbackImages.length];
+                    console.error('❌ Image load error:', currentSlide, e);
+                    // 使用本地备用图片
+                    e.target.src = '/images/hero/cat-main.jpg';
                   }}
                   onLoad={() => {
-                    console.log('Image loaded successfully:', currentSlide.imageUrl);
+                    console.log('✅ Image loaded successfully:', currentSlide.image_url || currentSlide.imageUrl || currentSlide.url);
                   }}
                 />
               </motion.div>

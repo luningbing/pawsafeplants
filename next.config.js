@@ -10,9 +10,7 @@ const nextConfig = {
       'images.unsplash.com',
       'images.pexels.com',
       'lh3.googleusercontent.com',
-      '*.supabase.co', // 允许所有 supabase 子域名
-      'your-project-id.supabase.co', // 替换为你真实的 supabase 项目ID
-      'rczfbgzghwiqpxihlexs.supabase.co/storage/v1/object/public' // 添加Supabase存储路径
+      'rczfbgzghwiqpxihlexs.supabase.co' // 正确的Supabase项目域名
     ],
     formats: ['image/webp', 'image/avif'],
     // Enable image optimization for faster loading
