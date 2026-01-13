@@ -247,16 +247,21 @@ export default function Admin() {
         const j = await res.json();
         console.log('Upload response:', j);
         
-        // Save media metadata with display name
-        const displayName = uploadDisplayName || file.name;
-        await saveMediaMetadata(j.path, displayName, file.size, file.type);
-        
-        const imgs = await (await fetch('/api/list-images')).json();
-        setImages(imgs.paths || []);
-        setUploadFile(null);
-        setUploadPreview('');
-        setUploadDisplayName(''); // Reset display name input
-        setMsg('图片上传成功！');
+        if (j.success) {
+          // Save media metadata with display name
+          const displayName = uploadDisplayName || file.name;
+          await saveMediaMetadata(j.data.publicUrl, displayName, file.size, file.type);
+          
+          const imgs = await (await fetch('/api/list-images')).json();
+          setImages(imgs.paths || []);
+          setUploadFile(null);
+          setUploadPreview('');
+          setUploadDisplayName(''); // Reset display name input
+          setMsg('图片上传成功！');
+        } else {
+          setMsg(`上传失败: ${j.error || '未知错误'}`);
+          setTimeout(() => setMsg(''), 3000);
+        }  
         setTimeout(() => setMsg(''), 3000);
         return j?.path || '';
       } else {

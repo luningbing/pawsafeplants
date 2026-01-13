@@ -73,7 +73,13 @@ export default async function handler(req, res) {
     return res.status(200).json({ 
       success: true,
       message: 'File uploaded successfully',
-      path: publicUrl 
+      data: {
+        fileName,
+        originalName: file.originalFilename,
+        publicUrl,
+        file_size: file.size,
+        content_type: file.mimetype
+      }
     })
     
   } catch (error) {
