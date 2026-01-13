@@ -41,21 +41,29 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Invalid slides data' })
       }
 
-      // Validate each slide
+      // Validate each slide - only imageUrl is required
       for (let i = 0; i < slides.length; i++) {
         const slide = slides[i]
-        if (!slide.imageUrl || !slide.title || !slide.subtitle) {
+        if (!slide.imageUrl) {
           return res.status(400).json({ 
-            error: `Slide ${i + 1} missing required fields` 
+            error: `Slide ${i + 1} missing required imageUrl field` 
           })
         }
       }
+
+      // Field mapping: frontend imageUrl -> database image_url
+      const dataToSave = slides.map(s => ({
+        image_url: s.imageUrl,
+        title: s.title || '',
+        subtitle: s.subtitle || '',
+        link: s.link || ''
+      }))
 
       // Update or insert hero carousel data
       const { data, error } = await supabase
         .from('hero_carousel')
         .upsert({
-          content: { slides },
+          content: { slides: dataToSave },
           updated_at: new Date().toISOString()
         })
         .select()
