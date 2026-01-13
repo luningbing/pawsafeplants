@@ -120,7 +120,7 @@ export default function ValentinesDayCatSafeFlowersGuide() {
                 border: `3px solid #fff`
               }}>
                 <OptimizedImage
-                  src={post?.mainImage || 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=600&h=400&fit=crop&auto=format'}
+                  src="/images/blog/brianna-kitten-proposal.jpg"
                   alt="A heartwarming proposal scene with a cat and pet-safe bouquet"
                   width={600}
                   height={400}

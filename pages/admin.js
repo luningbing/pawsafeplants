@@ -823,7 +823,7 @@ export default function Admin() {
   const loadMediaMetadata = async () => {
     setMediaLoading(true);
     try {
-      const response = await fetch('/api/admin/media-metadata');
+      const response = await fetch('/api/media');
       const data = await response.json();
       if (response.ok) {
         setMediaMetadata(data.media || []);
@@ -842,7 +842,7 @@ export default function Admin() {
 
   const saveMediaMetadata = async (filePath, displayName, fileSize, fileType) => {
     try {
-      const response = await fetch('/api/admin/media-metadata', {
+      const response = await fetch('/api/media', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -857,7 +857,7 @@ export default function Admin() {
         await loadMediaMetadata(); // Refresh the list
         setGlobalToast({ 
           type: 'success', 
-          message: `✅ 已创建元数据: ${displayName}` 
+          message: `Metadata created: ${displayName}` 
         });
         setTimeout(() => setGlobalToast(null), 2000);
       }
@@ -865,7 +865,7 @@ export default function Admin() {
       console.error('Failed to save media metadata:', error);
       setGlobalToast({ 
         type: 'error', 
-        message: `❌ 创建元数据失败: ${displayName}` 
+        message: `Failed to create metadata: ${displayName}` 
       });
       setTimeout(() => setGlobalToast(null), 2000);
     }
@@ -873,14 +873,14 @@ export default function Admin() {
 
   const updateMediaDisplayName = async (id, displayName) => {
     if (!id) {
-      console.error('❌ No metadata ID provided for:', displayName);
-      setGlobalToast({ type: 'error', message: '❌ 无法重命名：图片元数据缺失' });
+      console.error('No metadata ID provided for:', displayName);
+      setGlobalToast({ type: 'error', message: 'Cannot rename: image metadata missing' });
       return;
     }
 
     if (!displayName || displayName.trim().length === 0) {
-      console.error('❌ Empty display name provided');
-      setGlobalToast({ type: 'error', message: '❌ 名称不能为空' });
+      console.error('Empty display name provided');
+      setGlobalToast({ type: 'error', message: 'Display name cannot be empty' });
       return;
     }
 
@@ -908,7 +908,7 @@ export default function Admin() {
           )
         );
         
-        setGlobalToast({ type: 'success', message: '✅ 重命名成功' });
+        setGlobalToast({ type: 'success', message: 'Rename successful' });
         setRenamingMedia(null);
         setRenameValue('');
         
@@ -917,12 +917,12 @@ export default function Admin() {
         
         console.log('✅ Media renamed successfully:', data.media);
       } else {
-        setGlobalToast({ type: 'error', message: `❌ ${data.error || '保存失败，请检查网络或权限'}` });
+        setGlobalToast({ type: 'error', message: `${data.error || 'Save failed, please check network or permissions'}` });
         console.error('❌ Rename failed:', data);
       }
     } catch (error) {
-      console.error('❌ Network error during rename:', error);
-      setGlobalToast({ type: 'error', message: '❌ 保存失败，请检查网络或权限' });
+      console.error('Network error during rename:', error);
+      setGlobalToast({ type: 'error', message: 'Save failed, please check network or permissions' });
     } finally {
       setRenameLoading(false);
     }

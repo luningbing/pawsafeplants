@@ -726,7 +726,7 @@ export default function Home({ plants, site }) {
                 boxShadow: '0 8px 24px rgba(58, 90, 64, 0.2)'
               }}>
                 <img
-                  src="https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=160&h=160&fit=crop&crop=face"
+                  src="/images/blog/brianna-kitten-proposal.jpg"
                   alt="Brianna and Rigo's proposal with their dream kitten"
                   style={{
                     width: '100%',
