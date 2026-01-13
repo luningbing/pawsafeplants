@@ -148,15 +148,16 @@ export default function Home({ plants, site }) {
   useEffect(() => {
     const loadHeroSlides = async () => {
       try {
-        console.log('Loading ultimate hero slides from file...');
-        const res = await fetch('/api/ultimate-hero');
+        console.log('Loading hero slides from hero-carousel-db...');
+        const res = await fetch('/api/hero-carousel-db');
         const data = await res.json();
-        console.log('Ultimate hero slides response:', data);
-        if (data.slides && data.slides.length > 0) {
-          console.log('Setting ultimate hero slides:', data.slides);
-          setHeroSlides(data.slides);
+        console.log('Hero carousel response:', data);
+        
+        if (data.data && data.data.content && data.data.content.slides) {
+          console.log('Setting hero slides from hero_carousel:', data.data.content.slides);
+          setHeroSlides(data.data.content.slides);
         } else {
-          console.log('No ultimate hero slides found');
+          console.log('No hero slides found, using defaults');
         }
       } catch (error) {
         console.error('Failed to load ultimate hero slides:', error);
