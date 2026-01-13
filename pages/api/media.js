@@ -1,8 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
+import { supabaseAdmin } from '../../lib/supabaseAdmin'
 import formidable from 'formidable'
-
-// Emergency Hardcoded Fallback for Production
-const HARDCODED_SERVICE_ROLE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJjemZiZ3pnaHdpcXB4aWhsZXhzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2Mzk5NDUwMSwiZXhwIjoyMDc1NTcwNTAxfQ.uF3IofVn0ZkFSM6aSYsWCmOWHl26ybxv_bwMST3Zsio'
 
 export default async function handler(req, res) {
   if (req.method !== 'GET' && req.method !== 'POST') {
@@ -10,23 +7,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://rczfbgzghwiqpxihlexs.supabase.co',
-      HARDCODED_SERVICE_ROLE_KEY
-    )
+    console.log('📸 Media API request:', { method: req.method, timestamp: new Date().toISOString() });
 
     if (req.method === 'GET') {
       // List all media files
-      const { data, error } = await supabase
+      console.log('📋 Fetching media files from database...');
+      const { data, error } = await supabaseAdmin
         .from('media_metadata')
         .select('*')
         .order('created_at', { ascending: false })
 
       if (error) {
-        console.error('Database error:', error)
-        return res.status(500).json({ error: 'Failed to fetch media files' })
+        console.error('❌ Database error:', error)
+        return res.status(500).json({ error: 'Failed to fetch media files', details: error })
       }
 
+      console.log('✅ Media files fetched:', { count: data?.length || 0 });
       return res.status(200).json({ 
         success: true, 
         media: data || []
@@ -35,23 +31,33 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
       // Handle file upload
+      console.log('📤 Starting file upload process...');
       const form = formidable({ multiples: true })
       
       form.parse(req, async (err, fields, files) => {
         if (err) {
-          console.error('Form parse error:', err)
-          return res.status(500).json({ error: 'Failed to parse form data' })
+          console.error('❌ Form parse error:', err)
+          return res.status(500).json({ error: 'Failed to parse form data', details: err.message })
         }
 
         try {
           const file = files.file
           if (!file) {
+            console.error('❌ No file received in upload')
             return res.status(400).json({ error: 'No file uploaded' })
           }
 
+          console.log('📁 Processing file:', { 
+            name: file.originalFilename, 
+            size: file.size, 
+            type: file.type 
+          });
+
           // Upload to Supabase Storage
           const fileName = `${Date.now()}-${file.originalFilename}`
-          const { data: uploadData, error: uploadError } = await supabase.storage
+          console.log('🚀 Uploading to Supabase Storage:', fileName);
+          
+          const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
             .from('images')
             .upload(fileName, file.filepath, {
               cacheControl: '3600',
@@ -59,17 +65,25 @@ export default async function handler(req, res) {
             })
 
           if (uploadError) {
-            console.error('Upload error:', uploadError)
-            return res.status(500).json({ error: 'Failed to upload file' })
+            console.error('❌ Supabase upload error:', uploadError)
+            return res.status(500).json({ 
+              error: 'Failed to upload file to storage', 
+              details: uploadError.message || uploadError 
+            })
           }
 
+          console.log('✅ Upload successful, getting public URL...');
+
           // Get public URL
-          const { data: { publicUrl } } = supabase.storage
+          const { data: { publicUrl } } = supabaseAdmin.storage
             .from('images')
             .getPublicUrl(fileName)
 
+          console.log('🔗 Public URL generated:', publicUrl);
+
           // Save metadata to database
-          const { data: metadataData, error: metadataError } = await supabase
+          console.log('💾 Saving metadata to database...');
+          const { data: metadataData, error: metadataError } = await supabaseAdmin
             .from('media_metadata')
             .insert({
               file_name: fileName,
@@ -79,11 +93,22 @@ export default async function handler(req, res) {
               content_type: file.type,
               created_at: new Date().toISOString()
             })
+            .select()
 
           if (metadataError) {
-            console.error('Metadata error:', metadataError)
-            return res.status(500).json({ error: 'Failed to save metadata' })
+            console.error('❌ Metadata error:', metadataError)
+            return res.status(500).json({ 
+              error: 'Failed to save metadata', 
+              details: metadataError.message || metadataError 
+            })
           }
+
+          console.log('✅ Complete upload success:', { 
+            fileName, 
+            originalName: file.originalFilename,
+            publicUrl,
+            metadataId: metadataData?.[0]?.id 
+          });
 
           return res.status(200).json({ 
             success: true, 
@@ -92,17 +117,23 @@ export default async function handler(req, res) {
               fileName,
               originalName: file.originalFilename,
               publicUrl,
-              metadata: metadataData
+              metadata: metadataData?.[0]
             }
           })
         } catch (error) {
-          console.error('Upload error:', error)
-          return res.status(500).json({ error: 'Upload failed' })
+          console.error('❌ Upload process error:', error)
+          return res.status(500).json({ 
+            error: 'Upload failed', 
+            details: error.message || error 
+          })
         }
       })
     }
   } catch (error) {
-    console.error('API error:', error)
-    return res.status(500).json({ error: 'Internal server error' })
+    console.error('💥 Media API critical error:', error)
+    return res.status(500).json({ 
+      error: 'Internal server error', 
+      details: error.message || error 
+    })
   }
 }
