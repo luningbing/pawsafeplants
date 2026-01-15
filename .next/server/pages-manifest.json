@@ -1,13 +1,1 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/api/admin/fix-rls-urgent": "pages/api/admin/fix-rls-urgent.js",
-  "/api/ultimate-hero": "pages/api/ultimate-hero.js",
-  "/api/list-images": "pages/api/list-images.js",
-  "/admin": "pages/admin.js",
-  "/api/media": "pages/api/media.js",
-  "/api/login": "pages/api/login.js",
-  "/login": "pages/login.js"
-}
+{}
