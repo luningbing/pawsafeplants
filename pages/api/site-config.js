@@ -6,14 +6,14 @@ export default async function handler(req, res) {
   try {
     const fp = path.join(process.cwd(), 'content', 'site.json')
     if (req.method === 'GET') {
-      const supabaseUrl = process.env.SUPABASE_URL || ''
-      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || ''
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
       if (supabaseUrl && supabaseKey) {
         const client = createClient(supabaseUrl, supabaseKey)
         const { data, error } = await client.from('site_config').select('key,value').in('key', ['heroImage','logo'])
         if (!error) {
           const map = Object.create(null)
-          (data || []).forEach(r => { map[r.key] = r.value })
+          ;(data || []).forEach(r => { map[r.key] = r.value })
           return res.status(200).json({ heroImage: String((map.heroImage || '')).trim(), logo: String((map.logo || '')).trim() })
         }
       }
@@ -29,8 +29,8 @@ export default async function handler(req, res) {
       if (!ok) return res.status(401).json({ error: 'unauthorized' })
       let body = req.body
       if (typeof body === 'string') { try { body = JSON.parse(body) } catch {} }
-      const supabaseUrl = process.env.SUPABASE_URL || ''
-      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || ''
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
       if (supabaseUrl && supabaseKey) {
         const client = createClient(supabaseUrl, supabaseKey)
         const items = []
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
         }
         const { data } = await client.from('site_config').select('key,value').in('key', ['heroImage','logo'])
         const map = Object.create(null)
-        (data || []).forEach(r => { map[r.key] = r.value })
+        ;(data || []).forEach(r => { map[r.key] = r.value })
         return res.status(200).json({ heroImage: String((map.heroImage || '')).trim(), logo: String((map.logo || '')).trim() })
       }
       let prev = { heroImage: '', logo: '' }
@@ -60,6 +60,7 @@ export default async function handler(req, res) {
     }
     return res.status(405).json({ error: 'Method not allowed' })
   } catch (e) {
+    console.error('site-config API error:', e)
     res.status(500).json({ error: String(e?.message || e) })
   }
 }
