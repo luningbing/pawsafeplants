@@ -4,23 +4,52 @@ import { createClient } from '@supabase/supabase-js'
 
 export default async function handler(req, res) {
   try {
+    // 禁用缓存，确保获取最新数据
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    
     const fp = path.join(process.cwd(), 'content', 'site.json')
     if (req.method === 'GET') {
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
       const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+      
+      console.log('🔧 获取site-config配置...');
+      
       if (supabaseUrl && supabaseKey) {
-        const client = createClient(supabaseUrl, supabaseKey)
-        const { data, error } = await client.from('site_config').select('key,value').in('key', ['heroImage','logo'])
-        if (!error) {
-          const map = Object.create(null)
-          ;(data || []).forEach(r => { map[r.key] = r.value })
-          return res.status(200).json({ heroImage: String((map.heroImage || '')).trim(), logo: String((map.logo || '')).trim() })
+        try {
+          const client = createClient(supabaseUrl, supabaseKey, {
+            auth: {
+              autoRefreshToken: false,
+              persistSession: false
+            }
+          })
+          
+          const { data, error } = await client.from('site_config').select('key,value').in('key', ['heroImage','logo'])
+          
+          if (!error && data) {
+            const map = Object.create(null)
+            ;(data || []).forEach(r => { map[r.key] = r.value })
+            console.log('✅ 从数据库获取配置:', { heroImage: map.heroImage, logo: map.logo });
+            return res.status(200).json({ 
+              heroImage: String((map.heroImage || '')).trim(), 
+              logo: String((map.logo || '')).trim() 
+            })
+          } else {
+            console.warn('⚠️ 数据库查询失败，使用本地文件:', error?.message);
+          }
+        } catch (dbError) {
+          console.error('❌ 数据库连接失败:', dbError);
         }
       }
+      
+      // 读取本地配置文件作为fallback
       try {
         const j = JSON.parse(fs.readFileSync(fp, 'utf8'))
+        console.log('📁 使用本地配置文件:', j);
         return res.status(200).json(j)
-      } catch {
+      } catch (fileError) {
+        console.warn('⚠️ 本地配置文件读取失败，使用默认值:', fileError?.message);
         return res.status(200).json({ heroImage: '', logo: '' })
       }
     }
@@ -32,18 +61,35 @@ export default async function handler(req, res) {
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
       const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
       if (supabaseUrl && supabaseKey) {
-        const client = createClient(supabaseUrl, supabaseKey)
-        const items = []
-        if (Object.prototype.hasOwnProperty.call(body || {}, 'heroImage')) items.push({ key: 'heroImage', value: String((body || {}).heroImage || '').trim() })
-        if (Object.prototype.hasOwnProperty.call(body || {}, 'logo')) items.push({ key: 'logo', value: String((body || {}).logo || '').trim() })
-        if (items.length) {
-          const { error } = await client.from('site_config').upsert(items, { onConflict: 'key' })
-          if (error) return res.status(500).json({ error: String(error.message || error) })
+        try {
+          const client = createClient(supabaseUrl, supabaseKey, {
+            auth: {
+              autoRefreshToken: false,
+              persistSession: false
+            }
+          })
+          
+          const items = []
+          if (Object.prototype.hasOwnProperty.call(body || {}, 'heroImage')) items.push({ key: 'heroImage', value: String((body || {}).heroImage || '').trim() })
+          if (Object.prototype.hasOwnProperty.call(body || {}, 'logo')) items.push({ key: 'logo', value: String((body || {}).logo || '').trim() })
+          
+          if (items.length) {
+            const { error } = await client.from('site_config').upsert(items, { onConflict: 'key' })
+            if (error) {
+              console.error('❌ 更新site_config失败:', error);
+              return res.status(500).json({ error: String(error.message || error) })
+            }
+            console.log('✅ site_config更新成功')
+          }
+          
+          const { data } = await client.from('site_config').select('key,value').in('key', ['heroImage','logo'])
+          const map = Object.create(null)
+          ;(data || []).forEach(r => { map[r.key] = r.value })
+          return res.status(200).json({ heroImage: String((map.heroImage || '')).trim(), logo: String((map.logo || '')).trim() })
+        } catch (dbError) {
+          console.error('❌ POST数据库操作失败:', dbError);
+          return res.status(500).json({ error: 'Database operation failed' })
         }
-        const { data } = await client.from('site_config').select('key,value').in('key', ['heroImage','logo'])
-        const map = Object.create(null)
-        ;(data || []).forEach(r => { map[r.key] = r.value })
-        return res.status(200).json({ heroImage: String((map.heroImage || '')).trim(), logo: String((map.logo || '')).trim() })
       }
       let prev = { heroImage: '', logo: '' }
       try {
@@ -60,7 +106,12 @@ export default async function handler(req, res) {
     }
     return res.status(405).json({ error: 'Method not allowed' })
   } catch (e) {
-    console.error('site-config API error:', e)
-    res.status(500).json({ error: String(e?.message || e) })
+    console.error('site-config API error:', e);
+    return res.status(200).json({ 
+      heroImage: '', 
+      logo: '',
+      error_fallback: true,
+      error_message: String(e?.message || e)
+    });
   }
 }
