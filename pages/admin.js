@@ -2374,7 +2374,7 @@ export default function Admin() {
                       🚀 发布博客
                     </button>
                   </Link>
-                  <Link href="/admin/blog-edit-new?id=1">
+                  <Link href="/admin/blog-edit?id=1">
                     <button style={{
                       padding: '12px 24px',
                       background: '#f59e0b',
