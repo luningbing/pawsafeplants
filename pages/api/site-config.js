@@ -9,12 +9,23 @@ export default async function handler(req, res) {
     res.setHeader('Pragma', 'no-cache');
     res.setHeader('Expires', '0');
     
+    console.log('🔧 site-config API 开始处理请求...');
+    console.log('📋 环境变量检查:', {
+      NEXT_PUBLIC_SUPABASE_URL: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+      SUPABASE_SERVICE_ROLE_KEY: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    });
+    
     const fp = path.join(process.cwd(), 'content', 'site.json')
     if (req.method === 'GET') {
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
       const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
       
       console.log('🔧 获取site-config配置...');
+      console.log('📋 Supabase配置:', { 
+        url: supabaseUrl ? '已配置' : '未配置',
+        key: supabaseKey ? '已配置' : '未配置'
+      });
       
       if (supabaseUrl && supabaseKey) {
         try {
@@ -25,32 +36,90 @@ export default async function handler(req, res) {
             }
           })
           
+          console.log('🔗 尝试连接数据库...');
+          
           const { data, error } = await client.from('site_config').select('key,value').in('key', ['heroImage','logo'])
           
-          if (!error && data) {
+          if (error) {
+            console.error('❌ 数据库查询错误:', {
+              message: error.message,
+              details: error.details,
+              hint: error.hint,
+              code: error.code
+            });
+            
+            // 检查是否是权限问题
+            if (error.message?.includes('permission denied') || error.code === '42501') {
+              console.error('🚨 权限拒绝: 需要检查RLS策略');
+              return res.status(200).json({ 
+                heroImage: '', 
+                logo: '',
+                error_type: 'permission_denied',
+                error_message: 'RLS权限问题，需要配置匿名访问策略',
+                error_details: error.message
+              });
+            }
+            
+            // 检查是否是表不存在
+            if (error.message?.includes('does not exist') || error.code === '42P01') {
+              console.error('🚨 表不存在: site_config表需要创建');
+              return res.status(200).json({ 
+                heroImage: '', 
+                logo: '',
+                error_type: 'table_not_found',
+                error_message: 'site_config表不存在，需要创建表和RLS策略',
+                error_details: error.message
+              });
+            }
+            
+            console.warn('⚠️ 数据库查询失败，使用本地文件:', error?.message);
+          } else {
             const map = Object.create(null)
             ;(data || []).forEach(r => { map[r.key] = r.value })
             console.log('✅ 从数据库获取配置:', { heroImage: map.heroImage, logo: map.logo });
             return res.status(200).json({ 
               heroImage: String((map.heroImage || '')).trim(), 
-              logo: String((map.logo || '')).trim() 
+              logo: String((map.logo || '')).trim(),
+              data_source: 'database'
             })
-          } else {
-            console.warn('⚠️ 数据库查询失败，使用本地文件:', error?.message);
           }
         } catch (dbError) {
-          console.error('❌ 数据库连接失败:', dbError);
+          console.error('❌ 数据库连接失败:', {
+            message: dbError.message,
+            stack: dbError.stack
+          });
+          
+          // 检查是否是环境变量问题
+          if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+            console.error('🚨 环境变量缺失: SUPABASE_URL或SUPABASE_SERVICE_ROLE_KEY未配置');
+            return res.status(200).json({ 
+              heroImage: '', 
+              logo: '',
+              error_type: 'environment_missing',
+              error_message: '环境变量缺失，请检查SUPABASE_URL和SUPABASE_SERVICE_ROLE_KEY',
+              error_details: dbError.message
+            });
+          }
         }
+      } else {
+        console.error('🚨 Supabase配置缺失: URL或Key未配置');
       }
       
       // 读取本地配置文件作为fallback
       try {
         const j = JSON.parse(fs.readFileSync(fp, 'utf8'))
         console.log('📁 使用本地配置文件:', j);
-        return res.status(200).json(j)
+        return res.status(200).json({
+          ...j,
+          data_source: 'local_file'
+        })
       } catch (fileError) {
         console.warn('⚠️ 本地配置文件读取失败，使用默认值:', fileError?.message);
-        return res.status(200).json({ heroImage: '', logo: '' })
+        return res.status(200).json({ 
+          heroImage: '', 
+          logo: '',
+          data_source: 'default'
+        })
       }
     }
     if (req.method === 'POST') {
