@@ -7,14 +7,6 @@
       "NEXT_PUBLIC_VERCEL_ENV": "production"
     }
   },
-  "regions": [
-    "iad1",
-    "sfo1", 
-    "cle1", 
-    "lhr1", 
-    "fra1", 
-    "cdg1" 
-  ],
   "routes": [
     {
       "src": "/api/(.*)",
@@ -75,103 +67,6 @@
       }
     }
   ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-DNS-Prefetch-Control",
-          "value": "on"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=()"
-        }
-      ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=300, s-maxage=300"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type, Authorization"
-        }
-      ]
-    },
-    {
-      "source": "/_next/image(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/cat-safe-flowers",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=1800, s-maxage=1800"
-        }
-      ]
-    },
-    {
-      "source": "/occasions/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=3600"
-        }
-      ]
-    },
-    {
-      "source": "/sitemap.xml",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400, s-maxage=86400"
-        }
-      ]
-    },
-    {
-      "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400, s-maxage=86400"
-        }
-      ]
-    }
-  ],
   "functions": {
     "app/api/**/*.js": {
       "maxDuration": 10,
@@ -189,10 +84,5 @@
     "NEXT_PUBLIC_VERCEL_GIT_COMMIT_AUTHOR_NAME": "@git-commit-author-name",
     "NEXT_PUBLIC_VERCEL_GIT_COMMIT_AUTHOR_EMAIL": "@git-commit-author-email"
   },
-  "installCommand": "npm install",
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "framework": "nextjs",
-  "devCommand": "npm run dev",
-  "ignoreCommand": "npm run lint"
+  "framework": "nextjs"
 }
