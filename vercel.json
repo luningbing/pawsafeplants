@@ -1,12 +1,6 @@
 {
   "version": 2,
   "name": "pawsafeplants",
-  "build": {
-    "env": {
-      "NEXT_PUBLIC_SITE_URL": "https://www.pawsafeplants.com",
-      "NEXT_PUBLIC_VERCEL_ENV": "production"
-    }
-  },
   "routes": [
     {
       "src": "/api/(.*)",
@@ -76,13 +70,6 @@
       "maxDuration": 10,
       "memory": 512
     }
-  },
-  "env": {
-    "NEXT_PUBLIC_VERCEL_URL": "@url",
-    "NEXT_PUBLIC_VERCEL_GIT_COMMIT_SHA": "@git-commit-sha",
-    "NEXT_PUBLIC_VERCEL_GIT_COMMIT_MESSAGE": "@git-commit-message",
-    "NEXT_PUBLIC_VERCEL_GIT_COMMIT_AUTHOR_NAME": "@git-commit-author-name",
-    "NEXT_PUBLIC_VERCEL_GIT_COMMIT_AUTHOR_EMAIL": "@git-commit-author-email"
   },
   "framework": "nextjs"
 }

@@ -765,8 +765,8 @@ export async function getStaticProps({ params }) {
       } catch {}
     }
     try {
-      const supabaseUrl = process.env.SUPABASE_URL || ''
-      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || ''
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+      const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
       if (supabaseUrl && supabaseKey) {
         const client = createClient(supabaseUrl, supabaseKey)
         const { data: rows } = await client.from('plant_images').select('image,image2,image3').eq('slug', slug).limit(1)
