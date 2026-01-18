@@ -980,6 +980,7 @@ export default function Admin() {
     { id: 'add-plant', label: '添加植物', icon: '🌱' },
     { id: 'plant-list', label: '植物列表', icon: '📋' },
     { id: 'media-library', label: '媒体库', icon: '🖼️' },
+    { id: 'blog', label: '博客管理', icon: '📝' },
     { id: 'atmosphere', label: '氛围图管理', icon: '🌸' },
     { id: 'security', label: '安全设置', icon: '🔒' }
   ];
@@ -2319,6 +2320,45 @@ export default function Admin() {
                   <div style={{ fontSize: '0.9rem' }}>点击上方按钮开始上传</div>
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Blog Management Tab */}
+          {activeTab === 'blog' && (
+            <div style={{
+              backgroundColor: 'white',
+              borderRadius: borderRadius,
+              padding: '2rem',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)'
+            }}>
+              <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <h3 style={{ 
+                  fontSize: '1.5rem', 
+                  fontWeight: '600', 
+                  color: '#2d3748',
+                  marginBottom: '1rem'
+                }}>
+                  📝 博客管理
+                </h3>
+                <p style={{ color: '#718096', marginBottom: '2rem' }}>
+                  发布和管理您的博客文章
+                </p>
+                <Link href="/admin/blog">
+                  <button style={{
+                    padding: '12px 24px',
+                    background: sageGreen,
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    🚀 进入博客管理
+                  </button>
+                </Link>
+              </div>
             </div>
           )}
 
