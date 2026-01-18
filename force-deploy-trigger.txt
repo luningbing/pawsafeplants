@@ -1,0 +1,29 @@
+# 🚨 强制部署触发 - createSupabaseClient修复
+## 时间: 2026-01-18 22:20:00
+
+### 📋 当前状态
+- 最新提交: 299ab30 (createSupabaseClient引用错误修复)
+- Git状态: 已推送到GitHub
+- Vercel状态: 可能未自动部署
+
+### 🎯 修复内容
+- 修复lib/supabase.js循环引用问题
+- 统一所有API文件使用createClient
+- 修复TypeError: createSupabaseClient is not a function
+- 环境变量配置正确
+
+### 🚀 紧急措施
+- 创建强制部署触发文件
+- 确保Vercel重新部署
+- 验证所有API修复生效
+
+### 📱 立即测试
+1. 访问: https://www.pawsafeplants.com/api/atmosphere-images
+2. 检查: https://www.pawsafeplants.com/api/site-config
+3. 验证: 不再出现TypeError
+
+### ✅ 预期效果
+- createSupabaseClient错误彻底解决
+- 所有API正常工作
+- 前端功能完全恢复
+- 500错误彻底消除
