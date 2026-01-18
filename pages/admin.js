@@ -2343,21 +2343,38 @@ export default function Admin() {
                 <p style={{ color: '#718096', marginBottom: '2rem' }}>
                   发布和管理您的博客文章
                 </p>
-                <Link href="/admin/blog">
-                  <button style={{
-                    padding: '12px 24px',
-                    background: sageGreen,
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: borderRadiusSmall,
-                    fontSize: '1rem',
-                    fontWeight: '500',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
-                  }}>
-                    🚀 进入博客管理
-                  </button>
-                </Link>
+                <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                  <Link href="/admin/blog">
+                    <button style={{
+                      padding: '12px 24px',
+                      background: sageGreen,
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      fontWeight: '500',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }}>
+                      🚀 发布博客
+                    </button>
+                  </Link>
+                  <Link href="/admin/blog-edit?id=1">
+                    <button style={{
+                      padding: '12px 24px',
+                      background: '#4299e1',
+                      color: 'white',
+                      border: 'none',
+                      borderRadius: borderRadiusSmall,
+                      fontSize: '1rem',
+                      fontWeight: '500',
+                      cursor: 'pointer',
+                      transition: 'all 0.3s ease'
+                    }}>
+                      ✏️ 编辑情人节博客
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           )}
