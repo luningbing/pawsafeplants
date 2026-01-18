@@ -1,4 +1,4 @@
-import { createSupabaseClient } from '../../../lib/supabase';
+import { createClient } from '@supabase/supabase-js'
 
 export default async function handler(req, res) {
   try {
@@ -11,7 +11,16 @@ export default async function handler(req, res) {
       return res.status(200).end();
     }
 
-    const supabase = createSupabaseClient();
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    );
 
     if (req.method === 'GET') {
       // 获取所有氛围图

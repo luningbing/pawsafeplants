@@ -1,4 +1,4 @@
-import { createSupabaseClient } from '../../../lib/supabase';
+import { createClient } from '@supabase/supabase-js'
 
 export default async function handler(req, res) {
   try {
@@ -25,7 +25,16 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Display name cannot be empty' });
     }
 
-    const supabase = createSupabaseClient();
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    );
 
     console.log('🔄 Renaming media:', { fileId, displayName });
 

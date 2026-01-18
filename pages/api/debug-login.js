@@ -1,4 +1,4 @@
-import { createSupabaseClient } from '../../lib/supabase';
+import { createClient } from '@supabase/supabase-js'
 import bcrypt from 'bcryptjs';
 
 export default async function handler(req, res) {
@@ -13,7 +13,16 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'GET') {
-      const supabase = createSupabaseClient();
+      const supabase = createClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+        process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+        {
+          auth: {
+            autoRefreshToken: false,
+            persistSession: false
+          }
+        }
+      );
       
       try {
         // Check if admin_credentials table exists and has data

@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { createSupabaseClient } from '../../../lib/supabase';
+import { createClient } from '@supabase/supabase-js'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key-change-in-production';
 
@@ -47,7 +47,16 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'New password must be at least 6 characters long' });
     }
 
-    const supabase = createSupabaseClient();
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL,
+      process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    );
 
     // Find user by username from admin_credentials table
     const { data: users, error: fetchError } = await supabase
