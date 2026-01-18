@@ -37,7 +37,12 @@ export default function BlogPost({ post }) {
   }, [post.content])
 
   // Get gallery images for this specific blog post
-  const galleryImages = post.gallery_images || []
+  const galleryImages = post.image_slots ? Object.entries(post.image_slots).map(([key, url]) => ({
+    position: key,
+    title: key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
+    description: `${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} 图片`,
+    url: url
+  })) : (post.gallery_images || []);
 
   // Color palette
   const sageGreen = '#87A96B'
