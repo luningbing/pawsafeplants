@@ -54,33 +54,9 @@ export default function SetupBlogDB() {
     setResult('正在设置数据库...');
 
     try {
-      // 1. 更新表结构
-      setResult('🔧 步骤1/3: 更新数据库表结构...');
-      const schemaResponse = await fetch('/api/admin/supabase-sql-executor', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          sql: `
-            ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS slug text UNIQUE;
-            ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS image_slots JSONB DEFAULT '{}'::jsonb;
-            ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS excerpt text;
-          `
-        })
-      });
-
-      const schemaResult = await schemaResponse.json();
+      // 直接执行数据迁移，让迁移API自己处理表结构检查
+      setResult('🔄 正在检查表结构并迁移数据...');
       
-      if (!schemaResult.success) {
-        setResult(`❌ 表结构更新失败: ${schemaResult.error}`);
-        return;
-      }
-
-      setResult('✅ 步骤1/3: 表结构更新成功！\n🔄 步骤2/3: 迁移博客数据...');
-      
-      // 2. 迁移情人节博客数据
       const migrateResponse = await fetch('/api/admin/blog-migrate-industrial', {
         method: 'POST',
         headers: {
@@ -91,20 +67,13 @@ export default function SetupBlogDB() {
 
       const migrateResult = await migrateResponse.json();
       
-      if (!migrateResult.success) {
-        setResult(`❌ 数据迁移失败: ${migrateResult.error}`);
-        return;
-      }
-
-      setResult('✅ 步骤2/3: 数据迁移成功！\n🔄 步骤3/3: 验证设置...');
-      
-      // 3. 验证设置
-      const verifyResponse = await fetch('/blog/valentines-day-cat-safe-flowers-guide');
-      
-      if (verifyResponse.ok) {
-        setResult('✅ 步骤3/3: 验证成功！\n\n🎉 数据库设置完成！\n\n✅ 表结构已更新\n✅ 情人节博客已迁移\n✅ 5个图片槽位已设置\n\n请访问前台博客页面验证：\nhttps://www.pawsafeplants.com/blog/valentines-day-cat-safe-flowers-guide');
+      if (migrateResult.success) {
+        setResult('✅ 数据库设置完成！\n\n🎉 博客数据已成功迁移！\n\n✅ 表结构已更新\n✅ 情人节博客已迁移\n✅ 5个图片槽位已设置\n\n请访问前台博客页面验证：\nhttps://www.pawsafeplants.com/blog/valentines-day-cat-safe-flowers-guide');
+      } else if (migrateResult.sql) {
+        // 需要手动执行SQL
+        setResult(`⚠️ 需要手动执行SQL语句\n\n${migrateResult.sql}\n\n执行完成后，请重新点击"🚀 开始设置数据库"按钮。`);
       } else {
-        setResult('⚠️ 步骤3/3: 验证警告，前台页面可能需要重新构建\n\n✅ 数据库设置完成！\n✅ 表结构已更新\n✅ 情人节博客已迁移\n✅ 5个图片槽位已设置');
+        setResult(`❌ 数据迁移失败: ${migrateResult.error || migrateResult.details}`);
       }
       
     } catch (error) {
