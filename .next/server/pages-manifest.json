@@ -3,7 +3,7 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/admin/blog-editor-test": "pages/admin/blog-editor-test.js",
-  "/api/site-config": "pages/api/site-config.js",
   "/admin": "pages/admin.js",
-  "/blog/valentines-day-cat-safe-flowers-guide": "pages/blog/valentines-day-cat-safe-flowers-guide.js"
+  "/blog/valentines-day-cat-safe-flowers-guide": "pages/blog/valentines-day-cat-safe-flowers-guide.js",
+  "/api/site-config": "pages/api/site-config.js"
 }

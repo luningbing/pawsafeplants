@@ -23,130 +23,130 @@ export default function BlogEditorTest() {
 
   useEffect(() => {
     if (id) {
-      // 加载情人节博客完整内容
-      const valentinesContent = `# 💕 情人节猫咪安全花卉指南
+      // 加载情人节博客完整内容 (英文版)
+      const valentinesContent = `# 💕 Valentine's Day Cat-Safe Flowers Guide
 
-> 爱在空气中，花朵在绽放，但我们毛茸茸的朋友安全吗？
+> Love is in the air, flowers are blooming, but are our furry friends safe?
 
-当情人节的浪漫气息弥漫时，许多情侣会交换美丽的鲜花来表达爱意。然而，对于我们心爱的猫咪家庭成员来说，一些最受欢迎的情人节花卉可能隐藏着危险。让我们确保您的浪漫时刻不会变成兽医紧急情况。
+When Valentine's Day romance fills the air, many couples exchange beautiful flowers to express their love. However, for our beloved feline family members, some of the most popular Valentine's flowers may hide dangers. Let's ensure your romantic moment doesn't turn into a veterinary emergency.
 
-## 🌹 传统情人节花卉及其风险
+## 🌹 Traditional Valentine's Flowers and Their Risks
 
-### 玫瑰 - 相对安全的选择
-**毒性等级**: 🟢 一般安全 - 刺伤是主要问题
+### Roses - Relatively Safe Choice
+**Toxicity Level**: 🟢 Generally Safe - Thorns are the main concern
 
-好消息！玫瑰通常对猫咪无毒。主要风险来自花茎上的刺，可能造成物理伤害。不过，如果玫瑰经过处理（如染色或喷洒保鲜剂），情况可能会有所不同。
+Good news! Roses are generally non-toxic to cats. The main risk comes from thorns on the stem, which can cause physical injury. However, if roses have been treated (such as dyed or sprayed with preservatives), the situation might be different.
 
-**安全提示**:
-- 去除花茎上的刺
-- 确保玫瑰未经过化学处理
-- 观察猫咪是否有异常行为
+**Safety Tips**:
+- Remove thorns from stems
+- Ensure roses are not chemically treated
+- Watch for any unusual behavior in your cat
 
-### 百合花 - 极度危险
-**毒性等级**: 🔴 极度危险 - 所有部分都有毒
+### Lilies - Extremely Dangerous
+**Toxicity Level**: 🔴 Extremely Dangerous - All parts are toxic
 
-这是最需要警惕的！百合花对猫咪来说是剧毒植物。即使是少量摄入（只是喝了花瓶中的水或舔了花瓣）也可能导致急性肾衰竭。
+This is the most important warning! Lilies are highly toxic to cats. Even small amounts (just drinking from the vase water or licking petals) can cause acute kidney failure.
 
-**危险部分**:
-- 花瓣
-- 叶子  
-- 花粉
-- 花茎
-- 甚至花瓶中的水
+**Toxic Parts**:
+- Petals
+- Leaves  
+- Pollen
+- Stems
+- Even the vase water
 
-**中毒症状**:
-- 2-6小时内出现呕吐
-- 食欲不振
-- 嗜睡
-- 12-24小时内发展为急性肾衰竭
+**Poisoning Symptoms**:
+- Vomiting within 2-6 hours
+- Loss of appetite
+- Lethargy
+- Acute kidney failure within 12-24 hours
 
-### 郁金香 - 中度风险
-**毒性等级**: 🟡 中度毒性
+### Tulips - Moderate Risk
+**Toxicity Level**: 🟡 Moderately Toxic
 
-郁金香含有毒素，主要集中在其球茎中，但花朵和叶子也可能引起问题。
+Tulips contain toxins, primarily concentrated in their bulbs, but flowers and leaves can also cause problems.
 
-**中毒症状**:
-- 大量流口水
-- 恶心和呕吐
-- 腹泻
-- 食欲不振
+**Poisoning Symptoms**:
+- Excessive drooling
+- Nausea and vomiting
+- Diarrhea
+- Loss of appetite
 
-## 🛡️ 情人节安全花卉替代方案
+## 🛡️ Safe Valentine's Flower Alternatives
 
-### 非洲紫罗兰 - 完美安全
-**毒性等级**: 🟢 完全安全
+### African Violets - Perfectly Safe
+**Toxicity Level**: 🟢 Completely Safe
 
-这些美丽的紫色花朵不仅对猫咪完全安全，还能为您的家增添优雅的色彩。
+These beautiful purple flowers are not only completely safe for cats but can also add elegant color to your home.
 
-### 康乃馨 - 相对安全
-**毒性等级**: 🟢 一般安全
+### Carnations - Relatively Safe
+**Toxicity Level**: 🟢 Generally Safe
 
-康乃馨通常对猫咪无毒，但可能引起轻微的肠胃不适。
+Carnations are generally non-toxic to cats but may cause mild gastrointestinal upset.
 
-### 向日葵 - 绝对安全
-**毒性等级**: 🟢 完全安全
+### Sunflowers - Absolutely Safe
+**Toxicity Level**: 🟢 Completely Safe
 
-向日葵不仅美丽，而且对猫咪完全无害，是情人节装饰的理想选择。
+Sunflowers are not only beautiful but completely harmless to cats, making them an ideal choice for Valentine's decorations.
 
-### 薰衣草 - 安全且芳香
-**毒性等级**: 🟢 一般安全
+### Lavender - Safe and Aromatic
+**Toxicity Level**: 🟢 Generally Safe
 
-薰衣草对猫咪相对安全，其镇静香气甚至可能帮助缓解猫咪的焦虑。
+Lavender is relatively safe for cats, and its calming scent may even help relieve cat anxiety.
 
-## 🎁 创造猫咪友好的情人节
+## 🎁 Creating Cat-Friendly Valentine's
 
-### 安全庆祝方式
-1. **选择安全花卉**: 优先考虑非洲紫罗兰、向日葵或康乃馨
-2. **花瓶位置**: 将花瓶放在猫咪无法触及的地方
-3. **人工花卉**: 考虑高质量的人工花卉，既美观又安全
-4. **猫咪专属礼物**: 为您的猫咪准备特别的情人节礼物
+### Safe Celebration Ways
+1. **Choose Safe Flowers**: Prioritize African violets, sunflowers, or carnations
+2. **Vase Placement**: Place vases where cats cannot reach them
+3. **Artificial Flowers**: Consider high-quality artificial flowers - beautiful and safe
+4. **Cat-Specific Gifts**: Prepare special Valentine's gifts for your cat
 
-### 紧急准备
-- **兽医联系方式**: 始终准备好24小时宠物医院电话
-- **中毒症状识别**: 了解常见的中毒症状
-- **快速行动**: 如果怀疑中毒，立即寻求兽医帮助
+### Emergency Preparedness
+- **Veterinary Contact**: Always have 24-hour pet hospital contact information ready
+- **Poisoning Symptom Recognition**: Know common poisoning symptoms
+- **Quick Action**: If poisoning is suspected, seek veterinary help immediately
 
-## 📋 情人节花卉安全检查表
+## 📋 Valentine's Flower Safety Checklist
 
-| 花卉 | 安全等级 | 主要风险 | 建议 |
-|------|----------|----------|------|
-| 🌹 玫瑰 | 🟢 安全 | 刺伤 | 去刺处理 |
-| 🌺 百合 | 🔴 危险 | 肾衰竭 | 绝对避免 |
-| 🌷 郁金香 | 🟡 中度 | 肠胃不适 | 谨慎使用 |
-| 🌻 向日葵 | 🟢 安全 | 无 | 推荐选择 |
-| 🌸 非洲紫罗兰 | 🟢 安全 | 无 | 理想选择 |
+| Flower | Safety Level | Main Risk | Recommendation |
+|--------|-------------|-----------|----------------|
+| 🌹 Rose | 🟢 Safe | Thorn injury | Remove thorns |
+| 🌺 Lily | 🔴 Dangerous | Kidney failure | Absolutely avoid |
+| 🌷 Tulip | 🟡 Moderate | GI upset | Use with caution |
+| 🌻 Sunflower | 🟢 Safe | None | Recommended |
+| 🌸 African Violet | 🟢 Safe | None | Ideal choice |
 
-## 💡 爱护小贴士
+## 💡 Care Tips
 
-### 如果您的猫咪摄入了有毒花卉
-1. **不要等待**: 立即联系兽医
-2. **收集证据**: 保留花卉样本供兽医识别
-3. **不要催吐**: 除非兽医指示
-4. **保持冷静**: 您的平静有助于猫咪保持冷静
+### If Your Cat Ingests Toxic Flowers
+1. **Don't Wait**: Contact your veterinarian immediately
+2. **Collect Evidence**: Keep flower samples for veterinarian identification
+3. **Don't Induce Vomiting**: Unless instructed by veterinarian
+4. **Stay Calm**: Your calm helps your cat stay calm
 
-### 预防措施
-- 在购买花卉前询问是否对宠物安全
-- 将所有花卉放在猫咪接触不到的地方
-- 考虑为猫咪准备猫草作为安全的替代品
-- 定期检查家中是否有掉落的花瓣或叶子
+### Preventive Measures
+- Ask if flowers are pet-safe before purchasing
+- Keep all flowers where cats cannot reach them
+- Consider cat grass as a safe alternative
+- Regularly check for fallen petals or leaves
 
-## 🌈 结语
+## 🌈 Conclusion
 
-情人节是表达爱的美好时刻，但这种爱应该延伸到我们所有的家庭成员，包括我们的猫咪朋友。通过选择安全的装饰和保持警惕，我们可以确保这个情人节对每个人都是快乐和安全的。
+Valentine's Day is a beautiful moment to express love, but this love should extend to all our family members, including our feline friends. By choosing safe decorations and staying vigilant, we can ensure this Valentine's Day is happy and safe for everyone.
 
-记住，真正的爱是保护我们所关心的一切。让我们用智慧和关怀来庆祝这个特殊的日子，确保我们的毛茸茸朋友能够安全地陪伴在我们身边。
+Remember, true love is protecting everything we care about. Let's celebrate this special day with wisdom and care, ensuring our furry friends can safely accompany us.
 
 ---
 
-**🚨 紧急联系信息**: 如果您的猫咪出现任何中毒症状，请立即联系您的兽医或当地24小时宠物急诊医院。
+**🚨 Emergency Contact Information**: If your cat shows any poisoning symptoms, contact your veterinarian or local 24-hour pet emergency hospital immediately.
 
-**💝 猫咪安全情人节！** 让爱绽放，让安全常在。`;
+**💝 Cat-Safe Valentine's Day!** Let love bloom, let safety prevail.`;
 
-      setTitle('💕 情人节猫咪安全花卉指南');
+      setTitle('💕 Valentine\'s Day Cat-Safe Flowers Guide');
       setSlug('valentines-day-cat-safe-flowers-guide');
       setContent(valentinesContent);
-      setExcerpt('情人节猫咪安全花卉指南 - 了解哪些花卉对猫咪安全，哪些有毒，以及如何创造一个猫咪友好的情人节环境。包含玫瑰、百合、郁金香等花卉的详细安全分析。');
-      setTags('情人节, 猫咪安全, 花卉指南, 宠物护理, 浪漫, 百合, 玫瑰');
+      setExcerpt('Valentine\'s Day Cat-Safe Flowers Guide - Learn which flowers are safe for cats, which are toxic, and how to create a cat-friendly Valentine\'s environment. Includes detailed safety analysis of roses, lilies, tulips and more.');
+      setTags('Valentine\'s Day, Cat Safety, Flower Guide, Pet Care, Romance, Lilies, Roses');
       setCoverImage('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=1200&h=630&fit=crop');
       setImageSlots({
         slot1: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=800&h=600&fit=crop&crop=faces',
