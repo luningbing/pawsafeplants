@@ -2356,7 +2356,7 @@ export default function Admin() {
                       cursor: 'pointer',
                       transition: 'all 0.3s ease'
                     }}>
-                      📝 博客列表
+                      📊 博客列表
                     </button>
                   </Link>
                   <Link href="/admin/blog-editor">
@@ -2386,7 +2386,7 @@ export default function Admin() {
                       cursor: 'pointer',
                       transition: 'all 0.3s ease'
                     }}>
-                      ✏️ 编辑情人节博客
+                      ✏️ 编辑博客
                     </button>
                   </Link>
                 </div>

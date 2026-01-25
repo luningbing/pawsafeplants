@@ -1,14 +1,4 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
-
 export default function BlogRedirect() {
-  const router = useRouter();
-
-  useEffect(() => {
-    // 重定向到工业级博客管理页面
-    router.replace('/admin/blog-table');
-  }, [router]);
-
   return (
     <div style={{ 
       display: 'flex', 
@@ -21,4 +11,13 @@ export default function BlogRedirect() {
       正在重定向到工业级博客管理页面...
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  return {
+    redirect: {
+      destination: '/admin/blog-table',
+      permanent: false
+    }
+  };
 }
