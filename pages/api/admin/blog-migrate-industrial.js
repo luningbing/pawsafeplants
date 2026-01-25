@@ -58,7 +58,9 @@ export default async function handler(req, res) {
         content: 'test content',
         excerpt: 'test excerpt',
         image_slots: { slot1: 'test' },
-        status: 'draft'
+        status: 'draft',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
       };
       
       const { data: insertTest, error: insertError } = await supabase
@@ -78,9 +80,17 @@ export default async function handler(req, res) {
             sql: `
 请先在Supabase SQL Editor中执行以下SQL：
 
+-- 添加缺失的字段
 ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS slug text UNIQUE;
 ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS image_slots JSONB DEFAULT '{}'::jsonb;
 ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS excerpt text;
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS status text DEFAULT 'draft';
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS created_at timestamp with time zone DEFAULT now();
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS updated_at timestamp with time zone DEFAULT now();
+
+-- 创建索引
+CREATE INDEX IF NOT EXISTS idx_blog_posts_slug ON public.blog_posts(slug);
+CREATE INDEX IF NOT EXISTS idx_blog_posts_status ON public.blog_posts(status);
 
 执行完成后，请重新运行数据库设置。
             `
