@@ -31,7 +31,9 @@ export default function SetupBlogDB() {
       if (data.success) {
         setToken(data.token);
         setResult('✅ 登录成功！现在可以设置数据库了');
-        localStorage.setItem('admin_token', data.token);
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('admin_token', data.token);
+        }
       } else {
         setResult(`❌ 登录失败: ${data.error}`);
       }
@@ -100,12 +102,14 @@ export default function SetupBlogDB() {
   };
 
   // 检查是否已有token
-  useState(() => {
-    const savedToken = localStorage.getItem('admin_token');
-    if (savedToken) {
-      setToken(savedToken);
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedToken = localStorage.getItem('admin_token');
+      if (savedToken) {
+        setToken(savedToken);
+      }
     }
-  });
+  }, []);
 
   return (
     <>
