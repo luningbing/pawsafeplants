@@ -177,15 +177,28 @@ export default async function handler(req, res) {
     const excerpt = "情人节猫咪安全花卉指南 - 了解哪些花卉对猫咪安全，哪些有毒，以及如何创造一个猫咪友好的情人节环境。包含玫瑰、百合、郁金香等花卉的详细安全分析。";
 
     // 检查是否已存在情人节博客
+    console.log('🔍 检查现有博客...');
     const { data: existingBlog, error: checkError } = await supabase
       .from('blog_posts')
       .select('id')
       .eq('slug', 'valentines-day-cat-safe-flowers-guide')
       .single();
 
+    console.log('📊 检查结果:', { existingBlog, checkError, errorCode: checkError?.code });
+
     if (checkError && checkError.code !== 'PGRST116') {
       console.error('❌ 检查现有博客失败:', checkError);
-      return res.status(500).json({ error: 'Failed to check existing blog' });
+      console.error('❌ 错误详情:', {
+        message: checkError.message,
+        details: checkError.details,
+        hint: checkError.hint,
+        code: checkError.code
+      });
+      return res.status(500).json({ 
+        error: 'Failed to check existing blog',
+        details: checkError.message,
+        code: checkError.code
+      });
     }
 
     if (existingBlog) {
