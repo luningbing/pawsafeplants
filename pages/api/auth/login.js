@@ -4,12 +4,29 @@ import crypto from 'crypto'
 import { supabaseAdmin } from '../../../lib/supabaseAdmin'
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
-  const { username, password } = req.body || {};
-  const u = String(username || '').trim();
-  const p = String(password || '').trim();
-  
-  console.log('🔐 Login attempt:', { username: u, timestamp: new Date().toISOString() });
+  try {
+    // Enable CORS
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    if (req.method === 'OPTIONS') {
+      return res.status(200).end();
+    }
+
+    if (req.method !== 'POST') {
+      console.log('❌ Method not allowed:', req.method);
+      return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    console.log('📥 Request body:', req.body);
+    console.log('📋 Headers:', req.headers);
+
+    const { username, password } = req.body || {};
+    const u = String(username || '').trim();
+    const p = String(password || '').trim();
+    
+    console.log('🔐 Login attempt:', { username: u, timestamp: new Date().toISOString() });
   
   let ok = false
   try {
@@ -84,4 +101,8 @@ export default async function handler(req, res) {
   
   console.log('🚫 Login failed, returning 401');
   return res.status(401).json({ error: '用户名或密码错误' });
+  } catch (error) {
+    console.error('💥 Login API error:', error);
+    return res.status(500).json({ error: '服务器内部错误', details: error.message });
+  }
 }
