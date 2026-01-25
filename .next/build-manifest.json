@@ -31,11 +31,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/admin/blog-editor.js"
-    ],
-    "/admin/blog-table": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/admin/blog-table.js"
     ]
   },
   "ampFirstPages": []

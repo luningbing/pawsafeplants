@@ -2344,7 +2344,7 @@ export default function Admin() {
                   发布和管理您的博客文章
                 </p>
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <button onClick={() => window.location.href = '/admin/blog-table'} style={{
+                  <button onClick={() => window.location.href = '/admin/blog-table-test'} style={{
                     padding: '12px 24px',
                     background: sageGreen,
                     color: 'white',
@@ -2357,7 +2357,7 @@ export default function Admin() {
                   }}>
                     📊 博客列表
                   </button>
-                  <button onClick={() => window.location.href = '/admin/blog-editor'} style={{
+                  <button onClick={() => window.location.href = '/admin/blog-editor-test'} style={{
                     padding: '12px 24px',
                     background: '#4299e1',
                     color: 'white',
@@ -2370,7 +2370,7 @@ export default function Admin() {
                   }}>
                     ➕ 新建博客
                   </button>
-                  <button onClick={() => window.location.href = '/admin/blog-editor?id=1'} style={{
+                  <button onClick={() => window.location.href = '/admin/blog-editor-test?id=1'} style={{
                     padding: '12px 24px',
                     background: '#f59e0b',
                     color: 'white',
