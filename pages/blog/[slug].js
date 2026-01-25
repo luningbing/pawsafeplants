@@ -42,7 +42,7 @@ export default function BlogPost({ post }) {
     title: key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
     description: `${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} 图片`,
     url: url
-  })) : (post.gallery_images || []);
+  })).filter(img => img.url) : (post.gallery_images || []);
 
   // Color palette
   const sageGreen = '#87A96B'

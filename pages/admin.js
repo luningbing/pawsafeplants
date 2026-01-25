@@ -2344,7 +2344,7 @@ export default function Admin() {
                   发布和管理您的博客文章
                 </p>
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <Link href="/admin/blog-list-new">
+                  <Link href="/admin/blog-table">
                     <button style={{
                       padding: '12px 24px',
                       background: sageGreen,
@@ -2359,7 +2359,7 @@ export default function Admin() {
                       📝 博客列表
                     </button>
                   </Link>
-                  <Link href="/admin/blog">
+                  <Link href="/admin/blog-editor">
                     <button style={{
                       padding: '12px 24px',
                       background: '#4299e1',
@@ -2371,10 +2371,10 @@ export default function Admin() {
                       cursor: 'pointer',
                       transition: 'all 0.3s ease'
                     }}>
-                      🚀 发布博客
+                      ➕ 新建博客
                     </button>
                   </Link>
-                  <Link href="/admin/blog-edit?id=1">
+                  <Link href="/admin/blog-editor?id=1">
                     <button style={{
                       padding: '12px 24px',
                       background: '#f59e0b',
