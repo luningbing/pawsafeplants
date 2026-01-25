@@ -22,15 +22,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/admin": [
+    "/admin/blog-editor-test": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/admin.js"
+      "static/chunks/pages/admin/blog-editor-test.js"
     ],
-    "/admin/blog-editor": [
+    "/blog/valentines-day-cat-safe-flowers-guide": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/admin/blog-editor.js"
+      "static/chunks/pages/blog/valentines-day-cat-safe-flowers-guide.js"
     ]
   },
   "ampFirstPages": []

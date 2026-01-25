@@ -2,8 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/admin/blog-editor": "pages/admin/blog-editor.js",
-  "/admin": "pages/admin.js",
+  "/admin/blog-editor-test": "pages/admin/blog-editor-test.js",
   "/api/site-config": "pages/api/site-config.js",
-  "/admin/blog-table-test": "pages/admin/blog-table-test.js"
+  "/admin": "pages/admin.js",
+  "/blog/valentines-day-cat-safe-flowers-guide": "pages/blog/valentines-day-cat-safe-flowers-guide.js"
 }
