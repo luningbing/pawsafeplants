@@ -2344,51 +2344,45 @@ export default function Admin() {
                   发布和管理您的博客文章
                 </p>
                 <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-                  <Link href="/admin/blog-table">
-                    <button style={{
-                      padding: '12px 24px',
-                      background: sageGreen,
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: borderRadiusSmall,
-                      fontSize: '1rem',
-                      fontWeight: '500',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease'
-                    }}>
-                      📊 博客列表
-                    </button>
-                  </Link>
-                  <Link href="/admin/blog-editor">
-                    <button style={{
-                      padding: '12px 24px',
-                      background: '#4299e1',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: borderRadiusSmall,
-                      fontSize: '1rem',
-                      fontWeight: '500',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease'
-                    }}>
-                      ➕ 新建博客
-                    </button>
-                  </Link>
-                  <Link href="/admin/blog-editor?id=1">
-                    <button style={{
-                      padding: '12px 24px',
-                      background: '#f59e0b',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: borderRadiusSmall,
-                      fontSize: '1rem',
-                      fontWeight: '500',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease'
-                    }}>
-                      ✏️ 编辑博客
-                    </button>
-                  </Link>
+                  <button onClick={() => window.location.href = '/admin/blog-table'} style={{
+                    padding: '12px 24px',
+                    background: sageGreen,
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    📊 博客列表
+                  </button>
+                  <button onClick={() => window.location.href = '/admin/blog-editor'} style={{
+                    padding: '12px 24px',
+                    background: '#4299e1',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    ➕ 新建博客
+                  </button>
+                  <button onClick={() => window.location.href = '/admin/blog-editor?id=1'} style={{
+                    padding: '12px 24px',
+                    background: '#f59e0b',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: borderRadiusSmall,
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}>
+                    ✏️ 编辑博客
+                  </button>
                 </div>
               </div>
             </div>
