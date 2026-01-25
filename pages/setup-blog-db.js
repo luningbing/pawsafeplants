@@ -55,6 +55,7 @@ export default function SetupBlogDB() {
 
     try {
       // 1. 更新表结构
+      setResult('🔧 步骤1/3: 更新数据库表结构...');
       const schemaResponse = await fetch('/api/admin/supabase-sql-executor', {
         method: 'POST',
         headers: {
@@ -72,28 +73,40 @@ export default function SetupBlogDB() {
 
       const schemaResult = await schemaResponse.json();
       
-      if (schemaResult.success) {
-        setResult('✅ 表结构更新成功！正在迁移数据...');
-        
-        // 2. 迁移情人节博客数据
-        const migrateResponse = await fetch('/api/admin/blog-migrate-industrial', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
-        });
-
-        const migrateResult = await migrateResponse.json();
-        
-        if (migrateResult.success) {
-          setResult('✅ 数据库设置完成！情人节博客已迁移！\n\n请访问前台博客页面验证：\nhttps://www.pawsafeplants.com/blog/valentines-day-cat-safe-flowers-guide');
-        } else {
-          setResult(`❌ 数据迁移失败: ${migrateResult.error}`);
-        }
-      } else {
+      if (!schemaResult.success) {
         setResult(`❌ 表结构更新失败: ${schemaResult.error}`);
+        return;
       }
+
+      setResult('✅ 步骤1/3: 表结构更新成功！\n🔄 步骤2/3: 迁移博客数据...');
+      
+      // 2. 迁移情人节博客数据
+      const migrateResponse = await fetch('/api/admin/blog-migrate-industrial', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+      const migrateResult = await migrateResponse.json();
+      
+      if (!migrateResult.success) {
+        setResult(`❌ 数据迁移失败: ${migrateResult.error}`);
+        return;
+      }
+
+      setResult('✅ 步骤2/3: 数据迁移成功！\n🔄 步骤3/3: 验证设置...');
+      
+      // 3. 验证设置
+      const verifyResponse = await fetch('/blog/valentines-day-cat-safe-flowers-guide');
+      
+      if (verifyResponse.ok) {
+        setResult('✅ 步骤3/3: 验证成功！\n\n🎉 数据库设置完成！\n\n✅ 表结构已更新\n✅ 情人节博客已迁移\n✅ 5个图片槽位已设置\n\n请访问前台博客页面验证：\nhttps://www.pawsafeplants.com/blog/valentines-day-cat-safe-flowers-guide');
+      } else {
+        setResult('⚠️ 步骤3/3: 验证警告，前台页面可能需要重新构建\n\n✅ 数据库设置完成！\n✅ 表结构已更新\n✅ 情人节博客已迁移\n✅ 5个图片槽位已设置');
+      }
+      
     } catch (error) {
       setResult(`❌ 错误: ${error.message}`);
     } finally {
