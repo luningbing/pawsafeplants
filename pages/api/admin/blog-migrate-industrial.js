@@ -45,6 +45,73 @@ export default async function handler(req, res) {
 
     console.log('🔄 开始工业级博客迁移...');
 
+    // 首先尝试创建表结构 - 使用简单的INSERT方式来测试字段
+    console.log('🔧 测试表结构...');
+    
+    let tableStructureOk = false;
+    
+    // 尝试插入测试数据来检查字段是否存在
+    try {
+      const testData = {
+        title: 'test',
+        slug: 'test-slug',
+        content: 'test content',
+        excerpt: 'test excerpt',
+        image_slots: { slot1: 'test' },
+        status: 'draft'
+      };
+      
+      const { data: insertTest, error: insertError } = await supabase
+        .from('blog_posts')
+        .insert(testData)
+        .select('id')
+        .single();
+      
+      if (insertError) {
+        console.log('⚠️ 表结构检查失败，字段可能不存在:', insertError);
+        
+        // 如果是字段不存在错误，返回具体的SQL
+        if (insertError.message.includes('column') && insertError.message.includes('does not exist')) {
+          return res.status(500).json({ 
+            error: 'Table structure needs to be updated',
+            details: insertError.message,
+            sql: `
+请先在Supabase SQL Editor中执行以下SQL：
+
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS slug text UNIQUE;
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS image_slots JSONB DEFAULT '{}'::jsonb;
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS excerpt text;
+
+执行完成后，请重新运行数据库设置。
+            `
+          });
+        }
+        
+        return res.status(500).json({ 
+          error: 'Table structure check failed',
+          details: insertError.message 
+        });
+      }
+      
+      // 删除测试数据
+      if (insertTest && insertTest.id) {
+        await supabase
+          .from('blog_posts')
+          .delete()
+          .eq('id', insertTest.id);
+      }
+      
+      tableStructureOk = true;
+      console.log('✅ 表结构检查通过');
+      
+    } catch (testError) {
+      console.error('💥 表结构测试异常:', testError);
+      return res.status(500).json({ 
+        error: 'Table structure test failed',
+        details: testError.message 
+      });
+    }
+
     // 情人节博客完整内容
     const valentinesContent = `# 💕 情人节猫咪安全花卉指南
 
