@@ -4,8 +4,50 @@ import Head from 'next/head';
 export default function SetupBlogDB() {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [token, setToken] = useState('');
+
+  const login = async () => {
+    if (!username || !password) {
+      setResult('❌ 请输入用户名和密码');
+      return;
+    }
+
+    setLoading(true);
+    setResult('正在登录...');
+
+    try {
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password })
+      });
+
+      const data = await response.json();
+      
+      if (data.success) {
+        setToken(data.token);
+        setResult('✅ 登录成功！现在可以设置数据库了');
+        localStorage.setItem('admin_token', data.token);
+      } else {
+        setResult(`❌ 登录失败: ${data.error}`);
+      }
+    } catch (error) {
+      setResult(`❌ 登录错误: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const setupDatabase = async () => {
+    if (!token) {
+      setResult('❌ 请先登录');
+      return;
+    }
+
     setLoading(true);
     setResult('正在设置数据库...');
 
@@ -15,6 +57,7 @@ export default function SetupBlogDB() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify({
           sql: `
@@ -35,13 +78,14 @@ export default function SetupBlogDB() {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
           }
         });
 
         const migrateResult = await migrateResponse.json();
         
         if (migrateResult.success) {
-          setResult('✅ 数据库设置完成！情人节博客已迁移！');
+          setResult('✅ 数据库设置完成！情人节博客已迁移！\n\n请访问前台博客页面验证：\nhttps://www.pawsafeplants.com/blog/valentines-day-cat-safe-flowers-guide');
         } else {
           setResult(`❌ 数据迁移失败: ${migrateResult.error}`);
         }
@@ -54,6 +98,14 @@ export default function SetupBlogDB() {
       setLoading(false);
     }
   };
+
+  // 检查是否已有token
+  useState(() => {
+    const savedToken = localStorage.getItem('admin_token');
+    if (savedToken) {
+      setToken(savedToken);
+    }
+  });
 
   return (
     <>
@@ -76,6 +128,116 @@ export default function SetupBlogDB() {
           🗄️ 设置博客数据库
         </h1>
 
+        {!token ? (
+          <div style={{
+            backgroundColor: '#f7fafc',
+            border: '1px solid #e2e8f0',
+            borderRadius: '8px',
+            padding: '30px',
+            marginBottom: '30px'
+          }}>
+            <h2 style={{ 
+              fontSize: '20px',
+              color: '#4a5568',
+              marginBottom: '20px'
+            }}>
+              🔐 管理员登录
+            </h2>
+            
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ 
+                display: 'block',
+                fontSize: '14px',
+                fontWeight: '500',
+                color: '#4a5568',
+                marginBottom: '5px'
+              }}>
+                用户名
+              </label>
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="请输入管理员用户名"
+                style={{
+                  width: '100%',
+                  padding: '12px 16px',
+                  border: '2px solid #e2e8f0',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  outline: 'none'
+                }}
+              />
+            </div>
+
+            <div style={{ marginBottom: '20px' }}>
+              <label style={{ 
+                display: 'block',
+                fontSize: '14px',
+                fontWeight: '500',
+                color: '#4a5568',
+                marginBottom: '5px'
+              }}>
+                密码
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="请输入管理员密码"
+                style={{
+                  width: '100%',
+                  padding: '12px 16px',
+                  border: '2px solid #e2e8f0',
+                  borderRadius: '8px',
+                  fontSize: '16px',
+                  outline: 'none'
+                }}
+              />
+            </div>
+
+            <button
+              onClick={login}
+              disabled={loading}
+              style={{
+                padding: '12px 24px',
+                background: loading ? '#cbd5e0' : '#4299e1',
+                color: 'white',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '16px',
+                fontWeight: '500',
+                cursor: loading ? 'not-allowed' : 'pointer'
+              }}
+            >
+              {loading ? '⏳ 登录中...' : '🔑 登录'}
+            </button>
+          </div>
+        ) : (
+          <div style={{
+            backgroundColor: '#f0fdf4',
+            border: '1px solid #bbf7d0',
+            borderRadius: '8px',
+            padding: '20px',
+            marginBottom: '30px'
+          }}>
+            <h3 style={{ 
+              fontSize: '16px',
+              color: '#166534',
+              marginBottom: '10px'
+            }}>
+              ✅ 已登录
+            </h3>
+            <p style={{ 
+              fontSize: '14px',
+              color: '#15803d',
+              margin: 0
+            }}>
+              管理员认证已完成，可以执行数据库设置操作。
+            </p>
+          </div>
+        )}
+
         <div style={{ 
           backgroundColor: '#f7fafc',
           border: '1px solid #e2e8f0',
@@ -95,6 +257,7 @@ export default function SetupBlogDB() {
             lineHeight: '1.6',
             paddingLeft: '20px'
           }}>
+            <li>管理员身份验证</li>
             <li>添加 slug、image_slots、excerpt 字段到 blog_posts 表</li>
             <li>迁移情人节博客完整内容到数据库</li>
             <li>设置5个图片槽位数据</li>
@@ -104,16 +267,16 @@ export default function SetupBlogDB() {
 
         <button
           onClick={setupDatabase}
-          disabled={loading}
+          disabled={loading || !token}
           style={{
             padding: '16px 32px',
-            background: loading ? '#cbd5e0' : '#4299e1',
+            background: loading || !token ? '#cbd5e0' : '#4299e1',
             color: 'white',
             border: 'none',
             borderRadius: '8px',
             fontSize: '16px',
             fontWeight: '500',
-            cursor: loading ? 'not-allowed' : 'pointer',
+            cursor: loading || !token ? 'not-allowed' : 'pointer',
             marginBottom: '20px'
           }}
         >
