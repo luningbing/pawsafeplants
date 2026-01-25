@@ -60,6 +60,10 @@ export default async function handler(req, res) {
         image_slots: { slot1: 'test' },
         status: 'draft',
         featured: false,
+        tags: ['test'],
+        category: 'test',
+        reading_time: 5,
+        author: 'test',
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       };
@@ -87,6 +91,10 @@ ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS image_slots JSONB DEFAULT
 ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS excerpt text;
 ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS status text DEFAULT 'draft';
 ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS featured boolean DEFAULT false;
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS tags text[] DEFAULT '{}';
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS category text;
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS reading_time integer DEFAULT 5;
+ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS author text;
 ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS created_at timestamp with time zone DEFAULT now();
 ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS updated_at timestamp with time zone DEFAULT now();
 
@@ -94,6 +102,8 @@ ALTER TABLE public.blog_posts ADD COLUMN IF NOT EXISTS updated_at timestamp with
 CREATE INDEX IF NOT EXISTS idx_blog_posts_slug ON public.blog_posts(slug);
 CREATE INDEX IF NOT EXISTS idx_blog_posts_status ON public.blog_posts(status);
 CREATE INDEX IF NOT EXISTS idx_blog_posts_featured ON public.blog_posts(featured);
+CREATE INDEX IF NOT EXISTS idx_blog_posts_category ON public.blog_posts(category);
+CREATE INDEX IF NOT EXISTS idx_blog_posts_author ON public.blog_posts(author);
 
 执行完成后，请重新运行数据库设置。
             `
