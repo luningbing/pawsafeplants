@@ -1,17 +1,12 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-export default function BlogEditRedirect() {
+export default function BlogListRedirect() {
   const router = useRouter();
 
   useEffect(() => {
-    // 重定向到工业级编辑页面
-    const { id } = router.query;
-    if (id) {
-      router.replace(`/admin/blog-editor?id=${id}`);
-    } else {
-      router.replace('/admin/blog-table');
-    }
+    // 重定向到工业级博客列表页面
+    router.replace('/admin/blog-table');
   }, [router]);
 
   return (
@@ -23,7 +18,7 @@ export default function BlogEditRedirect() {
       fontSize: '18px',
       fontFamily: 'system-ui, -apple-system, sans-serif'
     }}>
-      正在重定向到工业级博客编辑页面...
+      正在重定向到工业级博客列表页面...
     </div>
   );
 }
