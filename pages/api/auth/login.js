@@ -67,7 +67,19 @@ export default async function handler(req, res) {
     const attrs = [`psp_admin=1`, `Path=/`, `HttpOnly`, `SameSite=Lax`, `Max-Age=86400`].concat(secure ? ['Secure'] : []);
     res.setHeader('Set-Cookie', attrs.join('; '));
     console.log('🎉 Login successful, setting cookie');
-    return res.status(200).json({ ok: true });
+    
+    // 生成JWT token
+    const token = jwt.sign(
+      { username: u, timestamp: Date.now() },
+      process.env.JWT_SECRET || 'your-secret-key-change-in-production',
+      { expiresIn: '24h' }
+    );
+    
+    return res.status(200).json({ 
+      success: true, 
+      token: token,
+      username: u
+    });
   }
   
   console.log('🚫 Login failed, returning 401');
