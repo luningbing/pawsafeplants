@@ -138,9 +138,11 @@ export default function Admin() {
       if (token) {
         try {
           // Verify token with server
-          const response = await fetch('/api/auth/login', {
+          const response = await fetch('/api/auth/verify', {
+            method: 'POST',
             headers: {
-              'Authorization': `Bearer ${token}`
+              'Authorization': `Bearer ${token}`,
+              'Content-Type': 'application/json'
             }
           });
           
