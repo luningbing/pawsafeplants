@@ -15,7 +15,7 @@ export default function BlogPost({ post }) {
   const [contentHtml, setContentHtml] = useState('')
 
   if (!post) {
-    return <div>Article not found.</div>;
+    return <div>Blog post not found.</div>;
   }
 
   // Convert markdown content to HTML
@@ -40,7 +40,7 @@ export default function BlogPost({ post }) {
   const galleryImages = post.image_slots ? Object.entries(post.image_slots).map(([key, url]) => ({
     position: key,
     title: key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-    description: `${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} 图片`,
+    description: `${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Image`,
     url: url
   })).filter(img => img.url) : (post.gallery_images || []);
 
@@ -76,6 +76,7 @@ export default function BlogPost({ post }) {
       <Head>
         <title>{post.title} - PawSafePlants</title>
         <meta name="description" content={post.title} />
+        <html lang="en" />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.title} />
         <meta property="og:image" content={post.cover_image_url} />

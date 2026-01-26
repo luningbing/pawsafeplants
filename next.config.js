@@ -4,6 +4,12 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   
+  // i18n configuration - ensure English as default
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+  
   // Performance optimizations for <1.5s load time
   images: {
     domains: [
