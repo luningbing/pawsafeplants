@@ -134,11 +134,11 @@ export default function Admin() {
   // Check authentication status
   useEffect(() => {
     const checkAuth = async () => {
-      const token = localStorage.getItem('adminToken');
+      const token = localStorage.getItem('admin_token');
       if (token) {
         try {
           // Verify token with server
-          const response = await fetch('/api/login', {
+          const response = await fetch('/api/auth/login', {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -146,17 +146,17 @@ export default function Admin() {
           
           const data = await response.json();
           
-          if (data.message === 'Token is valid') {
+          if (data.success || data.message === 'Token is valid') {
             setIsAuthenticated(true);
           } else {
             // Invalid token, remove it and redirect to login
-            localStorage.removeItem('adminToken');
+            localStorage.removeItem('admin_token');
             localStorage.removeItem('adminUser');
             router.push('/login');
           }
         } catch {
           // Token verification failed, remove it and redirect
-          localStorage.removeItem('adminToken');
+          localStorage.removeItem('admin_token');
           localStorage.removeItem('adminUser');
           router.push('/login');
         }
@@ -168,7 +168,7 @@ export default function Admin() {
     };
 
     checkAuth();
-  }, [router]);
+  }, []); // 移除router依赖避免无限循环
 
   useEffect(() => {
     const load = async () => {
@@ -798,7 +798,7 @@ export default function Admin() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+          'Authorization': `Bearer ${localStorage.getItem('admin_token')}`
         },
         body: JSON.stringify({
           oldPassword: passwordForm.oldPassword,
@@ -814,7 +814,7 @@ export default function Admin() {
         
         // Auto logout after 2 seconds
         setTimeout(() => {
-          localStorage.removeItem('adminToken');
+          localStorage.removeItem('admin_token');
           localStorage.removeItem('adminUser');
           router.push('/login');
         }, 2000);
@@ -988,8 +988,9 @@ export default function Admin() {
   return (
     <div style={{ minHeight: '100vh', backgroundColor: warmCream, fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       <Head>
-        <title>管理后台 - PawSafePlants</title>
-        <meta name="description" content="PawSafePlants 管理后台" />
+        <title>Admin Dashboard - PawSafePlants</title>
+        <meta name="description" content="PawSafePlants Admin Dashboard" />
+        <html lang="en" />
       </Head>
 
       {/* Global Toast Component */}
@@ -1492,7 +1493,7 @@ export default function Admin() {
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        取消
+                        Cancel
                       </button>
                     </div>
                   </div>
@@ -3023,7 +3024,7 @@ export default function Admin() {
                     transition: 'all 0.3s ease'
                   }}
                 >
-                  取消
+                  Cancel
                 </button>
               </div>
             </form>
@@ -3113,7 +3114,7 @@ export default function Admin() {
                   transition: 'all 0.3s ease'
                 }}
               >
-                取消
+                Cancel
               </button>
             </div>
           </div>
@@ -3202,7 +3203,7 @@ export default function Admin() {
                   transition: 'all 0.3s ease'
                 }}
               >
-                取消
+                Cancel
               </button>
             </div>
           </div>
@@ -3309,7 +3310,7 @@ export default function Admin() {
                   transition: 'all 0.3s ease'
                 }}
               >
-                取消
+                Cancel
               </button>
             </div>
           </div>
