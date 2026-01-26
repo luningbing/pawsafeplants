@@ -17,7 +17,7 @@ export default function Login() {
 
   useEffect(() => {
     // Check if already logged in
-    const token = localStorage.getItem('adminToken');
+    const token = localStorage.getItem('admin_token');
     if (token) {
       router.push('/admin');
     }
@@ -29,7 +29,7 @@ export default function Login() {
     setError('');
 
     try {
-      const response = await fetch('/api/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export default function Login() {
 
       if (response.ok) {
         // Store token and user info
-        localStorage.setItem('adminToken', data.token);
+        localStorage.setItem('admin_token', data.token);
         localStorage.setItem('adminUser', JSON.stringify(data.user));
         
         // Show success animation
