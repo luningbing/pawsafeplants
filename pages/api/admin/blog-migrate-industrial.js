@@ -264,7 +264,7 @@ CREATE INDEX IF NOT EXISTS idx_blog_posts_author ON public.blog_posts(author);
     };
 
     // 生成SEO优化的摘要
-    const excerpt = "情人节猫咪安全花卉指南 - 了解哪些花卉对猫咪安全，哪些有毒，以及如何创造一个猫咪友好的情人节环境。包含玫瑰、百合、郁金香等花卉的详细安全分析。";
+    const excerpt = "Valentine's Day Cat-Safe Flowers Guide - Learn which flowers are safe for cats, which are toxic, and how to create a cat-friendly Valentine's environment. Includes detailed safety analysis of roses, lilies, tulips and more.";
 
     // 检查是否已存在情人节博客
     console.log('🔍 检查现有博客...');
@@ -297,13 +297,13 @@ CREATE INDEX IF NOT EXISTS idx_blog_posts_author ON public.blog_posts(author);
       const { data: updateData, error: updateError } = await supabase
         .from('blog_posts')
         .update({
-          title: '💕 情人节猫咪安全花卉指南',
+          title: '💕 Valentine\'s Day Cat-Safe Flowers Guide',
           slug: 'valentines-day-cat-safe-flowers-guide',
           content: valentinesContent,
           excerpt: excerpt,
           cover_image_url: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=1200&h=630&fit=crop',
           image_slots: imageSlots,
-          tags: ['情人节', '猫咪安全', '花卉指南', '宠物护理', '浪漫', '百合', '玫瑰'],
+          tags: ['Valentine\'s Day', 'Cat Safety', 'Flower Guide', 'Pet Care', 'Romance', 'Lilies', 'Roses'],
           status: 'published',
           featured: true,
           updated_at: new Date().toISOString()
@@ -336,13 +336,13 @@ CREATE INDEX IF NOT EXISTS idx_blog_posts_author ON public.blog_posts(author);
       const { data: createData, error: createError } = await supabase
         .from('blog_posts')
         .insert({
-          title: '💕 情人节猫咪安全花卉指南',
+          title: '💕 Valentine\'s Day Cat-Safe Flowers Guide',
           slug: 'valentines-day-cat-safe-flowers-guide',
           content: valentinesContent,
           excerpt: excerpt,
           cover_image_url: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=1200&h=630&fit=crop',
           image_slots: imageSlots,
-          tags: ['情人节', '猫咪安全', '花卉指南', '宠物护理', '浪漫', '百合', '玫瑰'],
+          tags: ['Valentine\'s Day', 'Cat Safety', 'Flower Guide', 'Pet Care', 'Romance', 'Lilies', 'Roses'],
           status: 'published',
           featured: true,
           created_at: new Date().toISOString(),
