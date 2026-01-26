@@ -21,7 +21,7 @@ export default function BlogPost({ post }) {
   // Convert markdown content to HTML
   useEffect(() => {
     const convertContent = async () => {
-      if (post.content) {
+      if (post && post.content) {
         try {
           const result = await remark().use(html).process(post.content)
           setContentHtml(result.toString())
@@ -34,7 +34,7 @@ export default function BlogPost({ post }) {
       }
     }
     convertContent()
-  }, [post.content])
+  }, [post?.content]) // 使用可选链操作符
 
   // Get gallery images for this specific blog post
   const galleryImages = post.image_slots ? Object.entries(post.image_slots).map(([key, url]) => ({
@@ -74,18 +74,18 @@ export default function BlogPost({ post }) {
   return (
     <>
       <Head>
-        <title>{post.title} - PawSafePlants</title>
-        <meta name="description" content={post.title} />
+        <title>{post?.title || 'Blog Post'} - PawSafePlants</title>
+        <meta name="description" content={post?.title || 'Blog post'} />
         <html lang="en" />
-        <meta property="og:title" content={post.title} />
-        <meta property="og:description" content={post.title} />
-        <meta property="og:image" content={post.cover_image_url} />
+        <meta property="og:title" content={post?.title || 'Blog Post'} />
+        <meta property="og:description" content={post?.title || 'Blog post'} />
+        <meta property="og:image" content={post?.cover_image_url || ''} />
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://www.pawsafeplants.com/blog/${post.slug}`} />
+        <meta property="og:url" content={`https://www.pawsafeplants.com/blog/${post?.slug || ''}`} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={post.title} />
-        <meta name="twitter:description" content={post.title} />
-        <meta name="twitter:image" content={post.cover_image_url} />
+        <meta name="twitter:title" content={post?.title || 'Blog Post'} />
+        <meta name="twitter:description" content={post?.title || 'Blog post'} />
+        <meta name="twitter:image" content={post?.cover_image_url || ''} />
       </Head>
 
       <PageTransition>
@@ -142,7 +142,7 @@ export default function BlogPost({ post }) {
                   textShadow: '2px 2px 4px rgba(0,0,0,0.3)',
                   lineHeight: 1.2
                 }}>
-                  {post.title}
+                  {post?.title}
                 </h1>
                 <div style={{ 
                   fontSize: '1.2rem',
@@ -174,7 +174,7 @@ export default function BlogPost({ post }) {
                 border: `1px solid ${warmCreamDark}`
               }}>
                 {/* Cover Image */}
-                {post.cover_image_url && (
+                {post?.cover_image_url && (
                   <div style={{ 
                     marginBottom: '2rem',
                     borderRadius: borderRadius,
@@ -183,7 +183,7 @@ export default function BlogPost({ post }) {
                   }}>
                     <OptimizedImage
                       src={post.cover_image_url}
-                      alt={post.title}
+                      alt={post?.title || 'Blog post'}
                       style={{
                         width: '100%',
                         height: '400px',
@@ -204,17 +204,17 @@ export default function BlogPost({ post }) {
                 />
 
                 {/* Tags */}
-                {post.tags && post.tags.length > 0 && (
+                {post?.tags && post.tags.length > 0 && (
                   <div style={{ 
                     marginTop: '3rem',
                     paddingTop: '2rem',
                     borderTop: `1px solid ${warmCreamDark}`
                   }}>
                     <h3 style={{ 
-                      fontSize: '1.2rem',
+                      fontSize: '1.5rem',
                       fontWeight: '600',
-                      color: sageGreenDark,
-                      marginBottom: '1rem'
+                      marginBottom: '1rem',
+                      color: sageGreen
                     }}>
                       🏷️ 标签
                     </h3>
