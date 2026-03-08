@@ -1,9 +1,10 @@
 ---
-title: "Parlor Palm"
-scientific_name: "Chamaedorea elegans"
-toxicity_level: "Safe"
-care_difficulty: "Easy"
-summary: "The Parlor Palm (Chamaedorea elegans) is an enduringly popular houseplant, celebrated for its elegant, feathery fronds and compact size. It effortlessly brings a touch of tropical lushness and a mini-forest aesthetic to any indoor space, perfect for adding greenery to smaller areas or tabletops. Pet owners will particularly appreciate that this graceful palm is entirely non-toxic to cats and dogs, offering peace of mind alongside its beauty. It's remarkably easy to care for, tolerating lower light conditions and requiring only moderate watering, making it an excellent choice for both novice and experienced plant enthusiasts. Its delicate appearance also provides a safe and inviting space for cats to explore and relax."
-image: "/images/plants/parlor-palm.md"
+title: Parlor Palm
+scientific_name: Chamaedorea elegans
+toxicity_level: Safe
+care_difficulty: Low
+summary: Parlor Palms are elegant, slow-growing palms with feathery fronds that thrive in low-light conditions. They are non-toxic to cats and dogs, making them a safe choice for pet owners. These palms require moderate watering and appreciate some humidity, but are generally low-maintenance.
+image: https://images.unsplash.com/photo-1590657524168- lingkungan-938f-3b2dc2840632?auto=format&fit=crop&w=800&q=80
 ---
 
+Chamaedorea elegans, also known as the Neanthe bella palm, is one of the most popular indoor palms. It originated in Guatemala and was historically used as a festive decoration during the holidays. The palm's compact size and tolerance for lower light make it ideal for homes and offices.

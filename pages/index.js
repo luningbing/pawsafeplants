@@ -103,6 +103,12 @@ export default function Home({ plants }) {
     <div style={{ fontFamily: 'sans-serif', background: warmCream, minHeight: '100vh', padding: '20px' }}>
       <Head>
         <title>PawSafe Plants</title>
+        <meta name="description" content="PawSafe Plants - Your guide to cat-safe and toxic plants. Browse our comprehensive database to keep your feline friends safe." />
+        <link rel="canonical" href="https://www.pawsafeplants.com/" />
+        <meta property="og:title" content="PawSafe Plants" />
+        <meta property="og:description" content="Your guide to cat-safe and toxic plants." />
+        <meta property="og:url" content="https://www.pawsafeplants.com/" />
+        <meta property="og:type" content="website" />
       </Head>
 
       <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>PawSafe Plants</h1>
@@ -220,7 +226,7 @@ export default function Home({ plants }) {
           const toxicity = getToxicityLevel(plant.toxicity_level);
           return (
             <div key={plant.slug} style={{ background: '#fff', padding: '16px', borderRadius: '12px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-              <img src={plant.image || unsplashPlaceholder} alt={plant.title} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px' }} />
+              <img loading="lazy" src={plant.image || unsplashPlaceholder} alt={plant.title} style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px' }} />
               <h3 style={{ margin: '12px 0 4px', color: sageGreen }}>{plant.title}</h3>
               <span style={{ padding: '4px 8px', borderRadius: '8px', fontSize: '12px', background: toxicity.bg, color: toxicity.color }}>
                 {toxicity.icon} {toxicity.label}

@@ -17,7 +17,7 @@ function SafeImage({ src, alt, fallback, style, containerStyle, unsplashFallback
   if (hasError || !imgSrc) {
     return <div style={{ ...style, ...containerStyle, display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'linear-gradient(135deg, #87A96B20, #87A96B10)', color: '#87A96B' }}>{fallback || <span style={{ fontSize: '32px' }}>🌿</span>}</div>;
   }
-  return <img src={imgSrc} alt={alt} style={style} onError={handleError} />;
+  return <img loading="lazy" src={imgSrc} alt={alt} style={style} onError={handleError} />;
 }
 
 export async function getStaticProps() {
@@ -83,6 +83,11 @@ export default function CautionPlantsPage({ plants }) {
       <Head>
         <title>Caution & Toxic Plants - PawSafe Plants</title>
         <meta name="description" content="Plants that require caution or are toxic to cats. Learn which ones to avoid." />
+        <link rel="canonical" href="https://www.pawsafeplants.com/caution-plants" />
+        <meta property="og:title" content="Caution & Toxic Plants - PawSafe Plants" />
+        <meta property="og:description" content="Plants that require caution or are toxic to cats. Learn which ones to avoid." />
+        <meta property="og:url" content="https://www.pawsafeplants.com/caution-plants" />
+        <meta property="og:type" content="website" />
       </Head>
 
       <div style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif', background: warmCream, minHeight: '100vh', padding: '40px 20px' }}>

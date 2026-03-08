@@ -1,9 +1,10 @@
 ---
-title: "Swedish Ivy"
-scientific_name: "Plectranthus verticillatus"
-toxicity_level: "Safe"
-care_difficulty: "Easy"
-summary: "The Swedish Ivy (Plectranthus verticillatus), despite its common name, is not a true ivy but a charming trailing plant celebrated for its vibrant green, scalloped leaves and cascading growth habit. Unlike many common ivies which are toxic, this particular variety is considered non-toxic to both cats and dogs, making it a safe and delightful choice for pet-friendly homes. It thrives beautifully in hanging baskets or perched on shelves, where its lush foliage can gracefully spill downwards, adding a touch of natural elegance to any room. Swedish Ivy is remarkably easy to care for, preferring bright, indirect light and consistent moisture, and it's known for its vigorous growth. Its lush appearance and safe nature make it an ideal plant for adding vibrant greenery without any worries for your curious feline companions."
-image: "/images/plants/swedish-ivy.jpg"
+title: Swedish Ivy
+scientific_name: Plectranthus australis
+toxicity_level: Safe
+care_difficulty: Low
+summary: Swedish Ivy is a trailing plant with glossy, rounded leaves that cascades beautifully from hanging baskets or shelves. It's easy to grow and adaptable to various light conditions, though it thrives in bright, indirect light. This pet-safe plant is non-toxic to cats and dogs and produces small white flowers under proper care.
+image: https://images.unsplash.com/photo-1509423350716-97f9360b4f09?auto=format&fit=crop&w=800&q=80
 ---
 
+Plectranthus australis, despite its name, is not a true ivy and does not climb. It originates from Australia and the Pacific Islands. Swedish Ivy is a fast grower that roots easily from cuttings, making propagation simple for beginner plant enthusiasts.
