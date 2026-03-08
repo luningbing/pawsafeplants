@@ -3,7 +3,7 @@ title: Staghorn Fern
 scientific_name: Platycerium bifurcatum
 toxicity_level: Safe
 care_difficulty: Medium
-summary: Staghorn Ferns are dramatic mounted plants with two types of fronds: shield-shaped and antler-like. They are non-toxic to cats and dogs, making them a safe, artistic statement piece.
+summary: "Staghorn Ferns are dramatic mounted plants with two types of fronds: shield-shaped and antler-like. They are non-toxic to cats and dogs, making them a safe, artistic statement piece."
 image: https://source.unsplash.com/800x600/?staghorn+fern
 ---
 

@@ -3,7 +3,7 @@ title: Venus Flytrap
 scientific_name: Dionaea muscipula
 toxicity_level: Safe
 care_difficulty: Medium
-summary: Venus Flytraps are fascinating carnivorous plants that capture insects with their jaw-like traps. They require specific care: bright light, distilled water, and nutrient-poor soil. These unique plants are non-toxic to cats and dogs, making them a safe yet intriguing addition to any plant collection.
+summary: "Venus Flytraps are fascinating carnivorous plants that capture insects with their jaw-like traps. They require specific care: bright light, distilled water, and nutrient-poor soil. These unique plants are non-toxic to cats and dogs, making them a safe yet intriguing addition to any plant collection."
 image: https://images.unsplash.com/photo-1558098917-20ff51b06d11?auto=format&fit=crop&w=800&q=80
 ---
 
