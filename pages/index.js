@@ -99,6 +99,7 @@ export default function Home({ plants, site }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [filter, setFilter] = useState('All'); // 'All' | 'Safe' | 'Caution' | 'Danger'
   const [heroSlides, setHeroSlides] = useState([]);
   const [atmosphereImages, setAtmosphereImages] = useState([]);
   const unsplashPlaceholder = 'https://images.unsplash.com/photo-1545241047-6083a3684587';
@@ -112,15 +113,29 @@ export default function Home({ plants, site }) {
   const borderRadius = '24px';
   const borderRadiusLarge = '32px';
 
-  // Get popular/featured plants (4-6 plants)
-  const featuredPlants = useMemo(() => {
-    const sorted = plants.slice().sort((a, b) => {
+  // Helper: determine toxicity category
+  const getToxicityCategory = (level) => {
+    const L = String(level || '').toLowerCase();
+    if (L.includes('safe')) return 'Safe';
+    if (L.includes('danger') || L.includes('toxic') || L.includes('extreme')) return 'Danger';
+    return 'Caution';
+  };
+
+  // Get displayed plants (filtered + sorted + limited)
+  const displayedPlants = useMemo(() => {
+    let sorted = plants.slice().sort((a, b) => {
       const aTitle = String(a.title || '').toLowerCase();
       const bTitle = String(b.title || '').toLowerCase();
       return aTitle.localeCompare(bTitle);
     });
+
+    // Apply filter
+    if (filter !== 'All') {
+      sorted = sorted.filter(p => getToxicityCategory(p.toxicity_level) === filter);
+    }
+
     return sorted.slice(0, 6);
-  }, [plants]);
+  }, [plants, filter]);
 
   // Search functionality
   useEffect(() => {
@@ -431,6 +446,59 @@ export default function Home({ plants, site }) {
           </FadeIn>
         </section>
 
+        {/* Filter Buttons */}
+        <section style={{
+          maxWidth: '800px',
+          margin: '0 auto 32px auto',
+          padding: '0 20px'
+        }}>
+          <FadeIn delay={0.25}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '12px',
+              flexWrap: 'wrap'
+            }}>
+              {['All', 'Safe', 'Caution', 'Danger'].map((f) => {
+                const isActive = filter === f;
+                const activeColor = f === 'Safe' ? sageGreen : f === 'Danger' ? '#E85D5D' : f === 'Caution' ? '#F5C842' : sageGreenDark;
+                return (
+                  <button
+                    key={f}
+                    onClick={() => setFilter(f)}
+                    style={{
+                      padding: '10px 24px',
+                      borderRadius: '20px',
+                      border: 'none',
+                      background: isActive ? activeColor : '#fff',
+                      color: isActive ? '#fff' : '#333',
+                      fontWeight: 600,
+                      fontSize: '15px',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s ease',
+                      boxShadow: isActive ? `0 4px 12px ${activeColor}40` : '0 2px 8px rgba(0,0,0,0.1)'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.background = activeColor + '20';
+                        e.currentTarget.style.color = activeColor;
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.background = '#fff';
+                        e.currentTarget.style.color = '#333';
+                      }
+                    }}
+                  >
+                    {f === 'All' ? 'All Plants' : f + ' Plants'}
+                  </button>
+                );
+              })}
+            </div>
+          </FadeIn>
+        </section>
+
         {/* Featured Plants Grid */}
         <section style={{
           maxWidth: '1200px',
@@ -445,7 +513,7 @@ export default function Home({ plants, site }) {
               marginBottom: '32px',
               textAlign: 'center'
             }}>
-              Popular Plants
+              {filter === 'All' ? 'Popular Plants' : filter + ' Plants'}
             </h2>
           </FadeIn>
           
@@ -454,7 +522,7 @@ export default function Home({ plants, site }) {
             gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '24px'
           }}>
-            {featuredPlants.map((plant, index) => {
+            {displayedPlants.map((plant, index) => {
               const toxicity = getToxicityLevel(plant.toxicity_level);
               return (
                 <ListItemAnimation key={plant.slug} index={index}>
