@@ -8,7 +8,7 @@ toxicity_level: "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL 
 summary: >-
   Begonias contain calcium oxalate crystals that can cause intense oral irritation, drooling, and digestive upset in cats. Immediate rinsing can help alleviate discomfort.
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/begonia"
-image: "https://source.unsplash.com/800x600/?begonia+flower"
+image: https://source.unsplash.com/800x600/?Begonia,cat,houseplant
 symptoms:
   - "Mouth irritation"
   - "Excessive drooling"

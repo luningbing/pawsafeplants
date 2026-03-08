@@ -8,7 +8,7 @@ common_names:
 toxicity_level: "☠️ EXTREME DANGER – POTENTIALLY FATAL"
 summary: "All parts contain cardiac glycosides extremely toxic to cats. Ingestion may cause severe heart problems, digestive upset, and can be fatal."
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oleander"
-image: "/images/oleander.jpg"
+image: https://source.unsplash.com/800x600/?Oleander,cat,houseplant
 symptoms:
   - "Colic"
   - "Diarrhea (possibly bloody)"

@@ -8,7 +8,7 @@ common_names:
 toxicity_level: "⚠️ MODERATE TOXICITY – GI & NEUROLOGICAL EFFECTS"
 summary: "Chrysanthemums contain pyrethrins and sesquiterpene lactones that can cause vomiting, diarrhea, drooling, and even depression or incoordination in cats."
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chrysanthemum"
-image: "/images/chrysanthemum.jpg"
+image: https://source.unsplash.com/800x600/?Chrysanthemums,cat,houseplant
 symptoms:
   - "Vomiting"
   - "Diarrhea"

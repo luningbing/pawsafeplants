@@ -8,7 +8,7 @@ common_names:
 toxicity_level: "⚠️ MODERATE TOXICITY – ORAL IRRITATION"
 summary: "Contains insoluble calcium oxalate crystals that cause intense burning and irritation of the mouth, tongue, and lips in cats. While rarely fatal, it causes significant discomfort."
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/monstera"
-image: "/images/monstera.jpg"
+image: https://source.unsplash.com/800x600/?Monstera,cat,houseplant
 symptoms:
   - "Pawing at mouth"
   - "Excessive drooling"

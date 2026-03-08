@@ -8,7 +8,7 @@ toxicity_level: "⚠️ MILD TO MODERATE TOXICITY – GASTROINTESTINAL IRRITATIO
 summary: >-
   Geraniums contain geraniol and other compounds that can cause vomiting, diarrhea, and lethargy in cats. Ingestion should be avoided, though severe outcomes are rare.
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/geranium"
-image: "https://source.unsplash.com/800x600/?geranium+flower"
+image: https://source.unsplash.com/800x600/?Geranium,cat,houseplant
 symptoms:
   - "Vomiting"
   - "Diarrhea"

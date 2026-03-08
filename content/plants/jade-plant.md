@@ -8,7 +8,7 @@ toxicity_level: "⚠️ MILD TO MODERATE TOXICITY – GASTROINTESTINAL DISTRESS"
 summary: >-
   Jade plants contain compounds that can cause vomiting, diarrhea, and lethargy in cats if ingested. While not usually life-threatening, prompt veterinary attention is recommended.
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jade-plant"
-image: "https://source.unsplash.com/800x600/?jade+plant"
+image: https://source.unsplash.com/800x600/?Jade+Plant,cat,houseplant
 symptoms:
   - "Vomiting"
   - "Diarrhea"

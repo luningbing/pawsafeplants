@@ -11,7 +11,7 @@ common_names:
 toxicity_level: "☠️ EXTREME DANGER – POTENTIALLY FATAL"
 summary: "Every part is highly toxic to cats—seeds (nuts) are most deadly. Even a single seed can cause severe liver failure, seizures, and death within 24–48 hours."
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sago-palm"
-image: "/images/sago-palm.jpg"
+image: https://source.unsplash.com/800x600/?Sago+Palm,cat,houseplant
 toxic_principles: "Cycasin"
 clinical_signs:
   - "Vomiting"
