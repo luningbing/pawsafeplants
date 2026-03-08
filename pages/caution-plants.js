@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -90,7 +90,7 @@ export default function CautionPlantsPage({ plants }) {
           <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: sageGreenDark, textDecoration: 'none', marginBottom: '24px', fontWeight: 500 }}>← Back to all plants</Link>
 
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <h1 style={{ fontSize: '48px', fontWeight: 700, color: '#E85D5D', marginBottom: '16px' }}>⚠️ Plants Requiring Caution</h1>
+            <h1 style={{ fontSize: '48px', fontWeight: 700, color: '#E85D5D', marginBottom: '16px' }}>⚠️ Caution & Toxic Plants</h1>
             <p style={{ fontSize: '18px', color: '#666', maxWidth: '800px', margin: '0 auto', lineHeight: 1.6 }}>
               These plants may cause mild to severe symptoms in cats. Keep them out of reach or avoid having them in your home.
             </p>
