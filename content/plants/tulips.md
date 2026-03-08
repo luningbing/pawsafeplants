@@ -7,7 +7,7 @@ common_names:
 toxicity_level: "⚠️ LOW TO MODERATE TOXICITY – BULBS ARE MOST DANGEROUS"
 summary: "Tulips contain tulipalin A and B, which are most concentrated in the bulbs. Ingestion can cause drooling, vomiting, and diarrhea. Leaves and flowers are less toxic but still irritating."
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tulip"
-image: https://source.unsplash.com/800x600/?Tulips,cat,houseplant
+image: https://source.unsplash.com/800x600/?Tulips%20cat%20houseplant&sig=673
 symptoms:
   - "Drooling"
   - "Vomiting"

@@ -8,7 +8,7 @@ common_names:
 toxicity_level: "⚠️ MILD TOXICITY – ORAL IRRITATION"
 summary: "Carnations can cause mild gastrointestinal upset and skin irritation in cats. They’re not life-threatening, but best kept away from curious kitties."
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/carnation"
-image: https://source.unsplash.com/800x600/?Carnations,cat,houseplant
+image: https://source.unsplash.com/800x600/?Carnations%20cat%20houseplant&sig=1074
 symptoms:
   - "Mild drooling"
   - "Vomiting"

@@ -7,7 +7,7 @@ common_names:
 toxicity_level: "⚠️ MILD TO MODERATE TOXICITY – BULBS MOST CONCENTRATED"
 summary: "Beloved spring flowers that can irritate a cat’s mouth and GI tract. Bulbs contain the highest toxin concentration; petals and leaves are less toxic but still irritating."
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/daffodil"
-image: https://source.unsplash.com/800x600/?Daffodils,cat,houseplant
+image: https://source.unsplash.com/800x600/?Daffodils%20cat%20houseplant&sig=940
 symptoms:
   - "Mouth irritation"
   - "Excessive drooling"

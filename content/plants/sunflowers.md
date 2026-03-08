@@ -7,7 +7,7 @@ common_names:
 toxicity_level: "✅ SAFE FOR CATS"
 summary: "Sunflowers are completely non-toxic to cats and dogs! Their bright blooms and tall stems make them a joyful, pet-safe choice for gardens and bouquets."
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sunflower"
-image: https://source.unsplash.com/800x600/?Sunflowers,cat,houseplant
+image: https://source.unsplash.com/800x600/?Sunflowers%20cat%20houseplant&sig=1112
 symptoms: []
 what_to_do: |
   **No toxicity concerns!**

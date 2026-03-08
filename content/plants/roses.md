@@ -8,7 +8,7 @@ common_names:
 toxicity_level: "✅ SAFE FOR CATS (with caution)"
 summary: "True roses (Rosa spp.) are non-toxic to cats! However, thorns can cause mouth or paw injuries, and store-bought bouquets may be treated with pesticides or preservatives that are harmful."
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose"
-image: https://source.unsplash.com/800x600/?Roses,cat,houseplant
+image: https://source.unsplash.com/800x600/?Roses%20cat%20houseplant&sig=556
 symptoms: []
 what_to_do: |
   **Generally safe—but take precautions:**

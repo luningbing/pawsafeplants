@@ -8,7 +8,7 @@ toxicity_level: "⚠️ MILD TO MODERATE TOXICITY – CARDIAC GLYCOSIDES"
 summary: >-
   Kalanchoe contains cardiac glycosides that can cause vomiting, diarrhea, and abnormal heart rhythm if ingested by cats. While rarely fatal, it poses a significant health risk.
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe"
-image: https://source.unsplash.com/800x600/?Kalanchoe,cat,houseplant
+image: https://source.unsplash.com/800x600/?Kalanchoe%20cat%20houseplant&sig=2346
 symptoms:
   - "Vomiting"
   - "Diarrhea"

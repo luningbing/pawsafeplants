@@ -8,7 +8,7 @@ toxicity_level: "⚠️ MILD TO MODERATE TOXICITY – SAPONINS AND OXALATES"
 summary: >-
   English Ivy contains triterpenoid saponins that can cause oral irritation, vomiting, and diarrhea in cats. Even small ingestions may lead to discomfort.
 ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy"
-image: https://source.unsplash.com/800x600/?English+Ivy,cat,houseplant
+image: https://source.unsplash.com/800x600/?English%20Ivy%20cat%20houseplant&sig=1135
 symptoms:
   - "Mouth irritation"
   - "Excessive drooling"
