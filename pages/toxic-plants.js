@@ -46,7 +46,7 @@ export async function getStaticProps() {
   return { props: { plants: toxicPlants }, revalidate: 10 };
 }
 
-export default function ToxicPlantsPage({ plants }) {
+export default function ToxicPlantsPage({ plants: toxicPlants }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
@@ -61,7 +61,7 @@ export default function ToxicPlantsPage({ plants }) {
   useEffect(() => {
     if (!searchQuery.trim()) { setSearchResults([]); setShowSearchResults(false); return; }
     const query = searchQuery.toLowerCase();
-    const results = plants.filter(plant => {
+    const results = toxicPlants.filter(plant => {
       const title = String(plant.title || '').toLowerCase();
       const scientific = String(plant.scientific_name || '').toLowerCase();
       const summary = String(plant.summary || '').toLowerCase();
@@ -69,7 +69,7 @@ export default function ToxicPlantsPage({ plants }) {
     }).slice(0, 5);
     setSearchResults(results);
     setShowSearchResults(results.length > 0);
-  }, [searchQuery, plants]);
+  }, [searchQuery, toxicPlants]);
 
   const getToxicityLevel = (level) => {
     const L = String(level || '').toLowerCase();
@@ -128,7 +128,7 @@ export default function ToxicPlantsPage({ plants }) {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
-            {plants.map((plant, index) => {
+            {toxicPlants.map((plant, index) => {
               const toxicity = getToxicityLevel(plant.toxicity_level);
               return (
                 <ListItemAnimation key={plant.slug} index={index}>
