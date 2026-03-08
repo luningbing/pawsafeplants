@@ -30,12 +30,12 @@ export default function SetupBlogDB() {
       
       if (data.success) {
         setToken(data.token);
-        setResult('✅ 登录成功！现在可以设置数据库了');
+        setResult('✅ Login Successful!现在可以设置数据库了');
         if (typeof window !== 'undefined') {
           localStorage.setItem('admin_token', data.token);
         }
       } else {
-        setResult(`❌ 登录失败: ${data.error}`);
+        setResult(`❌ Login Failed: ${data.error}`);
       }
     } catch (error) {
       setResult(`❌ 登录错误: ${error.message}`);
@@ -196,7 +196,7 @@ export default function SetupBlogDB() {
                 cursor: loading ? 'not-allowed' : 'pointer'
               }}
             >
-              {loading ? '⏳ 登录中...' : '🔑 登录'}
+              {loading ? '⏳ Logging in...' : '🔑 登录'}
             </button>
           </div>
         ) : (

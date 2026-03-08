@@ -53,11 +53,11 @@ export default function Login() {
         }, 1500);
       } else {
         // Show error with animation
-        setError(data.error || '登录失败');
+        setError(data.error || 'Login Failed');
         setTimeout(() => setError(''), 3000);
       }
     } catch (error) {
-      setError('网络错误，请重试');
+      setError('Network Error, Please Retry');
       setTimeout(() => setError(''), 3000);
     } finally {
       setLoading(false);
@@ -246,7 +246,7 @@ export default function Login() {
                       e.target.style.borderColor = '#e0e0e0';
                       e.target.style.boxShadow = 'none';
                     }}
-                    placeholder="输入用户名"
+                    placeholder="Enter Username"
                     required
                     disabled={loading}
                   />
@@ -289,7 +289,7 @@ export default function Login() {
                         e.target.style.borderColor = '#e0e0e0';
                         e.target.style.boxShadow = 'none';
                       }}
-                      placeholder="输入密码"
+                      placeholder="Enter Password"
                       required
                       disabled={loading}
                     />
@@ -347,10 +347,10 @@ export default function Login() {
                         borderRadius: '50%',
                         animation: 'spin 1s linear infinite'
                       }} />
-                      登录中...
+                      Logging in...
                     </span>
                   ) : (
-                    '登录管理后台'
+                    'Login to Admin'
                   )}
                 </motion.button>
               </form>
@@ -370,13 +370,13 @@ export default function Login() {
                 }}
               >
                 <p style={{ margin: '0 0 0.5rem 0', fontWeight: '600' }}>
-                  默认登录信息
+                  Default Login Info
                 </p>
                 <p style={{ margin: 0, fontWeight: '500' }}>
-                  用户名：<span style={{ color: sageGreen }}>猫猫名字</span>
+                  Username: <span style={{ color: sageGreen }}>Cat Name</span>
                 </p>
                 <p style={{ margin: 0, fontWeight: '500' }}>
-                  密码：<span style={{ color: sageGreen }}>你猜</span>
+                  Password: <span style={{ color: sageGreen }}>Guess</span>
                 </p>
               </motion.div>
             </motion.div>
@@ -423,14 +423,14 @@ export default function Login() {
                 fontWeight: '700',
                 margin: '0'
               }}>
-                登录成功！
+                Login Successful!
               </h2>
               <p style={{
                 color: '#666',
                 fontSize: '1rem',
                 margin: '0.5rem 0'
               }}>
-                正在跳转到管理后台...
+                Redirecting to Admin...
               </p>
             </motion.div>
           )}

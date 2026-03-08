@@ -824,7 +824,7 @@ export default function Admin() {
         setPasswordError(data.error || '密码修改失败');
       }
     } catch (error) {
-      setPasswordError('网络错误，请重试');
+      setPasswordError('Network Error, Please Retry');
     } finally {
       setPasswordChanging(false);
     }
@@ -1249,7 +1249,7 @@ export default function Admin() {
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        {heroUploading[index] ? '上传中...' : '📁 选择图片 (最大50MB)'}
+                        {heroUploading[index] ? 'Uploading...' : '📁 选择图片 (最大50MB)'}
                       </label>
                     </div>
 
@@ -1274,7 +1274,7 @@ export default function Admin() {
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        🖼️ 从媒体库选择
+                        🖼️ Select from Media Library
                       </button>
                     </div>
 
@@ -1524,7 +1524,7 @@ export default function Admin() {
               <form onSubmit={handleAddPlant} style={{ display: 'grid', gap: '1.5rem' }}>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
-                    植物名称
+                    Plant Name
                   </label>
                   <input
                     type="text"
@@ -1543,7 +1543,7 @@ export default function Admin() {
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
-                    拉丁学名
+                    Scientific Name
                   </label>
                   <input
                     type="text"
@@ -1562,7 +1562,7 @@ export default function Admin() {
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
-                    安全性
+                    Safety Level
                   </label>
                   <select
                     value={toxicityLevel}
@@ -1576,9 +1576,9 @@ export default function Admin() {
                       transition: 'border-color 0.3s ease'
                     }}
                   >
-                    <option value="Safe">安全 (Safe)</option>
-                    <option value="Caution">注意 (Caution)</option>
-                    <option value="Toxic">有毒 (Toxic)</option>
+                    <option value="Safe">Safe</option>
+                    <option value="Caution">Caution</option>
+                    <option value="Toxic">Toxic</option>
                   </select>
                 </div>
                 <div>
@@ -1597,14 +1597,14 @@ export default function Admin() {
                       transition: 'border-color 0.3s ease'
                     }}
                   >
-                    <option value="Easy">简单 (Easy)</option>
-                    <option value="Moderate">中等 (Moderate)</option>
-                    <option value="Difficult">困难 (Difficult)</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Moderate">Moderate</option>
+                    <option value="Difficult">Difficult</option>
                   </select>
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
-                    详细描述
+                    Description
                   </label>
                   <textarea
                     value={englishDescription}
@@ -1623,7 +1623,7 @@ export default function Admin() {
                 </div>
                 <div>
                   <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333', fontSize: isMobile ? '0.9rem' : '1rem' }}>
-                    植物图片
+                    Plant Image
                   </label>
                   <div style={{ display: 'grid', gap: '1rem' }}>
                     {/* Image Preview */}
@@ -1631,7 +1631,7 @@ export default function Admin() {
                       <div style={{ position: 'relative' }}>
                         <img
                           src={imagePreview || imageUrl}
-                          alt="植物图片预览"
+                          alt="Plant Image预览"
                           style={{
                             width: isMobile ? '150px' : '200px',
                             height: isMobile ? '150px' : '200px',
@@ -1687,7 +1687,7 @@ export default function Admin() {
                           fontSize: isMobile ? '1rem' : '0.9rem'
                         }}
                       >
-                        📁 本地上传
+                        📁 Local Upload
                       </label>
                       
                       <button
@@ -1728,10 +1728,10 @@ export default function Admin() {
                             transition: 'all 0.3s ease'
                           }}
                         >
-                          {imageUploading ? '上传中...' : `上传为 ${plantName ? generatePlantFilename(plantName, selectedImageFile) : '请先填写植物名称'}`}
+                          {imageUploading ? 'Uploading...' : `Upload as ${plantName ? generatePlantFilename(plantName, selectedImageFile) : '请先填写Plant Name'}`}
                         </button>
                         <span style={{ fontSize: '0.875rem', color: '#666' }}>
-                          文件: {selectedImageFile.name}
+                          File: {selectedImageFile.name}
                         </span>
                       </div>
                     )}
@@ -1774,7 +1774,7 @@ export default function Admin() {
                     boxShadow: '0 4px 12px rgba(135, 169, 107, 0.3)'
                   }}
                 >
-                  {formSubmitting ? '保存中...' : '保存植物信息'}
+                  {formSubmitting ? 'Saving...' : '保存植物信息'}
                 </button>
               </form>
             </div>
@@ -1802,7 +1802,7 @@ export default function Admin() {
               <div style={{ marginBottom: '2rem' }}>
                 <input
                   type="text"
-                  placeholder="搜索植物名称或拉丁学名..."
+                  placeholder="搜索Plant Name或Scientific Name..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   style={{
@@ -1996,7 +1996,7 @@ export default function Admin() {
                         transition: 'all 0.3s ease'
                       }}
                     >
-                      {uploading ? '上传中...' : '上传'}
+                      {uploading ? 'Uploading...' : '上传'}
                     </button>
                   )}
                 </div>
@@ -2171,7 +2171,7 @@ export default function Admin() {
                                 }
                               }}
                               disabled={renameLoading}
-                              placeholder={renameLoading ? '保存中...' : '输入新名称'}
+                              placeholder={renameLoading ? 'Saving...' : '输入新名称'}
                               style={{
                                 width: '100%',
                                 padding: '0.5rem',
@@ -2269,7 +2269,7 @@ export default function Admin() {
                                 opacity: renameLoading ? 0.6 : 1
                               }}
                             >
-                              {renameLoading ? '保存中...' : '重命名'}
+                              {renameLoading ? 'Saving...' : '重命名'}
                             </button>
                           ) : (
                             <button
@@ -2625,7 +2625,7 @@ export default function Admin() {
                   lineHeight: '1.6'
                 }}>
                   <li>密码修改成功后，系统将自动退出登录</li>
-                  <li>请使用新密码重新登录管理后台</li>
+                  <li>请使用新密码重新Login to Admin</li>
                   <li>建议定期更换密码以确保账户安全</li>
                   <li>密码长度至少为6位字符</li>
                 </ul>
@@ -2660,12 +2660,12 @@ export default function Admin() {
             boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
           }}>
             <h3 style={{ color: sageGreen, marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: '600' }}>
-              编辑植物信息
+              Edit Plant Information
             </h3>
             <form onSubmit={handleEditSubmit} style={{ display: 'grid', gap: '1rem' }}>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
-                  植物名称
+                  Plant Name
                 </label>
                 <input
                   type="text"
@@ -2683,7 +2683,7 @@ export default function Admin() {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
-                  拉丁学名
+                  Scientific Name
                 </label>
                 <input
                   type="text"
@@ -2701,7 +2701,7 @@ export default function Admin() {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
-                  安全性
+                  Safety Level
                 </label>
                 <select
                   value={editForm.toxicity_level}
@@ -2714,9 +2714,9 @@ export default function Admin() {
                     fontSize: '1rem'
                   }}
                 >
-                  <option value="Safe">安全 (Safe)</option>
-                  <option value="Caution">注意 (Caution)</option>
-                  <option value="Toxic">有毒 (Toxic)</option>
+                  <option value="Safe">Safe</option>
+                  <option value="Caution">Caution</option>
+                  <option value="Toxic">Toxic</option>
                 </select>
               </div>
               <div>
@@ -2734,14 +2734,14 @@ export default function Admin() {
                     fontSize: '1rem'
                   }}
                 >
-                  <option value="Easy">简单 (Easy)</option>
-                  <option value="Moderate">中等 (Moderate)</option>
-                  <option value="Difficult">困难 (Difficult)</option>
+                  <option value="Easy">Easy</option>
+                  <option value="Moderate">Moderate</option>
+                  <option value="Difficult">Difficult</option>
                 </select>
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
-                  详细描述
+                  Description
                 </label>
                 <textarea
                   value={editForm.summary}
@@ -2759,7 +2759,7 @@ export default function Admin() {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
-                  植物图片
+                  Plant Image
                 </label>
                 <div style={{ display: 'grid', gap: '1rem' }}>
                   {/* Image Preview */}
@@ -2767,7 +2767,7 @@ export default function Admin() {
                     <div style={{ position: 'relative' }}>
                       <img
                         src={editImagePreview || editForm.image}
-                        alt="植物图片预览"
+                        alt="Plant Image预览"
                         style={{
                           width: '200px',
                           height: '200px',
@@ -2820,7 +2820,7 @@ export default function Admin() {
                         display: 'inline-block'
                       }}
                     >
-                      📁 本地上传
+                      📁 Local Upload
                     </label>
                     
                     <button
@@ -2837,7 +2837,7 @@ export default function Admin() {
                         fontSize: '1rem'
                       }}
                     >
-                      🖼️ 从媒体库选择
+                      🖼️ Select from Media Library
                     </button>
                   </div>
                   
@@ -2858,10 +2858,10 @@ export default function Admin() {
                           transition: 'all 0.3s ease'
                         }}
                       >
-                        {editImageUploading ? '上传中...' : `上传为 ${editForm.title ? generatePlantFilename(editForm.title, editSelectedImageFile) : '请先填写植物名称'}`}
+                        {editImageUploading ? 'Uploading...' : `Upload as ${editForm.title ? generatePlantFilename(editForm.title, editSelectedImageFile) : '请先填写Plant Name'}`}
                       </button>
                       <span style={{ fontSize: '0.875rem', color: '#666' }}>
-                        文件: {editSelectedImageFile.name}
+                        File: {editSelectedImageFile.name}
                       </span>
                     </div>
                   )}
@@ -2870,7 +2870,7 @@ export default function Admin() {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <input
                       type="text"
-                      placeholder="或直接输入图片URL..."
+                      placeholder="Or enter image URL directly..."
                       value={editForm.image}
                       onChange={(e) => setEditForm({...editForm, image: e.target.value})}
                       style={{
@@ -2886,7 +2886,7 @@ export default function Admin() {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
-                  护理技巧
+                  Care Tips
                 </label>
                 <textarea
                   value={editForm.care_tips}
@@ -2904,7 +2904,7 @@ export default function Admin() {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
-                  水分需求
+                  Water Requirements
                 </label>
                 <input
                   type="text"
@@ -2921,7 +2921,7 @@ export default function Admin() {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
-                  光照需求
+                  Light Requirements
                 </label>
                 <input
                   type="text"
@@ -2938,7 +2938,7 @@ export default function Admin() {
               </div>
               <div>
                 <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#333' }}>
-                  温度要求
+                  Temperature Requirements
                 </label>
                 <input
                   type="text"
@@ -2962,7 +2962,7 @@ export default function Admin() {
                     type="text"
                     value={editForm.pet_moment}
                     onChange={(e) => setEditForm({...editForm, pet_moment: e.target.value})}
-                    placeholder="输入猫咪与植物合影的图片路径..."
+                    placeholder="Enter path to cat and plant photo..."
                     style={{
                       flex: 1,
                       padding: '0.75rem',
@@ -2986,7 +2986,7 @@ export default function Admin() {
                       whiteSpace: 'nowrap'
                     }}
                   >
-                    🐱 选择猫咪氛围图
+                    🐱 Select Cat Atmosphere Images
                   </button>
                 </div>
               </div>
@@ -3008,7 +3008,7 @@ export default function Admin() {
                     transition: 'all 0.3s ease'
                   }}
                 >
-                  {editSubmitting ? '保存中...' : '保存更改'}
+                  {editSubmitting ? 'Saving...' : 'Save Changes'}
                 </button>
                 <button
                   type="button"
@@ -3059,7 +3059,7 @@ export default function Admin() {
             boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
           }}>
             <h3 style={{ color: sageGreen, marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: '600' }}>
-              从媒体库选择图片
+              Select Images from Media Library
             </h3>
             <div style={{
               display: 'grid',
@@ -3081,7 +3081,7 @@ export default function Admin() {
                 >
                   <img
                     src={img}
-                    alt={`媒体库图片 ${idx}`}
+                    alt={`Media Library Image ${idx}`}
                     style={{
                       width: '100%',
                       height: '120px',
@@ -3148,7 +3148,7 @@ export default function Admin() {
             boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
           }}>
             <h3 style={{ color: sageGreen, marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: '600' }}>
-              从媒体库选择图片
+              Select Images from Media Library
             </h3>
             <div style={{
               display: 'grid',
@@ -3170,7 +3170,7 @@ export default function Admin() {
                 >
                   <img
                     src={img}
-                    alt={`媒体库图片 ${idx}`}
+                    alt={`Media Library Image ${idx}`}
                     style={{
                       width: '100%',
                       height: '120px',
@@ -3237,7 +3237,7 @@ export default function Admin() {
             boxShadow: '0 16px 48px rgba(0,0,0,0.2)'
           }}>
             <h3 style={{ color: sageGreen, marginBottom: '1.5rem', fontSize: '1.5rem', fontWeight: '600' }}>
-              🐱 选择猫咪氛围图
+              🐱 Select Cat Atmosphere Images
             </h3>
             {petImages.length === 0 ? (
               <div style={{
@@ -3248,9 +3248,9 @@ export default function Admin() {
                 color: '#666'
               }}>
                 <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📸</div>
-                <p>还没有上传猫咪图片哦！</p>
+                <p>No cat photos uploaded yet!</p>
                 <p style={{ fontSize: '0.875rem', marginTop: '0.5rem' }}>
-                  请将猫咪与植物的合影图片上传到 <code>/public/images/pets/</code> 目录
+                  Please upload cat and plant photos to <code>/public/images/pets/</code> directory
                 </p>
               </div>
             ) : (
@@ -3275,7 +3275,7 @@ export default function Admin() {
                   >
                     <img
                       src={img}
-                      alt={`猫咪图片 ${idx + 1}`}
+                      alt={`Cat Photo ${idx + 1}`}
                       style={{
                         width: '100%',
                         height: '140px',
