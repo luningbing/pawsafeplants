@@ -9,7 +9,7 @@ summary: >-
   known for their ability to produce "babies" or plantlets. These plants are
   non-toxic to cats and dogs, and they help purify indoor air.
 image: >-
-  https://images.unsplash.com/photo-1501004318641-b398d68e866b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1501004318641-b398d68e866b?w=800&h=600&fit=crop
 ---
 
 Spider Plant (Chlorophytum comosum) is one of the most popular and adaptable houseplants. It thrives in a variety of lighting conditions and only needs occasional watering. The plant's arching green and white striped leaves create an attractive display, especially when grown in a hanging basket.

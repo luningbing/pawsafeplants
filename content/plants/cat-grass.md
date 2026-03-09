@@ -15,7 +15,6 @@ summary: >-
   organic, and always-available treat that supports your cat's well-being. It's
   a must-have for any cat owner looking to provide a wholesome and engaging
   botanical experience for their beloved companion.
-image: >-
-  https://images.unsplash.com/photo-1545241047-6083a3684587?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+image: 'https://images.unsplash.com/photo-1545241047-6083a3684587?w=800&h=600&fit=crop'
 ---
 

@@ -9,7 +9,7 @@ summary: >-
   making them ideal for bathrooms or kitchens. These ferns are completely safe
   for cats and dogs, but require consistent moisture and occasional misting.
 image: >-
-  https://images.unsplash.com/photo-1416879595882-d33bcbe8c131?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1416879595882-d33bcbe8c131?w=800&h=600&fit=crop
 ---
 
 Boston Ferns are classic houseplants known for their beautiful, arching fronds. They thrive in humid environments with bright, indirect light. While they require more attention than some plants, their elegant appearance makes them worth the extra care.

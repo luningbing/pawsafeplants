@@ -16,6 +16,6 @@ summary: >-
   pet-friendly status make it an ideal choice for adding a touch of playful
   sophistication to any shelf or tabletop.
 image: >-
-  https://images.unsplash.com/photo-1597818459942-2f9c4b8d0b9c?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1597818459942-2f9c4b8d0b9c?w=800&h=600&fit=crop
 ---
 

@@ -11,8 +11,7 @@ summary: >-
   still irritating.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/daffodil
-image: >-
-  https://images.unsplash.com/photo-1543168256-739e5d9d537a?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+image: 'https://images.unsplash.com/photo-1543168256-739e5d9d537a?w=800&h=600&fit=crop'
 symptoms:
   - Mouth irritation
   - Excessive drooling
