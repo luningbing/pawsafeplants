@@ -1,9 +1,21 @@
 ---
-title: "Peperomia"
-scientific_name: "Peperomia spp."
-toxicity_level: "Safe"
-care_difficulty: "Easy"
-summary: "Peperomia (Peperomia spp.) is a diverse and enchanting genus of houseplants, featuring an incredible variety of leaf shapes, textures, and colors, from the crinkled leaves of Peperomia caperata to the succulent-like foliage of Peperomia obtusifolia. These charming plants are a fantastic choice for pet owners, as all known varieties are non-toxic to both cats and dogs, offering both aesthetic appeal and safety. Their compact size makes them ideal for brightening up desks, shelves, or terrariums, adding a touch of natural beauty without demanding too much space. Peperomias are also remarkably low-maintenance, preferring moderate light and infrequent watering, making them perfect for busy individuals or novice plant parents seeking a stylish and worry-free green companion."
-image: https://source.unsplash.com/800x600/?Peperomia%20cat%20houseplant&sig=962
+title: Peperomia
+scientific_name: Peperomia spp.
+toxicity_level: Safe
+care_difficulty: Easy
+summary: >-
+  Peperomia (Peperomia spp.) is a diverse and enchanting genus of houseplants,
+  featuring an incredible variety of leaf shapes, textures, and colors, from the
+  crinkled leaves of Peperomia caperata to the succulent-like foliage of
+  Peperomia obtusifolia. These charming plants are a fantastic choice for pet
+  owners, as all known varieties are non-toxic to both cats and dogs, offering
+  both aesthetic appeal and safety. Their compact size makes them ideal for
+  brightening up desks, shelves, or terrariums, adding a touch of natural beauty
+  without demanding too much space. Peperomias are also remarkably
+  low-maintenance, preferring moderate light and infrequent watering, making
+  them perfect for busy individuals or novice plant parents seeking a stylish
+  and worry-free green companion.
+image: >-
+  https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 ---
 

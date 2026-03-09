@@ -1,0 +1,434 @@
+[
+  {
+    "title": "Spider Plant Variegated",
+    "scientific_name": "Chlorophytum comosum 'Variegatum'",
+    "common_names": [
+      "Spider Plant Variegated",
+      "Variegated Spider Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Spider Plant Variegated is completely safe for cats and features white-striped leaves with the same air-purifying benefits.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=spider-plant-variegated",
+    "is_flower": false
+  },
+  {
+    "title": "Boston Fern Compacta",
+    "scientific_name": "Nephrolepis exaltata 'Compacta'",
+    "common_names": [
+      "Boston Fern Compacta",
+      "Compact Boston Fern"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Boston Fern Compacta is completely safe for cats and is a smaller variety perfect for indoor spaces.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=boston-fern-compacta",
+    "is_flower": false
+  },
+  {
+    "title": "Maidenhair Fern Delta",
+    "scientific_name": "Adiantum raddianum 'Delta'",
+    "common_names": [
+      "Maidenhair Fern Delta",
+      "Delta Maidenhair Fern"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Maidenhair Fern Delta is completely safe for cats and features delicate, lacy fronds.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=maidenhair-fern-delta",
+    "is_flower": false
+  },
+  {
+    "title": "Bird's Nest Fern Victoria",
+    "scientific_name": "Asplenium nidus 'Victoria'",
+    "common_names": [
+      "Bird's Nest Fern Victoria",
+      "Victoria Bird's Nest Fern"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Bird's Nest Fern Victoria is completely safe for cats and features beautiful, nest-like fronds.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=birds-nest-fern-victoria",
+    "is_flower": false
+  },
+  {
+    "title": "Staghorn Fern Small",
+    "scientific_name": "Platycerium bifurcatum 'Small'",
+    "common_names": [
+      "Staghorn Fern Small",
+      "Small Staghorn Fern"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Staghorn Fern Small is completely safe for cats and is a compact variety perfect for indoor mounting.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=staghorn-fern-small",
+    "is_flower": false
+  },
+  {
+    "title": "Prayer Plant Green",
+    "scientific_name": "Maranta leuconeura 'Green'",
+    "common_names": [
+      "Prayer Plant Green",
+      "Green Prayer Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Prayer Plant Green is completely safe for cats and features solid green leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=prayer-plant-green",
+    "is_flower": false
+  },
+  {
+    "title": "Prayer Plant Red",
+    "scientific_name": "Maranta leuconeura 'Erythroneura'",
+    "common_names": [
+      "Prayer Plant Red",
+      "Red Prayer Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Prayer Plant Red is completely safe for cats and features red-veined leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=prayer-plant-red",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Dottie",
+    "scientific_name": "Calathea 'Dottie'",
+    "common_names": [
+      "Calathea Dottie",
+      "Dottie Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Dottie is completely safe for cats and features striking dark foliage with pink markings.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-dottie",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea White Star",
+    "scientific_name": "Calathea 'White Star'",
+    "common_names": [
+      "Calathea White Star",
+      "White Star Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea White Star is completely safe for cats and features white-variegated leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-white-star",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Freddie",
+    "scientific_name": "Calathea 'Freddie'",
+    "common_names": [
+      "Calathea Freddie",
+      "Freddie Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Freddie is completely safe for cats and features light green leaves with dark stripes.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-freddie",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Jungle Velvet",
+    "scientific_name": "Calathea warscewiczii",
+    "common_names": [
+      "Calathea Jungle Velvet",
+      "Jungle Velvet Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Jungle Velvet is completely safe for cats and features velvety, dark green leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-jungle-velvet",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Beauty Star",
+    "scientific_name": "Calathea 'Beauty Star'",
+    "common_names": [
+      "Calathea Beauty Star",
+      "Beauty Star Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Beauty Star is completely safe for cats and features star-like patterns on leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-beauty-star",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Corona",
+    "scientific_name": "Calathea 'Corona'",
+    "common_names": [
+      "Calathea Corona",
+      "Corona Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Corona is completely safe for cats and features crown-like patterns on leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-corona",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Eternal Flame",
+    "scientific_name": "Calathea crocata",
+    "common_names": [
+      "Calathea Eternal Flame",
+      "Eternal Flame Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Eternal Flame is completely safe for cats and produces orange, flame-like flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-eternal-flame",
+    "is_flower": true
+  },
+  {
+    "title": "Calathea Loeseneri",
+    "scientific_name": "Calathea loeseneri",
+    "common_names": [
+      "Calathea Loesneri",
+      "Loesneri Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Loesneri is completely safe for cats and features delicate, lance-shaped leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-loeseneri",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Veitchiana",
+    "scientific_name": "Calathea veitchiana",
+    "common_names": [
+      "Calathea Veitchiana",
+      "Veitchiana Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Veitchiana is completely safe for cats and features striking patterned leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-veitchiana",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Zebrina Compact",
+    "scientific_name": "Calathea zebrina 'Compact'",
+    "common_names": [
+      "Calathea Zebrina Compact",
+      "Compact Zebra Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Zebrina Compact is completely safe for cats and is a smaller variety with zebra stripes.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-zebrina-compact",
+    "is_flower": false
+  },
+  {
+    "title": "Peperomia Watermelon",
+    "scientific_name": "Peperomia argyreia",
+    "common_names": [
+      "Peperomia Watermelon",
+      "Watermelon Peperomia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peperomia Watermelon is completely safe for cats and features watermelon-patterned leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peperomia-watermelon",
+    "is_flower": false
+  },
+  {
+    "title": "Peperomia Ripple",
+    "scientific_name": "Peperomia caperata 'Ripple'",
+    "common_names": [
+      "Peperomia Ripple",
+      "Ripple Peperomia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peperomia Ripple is completely safe for cats and features rippled, textured leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peperomia-ripple",
+    "is_flower": false
+  },
+  {
+    "title": "Peperomia Ginny",
+    "scientific_name": "Peperomia 'Ginny'",
+    "common_names": [
+      "Peperomia Ginny",
+      "Ginny Peperomia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peperomia Ginny is completely safe for cats and features variegated leaves with pink edges.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peperomia-ginny",
+    "is_flower": false
+  },
+  {
+    "title": "Peperomia Marble",
+    "scientific_name": "Peperomia obtusifolia 'Marble'",
+    "common_names": [
+      "Peperomia Marble",
+      "Marble Peperomia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peperomia Marble is completely safe for cats and features marbled variegation on leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peperomia-marble",
+    "is_flower": false
+  },
+  {
+    "title": "Peperomia Hope",
+    "scientific_name": "Peperomia 'Hope'",
+    "common_names": [
+      "Peperomia Hope",
+      "Hope Peperomia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peperomia Hope is completely safe for cats and features trailing, rounded leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peperomia-hope",
+    "is_flower": false
+  },
+  {
+    "title": "Peperomia Prostrata",
+    "scientific_name": "Peperomia prostrata",
+    "common_names": [
+      "Peperomia Prostrata",
+      "String of Turtles"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peperomia Prostrata is completely safe for cats and features turtle-shell patterned leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peperomia-prostrata",
+    "is_flower": false
+  },
+  {
+    "title": "Peperomia Ruby Glow",
+    "scientific_name": "Peperomia graveolens 'Ruby Glow'",
+    "common_names": [
+      "Peperomia Ruby Glow",
+      "Ruby Glow Peperomia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peperomia Ruby Glow is completely safe for cats and features ruby-red undersides on leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peperomia-ruby-glow",
+    "is_flower": false
+  },
+  {
+    "title": "Peperomia Variegata",
+    "scientific_name": "Peperomia obtusifolia 'Variegata'",
+    "common_names": [
+      "Peperomia Variegata",
+      "Variegated Peperomia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peperomia Variegata is completely safe for cats and features cream-variegated leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peperomia-variegata",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Cadierei Minima",
+    "scientific_name": "Pilea cadierei 'Minima'",
+    "common_names": [
+      "Pilea Cadierei Minima",
+      "Mini Aluminum Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Cadierei Minima is completely safe for cats and is a compact variety with silver markings.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-cadierei-minima",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Glauca",
+    "scientific_name": "Pilea glauca",
+    "common_names": [
+      "Pilea Glauca",
+      "Blue Pilea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Glauca is completely safe for cats and features silvery-blue, trailing foliage.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-glauca",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Spruceana",
+    "scientific_name": "Pilea spruceana",
+    "common_names": [
+      "Pilea Spruceana",
+      "Silver Tree"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Spruceana is completely safe for cats and features silver-splashed leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-spruceana",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Moon Valley",
+    "scientific_name": "Pilea 'Moon Valley'",
+    "common_names": [
+      "Pilea Moon Valley",
+      "Moon Valley Pilea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Moon Valley is completely safe for cats and features deeply textured, red-tinged leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-moon-valley",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Norfolk",
+    "scientific_name": "Pilea 'Norfolk'",
+    "common_names": [
+      "Pilea Norfolk",
+      "Norfolk Pilea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Norfolk is completely safe for cats and features compact, trailing growth.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-norfolk",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Silver",
+    "scientific_name": "Pilea 'Silver'",
+    "common_names": [
+      "Pilea Silver",
+      "Silver Pilea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Silver is completely safe for cats and features silvery, metallic-looking leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-silver",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Dark Mystery",
+    "scientific_name": "Pilea 'Dark Mystery'",
+    "common_names": [
+      "Pilea Dark Mystery",
+      "Dark Mystery Pilea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Dark Mystery is completely safe for cats and features dark, almost black leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-dark-mystery",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Involucrata Friendship",
+    "scientific_name": "Pilea involucrata 'Friendship'",
+    "common_names": [
+      "Pilea Involucrata Friendship",
+      "Friendship Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Involucrata Friendship is completely safe for cats and features textured, deeply veined leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-involucrata-friendship",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Microphylla",
+    "scientific_name": "Pilea microphylla",
+    "common_names": [
+      "Pilea Microphylla",
+      "Artillery Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Microphylla is completely safe for cats and features tiny, succulent-like leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-microphylla",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Depressa",
+    "scientific_name": "Pilea depressa",
+    "common_names": [
+      "Pilea Depressa",
+      "Clear Pilea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Depressa is completely safe for cats and features translucent, trailing stems.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-depressa",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Cadierei Variegata",
+    "scientific_name": "Pilea cadierei 'Variegata'",
+    "common_names": [
+      "Pilea Cadierei Variegata",
+      "Variegated Aluminum Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Cadierei Variegata is completely safe for cats and features variegated aluminum plant leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-cadierei-variegata",
+    "is_flower": false
+  }
+]

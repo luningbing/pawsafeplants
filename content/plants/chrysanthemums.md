@@ -1,38 +1,33 @@
 ---
-title: "Chrysanthemums"
-scientific_name: "Chrysanthemum morifolium"
+title: Chrysanthemums
+scientific_name: Chrysanthemum morifolium
 common_names:
-  - "Mums"
-  - "Florist’s Daisy"
-  - "Hardy Mum"
-toxicity_level: "⚠️ MODERATE TOXICITY – GI & NEUROLOGICAL EFFECTS"
-summary: "Chrysanthemums contain pyrethrins and sesquiterpene lactones that can cause vomiting, diarrhea, drooling, and even depression or incoordination in cats."
-ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chrysanthemum"
-image: https://source.unsplash.com/800x600/?Chrysanthemums%20cat%20houseplant&sig=1531
+  - Mums
+  - Florist’s Daisy
+  - Hardy Mum
+toxicity_level: ⚠️ MODERATE TOXICITY – GI & NEUROLOGICAL EFFECTS
+summary: >-
+  Chrysanthemums contain pyrethrins and sesquiterpene lactones that can cause
+  vomiting, diarrhea, drooling, and even depression or incoordination in cats.
+ascpa_link: >-
+  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chrysanthemum
+image: >-
+  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 symptoms:
-  - "Vomiting"
-  - "Diarrhea"
-  - "Drooling"
-  - "Lethargy"
-  - "Loss of coordination (ataxia)"
-what_to_do: |
-  **Contact your vet—even small ingestions matter.**
-
-  1. Remove plant access immediately.
-  2. Rinse mouth gently with water.
-  3. Call your veterinarian or **ASPCA APCC** at **(888) 426-4435**.
-  4. Monitor closely for 24 hours—neurological signs can develop.
-
-  > 💡 Note: “Mums” are common in fall arrangements—keep them out of reach during holidays!
-
+  - Vomiting
+  - Diarrhea
+  - Drooling
+  - Lethargy
+  - Loss of coordination (ataxia)
+what_to_do: "**Contact your vet—even small ingestions matter.**\n\n1. Remove plant access immediately.\n2. Rinse mouth gently with water.\n3. Call your veterinarian or **ASPCA APCC** at **(888) 426-4435**.\n4. Monitor closely for 24 hours—neurological signs can develop.\n\n> \U0001F4A1 Note: “Mums” are common in fall arrangements—keep them out of reach during holidays!\n"
 safe_alternatives:
-  - "Sunflowers"
-  - "Snapdragons"
-  - "Orchids"
-  - "African Violets"
+  - Sunflowers
+  - Snapdragons
+  - Orchids
+  - African Violets
 sources:
-  - "ASPCA Toxic and Non-Toxic Plants Database"
-  - "PetMD: Chrysanthemum Toxicity in Cats"
+  - ASPCA Toxic and Non-Toxic Plants Database
+  - 'PetMD: Chrysanthemum Toxicity in Cats'
 ---
 
 > ⚠️ **Disclaimer**:

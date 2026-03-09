@@ -1,28 +1,23 @@
 ---
-title: "Sunflowers"
-scientific_name: "Helianthus annuus"
+title: Sunflowers
+scientific_name: Helianthus annuus
 common_names:
-  - "Common Sunflower"
-  - "Giant Sunflower"
-toxicity_level: "✅ SAFE FOR CATS"
-summary: "Sunflowers are completely non-toxic to cats and dogs! Their bright blooms and tall stems make them a joyful, pet-safe choice for gardens and bouquets."
-ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sunflower"
-image: https://source.unsplash.com/800x600/?Sunflowers%20cat%20houseplant&sig=1112
+  - Common Sunflower
+  - Giant Sunflower
+toxicity_level: ✅ SAFE FOR CATS
+summary: >-
+  Sunflowers are completely non-toxic to cats and dogs! Their bright blooms and
+  tall stems make them a joyful, pet-safe choice for gardens and bouquets.
+ascpa_link: >-
+  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sunflower
+image: >-
+  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 symptoms: []
-what_to_do: |
-  **No toxicity concerns!**
-
-  However:
-  - Large seeds may pose a choking hazard.
-  - Pesticide-treated garden sunflowers could be risky—opt for organic if possible.
-  - Some cats enjoy chewing the leaves—it’s harmless!
-
-  > 💡 Bonus: Sunflowers attract birds and bees—great for wildlife-friendly yards!
-
+what_to_do: "**No toxicity concerns!**\n\nHowever:\n- Large seeds may pose a choking hazard.\n- Pesticide-treated garden sunflowers could be risky—opt for organic if possible.\n- Some cats enjoy chewing the leaves—it’s harmless!\n\n> \U0001F4A1 Bonus: Sunflowers attract birds and bees—great for wildlife-friendly yards!\n"
 safe_alternatives: []
 sources:
-  - "ASPCA Toxic and Non-Toxic Plants Database"
-  - "Cornell University Extension"
+  - ASPCA Toxic and Non-Toxic Plants Database
+  - Cornell University Extension
 ---
 
 > ⚠️ **Disclaimer**:

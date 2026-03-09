@@ -1,0 +1,67 @@
+[
+  {
+    "title": "Monstera",
+    "scientific_name": "Monstera deliciosa",
+    "common_names": ["Swiss Cheese Plant", "Split-Leaf Philodendron"],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Monstera contains calcium oxalate crystals which can cause oral irritation, excessive drooling, vomiting, and difficulty swallowing in cats if ingested.",
+    "image": "https://images.unsplash.com/photo-1614594975525-e35190c5599c?ixlib=rb-4.0.3&w=800&h=600&fit=crop",
+    "symptoms": ["Mouth irritation", "Excessive drooling", "Vomiting", "Difficulty swallowing"],
+    "what_to_do": "**If your cat ingests monstera:**\n\n1. Rinse the mouth thoroughly with cool water.\n2. Offer a small amount of milk or yogurt to soothe tissues.\n3. Monitor for persistent symptoms; contact your vet if needed.\n4. Do not induce vomiting without professional guidance.",
+    "safe_alternatives": ["Philodendron (non-toxinum varieties)", "Pothos (Epipremnum aureum)"],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/monstera",
+    "is_flower": false
+  },
+  {
+    "title": "Philodendron Heartleaf",
+    "scientific_name": "Philodendron hederaceum",
+    "common_names": ["Heartleaf Philodendron", "Philodendron"],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "All philodendrons contain calcium oxalate crystals which are toxic to cats, causing irritation of the mouth and gastrointestinal tract.",
+    "image": "https://images.unsplash.com/photo-1637967886194-1b458a8a6be0?ixlib=rb-4.0.3&w=800&h=600&fit=crop",
+    "symptoms": ["Oral irritation", "Drooling", "Vomiting", "Diarrhea", "Difficulty swallowing"],
+    "what_to_do": "**If ingested:**\n\n1. Rinse mouth with cool water.\n2. Offer milk or ice chips to soothe.\n3. Contact your veterinarian if symptoms persist.\n4. Do not induce vomiting unless instructed.",
+    "safe_alternatives": ["Pothos (some varieties)", "Spider Plant", "Boston Fern"],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/philodendron",
+    "is_flower": false
+  },
+  {
+    "title": "Peace Lily",
+    "scientific_name": "Spathiphyllum spp.",
+    "common_names": ["Peace Lily", "White Sails", "Spathe Flower"],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Peace Lilies contain calcium oxalate crystals and are toxic to cats and dogs. Ingestion can cause intense oral irritation, drooling, vomiting, and difficulty swallowing.",
+    "image": "https://images.unsplash.com/photo-1593691509541-c5ce79d7b05c?ixlib=rb-4.0.3&w=800&h=600&fit=crop",
+    "symptoms": ["Mouth irritation", "Excessive drooling", "Vomiting", "Difficulty swallowing", "Diarrhea"],
+    "what_to_do": "**If your cat eats peace lily:**\n\n1. Rinse mouth thoroughly with cool water.\n2. Offer milk or yogurt to coat the throat.\n3. Monitor for symptoms; seek veterinary care if vomiting persists.\n4. Do not induce vomiting without veterinary guidance.",
+    "safe_alternatives": ["Spider Plant", "Cat Grass", "Boston Fern"],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peace-lily",
+    "is_flower": true
+  },
+  {
+    "title": "Pothos",
+    "scientific_name": "Epipremnum aureum",
+    "common_names": ["Golden Pothos", "Devil's Ivy", "Money Plant"],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Pothos contains insoluble calcium oxalate crystals that can cause oral irritation, intense burning, excessive drooling, vomiting, and difficulty swallowing in cats.",
+    "image": "https://images.unsplash.com/photo-1637967886187-983017d71b9d?ixlib=rb-4.0.3&w=800&h=600&fit=crop",
+    "symptoms": ["Mouth irritation", "Drooling", "Vomiting", "Difficulty swallowing"],
+    "what_to_do": "**If ingested:**\n\n1. Rinse mouth with cool water immediately.\n2. Offer milk or ice chips.\n3. Contact your vet if symptoms continue.\n4. Never induce vomiting without professional advice.",
+    "safe_alternatives": ["Spider Plant", "Cash Plant (non-toxic varieties)", "Philodendron (safe varieties)"],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pothos",
+    "is_flower": false
+  },
+  {
+    "title": "Snake Plant",
+    "scientific_name": "Sansevieria trifasciata",
+    "common_names": ["Snake Plant", "Mother-in-Law's Tongue", "Viper's Bowstring Hemp"],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Snake plants contain saponins which are toxic to cats. Ingestion can cause nausea, vomiting, and diarrhea.",
+    "image": "https://images.unsplash.com/photo-1593482892540-12443b769935?ixlib=rb-4.0.3&w=800&h=600&fit=crop",
+    "symptoms": ["Nausea", "Vomiting", "Diarrhea", "Mouth irritation"],
+    "what_to_do": "**If your cat eats snake plant:**\n\n1. Rinse mouth thoroughly.\n2. Offer fresh water or milk.\n3. Monitor for GI symptoms.\n4. Contact your veterinarian if vomiting continues.",
+    "safe_alternatives": ["Cast Iron Plant", "Spider Plant", "Boston Fern"],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant",
+    "is_flower": false
+  }
+]

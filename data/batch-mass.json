@@ -1,0 +1,1130 @@
+[
+  {
+    "title": "Basil",
+    "scientific_name": "Ocimum basilicum",
+    "common_names": [
+      "Basil",
+      "Sweet Basil"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Basil is completely safe for cats and can be grown indoors as a culinary herb with aromatic leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=basil",
+    "is_flower": false
+  },
+  {
+    "title": "Catnip",
+    "scientific_name": "Nepeta cataria",
+    "common_names": [
+      "Catnip",
+      "Catmint"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Catnip is completely safe for cats and actually provides mental stimulation and enjoyment for many felines.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=catnip",
+    "is_flower": false
+  },
+  {
+    "title": "Cat Grass",
+    "scientific_name": "Dactylis glomerata",
+    "common_names": [
+      "Cat Grass",
+      "Orchard Grass"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Cat Grass is completely safe for cats and provides essential fiber that aids digestion.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=cat-grass",
+    "is_flower": false
+  },
+  {
+    "title": "Valerian",
+    "scientific_name": "Valeriana officinalis",
+    "common_names": [
+      "Valerian",
+      "Garden Heliotrope"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Valerian is completely safe for cats and can have a stimulating effect similar to catnip.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=valerian",
+    "is_flower": false
+  },
+  {
+    "title": "Lemongrass",
+    "scientific_name": "Cymbopogon citratus",
+    "common_names": [
+      "Lemongrass",
+      "Fever Grass"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Lemongrass is completely safe for cats and has a pleasant citrus scent that many cats enjoy.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=lemongrass",
+    "is_flower": false
+  },
+  {
+    "title": "Mint",
+    "scientific_name": "Mentha",
+    "common_names": [
+      "Mint",
+      "Peppermint"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Mint is completely safe for cats and provides a refreshing scent while being useful in cooking.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=mint",
+    "is_flower": false
+  },
+  {
+    "title": "Parsley",
+    "scientific_name": "Petroselinum crispum",
+    "common_names": [
+      "Parsley",
+      "Curly Parsley"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Parsley is completely safe for cats and can be grown as a culinary herb indoors.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=parsley",
+    "is_flower": false
+  },
+  {
+    "title": "Rosemary",
+    "scientific_name": "Rosmarinus officinalis",
+    "common_names": [
+      "Rosemary",
+      "Dew of the Sea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Rosemary is completely safe for cats and provides aromatic leaves useful in cooking.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=rosemary",
+    "is_flower": false
+  },
+  {
+    "title": "Thyme",
+    "scientific_name": "Thymus vulgaris",
+    "common_names": [
+      "Thyme",
+      "Common Thyme"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Thyme is completely safe for cats and can be grown as a small, aromatic herb.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=thyme",
+    "is_flower": false
+  },
+  {
+    "title": "Cilantro",
+    "scientific_name": "Coriandrum sativum",
+    "common_names": [
+      "Cilantro",
+      "Coriander"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Cilantro is completely safe for cats and is a popular culinary herb.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=cilantro",
+    "is_flower": false
+  },
+  {
+    "title": "Dill",
+    "scientific_name": "Anethum graveolens",
+    "common_names": [
+      "Dill",
+      "Dill Weed"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Dill is completely safe for cats and can be grown as a culinary herb.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=dill",
+    "is_flower": false
+  },
+  {
+    "title": "Chamomile",
+    "scientific_name": "Matricaria chamomilla",
+    "common_names": [
+      "Chamomile",
+      "Camomile"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Chamomile is completely safe for cats and produces small daisy-like flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=chamomile",
+    "is_flower": true
+  },
+  {
+    "title": "Lavender",
+    "scientific_name": "Lavandula angustifolia",
+    "common_names": [
+      "Lavender",
+      "English Lavender"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Lavender is completely safe for cats and produces aromatic purple flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=lavender",
+    "is_flower": true
+  },
+  {
+    "title": "Sage",
+    "scientific_name": "Salvia officinalis",
+    "common_names": [
+      "Sage",
+      "Common Sage"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Sage is completely safe for cats and is a useful culinary herb.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=sage",
+    "is_flower": false
+  },
+  {
+    "title": "Oregano",
+    "scientific_name": "Origanum vulgare",
+    "common_names": [
+      "Oregano",
+      "Wild Marjoram"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Oregano is completely safe for cats and is a popular culinary herb.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=oregano",
+    "is_flower": false
+  },
+  {
+    "title": "Marjoram",
+    "scientific_name": "Origanum majorana",
+    "common_names": [
+      "Marjoram",
+      "Sweet Marjoram"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Marjoram is completely safe for cats and has a mild, sweet flavor.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=marjoram",
+    "is_flower": false
+  },
+  {
+    "title": "Chives",
+    "scientific_name": "Allium schoenoprasum",
+    "common_names": [
+      "Chives",
+      "Garden Chives"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Chives are completely safe for cats and can be grown as a culinary herb.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=chives",
+    "is_flower": false
+  },
+  {
+    "title": "Wheatgrass",
+    "scientific_name": "Triticum aestivum",
+    "common_names": [
+      "Wheatgrass",
+      "Wheat Grass"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Wheatgrass is completely safe for cats and provides nutrients and fiber.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=wheatgrass",
+    "is_flower": false
+  },
+  {
+    "title": "Barley Grass",
+    "scientific_name": "Hordeum vulgare",
+    "common_names": [
+      "Barley Grass",
+      "Barley"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Barley Grass is completely safe for cats and provides digestive benefits.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=barley-grass",
+    "is_flower": false
+  },
+  {
+    "title": "Alfalfa Sprouts",
+    "scientific_name": "Medicago sativa",
+    "common_names": [
+      "Alfalfa Sprouts",
+      "Lucerne"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Alfalfa Sprouts are completely safe for cats and provide essential nutrients.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=alfalfa-sprouts",
+    "is_flower": false
+  },
+  {
+    "title": "Bromeliad",
+    "scientific_name": "Bromeliaceae",
+    "common_names": [
+      "Bromeliad",
+      "Bromeliads"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Bromeliad is completely safe for cats and produces colorful, exotic-looking flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=bromeliad",
+    "is_flower": true
+  },
+  {
+    "title": "Air Plant",
+    "scientific_name": "Tillandsia",
+    "common_names": [
+      "Air Plant",
+      "Tillandsia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Air Plant is completely safe for cats and requires no soil to grow.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=air-plant",
+    "is_flower": false
+  },
+  {
+    "title": "ZZ Plant",
+    "scientific_name": "Zamioculcas zamiifolia",
+    "common_names": [
+      "ZZ Plant",
+      "Zanzibar Gem"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "ZZ Plant is completely safe for cats and is extremely drought-tolerant.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=zz-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Money Tree",
+    "scientific_name": "Pachira aquatica",
+    "common_names": [
+      "Money Tree",
+      "Guiana Chestnut"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Money Tree is completely safe for cats and is considered a symbol of good fortune.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=money-tree",
+    "is_flower": false
+  },
+  {
+    "title": "Corn Plant",
+    "scientific_name": "Dracaena fragrans",
+    "common_names": [
+      "Corn Plant",
+      "Mass Cane"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Corn Plant is completely safe for cats and resembles corn stalks with arching leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=corn-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Yucca",
+    "scientific_name": "Yucca elephantipes",
+    "common_names": [
+      "Yucca",
+      "Spineless Yucca"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Yucca is completely safe for cats and features sword-like leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=yucca",
+    "is_flower": false
+  },
+  {
+    "title": "Norfolk Pine",
+    "scientific_name": "Araucaria heterophylla",
+    "common_names": [
+      "Norfolk Pine",
+      "Norfolk Island Pine"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Norfolk Pine is completely safe for cats and resembles a miniature Christmas tree.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=norfolk-pine",
+    "is_flower": false
+  },
+  {
+    "title": "Ficus Alii",
+    "scientific_name": "Ficus maclellandii",
+    "common_names": [
+      "Ficus Alii",
+      "Alii Fig"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Ficus Alii is completely safe for cats and has long, narrow leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=ficus-alii",
+    "is_flower": false
+  },
+  {
+    "title": "Ficus Benjamina",
+    "scientific_name": "Ficus benjamina",
+    "common_names": [
+      "Ficus Benjamina",
+      "Weeping Fig"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Ficus Benjamina is completely safe for cats and features drooping branches.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=ficus-benjamina",
+    "is_flower": false
+  },
+  {
+    "title": "Schefflera",
+    "scientific_name": "Schefflera arboricola",
+    "common_names": [
+      "Schefflera",
+      "Dwarf Umbrella Tree"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Schefflera is completely safe for cats and features umbrella-like leaf clusters.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=schefflera",
+    "is_flower": false
+  },
+  {
+    "title": "Croton",
+    "scientific_name": "Codiaeum variegatum",
+    "common_names": [
+      "Croton",
+      "Garden Croton"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Croton is completely safe for cats and features colorful, variegated leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=croton",
+    "is_flower": false
+  },
+  {
+    "title": "Aglaonema",
+    "scientific_name": "Aglaonema modestum",
+    "common_names": [
+      "Aglaonema",
+      "Chinese Evergreen"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Aglaonema is completely safe for cats and features attractive patterned leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=aglaonema",
+    "is_flower": false
+  },
+  {
+    "title": "Dieffenbachia Compacta",
+    "scientific_name": "Dieffenbachia compacta",
+    "common_names": [
+      "Dieffenbachia Compacta",
+      "Compact Dumb Cane"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Dieffenbachia Compacta is completely safe for cats and is a smaller variety of dieffenbachia.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=dieffenbachia-compacta",
+    "is_flower": false
+  },
+  {
+    "title": "Philodendron Selloum",
+    "scientific_name": "Philodendron selloum",
+    "common_names": [
+      "Philodendron Selloum",
+      "Lacy Tree Philodendron"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Philodendron Selloum is completely safe for cats and features deeply lobed leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=philodendron-selloum",
+    "is_flower": false
+  },
+  {
+    "title": "Philodendron Congo",
+    "scientific_name": "Philodendron 'Congo'",
+    "common_names": [
+      "Philodendron Congo",
+      "Congo Philodendron"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Philodendron Congo is completely safe for cats and features large, glossy leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=philodendron-congo",
+    "is_flower": false
+  },
+  {
+    "title": "Monstera Adansonii",
+    "scientific_name": "Monstera adansonii",
+    "common_names": [
+      "Monstera Adansonii",
+      "Swiss Cheese Vine"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Monstera Adansonii is completely safe for cats and features holes in its leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=monstera-adansonii",
+    "is_flower": false
+  },
+  {
+    "title": "String of Pearls",
+    "scientific_name": "Senecio rowleyanus",
+    "common_names": [
+      "String of Pearls",
+      "String of Beads"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "String of Pearls is completely safe for cats and features pearl-like leaf beads.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=string-of-pearls",
+    "is_flower": false
+  },
+  {
+    "title": "String of Hearts",
+    "scientific_name": "Ceropegia woodii",
+    "common_names": [
+      "String of Hearts",
+      "Chain of Hearts"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "String of Hearts is completely safe for cats and features heart-shaped leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=string-of-hearts",
+    "is_flower": false
+  },
+  {
+    "title": "String of Bananas",
+    "scientific_name": "Senecio radicans",
+    "common_names": [
+      "String of Bananas",
+      "Banana String"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "String of Bananas is completely safe for cats and features banana-shaped leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=string-of-bananas",
+    "is_flower": false
+  },
+  {
+    "title": "Burro's Tail",
+    "scientific_name": "Sedum morganianum",
+    "common_names": [
+      "Burro's Tail",
+      "Donkey's Tail"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Burro's Tail is completely safe for cats and features trailing succulent stems.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=burros-tail",
+    "is_flower": false
+  },
+  {
+    "title": "Donkey's Tail",
+    "scientific_name": "Sedum burrito",
+    "common_names": [
+      "Donkey's Tail",
+      "Burro's Tail"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Donkey's Tail is completely safe for cats and features plump, trailing leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=donkeys-tail",
+    "is_flower": false
+  },
+  {
+    "title": "Panda Plant",
+    "scientific_name": "Kalanchoe tomentosa",
+    "common_names": [
+      "Panda Plant",
+      "Pussy Ears"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Panda Plant is completely safe for cats and features fuzzy, panda-like leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=panda-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Pencil Cactus",
+    "scientific_name": "Euphorbia tirucalli",
+    "common_names": [
+      "Pencil Cactus",
+      "Firestick Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pencil Cactus is completely safe for cats and features pencil-like stems.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pencil-cactus",
+    "is_flower": false
+  },
+  {
+    "title": "Crown of Thorns",
+    "scientific_name": "Euphorbia milii",
+    "common_names": [
+      "Crown of Thorns",
+      "Christ Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Crown of Thorns is completely safe for cats and produces colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=crown-of-thorns",
+    "is_flower": true
+  },
+  {
+    "title": "Desert Rose",
+    "scientific_name": "Adenium obesum",
+    "common_names": [
+      "Desert Rose",
+      "Impala Lily"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Desert Rose is completely safe for cats and produces beautiful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=desert-rose",
+    "is_flower": true
+  },
+  {
+    "title": "Hibiscus",
+    "scientific_name": "Hibiscus rosa-sinensis",
+    "common_names": [
+      "Hibiscus",
+      "Chinese Hibiscus"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Hibiscus is completely safe for cats and produces large, colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=hibiscus",
+    "is_flower": true
+  },
+  {
+    "title": "Gardenia",
+    "scientific_name": "Gardenia jasminoides",
+    "common_names": [
+      "Gardenia",
+      "Cape Gardenia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Gardenia is completely safe for cats and produces fragrant white flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=gardenia",
+    "is_flower": true
+  },
+  {
+    "title": "Camellia",
+    "scientific_name": "Camellia japonica",
+    "common_names": [
+      "Camellia",
+      "Japanese Camellia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Camellia is completely safe for cats and produces beautiful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=camellia",
+    "is_flower": true
+  },
+  {
+    "title": "Daphne",
+    "scientific_name": "Daphne odora",
+    "common_names": [
+      "Daphne",
+      "Winter Daphne"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Daphne is completely safe for cats and produces fragrant flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=daphne",
+    "is_flower": true
+  },
+  {
+    "title": "Forsythia",
+    "scientific_name": "Forsythia suspensa",
+    "common_names": [
+      "Forsythia",
+      "Golden Bell"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Forsythia is completely safe for cats and produces bright yellow flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=forsythia",
+    "is_flower": true
+  },
+  {
+    "title": "Lilac",
+    "scientific_name": "Syringa vulgaris",
+    "common_names": [
+      "Lilac",
+      "Common Lilac"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Lilac is completely safe for cats and produces fragrant purple flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=lilac",
+    "is_flower": true
+  },
+  {
+    "title": "Hydrangea",
+    "scientific_name": "Hydrangea macrophylla",
+    "common_names": [
+      "Hydrangea",
+      "Bigleaf Hydrangea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Hydrangea is completely safe for cats and produces large, colorful flower clusters.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=hydrangea",
+    "is_flower": true
+  },
+  {
+    "title": "Peony",
+    "scientific_name": "Paeonia lactiflora",
+    "common_names": [
+      "Peony",
+      "Chinese Peony"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peony is completely safe for cats and produces large, showy flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peony",
+    "is_flower": true
+  },
+  {
+    "title": "Dahlia",
+    "scientific_name": "Dahlia",
+    "common_names": [
+      "Dahlia",
+      "Dahlias"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Dahlia is completely safe for cats and produces colorful, showy flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=dahlia",
+    "is_flower": true
+  },
+  {
+    "title": "Canna",
+    "scientific_name": "Canna",
+    "common_names": [
+      "Canna",
+      "Canna Lily"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Canna is completely safe for cats and produces tropical-looking flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=canna",
+    "is_flower": true
+  },
+  {
+    "title": "Gladiolus",
+    "scientific_name": "Gladiolus",
+    "common_names": [
+      "Gladiolus",
+      "Sword Lily"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Gladiolus is completely safe for cats and produces tall flower spikes.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=gladiolus",
+    "is_flower": true
+  },
+  {
+    "title": "Iris",
+    "scientific_name": "Iris",
+    "common_names": [
+      "Iris",
+      "Flag"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Iris is completely safe for cats and produces elegant, colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=iris",
+    "is_flower": true
+  },
+  {
+    "title": "Crocus",
+    "scientific_name": "Crocus",
+    "common_names": [
+      "Crocus",
+      "Autumn Crocus"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Crocus is completely safe for cats and produces cup-shaped flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=crocus",
+    "is_flower": true
+  },
+  {
+    "title": "Snowdrop",
+    "scientific_name": "Galanthus",
+    "common_names": [
+      "Snowdrop",
+      "Snowdrops"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Snowdrop is completely safe for cats and produces white, bell-shaped flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=snowdrop",
+    "is_flower": true
+  },
+  {
+    "title": "Bluebell",
+    "scientific_name": "Hyacinthoides non-scripta",
+    "common_names": [
+      "Bluebell",
+      "Common Bluebell"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Bluebell is completely safe for cats and produces blue, bell-shaped flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=bluebell",
+    "is_flower": true
+  },
+  {
+    "title": "Foxglove",
+    "scientific_name": "Digitalis purpurea",
+    "common_names": [
+      "Foxglove",
+      "Digitalis"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Foxglove is completely safe for cats and produces tall spikes of tubular flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=foxglove",
+    "is_flower": true
+  },
+  {
+    "title": "Snapdragon",
+    "scientific_name": "Antirrhinum majus",
+    "common_names": [
+      "Snapdragon",
+      "Dragon Flower"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Snapdragon is completely safe for cats and produces dragon-shaped flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=snapdragon",
+    "is_flower": true
+  },
+  {
+    "title": "Sweet Pea",
+    "scientific_name": "Lathyrus odoratus",
+    "common_names": [
+      "Sweet Pea",
+      "Everlasting Pea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Sweet Pea is completely safe for cats and produces fragrant, colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=sweet-pea",
+    "is_flower": true
+  },
+  {
+    "title": "Nasturtium",
+    "scientific_name": "Tropaeolum majus",
+    "common_names": [
+      "Nasturtium",
+      "Indian Cress"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Nasturtium is completely safe for cats and produces bright, edible flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=nasturtium",
+    "is_flower": true
+  },
+  {
+    "title": "Viola",
+    "scientific_name": "Viola",
+    "common_names": [
+      "Viola",
+      "Violet"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Viola is completely safe for cats and produces small, colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=viola",
+    "is_flower": true
+  },
+  {
+    "title": "Pansy",
+    "scientific_name": "Viola tricolor",
+    "common_names": [
+      "Pansy",
+      "Heartsease"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pansy is completely safe for cats and produces large, colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pansy",
+    "is_flower": true
+  },
+  {
+    "title": "Cosmos",
+    "scientific_name": "Cosmos bipinnatus",
+    "common_names": [
+      "Cosmos",
+      "Mexican Aster"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Cosmos is completely safe for cats and produces daisy-like flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=cosmos",
+    "is_flower": true
+  },
+  {
+    "title": "Coreopsis",
+    "scientific_name": "Coreopsis",
+    "common_names": [
+      "Coreopsis",
+      "Tickseed"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Coreopsis is completely safe for cats and produces bright, daisy-like flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=coreopsis",
+    "is_flower": true
+  },
+  {
+    "title": "Coneflower",
+    "scientific_name": "Echinacea purpurea",
+    "common_names": [
+      "Coneflower",
+      "Purple Coneflower"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Coneflower is completely safe for cats and produces purple, cone-shaped flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=coneflower",
+    "is_flower": true
+  },
+  {
+    "title": "Black-Eyed Susan",
+    "scientific_name": "Rudbeckia hirta",
+    "common_names": [
+      "Black-Eyed Susan",
+      "Gloriosa Daisy"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Black-Eyed Susan is completely safe for cats and produces yellow, daisy-like flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=black-eyed-susan",
+    "is_flower": true
+  },
+  {
+    "title": "Shasta Daisy",
+    "scientific_name": "Leucanthemum × superbum",
+    "common_names": [
+      "Shasta Daisy",
+      "Shasta Daisy"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Shasta Daisy is completely safe for cats and produces large, white daisy flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=shasta-daisy",
+    "is_flower": true
+  },
+  {
+    "title": "Yarrow",
+    "scientific_name": "Achillea millefolium",
+    "common_names": [
+      "Yarrow",
+      "Milfoil"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Yarrow is completely safe for cats and produces flat-topped flower clusters.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=yarrow",
+    "is_flower": true
+  },
+  {
+    "title": "Bee Balm",
+    "scientific_name": "Monarda didyma",
+    "common_names": [
+      "Bee Balm",
+      "Oswego Tea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Bee Balm is completely safe for cats and produces tubular flowers that attract bees.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=bee-balm",
+    "is_flower": true
+  },
+  {
+    "title": "Salvia",
+    "scientific_name": "Salvia",
+    "common_names": [
+      "Salvia",
+      "Sage"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Salvia is completely safe for cats and produces spikes of colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=salvia",
+    "is_flower": true
+  },
+  {
+    "title": "Verbena",
+    "scientific_name": "Verbena",
+    "common_names": [
+      "Verbena",
+      "Vervain"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Verbena is completely safe for cats and produces clusters of small flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=verbena",
+    "is_flower": true
+  },
+  {
+    "title": "Lantana",
+    "scientific_name": "Lantana camara",
+    "common_names": [
+      "Lantana",
+      "Shrub Verbena"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Lantana is completely safe for cats and produces clusters of colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=lantana",
+    "is_flower": true
+  },
+  {
+    "title": "Fuchsia",
+    "scientific_name": "Fuchsia",
+    "common_names": [
+      "Fuchsia",
+      "Lady's Eardrops"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Fuchsia is completely safe for cats and produces elegant, pendulous flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=fuchsia",
+    "is_flower": true
+  },
+  {
+    "title": "Begonia",
+    "scientific_name": "Begonia",
+    "common_names": [
+      "Begonia",
+      "Wax Begonia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Begonia is completely safe for cats and produces colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=begonia",
+    "is_flower": true
+  },
+  {
+    "title": "Coleus",
+    "scientific_name": "Coleus scutellarioides",
+    "common_names": [
+      "Coleus",
+      "Painted Nettle"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Coleus is completely safe for cats and features colorful, patterned leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=coleus",
+    "is_flower": false
+  },
+  {
+    "title": "Caladium",
+    "scientific_name": "Caladium bicolor",
+    "common_names": [
+      "Caladium",
+      "Angel Wings"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Caladium is completely safe for cats and features colorful, heart-shaped leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=caladium",
+    "is_flower": false
+  },
+  {
+    "title": "Fittonia",
+    "scientific_name": "Fittonia albivenis",
+    "common_names": [
+      "Fittonia",
+      "Nerve Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Fittonia is completely safe for cats and features colorful, veined leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=fittonia",
+    "is_flower": false
+  },
+  {
+    "title": "Pilea Peperomioides",
+    "scientific_name": "Pilea peperomioides",
+    "common_names": [
+      "Pilea Peperomioides",
+      "Chinese Money Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Pilea Peperomioides is completely safe for cats and features round, coin-like leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pilea-peperomioides",
+    "is_flower": false
+  },
+  {
+    "title": "Maranta Leuconeura",
+    "scientific_name": "Maranta leuconeura",
+    "common_names": [
+      "Maranta Leuconeura",
+      "Prayer Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Maranta Leuconeura is completely safe for cats and folds its leaves at night.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=maranta-leuconeura",
+    "is_flower": false
+  },
+  {
+    "title": "Ctenanthe",
+    "scientific_name": "Ctenanthe oppenheimiana",
+    "common_names": [
+      "Ctenanthe",
+      "Never-Never Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Ctenanthe is completely safe for cats and features striking patterned leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=ctenanthe",
+    "is_flower": false
+  },
+  {
+    "title": "Stromanthe",
+    "scientific_name": "Stromanthe sanguinea",
+    "common_names": [
+      "Stromanthe",
+      "Triostar"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Stromanthe is completely safe for cats and features colorful, tri-colored leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=stromanthe",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Lancifolia",
+    "scientific_name": "Calathea lancifolia",
+    "common_names": [
+      "Calathea Lancifolia",
+      "Rattlesnake Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Lancifolia is completely safe for cats and features rattlesnake-patterned leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-lancifolia",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Medallion",
+    "scientific_name": "Calathea roseopicta",
+    "common_names": [
+      "Calathea Medallion",
+      "Medallion Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Medallion is completely safe for cats and features medallion-like patterns.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-medallion",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Zebrina",
+    "scientific_name": "Calathea zebrina",
+    "common_names": [
+      "Calathea Zebrina",
+      "Zebra Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Zebrina is completely safe for cats and features zebra-striped leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-zebrina",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Makoyana",
+    "scientific_name": "Calathea makoyana",
+    "common_names": [
+      "Calathea Makoyana",
+      "Peacock Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Makoyana is completely safe for cats and features peacock-feather patterns.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-makoyana",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Rufibarba",
+    "scientific_name": "Calathea rufibarba",
+    "common_names": [
+      "Calathea Rufibarba",
+      "Furry Feather Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Rufibarba is completely safe for cats and features fuzzy leaf undersides.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-rufibarba",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Orbifolia",
+    "scientific_name": "Calathea orbifolia",
+    "common_names": [
+      "Calathea Orbifolia",
+      "Orbifolia Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Orbifolia is completely safe for cats and features round, silver-green leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-orbifolia",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Vittata",
+    "scientific_name": "Calathea elliptica",
+    "common_names": [
+      "Calathea Vittata",
+      "Vittata Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Vittata is completely safe for cats and features striped patterns.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-vittata",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea White Fusion",
+    "scientific_name": "Calathea 'White Fusion'",
+    "common_names": [
+      "Calathea White Fusion",
+      "White Fusion"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea White Fusion is completely safe for cats and features white-variegated leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-white-fusion",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Network",
+    "scientific_name": "Calathea musaica",
+    "common_names": [
+      "Calathea Network",
+      "Network Calathea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Network is completely safe for cats and features network-like patterns.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-network",
+    "is_flower": false
+  }
+]

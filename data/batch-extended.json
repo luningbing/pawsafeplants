@@ -1,0 +1,936 @@
+[
+  {
+    "title": "Fiddle Leaf Fig",
+    "scientific_name": "Ficus lyrata",
+    "common_names": [
+      "Fiddle Leaf Fig",
+      "Banana Leaf Fig"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Fiddle Leaf Fig contains ficin and psoralen which can cause mild gastrointestinal upset and skin irritation in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=fiddle-leaf-fig",
+    "symptoms": [
+      "Mild vomiting",
+      "Diarrhea",
+      "Skin irritation"
+    ],
+    "what_to_do": "**If your cat ingests fiddle leaf fig:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Fiddle Leaf Fig out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Parlor Palm",
+      "Spider Plant"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/fiddle-leaf-fig",
+    "is_flower": false
+  },
+  {
+    "title": "Rubber Plant",
+    "scientific_name": "Ficus elastica",
+    "common_names": [
+      "Rubber Plant",
+      "Rubber Tree"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Rubber Plant contains ficin which can cause mild gastrointestinal irritation in cats if ingested.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=rubber-plant",
+    "symptoms": [
+      "Mild vomiting",
+      "Drooling",
+      "Mouth irritation"
+    ],
+    "what_to_do": "**If your cat ingests rubber plant:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Rubber Plant out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Areca Palm",
+      "Boston Fern"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rubber-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Bird of Paradise",
+    "scientific_name": "Strelitzia reginae",
+    "common_names": [
+      "Bird of Paradise",
+      "Crane Flower"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Bird of Paradise contains hydrocyanic acid which can cause gastrointestinal irritation and vomiting in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=bird-of-paradise",
+    "symptoms": [
+      "Vomiting",
+      "Drowsiness",
+      "Loss of appetite"
+    ],
+    "what_to_do": "**If your cat ingests bird of paradise:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Bird of Paradise out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Orchids",
+      "African Violet"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/bird-of-paradise",
+    "is_flower": false
+  },
+  {
+    "title": "Calathea Ornata",
+    "scientific_name": "Calathea ornata",
+    "common_names": [
+      "Calathea Ornata",
+      "Pinstripe Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Calathea Ornata is completely safe for cats and makes an excellent pet-friendly houseplant with beautiful striped leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=calathea-ornata",
+    "is_flower": false
+  },
+  {
+    "title": "Boston Fern",
+    "scientific_name": "Nephrolepis exaltata",
+    "common_names": [
+      "Boston Fern",
+      "Sword Fern"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Boston Fern is completely non-toxic to cats and helps purify indoor air while adding lush greenery to your home.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=boston-fern",
+    "is_flower": false
+  },
+  {
+    "title": "Peace Lily",
+    "scientific_name": "Spathiphyllum wallisii",
+    "common_names": [
+      "Peace Lily",
+      "White Sails"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Peace Lily contains calcium oxalate crystals which can cause oral irritation and swelling in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peace-lily",
+    "symptoms": [
+      "Oral irritation",
+      "Swelling",
+      "Difficulty swallowing",
+      "Excessive drooling"
+    ],
+    "what_to_do": "**If your cat ingests peace lily:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Peace Lily out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "White Orchid",
+      "African Violet"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/peace-lily",
+    "is_flower": false
+  },
+  {
+    "title": "Pothos",
+    "scientific_name": "Epipremnum aureum",
+    "common_names": [
+      "Pothos",
+      "Devil's Ivy",
+      "Golden Pothos"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Pothos contains calcium oxalate crystals that can cause oral irritation and gastrointestinal upset in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=pothos",
+    "symptoms": [
+      "Oral irritation",
+      "Vomiting",
+      "Difficulty swallowing",
+      "Excessive drooling"
+    ],
+    "what_to_do": "**If your cat ingests pothos:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Pothos out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Spider Plant",
+      "Boston Fern"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/pothos",
+    "is_flower": false
+  },
+  {
+    "title": "Dracaena",
+    "scientific_name": "Dracaena fragrans",
+    "common_names": [
+      "Dracaena",
+      "Corn Plant"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Dracaena contains saponins which can cause vomiting, depression, and loss of appetite in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=dracaena",
+    "symptoms": [
+      "Vomiting",
+      "Depression",
+      "Loss of appetite",
+      "Dilated pupils"
+    ],
+    "what_to_do": "**If your cat ingests dracaena:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Dracaena out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Areca Palm",
+      "Parlor Palm"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dracaena",
+    "is_flower": false
+  },
+  {
+    "title": "Areca Palm",
+    "scientific_name": "Dypsis lutescens",
+    "common_names": [
+      "Areca Palm",
+      "Butterfly Palm"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Areca Palm is completely safe for cats and helps remove formaldehyde, xylene, and toluene from indoor air.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=areca-palm",
+    "is_flower": false
+  },
+  {
+    "title": "Parlor Palm",
+    "scientific_name": "Chamaedorea elegans",
+    "common_names": [
+      "Parlor Palm",
+      "Good Luck Palm"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Parlor Palm is completely non-toxic to cats and thrives in low light conditions, making it perfect for indoor spaces.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=parlor-palm",
+    "is_flower": false
+  },
+  {
+    "title": "Aloe Vera",
+    "scientific_name": "Aloe barbadensis",
+    "common_names": [
+      "Aloe Vera",
+      "Medicinal Aloe"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Aloe Vera contains saponins and anthraquinones which can cause vomiting and diarrhea in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=aloe-vera",
+    "symptoms": [
+      "Vomiting",
+      "Diarrhea",
+      "Lethargy",
+      "Tremors"
+    ],
+    "what_to_do": "**If your cat ingests aloe vera:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Aloe Vera out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Haworthia",
+      "Echeveria"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/aloe",
+    "is_flower": false
+  },
+  {
+    "title": "Haworthia",
+    "scientific_name": "Haworthia attenuata",
+    "common_names": [
+      "Haworthia",
+      "Zebra Cactus"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Haworthia is completely safe for cats and resembles Aloe Vera but without the toxic compounds.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=haworthia",
+    "is_flower": false
+  },
+  {
+    "title": "Echeveria",
+    "scientific_name": "Echeveria elegans",
+    "common_names": [
+      "Echeveria",
+      "Mexican Snowball"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Echeveria is completely non-toxic to cats and makes a beautiful, safe succulent for pet households.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=echeveria",
+    "is_flower": false
+  },
+  {
+    "title": "Jade Plant",
+    "scientific_name": "Crassula ovata",
+    "common_names": [
+      "Jade Plant",
+      "Money Tree"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Jade Plant contains unknown toxic compounds that can cause vomiting, depression, and incoordination in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=jade-plant",
+    "symptoms": [
+      "Vomiting",
+      "Depression",
+      "Incoordination",
+      "Slow heart rate"
+    ],
+    "what_to_do": "**If your cat ingests jade plant:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Jade Plant out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Haworthia",
+      "Echeveria"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jade-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Snake Plant",
+    "scientific_name": "Sansevieria trifasciata",
+    "common_names": [
+      "Snake Plant",
+      "Mother-in-Law's Tongue"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Snake Plant contains saponins which can cause gastrointestinal upset and drooling in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=snake-plant",
+    "symptoms": [
+      "Nausea",
+      "Vomiting",
+      "Diarrhea",
+      "Drooling"
+    ],
+    "what_to_do": "**If your cat ingests snake plant:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Snake Plant out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Spider Plant",
+      "Boston Fern"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/snake-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Maidenhair Fern",
+    "scientific_name": "Adiantum raddianum",
+    "common_names": [
+      "Maidenhair Fern",
+      "Delta Maidenhair Fern"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Maidenhair Fern is completely safe for cats and adds delicate, lacy foliage to your indoor plant collection.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=maidenhair-fern",
+    "is_flower": false
+  },
+  {
+    "title": "Bird's Nest Fern",
+    "scientific_name": "Asplenium nidus",
+    "common_names": [
+      "Bird's Nest Fern",
+      "Crow's Nest Fern"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Bird's Nest Fern is completely non-toxic to cats and features beautiful, nest-like fronds.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=birds-nest-fern",
+    "is_flower": false
+  },
+  {
+    "title": "Staghorn Fern",
+    "scientific_name": "Platycerium bifurcatum",
+    "common_names": [
+      "Staghorn Fern",
+      "Elkhorn Fern"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Staghorn Fern is completely safe for cats and can be mounted on walls as a unique decorative plant.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=staghorn-fern",
+    "is_flower": false
+  },
+  {
+    "title": "African Violet",
+    "scientific_name": "Saintpaulia ionantha",
+    "common_names": [
+      "African Violet",
+      "Cape Marigold"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "African Violet is completely safe for cats and produces beautiful purple flowers year-round.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=african-violet",
+    "is_flower": true
+  },
+  {
+    "title": "Orchid",
+    "scientific_name": "Phalaenopsis",
+    "common_names": [
+      "Orchid",
+      "Moth Orchid"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Most orchids are completely safe for cats and add elegant beauty to any room with their stunning flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=orchid",
+    "is_flower": true
+  },
+  {
+    "title": "Roses",
+    "scientific_name": "Rosa",
+    "common_names": [
+      "Roses",
+      "Rose Bushes"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Roses are completely safe for cats and the petals are even edible in small amounts.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=roses",
+    "is_flower": true
+  },
+  {
+    "title": "Sunflowers",
+    "scientific_name": "Helianthus annuus",
+    "common_names": [
+      "Sunflowers",
+      "Common Sunflower"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Sunflowers are completely safe for cats and provide bright, cheerful flowers that cats can enjoy safely.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=sunflowers",
+    "is_flower": true
+  },
+  {
+    "title": "Tulips",
+    "scientific_name": "Tulipa",
+    "common_names": [
+      "Tulips",
+      "Tulip Bulbs"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Tulip bulbs contain tulipalin A and B which can cause severe gastrointestinal upset and depression in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=tulips",
+    "symptoms": [
+      "Severe vomiting",
+      "Diarrhea",
+      "Depression",
+      "Loss of appetite"
+    ],
+    "what_to_do": "**If your cat ingests tulips:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Tulips out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Sunflowers",
+      "Roses"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tulips",
+    "is_flower": true
+  },
+  {
+    "title": "Daffodils",
+    "scientific_name": "Narcissus",
+    "common_names": [
+      "Daffodils",
+      "Narcissus"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Daffodil bulbs contain lycorine and other alkaloids which can cause severe vomiting and diarrhea in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=daffodils",
+    "symptoms": [
+      "Severe vomiting",
+      "Diarrhea",
+      "Abdominal pain",
+      "Depression"
+    ],
+    "what_to_do": "**If your cat ingests daffodils:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Daffodils out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Sunflowers",
+      "Roses"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/daffodils",
+    "is_flower": true
+  },
+  {
+    "title": "Lilies",
+    "scientific_name": "Lilium",
+    "common_names": [
+      "Lilies",
+      "True Lilies"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "All parts of lilies are extremely toxic to cats and can cause kidney failure even in small amounts.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=lilies",
+    "symptoms": [
+      "Vomiting",
+      "Lethargy",
+      "Kidney failure",
+      "Death"
+    ],
+    "what_to_do": "**If your cat ingests lilies:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Lilies out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Orchids",
+      "African Violets"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lilies",
+    "is_flower": true
+  },
+  {
+    "title": "Chrysanthemums",
+    "scientific_name": "Chrysanthemum",
+    "common_names": [
+      "Chrysanthemums",
+      "Mums"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Chrysanthemums contain pyrethrins which can cause gastrointestinal upset and skin irritation in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=chrysanthemums",
+    "symptoms": [
+      "Vomiting",
+      "Diarrhea",
+      "Skin irritation",
+      "Drooling"
+    ],
+    "what_to_do": "**If your cat ingests chrysanthemums:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Chrysanthemums out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Roses",
+      "Sunflowers"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chrysanthemums",
+    "is_flower": true
+  },
+  {
+    "title": "Spider Plant",
+    "scientific_name": "Chlorophytum comosum",
+    "common_names": [
+      "Spider Plant",
+      "Airplane Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Spider Plant is completely safe for cats and helps purify indoor air while producing baby spiderettes.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=spider-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Bamboo Palm",
+    "scientific_name": "Chamaedorea seifrizii",
+    "common_names": [
+      "Bamboo Palm",
+      "Reed Palm"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Bamboo Palm is completely non-toxic to cats and helps remove formaldehyde and benzene from indoor air.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=bamboo-palm",
+    "is_flower": false
+  },
+  {
+    "title": "Cast Iron Plant",
+    "scientific_name": "Aspidistra elatior",
+    "common_names": [
+      "Cast Iron Plant",
+      "Iron Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Cast Iron Plant is completely safe for cats and is extremely hardy, thriving in low light conditions.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=cast-iron-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Swedish Ivy",
+    "scientific_name": "Plectranthus verticillatus",
+    "common_names": [
+      "Swedish Ivy",
+      "Swedish Begonia"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Swedish Ivy is completely safe for cats and produces cascading vines with attractive foliage.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=swedish-ivy",
+    "is_flower": false
+  },
+  {
+    "title": "Polka Dot Plant",
+    "scientific_name": "Hypoestes phyllostachya",
+    "common_names": [
+      "Polka Dot Plant",
+      "Freckle Face"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Polka Dot Plant is completely safe for cats and features colorful spotted leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=polka-dot-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Prayer Plant",
+    "scientific_name": "Maranta leuconeura",
+    "common_names": [
+      "Prayer Plant",
+      "Praying Maranta"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Prayer Plant is completely safe for cats and folds its leaves at night like praying hands.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=prayer-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Wax Plant",
+    "scientific_name": "Hoya carnosa",
+    "common_names": [
+      "Wax Plant",
+      "Hoya"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Wax Plant is completely safe for cats and produces waxy, star-shaped flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=wax-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Peperomia",
+    "scientific_name": "Peperomia obtusifolia",
+    "common_names": [
+      "Peperomia",
+      "Baby Rubber Plant"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Peperomia is completely safe for cats and comes in many varieties with interesting foliage.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=peperomia",
+    "is_flower": false
+  },
+  {
+    "title": "Friendship Plant",
+    "scientific_name": "Pilea involucrata",
+    "common_names": [
+      "Friendship Plant",
+      "Pilea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Friendship Plant is completely safe for cats and features textured, deeply veined leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=friendship-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Aluminum Plant",
+    "scientific_name": "Pilea cadierei",
+    "common_names": [
+      "Aluminum Plant",
+      "Watermelon Pilea"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Aluminum Plant is completely safe for cats and has silvery markings on its leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=aluminum-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Venus Flytrap",
+    "scientific_name": "Dionaea muscipula",
+    "common_names": [
+      "Venus Flytrap",
+      "Flytrap"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Venus Flytrap is completely safe for cats and is a fascinating carnivorous plant.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=venus-flytrap",
+    "is_flower": false
+  },
+  {
+    "title": "Sensitive Plant",
+    "scientific_name": "Mimosa pudica",
+    "common_names": [
+      "Sensitive Plant",
+      "Touch-Me-Not"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Sensitive Plant is completely safe for cats and folds its leaves when touched.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=sensitive-plant",
+    "is_flower": false
+  },
+  {
+    "title": "Baby Tears",
+    "scientific_name": "Soleirolia soleirolii",
+    "common_names": [
+      "Baby Tears",
+      "Mind-Your-Own-Business"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Baby Tears is completely safe for cats and forms a dense carpet of tiny leaves.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=baby-tears",
+    "is_flower": false
+  },
+  {
+    "title": "Christmas Cactus",
+    "scientific_name": "Schlumbergera truncata",
+    "common_names": [
+      "Christmas Cactus",
+      "Holiday Cactus"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Christmas Cactus is completely safe for cats and produces beautiful flowers during winter.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=christmas-cactus",
+    "is_flower": true
+  },
+  {
+    "title": "Geranium",
+    "scientific_name": "Pelargonium",
+    "common_names": [
+      "Geranium",
+      "Scented Geranium"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Geranium is completely safe for cats and produces colorful flowers with pleasant scents.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=geranium",
+    "is_flower": true
+  },
+  {
+    "title": "Petunia",
+    "scientific_name": "Petunia",
+    "common_names": [
+      "Petunia",
+      "Petunias"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Petunia is completely safe for cats and produces abundant, colorful flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=petunia",
+    "is_flower": true
+  },
+  {
+    "title": "Zinnia",
+    "scientific_name": "Zinnia elegans",
+    "common_names": [
+      "Zinnia",
+      "Zinnias"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Zinnia is completely safe for cats and produces bright, daisy-like flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=zinnia",
+    "is_flower": true
+  },
+  {
+    "title": "Marigold",
+    "scientific_name": "Tagetes",
+    "common_names": [
+      "Marigold",
+      "French Marigold"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Marigold is completely safe for cats and produces bright orange or yellow flowers.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=marigold",
+    "is_flower": true
+  },
+  {
+    "title": "Impatiens",
+    "scientific_name": "Impatiens walleriana",
+    "common_names": [
+      "Impatiens",
+      "Busy Lizzy"
+    ],
+    "toxicity_level": "Safe",
+    "summary": "Impatiens is completely safe for cats and produces colorful flowers in shade.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=impatiens",
+    "is_flower": true
+  },
+  {
+    "title": "English Ivy",
+    "scientific_name": "Hedera helix",
+    "common_names": [
+      "English Ivy",
+      "Common Ivy"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "English Ivy contains triterpenoid saponins which can cause vomiting, diarrhea, and abdominal pain in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=english-ivy",
+    "symptoms": [
+      "Vomiting",
+      "Diarrhea",
+      "Abdominal pain",
+      "Excessive drooling"
+    ],
+    "what_to_do": "**If your cat ingests english ivy:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep English Ivy out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Swedish Ivy",
+      "Spider Plant"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy",
+    "is_flower": false
+  },
+  {
+    "title": "Dieffenbachia",
+    "scientific_name": "Dieffenbachia seguine",
+    "common_names": [
+      "Dieffenbachia",
+      "Dumb Cane"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Dieffenbachia contains calcium oxalate crystals which can cause severe oral irritation and swelling in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=dieffenbachia",
+    "symptoms": [
+      "Oral irritation",
+      "Swelling",
+      "Difficulty swallowing",
+      "Excessive drooling"
+    ],
+    "what_to_do": "**If your cat ingests dieffenbachia:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Dieffenbachia out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Prayer Plant",
+      "Peperomia"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/dieffenbachia",
+    "is_flower": false
+  },
+  {
+    "title": "Sago Palm",
+    "scientific_name": "Cycas revoluta",
+    "common_names": [
+      "Sago Palm",
+      "King Sago"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Sago Palm contains cycasin which is extremely toxic to cats and can cause liver failure and death.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=sago-palm",
+    "symptoms": [
+      "Vomiting",
+      "Diarrhea",
+      "Liver failure",
+      "Death"
+    ],
+    "what_to_do": "**If your cat ingests sago palm:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Sago Palm out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Areca Palm",
+      "Parlor Palm"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sago-palm",
+    "is_flower": false
+  },
+  {
+    "title": "Oleander",
+    "scientific_name": "Nerium oleander",
+    "common_names": [
+      "Oleander",
+      "Rose Bay"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Oleander contains cardiac glycosides which are extremely toxic to cats and can cause fatal heart problems.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=oleander",
+    "symptoms": [
+      "Vomiting",
+      "Diarrhea",
+      "Heart problems",
+      "Death"
+    ],
+    "what_to_do": "**If your cat ingests oleander:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Oleander out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Hibiscus",
+      "Rose"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oleander",
+    "is_flower": true
+  },
+  {
+    "title": "Azalea",
+    "scientific_name": "Rhododendron",
+    "common_names": [
+      "Azalea",
+      "Rhododendron"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Azalea contains grayanotoxins which can cause severe vomiting, diarrhea, and cardiovascular problems in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=azalea",
+    "symptoms": [
+      "Severe vomiting",
+      "Diarrhea",
+      "Heart problems",
+      "Coma"
+    ],
+    "what_to_do": "**If your cat ingests azalea:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Azalea out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Camellia",
+      "Gardenia"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/azalea",
+    "is_flower": true
+  },
+  {
+    "title": "Cyclamen",
+    "scientific_name": "Cyclamen persicum",
+    "common_names": [
+      "Cyclamen",
+      "Persian Violet"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Cyclamen contains cyclamine which can cause severe vomiting and diarrhea in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=cyclamen",
+    "symptoms": [
+      "Severe vomiting",
+      "Diarrhea",
+      "Heart problems",
+      "Death"
+    ],
+    "what_to_do": "**If your cat ingests cyclamen:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Cyclamen out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "African Violet",
+      "Primrose"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/cyclamen",
+    "is_flower": true
+  },
+  {
+    "title": "Kalanchoe",
+    "scientific_name": "Kalanchoe blossfeldiana",
+    "common_names": [
+      "Kalanchoe",
+      "Flaming Katy"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Kalanchoe contains bufadienolides which can cause severe vomiting and heart problems in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=kalanchoe",
+    "symptoms": [
+      "Severe vomiting",
+      "Diarrhea",
+      "Heart problems",
+      "Death"
+    ],
+    "what_to_do": "**If your cat ingests kalanchoe:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Kalanchoe out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Christmas Cactus",
+      "Sedum"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe",
+    "is_flower": true
+  },
+  {
+    "title": "Yew",
+    "scientific_name": "Taxus",
+    "common_names": [
+      "Yew",
+      "English Yew"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Yew contains taxine which is extremely toxic to cats and can cause sudden death without warning.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=yew",
+    "symptoms": [
+      "Sudden death",
+      "Heart problems",
+      "Tremors",
+      "Seizures"
+    ],
+    "what_to_do": "**If your cat ingests yew:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Yew out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Arborvitae",
+      "Holly"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/yew",
+    "is_flower": false
+  },
+  {
+    "title": "Tomato Plant",
+    "scientific_name": "Solanum lycopersicum",
+    "common_names": [
+      "Tomato Plant",
+      "Tomato"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Tomato plants contain solanine and tomatine which can cause gastrointestinal upset in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=tomato-plant",
+    "symptoms": [
+      "Vomiting",
+      "Diarrhea",
+      "Lethargy",
+      "Weakness"
+    ],
+    "what_to_do": "**If your cat ingests tomato plant:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Tomato Plant out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Basil",
+      "Catnip"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tomato",
+    "is_flower": false
+  },
+  {
+    "title": "Potato Plant",
+    "scientific_name": "Solanum tuberosum",
+    "common_names": [
+      "Potato Plant",
+      "Potato"
+    ],
+    "toxicity_level": "⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION",
+    "summary": "Potato plants contain solanine which can cause gastrointestinal upset and neurological symptoms in cats.",
+    "image": "https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=potato-plant",
+    "symptoms": [
+      "Vomiting",
+      "Diarrhea",
+      "Lethargy",
+      "Weakness"
+    ],
+    "what_to_do": "**If your cat ingests potato plant:**\n\n1. Remove any remaining plant material from your cat's mouth.\n2. Rinse the mouth thoroughly with cool water.\n3. Offer a small amount of water or milk to help flush the system.\n4. Monitor for symptoms and contact your veterinarian if they persist or worsen.\n5. Do not induce vomiting unless specifically instructed by your vet.\n\n**Prevention:**\n- Keep Potato Plant out of reach of curious cats\n- Consider placing in hanging baskets or high shelves\n- Provide cat-safe alternatives like cat grass or catnip",
+    "safe_alternatives": [
+      "Sweet Potato Vine",
+      "Catnip"
+    ],
+    "ascpa_link": "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/potato",
+    "is_flower": false
+  }
+]

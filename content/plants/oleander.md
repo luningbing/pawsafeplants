@@ -1,36 +1,44 @@
 ---
-title: "Oleander"
-scientific_name: "Nerium oleander"
+title: Oleander
+scientific_name: Nerium oleander
 common_names:
-  - "Rose Bay"
-  - "Adelfa"
-  - "Laurel Rosa"
-toxicity_level: "☠️ EXTREME DANGER – POTENTIALLY FATAL"
-summary: "All parts contain cardiac glycosides extremely toxic to cats. Ingestion may cause severe heart problems, digestive upset, and can be fatal."
-ascpa_link: "https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oleander"
-image: https://source.unsplash.com/800x600/?Oleander%20cat%20houseplant&sig=842
+  - Rose Bay
+  - Adelfa
+  - Laurel Rosa
+toxicity_level: ☠️ EXTREME DANGER – POTENTIALLY FATAL
+summary: >-
+  All parts contain cardiac glycosides extremely toxic to cats. Ingestion may
+  cause severe heart problems, digestive upset, and can be fatal.
+ascpa_link: >-
+  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oleander
+image: >-
+  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 symptoms:
-  - "Colic"
-  - "Diarrhea (possibly bloody)"
-  - "Excessive drooling"
-  - "Muscle tremors"
-  - "Heart arrhythmias"
-  - "Death (in severe cases)"
-what_to_do: |
+  - Colic
+  - Diarrhea (possibly bloody)
+  - Excessive drooling
+  - Muscle tremors
+  - Heart arrhythmias
+  - Death (in severe cases)
+what_to_do: >
   **Immediate veterinary care is critical.**
 
-  1. Do not induce vomiting unless instructed by a professional.
-  2. Collect a sample of the plant for identification.
-  3. Call your vet or the **ASPCA Animal Poison Control Center** at **(888) 426-4435**.
-  4. Keep your pet calm and quiet while awaiting medical attention.
 
+  1. Do not induce vomiting unless instructed by a professional.
+
+  2. Collect a sample of the plant for identification.
+
+  3. Call your vet or the **ASPCA Animal Poison Control Center** at **(888)
+  426-4435**.
+
+  4. Keep your pet calm and quiet while awaiting medical attention.
 safe_alternatives:
-  - "Butterfly Bush (Buddleja davidii)"
-  - "Hydrangea macrophylla (Bigleaf Hydrangea)"
-  - "Crape Myrtle (Lagerstroemia indica)"
+  - Butterfly Bush (Buddleja davidii)
+  - Hydrangea macrophylla (Bigleaf Hydrangea)
+  - Crape Myrtle (Lagerstroemia indica)
 sources:
-  - "ASPCA Toxic and Non-Toxic Plants Database"
-  - "Veterinary Partner: Cardiac Glycoside Toxicity"
+  - ASPCA Toxic and Non-Toxic Plants Database
+  - 'Veterinary Partner: Cardiac Glycoside Toxicity'
 ---
 
 > ⚠️ **Disclaimer**:

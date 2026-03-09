@@ -11,8 +11,8 @@ summary: >-
   can cause vomiting, diarrhea, and lethargy.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/aloe
-image: https://source.unsplash.com/800x600/?Aloe%20Vera%20cat%20houseplant&sig=892
-  /uploads/7ae0aff1-4b60-4c05-aa34-fcd6a9ea3dd2_7930717a90c33c714f1ae8d742554593_ComfyUI_033fc57d_00001_.png
+image: >-
+  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 symptoms:
   - Vomiting
   - Diarrhea
