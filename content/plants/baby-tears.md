@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Baby Tears is completely safe for cats and forms a dense carpet of tiny
   leaves.
-image: /images/plants/baby-tears.svg
+image: 'https://picsum.photos/800/600?random=2'
 care_difficulty: Medium
 common_names:
   - Baby Tears

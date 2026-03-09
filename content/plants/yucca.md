@@ -3,7 +3,7 @@ title: Yucca
 scientific_name: Yucca elephantipes
 toxicity_level: Safe
 summary: Yucca is completely safe for cats and features sword-like leaves.
-image: /images/plants/yucca.svg
+image: 'https://picsum.photos/800/600?random=8'
 care_difficulty: Medium
 common_names:
   - Yucca

@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Calathea Network is completely safe for cats and features network-like
   patterns.
-image: /images/plants/calathea-network.svg
+image: 'https://picsum.photos/800/600?random=10'
 care_difficulty: Medium
 common_names:
   - Calathea Network

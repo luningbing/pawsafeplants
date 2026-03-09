@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Norfolk Pine is completely safe for cats and resembles a miniature Christmas
   tree.
-image: /images/plants/norfolk-pine.svg
+image: 'https://picsum.photos/800/600?random=1'
 care_difficulty: Medium
 common_names:
   - Norfolk Pine

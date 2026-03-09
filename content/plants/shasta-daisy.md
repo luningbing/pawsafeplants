@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Shasta Daisy is completely safe for cats and produces large, white daisy
   flowers.
-image: /images/plants/shasta-daisy.svg
+image: 'https://picsum.photos/800/600?random=2'
 care_difficulty: Medium
 common_names:
   - Shasta Daisy

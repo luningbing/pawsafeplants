@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Pilea Cadierei Variegata is completely safe for cats and features variegated
   aluminum plant leaves.
-image: /images/plants/pilea-cadierei-variegata.svg
+image: 'https://picsum.photos/800/600?random=6'
 care_difficulty: Medium
 common_names:
   - Pilea Cadierei Variegata

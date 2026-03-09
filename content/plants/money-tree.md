@@ -14,6 +14,6 @@ summary: >-
   watering. Its striking presence and pet-friendly nature make it a perfect
   addition for those looking to enhance their interior with both style and peace
   of mind.
-image: /images/plants/money-tree.svg
+image: 'https://picsum.photos/800/600?random=5'
 ---
 

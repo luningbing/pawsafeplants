@@ -5,7 +5,7 @@ toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL I
 summary: >-
   Azalea contains grayanotoxins which can cause severe vomiting, diarrhea, and
   cardiovascular problems in cats.
-image: /images/plants/azalea.svg
+image: 'https://picsum.photos/800/600?random=10'
 care_difficulty: Medium
 common_names:
   - Azalea

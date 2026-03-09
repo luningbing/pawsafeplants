@@ -5,7 +5,7 @@ toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL I
 summary: >-
   Bird of Paradise contains hydrocyanic acid which can cause gastrointestinal
   irritation and vomiting in cats.
-image: /images/plants/bird-of-paradise.svg
+image: 'https://picsum.photos/800/600?random=8'
 care_difficulty: Medium
 common_names:
   - Bird of Paradise

@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Peperomia Ruby Glow is completely safe for cats and features ruby-red
   undersides on leaves.
-image: /images/plants/peperomia-ruby-glow.svg
+image: 'https://picsum.photos/800/600?random=8'
 care_difficulty: Medium
 common_names:
   - Peperomia Ruby Glow

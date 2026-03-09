@@ -14,7 +14,7 @@ summary: >-
   light and appreciates consistent moisture and humidity, the Areca Palm's
   air-purifying capabilities and elegant stature make it a cherished and safe
   addition to a pet-friendly home.
-image: /images/plants/areca-palm.svg
+image: 'https://picsum.photos/800/600?random=9'
 ---
 
 

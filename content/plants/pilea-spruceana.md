@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Pilea Spruceana is completely safe for cats and features silver-splashed
   leaves.
-image: /images/plants/pilea-spruceana.svg
+image: 'https://picsum.photos/800/600?random=6'
 care_difficulty: Medium
 common_names:
   - Pilea Spruceana

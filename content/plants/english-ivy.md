@@ -10,7 +10,7 @@ summary: >-
   vomiting, and diarrhea in cats. Even small ingestions may lead to discomfort.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy
-image: /images/plants/english-ivy.svg
+image: 'https://picsum.photos/800/600?random=1'
 symptoms:
   - Mouth irritation
   - Excessive drooling

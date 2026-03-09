@@ -8,7 +8,7 @@ summary: >-
   in low-light conditions. They are non-toxic to cats and dogs, making them a
   safe choice for pet owners. These palms require moderate watering and
   appreciate some humidity, but are generally low-maintenance.
-image: /images/plants/parlor-palm.svg
+image: 'https://picsum.photos/800/600?random=7'
 ---
 
 Chamaedorea elegans, also known as the Neanthe bella palm, is one of the most popular indoor palms. It originated in Guatemala and was historically used as a festive decoration during the holidays. The palm's compact size and tolerance for lower light make it ideal for homes and offices.

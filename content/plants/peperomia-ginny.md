@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Peperomia Ginny is completely safe for cats and features variegated leaves
   with pink edges.
-image: /images/plants/peperomia-ginny.svg
+image: 'https://picsum.photos/800/600?random=3'
 care_difficulty: Medium
 common_names:
   - Peperomia Ginny

@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Peperomia Variegata is completely safe for cats and features cream-variegated
   leaves.
-image: /images/plants/peperomia-variegata.svg
+image: 'https://picsum.photos/800/600?random=9'
 care_difficulty: Medium
 common_names:
   - Peperomia Variegata

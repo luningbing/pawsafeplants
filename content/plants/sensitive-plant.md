@@ -3,7 +3,7 @@ title: Sensitive Plant
 scientific_name: Mimosa pudica
 toxicity_level: Safe
 summary: Sensitive Plant is completely safe for cats and folds its leaves when touched.
-image: /images/plants/sensitive-plant.svg
+image: 'https://picsum.photos/800/600?random=1'
 care_difficulty: Medium
 common_names:
   - Sensitive Plant

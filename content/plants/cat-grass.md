@@ -15,6 +15,6 @@ summary: >-
   organic, and always-available treat that supports your cat's well-being. It's
   a must-have for any cat owner looking to provide a wholesome and engaging
   botanical experience for their beloved companion.
-image: /images/plants/cat-grass.svg
+image: 'https://picsum.photos/800/600?random=4'
 ---
 

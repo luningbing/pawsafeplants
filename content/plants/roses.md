@@ -12,7 +12,7 @@ summary: >-
   preservatives that are harmful.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose
-image: /images/plants/roses.svg
+image: 'https://picsum.photos/800/600?random=5'
 symptoms: []
 what_to_do: "**Generally safe—but take precautions:**\n\n1. Trim thorns if your cat is curious.\n2. Avoid floral foam (often contains toxic phenol).\n3. Keep vase water clean—stagnant water can harbor bacteria.\n4. Never confuse with “Desert Rose” or “Christmas Rose”—those are **TOXIC**!\n\n> \U0001F4A1 Fun fact: Rose petals are edible for humans—and harmless if your cat nibbles one!\n"
 safe_alternatives: []

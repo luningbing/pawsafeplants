@@ -16,6 +16,6 @@ summary: >-
   its succulent nature. Its unique, ethereal beauty and pet-friendly status make
   it a highly coveted addition to any indoor plant collection, bringing a touch
   of whimsical elegance and peace of mind.
-image: /images/plants/string-of-hearts.svg
+image: 'https://picsum.photos/800/600?random=1'
 ---
 

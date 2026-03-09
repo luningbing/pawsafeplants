@@ -15,6 +15,6 @@ summary: >-
   consistent care, the visual reward and pet-friendly nature of Calatheas make
   them a prized addition for those seeking to elevate their interior decor with
   a touch of living artistry.
-image: /images/plants/calathea.svg
+image: 'https://picsum.photos/800/600?random=9'
 ---
 

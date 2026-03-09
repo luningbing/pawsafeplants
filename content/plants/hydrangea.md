@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Hydrangea is completely safe for cats and produces large, colorful flower
   clusters.
-image: /images/plants/hydrangea.svg
+image: 'https://picsum.photos/800/600?random=6'
 care_difficulty: Medium
 common_names:
   - Hydrangea

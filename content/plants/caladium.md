@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Caladium is completely safe for cats and features colorful, heart-shaped
   leaves.
-image: /images/plants/caladium.svg
+image: 'https://picsum.photos/800/600?random=8'
 care_difficulty: Medium
 common_names:
   - Caladium

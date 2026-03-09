@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Bee Balm is completely safe for cats and produces tubular flowers that attract
   bees.
-image: /images/plants/bee-balm.svg
+image: 'https://picsum.photos/800/600?random=6'
 care_difficulty: Medium
 common_names:
   - Bee Balm

@@ -16,6 +16,6 @@ summary: >-
   'cup' rather than in the soil. Their unique charm and pet-friendly status make
   them an excellent choice for adding a touch of the tropics and a pop of cheer
   to your living environment.
-image: /images/plants/bromeliads.svg
+image: 'https://picsum.photos/800/600?random=6'
 ---
 

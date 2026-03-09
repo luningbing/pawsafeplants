@@ -15,6 +15,6 @@ summary: >-
   worthwhile. The Bird's Nest Fern is an excellent choice for adding a touch of
   sophisticated greenery and natural artistry to your home, without any safety
   concerns for your curious pets.
-image: /images/plants/birds-nest-fern.svg
+image: 'https://picsum.photos/800/600?random=9'
 ---
 

@@ -16,6 +16,6 @@ summary: >-
   Its sculptural form and pet-friendly status make it a superb option for adding
   an artistic and worry-free touch to your indoor garden, safely intriguing to
   curious pets.
-image: /images/plants/burros-tail.svg
+image: 'https://picsum.photos/800/600?random=7'
 ---
 

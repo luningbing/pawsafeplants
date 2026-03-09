@@ -9,7 +9,7 @@ summary: >-
   preferring bright, indirect light and moderate watering. These popular
   houseplants are toxic to cats and dogs, containing calcium oxalate crystals
   that can cause pain and inflammation if chewed.
-image: /images/plants/philodendron.svg
+image: 'https://picsum.photos/800/600?random=2'
 ---
 
 Philodendrons come in both climbing and self-heading varieties, offering flexibility in display options. They are native to the tropical Americas and often grow as epiphytes in the wild. These plants can be toxic to pets, so keep them out of reach or opt for pet-safe alternatives.

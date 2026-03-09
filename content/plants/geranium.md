@@ -11,7 +11,7 @@ summary: >-
   outcomes are rare.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/geranium
-image: /images/plants/geranium.svg
+image: 'https://picsum.photos/800/600?random=1'
 symptoms:
   - Vomiting
   - Diarrhea

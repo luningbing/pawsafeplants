@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Boston Fern Compacta is completely safe for cats and is a smaller variety
   perfect for indoor spaces.
-image: /images/plants/boston-fern-compacta.svg
+image: 'https://picsum.photos/800/600?random=4'
 care_difficulty: Medium
 common_names:
   - Boston Fern Compacta

@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Calathea Lancifolia is completely safe for cats and features
   rattlesnake-patterned leaves.
-image: /images/plants/calathea-lancifolia.svg
+image: 'https://picsum.photos/800/600?random=6'
 care_difficulty: Medium
 common_names:
   - Calathea Lancifolia

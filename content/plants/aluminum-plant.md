@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Aluminum Plant is completely safe for cats and has silvery markings on its
   leaves.
-image: /images/plants/aluminum-plant.svg
+image: 'https://picsum.photos/800/600?random=7'
 care_difficulty: Medium
 common_names:
   - Aluminum Plant

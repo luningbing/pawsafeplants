@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Philodendron Selloum is completely safe for cats and features deeply lobed
   leaves.
-image: /images/plants/philodendron-selloum.svg
+image: 'https://picsum.photos/800/600?random=4'
 care_difficulty: Medium
 common_names:
   - Philodendron Selloum

@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Coneflower is completely safe for cats and produces purple, cone-shaped
   flowers.
-image: /images/plants/coneflower.svg
+image: 'https://picsum.photos/800/600?random=2'
 care_difficulty: Medium
 common_names:
   - Coneflower

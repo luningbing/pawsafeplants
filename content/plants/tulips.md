@@ -11,7 +11,7 @@ summary: >-
   less toxic but still irritating.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/tulip
-image: /images/plants/tulips.svg
+image: 'https://picsum.photos/800/600?random=9'
 symptoms:
   - Drooling
   - Vomiting

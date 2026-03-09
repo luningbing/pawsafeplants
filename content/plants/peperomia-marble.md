@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Peperomia Marble is completely safe for cats and features marbled variegation
   on leaves.
-image: /images/plants/peperomia-marble.svg
+image: 'https://picsum.photos/800/600?random=5'
 care_difficulty: Medium
 common_names:
   - Peperomia Marble

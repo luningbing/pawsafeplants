@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Pilea Cadierei Minima is completely safe for cats and is a compact variety
   with silver markings.
-image: /images/plants/pilea-cadierei-minima.svg
+image: 'https://picsum.photos/800/600?random=5'
 care_difficulty: Medium
 common_names:
   - Pilea Cadierei Minima

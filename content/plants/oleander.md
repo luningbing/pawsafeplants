@@ -11,7 +11,7 @@ summary: >-
   cause severe heart problems, digestive upset, and can be fatal.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/oleander
-image: /images/plants/oleander.svg
+image: 'https://picsum.photos/800/600?random=2'
 symptoms:
   - Colic
   - Diarrhea (possibly bloody)

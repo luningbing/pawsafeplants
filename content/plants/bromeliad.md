@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Bromeliad is completely safe for cats and produces colorful, exotic-looking
   flowers.
-image: /images/plants/bromeliad.svg
+image: 'https://picsum.photos/800/600?random=5'
 care_difficulty: Medium
 common_names:
   - Bromeliad

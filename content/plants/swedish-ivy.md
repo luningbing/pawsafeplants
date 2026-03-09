@@ -9,7 +9,7 @@ summary: >-
   to various light conditions, though it thrives in bright, indirect light. This
   pet-safe plant is non-toxic to cats and dogs and produces small white flowers
   under proper care.
-image: /images/plants/swedish-ivy.svg
+image: 'https://picsum.photos/800/600?random=5'
 ---
 
 Plectranthus australis, despite its name, is not a true ivy and does not climb. It originates from Australia and the Pacific Islands. Swedish Ivy is a fast grower that roots easily from cuttings, making propagation simple for beginner plant enthusiasts.

@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Calathea White Fusion is completely safe for cats and features
   white-variegated leaves.
-image: /images/plants/calathea-white-fusion.svg
+image: 'https://picsum.photos/800/600?random=6'
 care_difficulty: Medium
 common_names:
   - Calathea White Fusion

@@ -8,7 +8,7 @@ summary: >-
   light, making them ideal for busy or forgetful plant owners. Their upright,
   sword-like leaves add architectural interest to any room. However, they are
   mildly toxic to cats and dogs if ingested, causing nausea and digestive upset.
-image: /images/plants/snake-plant.svg
+image: 'https://picsum.photos/800/600?random=3'
 ---
 
 Sansevieria trifasciata, also known as Mother-in-Law's Tongue, is native to West Africa. It's renowned for its air-purifying qualities, particularly its ability to release oxygen at night. While very resilient, the plant contains saponins which can be irritating to pets if chewed.

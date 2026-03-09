@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Bird's Nest Fern Victoria is completely safe for cats and features beautiful,
   nest-like fronds.
-image: /images/plants/birds-nest-fern-victoria.svg
+image: 'https://picsum.photos/800/600?random=10'
 care_difficulty: Medium
 common_names:
   - Bird's Nest Fern Victoria

@@ -14,6 +14,6 @@ summary: >-
   incredibly low-maintenance, thriving in bright, indirect light and requiring
   minimal watering, making them perfect for busy individuals or those new to
   plant care who desire a hardy yet stylish botanical companion.
-image: /images/plants/haworthia.svg
+image: 'https://picsum.photos/800/600?random=3'
 ---
 

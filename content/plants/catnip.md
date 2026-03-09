@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Catnip is completely safe for cats and actually provides mental stimulation
   and enjoyment for many felines.
-image: /images/plants/catnip.svg
+image: 'https://picsum.photos/800/600?random=5'
 care_difficulty: Medium
 common_names:
   - Catnip

@@ -16,6 +16,6 @@ summary: >-
   the effort worthwhile. It's a fantastic choice for those looking to add a
   touch of exotic flair and bold pattern to their indoor garden, with the added
   benefit of being pet-friendly.
-image: /images/plants/zebra-plant.svg
+image: 'https://picsum.photos/800/600?random=9'
 ---
 

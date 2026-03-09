@@ -3,7 +3,7 @@ title: Zinnia
 scientific_name: Zinnia elegans
 toxicity_level: Safe
 summary: 'Zinnia is completely safe for cats and produces bright, daisy-like flowers.'
-image: /images/plants/zinnia.svg
+image: 'https://picsum.photos/800/600?random=10'
 care_difficulty: Medium
 common_names:
   - Zinnia

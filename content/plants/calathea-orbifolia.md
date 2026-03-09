@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Calathea Orbifolia is completely safe for cats and features round,
   silver-green leaves.
-image: /images/plants/calathea-orbifolia.svg
+image: 'https://picsum.photos/800/600?random=1'
 care_difficulty: Medium
 common_names:
   - Calathea Orbifolia

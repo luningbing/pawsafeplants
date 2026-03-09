@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Aglaonema is completely safe for cats and features attractive patterned
   leaves.
-image: /images/plants/aglaonema.svg
+image: 'https://picsum.photos/800/600?random=2'
 care_difficulty: Medium
 common_names:
   - Aglaonema

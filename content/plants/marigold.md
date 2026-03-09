@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Marigold is completely safe for cats and produces bright orange or yellow
   flowers.
-image: /images/plants/marigold.svg
+image: 'https://picsum.photos/800/600?random=2'
 care_difficulty: Medium
 common_names:
   - Marigold

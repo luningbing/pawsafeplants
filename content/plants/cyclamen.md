@@ -5,7 +5,7 @@ toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL I
 summary: >-
   Cyclamen contains cyclamine which can cause severe vomiting and diarrhea in
   cats.
-image: /images/plants/cyclamen.svg
+image: 'https://picsum.photos/800/600?random=10'
 care_difficulty: Medium
 common_names:
   - Cyclamen

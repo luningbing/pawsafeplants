@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Calathea Zebrina Compact is completely safe for cats and is a smaller variety
   with zebra stripes.
-image: /images/plants/calathea-zebrina-compact.svg
+image: 'https://picsum.photos/800/600?random=9'
 care_difficulty: Medium
 common_names:
   - Calathea Zebrina Compact

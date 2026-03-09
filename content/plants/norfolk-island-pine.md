@@ -7,7 +7,7 @@ summary: >-
   Norfolk Island Pines are soft, feathery evergreens that tolerate indoor
   conditions well. They are non-toxic to cats and dogs, providing a safe,
   miniature tree-like presence.
-image: /images/plants/norfolk-island-pine.svg
+image: 'https://picsum.photos/800/600?random=10'
 ---
 
 Araucaria heterophylla, native to Norfolk Island in the Pacific, is often used as a living Christmas tree due to its symmetric shape. It prefers bright light and moist but well-drained soil. While it can grow quite tall outdoors, indoors it remains manageable. The plant's delicate, needle-like leaves add a gentle texture to interior spaces.

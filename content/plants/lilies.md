@@ -5,7 +5,7 @@ toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL I
 summary: >-
   All parts of lilies are extremely toxic to cats and can cause kidney failure
   even in small amounts.
-image: /images/plants/lilies.svg
+image: 'https://picsum.photos/800/600?random=6'
 care_difficulty: Medium
 common_names:
   - Lilies

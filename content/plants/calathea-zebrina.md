@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Calathea Zebrina is completely safe for cats and features zebra-striped
   leaves.
-image: /images/plants/calathea-zebrina.svg
+image: 'https://picsum.photos/800/600?random=8'
 care_difficulty: Medium
 common_names:
   - Calathea Zebrina

@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Pilea Norfolk is completely safe for cats and features compact, trailing
   growth.
-image: /images/plants/pilea-norfolk.svg
+image: 'https://picsum.photos/800/600?random=3'
 care_difficulty: Medium
 common_names:
   - Pilea Norfolk

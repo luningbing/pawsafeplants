@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Pilea Depressa is completely safe for cats and features translucent, trailing
   stems.
-image: /images/plants/pilea-depressa.svg
+image: 'https://picsum.photos/800/600?random=8'
 care_difficulty: Medium
 common_names:
   - Pilea Depressa

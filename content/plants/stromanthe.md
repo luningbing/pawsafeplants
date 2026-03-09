@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Stromanthe is completely safe for cats and features colorful, tri-colored
   leaves.
-image: /images/plants/stromanthe.svg
+image: 'https://picsum.photos/800/600?random=3'
 care_difficulty: Medium
 common_names:
   - Stromanthe

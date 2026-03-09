@@ -16,6 +16,6 @@ summary: >-
   yet highly rewarding addition. Their charming aesthetic and pet-safe nature
   make them a perfect choice for hanging baskets or trellises, bringing elegance
   and a sweet aroma to your home.
-image: /images/plants/hoya.svg
+image: 'https://picsum.photos/800/600?random=5'
 ---
 

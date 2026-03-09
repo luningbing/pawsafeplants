@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Calathea Jungle Velvet is completely safe for cats and features velvety, dark
   green leaves.
-image: /images/plants/calathea-jungle-velvet.svg
+image: 'https://picsum.photos/800/600?random=5'
 care_difficulty: Medium
 common_names:
   - Calathea Jungle Velvet

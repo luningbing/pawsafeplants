@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Pilea Silver is completely safe for cats and features silvery,
   metallic-looking leaves.
-image: /images/plants/pilea-silver.svg
+image: 'https://picsum.photos/800/600?random=5'
 care_difficulty: Medium
 common_names:
   - Pilea Silver

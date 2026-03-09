@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Peperomia Watermelon is completely safe for cats and features
   watermelon-patterned leaves.
-image: /images/plants/peperomia-watermelon.svg
+image: 'https://picsum.photos/800/600?random=10'
 care_difficulty: Medium
 common_names:
   - Peperomia Watermelon

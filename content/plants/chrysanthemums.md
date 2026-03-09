@@ -11,7 +11,7 @@ summary: >-
   vomiting, diarrhea, drooling, and even depression or incoordination in cats.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/chrysanthemum
-image: /images/plants/chrysanthemums.svg
+image: 'https://picsum.photos/800/600?random=9'
 symptoms:
   - Vomiting
   - Diarrhea

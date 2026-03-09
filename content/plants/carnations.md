@@ -11,7 +11,7 @@ summary: >-
   They’re not life-threatening, but best kept away from curious kitties.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/carnation
-image: /images/plants/carnations.svg
+image: 'https://picsum.photos/800/600?random=2'
 symptoms:
   - Mild drooling
   - Vomiting

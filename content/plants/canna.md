@@ -3,7 +3,7 @@ title: Canna
 scientific_name: Canna
 toxicity_level: Safe
 summary: Canna is completely safe for cats and produces tropical-looking flowers.
-image: /images/plants/canna.svg
+image: 'https://picsum.photos/800/600?random=1'
 care_difficulty: Medium
 common_names:
   - Canna

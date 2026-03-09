@@ -9,7 +9,7 @@ summary: >-
   tolerant of low light conditions. Unfortunately, they are toxic to cats and
   dogs, containing calcium oxalate crystals that cause oral irritation,
   drooling, and vomiting.
-image: /images/plants/peace-lily.svg
+image: 'https://picsum.photos/800/600?random=9'
 ---
 
 Spathiphyllum is a genus of about 40 species native to tropical regions of the Americas and Southeast Asia. These plants are known for their ability to signal thirst by drooping their leaves dramatically. They are popular both as houseplants and for decorative floral arrangements.

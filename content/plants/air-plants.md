@@ -7,7 +7,7 @@ summary: >-
   Air Plants (Tillandsia) are unique epiphytes that absorb moisture through
   their leaves, requiring no soil. They are non-toxic to cats and dogs, offering
   a creative, soil-free way to display greenery.
-image: /images/plants/air-plants.svg
+image: 'https://picsum.photos/800/600?random=4'
 ---
 
 Tillandsia species are native to the Americas and come in many shapes and sizes. They attach to various surfaces and thrive with regular misting and occasional soaking. Bright, filtered light and good air circulation are key. Their ability to grow without soil makes them ideal for decorative arrangements, living walls, or悬挂 displays.

@@ -7,6 +7,6 @@ symptoms:
   - Lethargy
 what_to_do: Contact a veterinarian immediately.
 ascpa_link: 'https://www.aspca.org/pet-care/animal-poison-control'
-image: /images/plants/lily.svg
+image: 'https://picsum.photos/800/600?random=7'
 ---
 This is a test page for lilies.

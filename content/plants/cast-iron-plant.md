@@ -9,7 +9,7 @@ summary: >-
   choice for those who struggle to keep plants alive. This hardy evergreen is
   completely safe for cats and dogs, making it a worry-free addition to any pet
   household.
-image: /images/plants/cast-iron-plant.svg
+image: 'https://picsum.photos/800/600?random=3'
 ---
 
 Cast Iron Plants feature long, dark green, arching leaves that grow from the soil. They are native to Asia and have been popular as houseplants since the Victorian era. These plants can tolerate conditions that would kill most others, including cold drafts and dusty environments.
