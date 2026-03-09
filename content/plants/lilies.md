@@ -6,7 +6,7 @@ summary: >-
   All parts of lilies are extremely toxic to cats and can cause kidney failure
   even in small amounts.
 image: >-
-  https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1545241047-6083a3684587?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 care_difficulty: Medium
 common_names:
   - Lilies

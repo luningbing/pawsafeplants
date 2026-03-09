@@ -12,7 +12,7 @@ summary: >-
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/geranium
 image: >-
-  https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1577173175952-d4c018c6915f?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 symptoms:
   - Vomiting
   - Diarrhea

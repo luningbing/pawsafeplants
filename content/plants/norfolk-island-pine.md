@@ -8,7 +8,7 @@ summary: >-
   conditions well. They are non-toxic to cats and dogs, providing a safe,
   miniature tree-like presence.
 image: >-
-  https://images.unsplash.com/photo-1543168256-739e5d9d537a?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1501004318641-b398d68e866b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 ---
 
 Araucaria heterophylla, native to Norfolk Island in the Pacific, is often used as a living Christmas tree due to its symmetric shape. It prefers bright light and moist but well-drained soil. While it can grow quite tall outdoors, indoors it remains manageable. The plant's delicate, needle-like leaves add a gentle texture to interior spaces.

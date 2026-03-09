@@ -12,7 +12,7 @@ summary: >-
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/jade-plant
 image: >-
-  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1543168256-739e5d9d537a?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 symptoms:
   - Vomiting
   - Diarrhea

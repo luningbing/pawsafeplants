@@ -6,7 +6,7 @@ summary: >-
   Yew contains taxine which is extremely toxic to cats and can cause sudden
   death without warning.
 image: >-
-  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1512428813834-69c3432058ce?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 care_difficulty: Medium
 common_names:
   - Yew

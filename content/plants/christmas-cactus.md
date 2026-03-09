@@ -8,7 +8,7 @@ summary: >-
   flowers around Thanksgiving to Christmas. They are entirely non-toxic to pets
   and easy to care for.
 image: >-
-  https://images.unsplash.com/photo-1512428813834-69c3432058ce?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 ---
 
 Schlumbergera x buckleyi is a hybrid cactus native to Brazil, where it grows as an epiphyte in rainforests. Unlike desert cacti, it prefers moist soil and indirect light. The plant responds to shorter days and cooler temperatures to trigger blooming. With proper care, it can live for decades and become a family heirloom.

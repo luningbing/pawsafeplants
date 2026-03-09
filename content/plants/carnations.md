@@ -12,7 +12,7 @@ summary: >-
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/carnation
 image: >-
-  https://images.unsplash.com/photo-1545241047-6083a3684587?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1501004318641-b398d68e866b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 symptoms:
   - Mild drooling
   - Vomiting

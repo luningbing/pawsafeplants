@@ -13,7 +13,7 @@ summary: >-
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/monstera
 image: >-
-  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1520302618106-4e2f8dc772b1?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 symptoms:
   - Pawing at mouth
   - Excessive drooling

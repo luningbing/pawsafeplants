@@ -17,6 +17,6 @@ summary: >-
   it a highly coveted addition to any indoor plant collection, bringing a touch
   of whimsical elegance and peace of mind.
 image: >-
-  https://images.unsplash.com/photo-1506805945078-4b0c4d8d71b6?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 ---
 

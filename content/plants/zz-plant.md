@@ -10,7 +10,7 @@ summary: >-
   of the plant are toxic to cats and dogs, causing severe digestive issues if
   ingested.
 image: >-
-  https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 ---
 
 Zamioculcas zamiifolia originates from East Africa and has become a trendy houseplant due to its modern appearance and easy care. The plant stores water in its potato-like rhizomes, allowing it to drought for long periods. Keep out of reach of pets.

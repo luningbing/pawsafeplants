@@ -10,7 +10,7 @@ summary: >-
   dogs, containing calcium oxalate crystals that cause oral irritation,
   drooling, and vomiting.
 image: >-
-  https://images.unsplash.com/photo-1512428813834-69c3432058ce?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1512428813834-69c3432058ce?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 ---
 
 Spathiphyllum is a genus of about 40 species native to tropical regions of the Americas and Southeast Asia. These plants are known for their ability to signal thirst by drooping their leaves dramatically. They are popular both as houseplants and for decorative floral arrangements.

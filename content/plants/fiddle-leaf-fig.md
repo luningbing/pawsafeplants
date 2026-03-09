@@ -8,7 +8,7 @@ summary: >-
   While aesthetically pleasing, it is toxic to cats, causing oral irritation,
   vomiting, and diarrhea if ingested.
 image: >-
-  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?ixlib=rb-4.0.3&w=800&h=600&fit=crop
+  https://images.unsplash.com/photo-1506805945078-4b0c4d8d71b6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
 ---
 
 Ficus lyrata is native to western Africa and requires bright, filtered light to thrive. It is more demanding than other houseplants, sensitive to both overwatering and underwatering. regular leaf cleaning helps maintain its appearance. Its toxicity stems from calcium oxalate crystals, so keep it in a location inaccessible to pets.
