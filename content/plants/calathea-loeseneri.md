@@ -5,8 +5,7 @@ toxicity_level: Safe
 summary: >-
   Calathea Loesneri is completely safe for cats and features delicate,
   lance-shaped leaves.
-image: >-
-  https://images.unsplash.com/photo-1512428813834-69c3432058ce?w=800&h=600&fit=crop
+image: /images/plants/calathea-loeseneri.svg
 care_difficulty: Medium
 common_names:
   - Calathea Loesneri

@@ -5,8 +5,7 @@ toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL I
 summary: >-
   Potato plants contain solanine which can cause gastrointestinal upset and
   neurological symptoms in cats.
-image: >-
-  https://images.unsplash.com/photo-1577173175952-d4c018c6915f?w=800&h=600&fit=crop
+image: /images/plants/potato-plant.svg
 care_difficulty: Medium
 common_names:
   - Potato Plant

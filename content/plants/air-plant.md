@@ -3,7 +3,7 @@ title: Air Plant
 scientific_name: Tillandsia
 toxicity_level: Safe
 summary: Air Plant is completely safe for cats and requires no soil to grow.
-image: 'https://images.unsplash.com/photo-1543168256-739e5d9d537a?w=800&h=600&fit=crop'
+image: /images/plants/air-plant.svg
 care_difficulty: Medium
 common_names:
   - Air Plant

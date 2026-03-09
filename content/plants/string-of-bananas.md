@@ -5,8 +5,7 @@ toxicity_level: Safe
 summary: >-
   String of Bananas is completely safe for cats and features banana-shaped
   leaves.
-image: >-
-  https://images.unsplash.com/photo-1506805945078-4b0c4d8d71b6?w=800&h=600&fit=crop
+image: /images/plants/string-of-bananas.svg
 care_difficulty: Medium
 common_names:
   - String of Bananas

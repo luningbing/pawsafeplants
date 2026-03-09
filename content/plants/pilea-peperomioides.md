@@ -15,7 +15,6 @@ summary: >-
   watering needs by slightly drooping its leaves. Its unique form and
   pet-friendly status make it an ideal choice for adding a touch of playful
   sophistication to any shelf or tabletop.
-image: >-
-  https://images.unsplash.com/photo-1597818459942-2f9c4b8d0b9c?w=800&h=600&fit=crop
+image: /images/plants/pilea-peperomioides.svg
 ---
 

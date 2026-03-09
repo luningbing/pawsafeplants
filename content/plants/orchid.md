@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Most orchids are completely safe for cats and add elegant beauty to any room
   with their stunning flowers.
-image: 'https://images.unsplash.com/photo-1543168256-739e5d9d537a?w=800&h=600&fit=crop'
+image: /images/plants/orchid.svg
 care_difficulty: Medium
 common_names:
   - Orchid

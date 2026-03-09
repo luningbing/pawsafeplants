@@ -5,8 +5,7 @@ toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL I
 summary: >-
   Kalanchoe contains bufadienolides which can cause severe vomiting and heart
   problems in cats.
-image: >-
-  https://images.unsplash.com/photo-1506805945078-4b0c4d8d71b6?w=800&h=600&fit=crop
+image: /images/plants/kalanchoe.svg
 care_difficulty: Medium
 common_names:
   - Kalanchoe

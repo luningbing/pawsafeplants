@@ -3,8 +3,7 @@ title: Oregano
 scientific_name: Origanum vulgare
 toxicity_level: Safe
 summary: Oregano is completely safe for cats and is a popular culinary herb.
-image: >-
-  https://images.unsplash.com/photo-1506805945078-4b0c4d8d71b6?w=800&h=600&fit=crop
+image: /images/plants/oregano.svg
 care_difficulty: Medium
 common_names:
   - Oregano

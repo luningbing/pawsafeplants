@@ -15,6 +15,6 @@ summary: >-
   regarding watering and light, their enduring elegance and pet-friendly nature
   make them a perennial favorite, perfect for gifting or simply indulging in
   their serene beauty.
-image: 'https://images.unsplash.com/photo-1545241047-6083a3684587?w=800&h=600&fit=crop'
+image: /images/plants/moth-orchid.svg
 ---
 

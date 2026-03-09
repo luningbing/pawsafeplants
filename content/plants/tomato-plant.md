@@ -5,8 +5,7 @@ toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL I
 summary: >-
   Tomato plants contain solanine and tomatine which can cause gastrointestinal
   upset in cats.
-image: >-
-  https://images.unsplash.com/photo-1501004318641-b398d68e866b?w=800&h=600&fit=crop
+image: /images/plants/tomato-plant.svg
 care_difficulty: Medium
 common_names:
   - Tomato Plant

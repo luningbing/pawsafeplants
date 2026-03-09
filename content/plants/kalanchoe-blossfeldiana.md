@@ -11,8 +11,7 @@ summary: >-
   significant health risk.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe
-image: >-
-  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=800&h=600&fit=crop
+image: /images/plants/kalanchoe-blossfeldiana.svg
 symptoms:
   - Vomiting
   - Diarrhea

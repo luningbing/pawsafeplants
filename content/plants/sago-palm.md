@@ -14,8 +14,7 @@ summary: >-
   seed can cause severe liver failure, seizures, and death within 24–48 hours.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sago-palm
-image: >-
-  https://images.unsplash.com/photo-1520302618106-4e2f8dc772b1?w=800&h=600&fit=crop
+image: /images/plants/sago-palm.svg
 toxic_principles: Cycasin
 clinical_signs:
   - Vomiting

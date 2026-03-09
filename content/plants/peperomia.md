@@ -15,7 +15,6 @@ summary: >-
   low-maintenance, preferring moderate light and infrequent watering, making
   them perfect for busy individuals or novice plant parents seeking a stylish
   and worry-free green companion.
-image: >-
-  https://images.unsplash.com/photo-1501004318641-b398d68e866b?w=800&h=600&fit=crop
+image: /images/plants/peperomia.svg
 ---
 

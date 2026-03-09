@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Peperomia Hope is completely safe for cats and features trailing, rounded
   leaves.
-image: 'https://images.unsplash.com/photo-1545241047-6083a3684587?w=800&h=600&fit=crop'
+image: /images/plants/peperomia-hope.svg
 care_difficulty: Medium
 common_names:
   - Peperomia Hope

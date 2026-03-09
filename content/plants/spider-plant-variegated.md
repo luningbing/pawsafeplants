@@ -5,8 +5,7 @@ toxicity_level: Safe
 summary: >-
   Spider Plant Variegated is completely safe for cats and features white-striped
   leaves with the same air-purifying benefits.
-image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&h=600&fit=crop
+image: /images/plants/spider-plant-variegated.svg
 care_difficulty: Medium
 common_names:
   - Spider Plant Variegated

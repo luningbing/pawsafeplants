@@ -5,7 +5,7 @@ toxicity_level: Safe
 summary: >-
   Pilea Microphylla is completely safe for cats and features tiny,
   succulent-like leaves.
-image: 'https://images.unsplash.com/photo-1543168256-739e5d9d537a?w=800&h=600&fit=crop'
+image: /images/plants/pilea-microphylla.svg
 care_difficulty: Medium
 common_names:
   - Pilea Microphylla

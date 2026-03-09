@@ -3,8 +3,7 @@ title: Petunia
 scientific_name: Petunia
 toxicity_level: Safe
 summary: 'Petunia is completely safe for cats and produces abundant, colorful flowers.'
-image: >-
-  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=800&h=600&fit=crop
+image: /images/plants/petunia.svg
 care_difficulty: Medium
 common_names:
   - Petunia

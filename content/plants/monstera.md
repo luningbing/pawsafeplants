@@ -12,8 +12,7 @@ summary: >-
   causes significant discomfort.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/monstera
-image: >-
-  https://images.unsplash.com/photo-1520302618106-4e2f8dc772b1?w=800&h=600&fit=crop
+image: /images/plants/monstera.svg
 symptoms:
   - Pawing at mouth
   - Excessive drooling

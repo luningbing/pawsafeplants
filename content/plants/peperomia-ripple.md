@@ -5,8 +5,7 @@ toxicity_level: Safe
 summary: >-
   Peperomia Ripple is completely safe for cats and features rippled, textured
   leaves.
-image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&h=600&fit=crop
+image: /images/plants/peperomia-ripple.svg
 care_difficulty: Medium
 common_names:
   - Peperomia Ripple

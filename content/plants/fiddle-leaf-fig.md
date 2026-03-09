@@ -7,8 +7,7 @@ summary: >-
   The Fiddle Leaf Fig is a trendy indoor tree with large, violin-shaped leaves.
   While aesthetically pleasing, it is toxic to cats, causing oral irritation,
   vomiting, and diarrhea if ingested.
-image: >-
-  https://images.unsplash.com/photo-1506805945078-4b0c4d8d71b6?w=800&h=600&fit=crop
+image: /images/plants/fiddle-leaf-fig.svg
 ---
 
 Ficus lyrata is native to western Africa and requires bright, filtered light to thrive. It is more demanding than other houseplants, sensitive to both overwatering and underwatering. regular leaf cleaning helps maintain its appearance. Its toxicity stems from calcium oxalate crystals, so keep it in a location inaccessible to pets.

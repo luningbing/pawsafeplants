@@ -11,8 +11,7 @@ summary: >-
   alleviate discomfort.
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/begonia
-image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?w=800&h=600&fit=crop
+image: /images/plants/begonia.svg
 symptoms:
   - Mouth irritation
   - Excessive drooling

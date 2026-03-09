@@ -5,8 +5,7 @@ toxicity_level: Safe
 summary: >-
   Black-Eyed Susan is completely safe for cats and produces yellow, daisy-like
   flowers.
-image: >-
-  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=800&h=600&fit=crop
+image: /images/plants/black-eyed-susan.svg
 care_difficulty: Medium
 common_names:
   - Black-Eyed Susan

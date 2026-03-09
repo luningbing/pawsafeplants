@@ -3,8 +3,7 @@ title: Iris
 scientific_name: Iris
 toxicity_level: Safe
 summary: 'Iris is completely safe for cats and produces elegant, colorful flowers.'
-image: >-
-  https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop
+image: /images/plants/iris.svg
 care_difficulty: Medium
 common_names:
   - Iris

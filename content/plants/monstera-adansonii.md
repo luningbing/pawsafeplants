@@ -5,8 +5,7 @@ toxicity_level: Safe
 summary: >-
   Monstera Adansonii is completely safe for cats and features holes in its
   leaves.
-image: >-
-  https://images.unsplash.com/photo-1512428813834-69c3432058ce?w=800&h=600&fit=crop
+image: /images/plants/monstera-adansonii.svg
 care_difficulty: Medium
 common_names:
   - Monstera Adansonii

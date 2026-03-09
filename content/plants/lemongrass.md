@@ -5,8 +5,7 @@ toxicity_level: Safe
 summary: >-
   Lemongrass is completely safe for cats and has a pleasant citrus scent that
   many cats enjoy.
-image: >-
-  https://images.unsplash.com/photo-1520302618106-4e2f8dc772b1?w=800&h=600&fit=crop
+image: /images/plants/lemongrass.svg
 care_difficulty: Medium
 common_names:
   - Lemongrass

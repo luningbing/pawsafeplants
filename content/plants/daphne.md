@@ -3,8 +3,7 @@ title: Daphne
 scientific_name: Daphne odora
 toxicity_level: Safe
 summary: Daphne is completely safe for cats and produces fragrant flowers.
-image: >-
-  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=800&h=600&fit=crop
+image: /images/plants/daphne.svg
 care_difficulty: Medium
 common_names:
   - Daphne

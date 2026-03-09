@@ -9,8 +9,7 @@ summary: >-
   baskets or as a climbing plant with support. However, pothos is toxic to cats
   and dogs due to calcium oxalate crystals, which can cause oral irritation,
   swelling, and digestive distress.
-image: >-
-  https://images.unsplash.com/photo-1501004318641-b398d68e866b?w=800&h=600&fit=crop
+image: /images/plants/pothos.svg
 ---
 
 Epipremnum aureum is native to the Solomon Islands but has naturalized in many tropical areas. It's one of the easiest houseplants to propagate via cuttings in water. The plant's heart-shaped leaves often display yellow or white variegation, adding visual interest.

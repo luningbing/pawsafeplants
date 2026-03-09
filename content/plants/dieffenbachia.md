@@ -5,8 +5,7 @@ toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL I
 summary: >-
   Dieffenbachia contains calcium oxalate crystals which can cause severe oral
   irritation and swelling in cats.
-image: >-
-  https://images.unsplash.com/photo-1416879595882-d33bcbe8c131?w=800&h=600&fit=crop
+image: /images/plants/dieffenbachia.svg
 care_difficulty: Medium
 common_names:
   - Dieffenbachia
