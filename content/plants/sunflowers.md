@@ -11,7 +11,7 @@ summary: >-
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/sunflower
 image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1545241047-6083a3684587?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 symptoms: []
 what_to_do: "**No toxicity concerns!**\n\nHowever:\n- Large seeds may pose a choking hazard.\n- Pesticide-treated garden sunflowers could be risky—opt for organic if possible.\n- Some cats enjoy chewing the leaves—it’s harmless!\n\n> \U0001F4A1 Bonus: Sunflowers attract birds and bees—great for wildlife-friendly yards!\n"
 safe_alternatives: []

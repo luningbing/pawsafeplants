@@ -15,6 +15,6 @@ summary: >-
   minimal watering, making them perfect for busy individuals or those new to
   plant care who desire a hardy yet stylish botanical companion.
 image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1506805945078-4b0c4d8d71b6?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 ---
 

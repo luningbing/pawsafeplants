@@ -8,7 +8,7 @@ summary: >-
   due to calcium oxalate crystals and other compounds. Ingestion can cause oral
   irritation, vomiting, and digestive distress.
 image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 ---
 
 Croton (Codiaeum variegatum) is a tropical plant native to Southeast Asia and the Pacific. Its leaves come in a variety of bright colors including red, orange, yellow, and green. The plant prefers bright, indirect light and consistent watering. Keep out of reach of pets due to its toxic properties. Skin contact with the sap may also cause irritation in sensitive individuals.

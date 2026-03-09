@@ -51,28 +51,17 @@ export default async function handler(req, res) {
             // 检查是否是权限问题
             if (error.message?.includes('permission denied') || error.code === '42501') {
               console.error('🚨 权限拒绝: 需要检查RLS策略');
-              return res.status(200).json({ 
-                heroImage: '', 
-                logo: '',
-                error_type: 'permission_denied',
-                error_message: 'RLS权限问题，需要配置匿名访问策略',
-                error_details: error.message
-              });
+              // 不返回错误，而是使用本地文件作为fallback
             }
             
             // 检查是否是表不存在
             if (error.message?.includes('does not exist') || error.code === '42P01') {
               console.error('🚨 表不存在: site_config表需要创建');
-              return res.status(200).json({ 
-                heroImage: '', 
-                logo: '',
-                error_type: 'table_not_found',
-                error_message: 'site_config表不存在，需要创建表和RLS策略',
-                error_details: error.message
-              });
+              // 不返回错误，而是使用本地文件作为fallback
             }
             
-            console.warn('⚠️ 数据库查询失败，使用本地文件:', error?.message);
+            // 其他数据库错误也使用本地文件作为fallback
+            console.warn('⚠️ 数据库查询失败，使用本地文件作为fallback:', error?.message);
           } else {
             const map = Object.create(null)
             ;(data || []).forEach(r => { map[r.key] = r.value })
@@ -92,14 +81,11 @@ export default async function handler(req, res) {
           // 检查是否是环境变量问题
           if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
             console.error('🚨 环境变量缺失: SUPABASE_URL或SUPABASE_SERVICE_ROLE_KEY未配置');
-            return res.status(200).json({ 
-              heroImage: '', 
-              logo: '',
-              error_type: 'environment_missing',
-              error_message: '环境变量缺失，请检查SUPABASE_URL和SUPABASE_SERVICE_ROLE_KEY',
-              error_details: dbError.message
-            });
+            // 使用本地文件作为fallback
           }
+          
+          // 任何数据库连接错误都使用本地文件作为fallback
+          console.warn('⚠️ 数据库连接失败，使用本地文件作为fallback:', dbError?.message);
         }
       } else {
         console.error('🚨 Supabase配置缺失: URL或Key未配置');

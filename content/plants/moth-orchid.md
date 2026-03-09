@@ -16,6 +16,6 @@ summary: >-
   make them a perennial favorite, perfect for gifting or simply indulging in
   their serene beauty.
 image: >-
-  https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=moth%20orchid
+  https://images.unsplash.com/photo-1543168256-739e5d9d537a?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 ---
 

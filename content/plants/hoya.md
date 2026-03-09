@@ -17,6 +17,6 @@ summary: >-
   make them a perfect choice for hanging baskets or trellises, bringing elegance
   and a sweet aroma to your home.
 image: >-
-  https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=hoya
+  https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 ---
 

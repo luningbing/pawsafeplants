@@ -6,7 +6,7 @@ summary: >-
   Cyclamen contains cyclamine which can cause severe vomiting and diarrhea in
   cats.
 image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1520302618106-4e2f8dc772b1?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 care_difficulty: Medium
 common_names:
   - Cyclamen

@@ -15,7 +15,7 @@ summary: >-
   air-purifying capabilities and elegant stature make it a cherished and safe
   addition to a pet-friendly home.
 image: >-
-  https://images.unsplash.com/photo-1520302618106-4e2f8dc772b1?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1545241047-6083a3684587?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 ---
 
 

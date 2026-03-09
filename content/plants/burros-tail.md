@@ -17,6 +17,6 @@ summary: >-
   an artistic and worry-free touch to your indoor garden, safely intriguing to
   curious pets.
 image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 ---
 

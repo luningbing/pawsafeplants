@@ -17,6 +17,6 @@ summary: >-
   them an excellent choice for adding a touch of the tropics and a pop of cheer
   to your living environment.
 image: >-
-  https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format&dpr=2&query=bromeliads
+  https://images.unsplash.com/photo-1501004318641-b398d68e866b?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 ---
 

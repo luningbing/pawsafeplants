@@ -10,7 +10,7 @@ summary: >-
   and dogs due to calcium oxalate crystals, which can cause oral irritation,
   swelling, and digestive distress.
 image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 ---
 
 Epipremnum aureum is native to the Solomon Islands but has naturalized in many tropical areas. It's one of the easiest houseplants to propagate via cuttings in water. The plant's heart-shaped leaves often display yellow or white variegation, adding visual interest.

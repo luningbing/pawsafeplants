@@ -16,6 +16,6 @@ summary: >-
   sophisticated greenery and natural artistry to your home, without any safety
   concerns for your curious pets.
 image: >-
-  https://images.unsplash.com/photo-1593696140826-c58b021acf8b?ixlib=rb-4.0.3&w=800&h=600&fit=crop&auto=format
+  https://images.unsplash.com/photo-1512428813834-69c3432058ce?ixlib=rb-4.0.3&w=800&h=600&fit=crop
 ---
 
