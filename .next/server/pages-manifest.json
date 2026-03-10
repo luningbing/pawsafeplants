@@ -3,8 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/site-config": "pages/api/site-config.js",
   "/plants/toxic": "pages/plants/toxic.js",
-  "/plants/caution": "pages/plants/caution.js",
-  "/blog/[slug]": "pages/blog/[slug].js"
+  "/plants/caution": "pages/plants/caution.js"
 }

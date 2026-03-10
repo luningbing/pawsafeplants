@@ -341,23 +341,28 @@ export default function PlantPage({ plant }) {
   const [userContent, setUserContent] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
+  // JSON-LD structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: `${plant.title} - PawSafePlants`,
+    description: plant.summary || `Learn about ${plant.title} and its safety for cats.`,
+    url: `https://www.pawsafeplants.com/plants/${plant.slug}`,
+    mainEntity: {
+      '@type': 'Article',
+      headline: plant.title,
+      author: { '@type': 'Organization', name: 'PawSafePlants' },
+      datePublished: '2024-01-01',
+      description: plant.summary
+    }
+  };
+
   useEffect(() => {
     try {
       const body = { page_path: window.location.pathname, referrer: document.referrer }
       fetch('/api/analytics/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) }).catch(() => {})
     } catch {}
   }, [])
-
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const r = await fetch('/api/comments/list?slug=' + encodeURIComponent(plant.slug))
-        const j = await r.json()
-        setComments(j.comments || [])
-      } catch {}
-    }
-    load()
-  }, [plant.slug])
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -409,11 +414,23 @@ export default function PlantPage({ plant }) {
     petFriendly: toxicity.label === 'Safe for Cats' ? { icon: '🐱', label: 'Cat-Safe', level: 'safe' } : { icon: '🐱', label: 'Keep Away from Cats', level: 'caution' }
   };
 
+  // Care Guide icons (placeholder data - can be enhanced with actual data from markdown)
+  const careGuide = {
+    light: { icon: '☀️', label: 'Bright Indirect Light', level: 'medium' },
+    water: { icon: '💧', label: 'Moderate Watering', level: 'medium' },
+    petFriendly: toxicity.label === 'Safe for Cats' ? { icon: '🐱', label: 'Cat-Safe', level: 'safe' } : { icon: '🐱', label: 'Keep Away from Cats', level: 'caution' }
+  };
+
   return (
     <>
       <Head>
         <title>{plant.title} - PawSafePlants</title>
         <meta name="description" content={plant.summary || `Learn about ${plant.title} and its safety for cats.`} />
+        <meta property="og:title" content={`${plant.title} - Cat Safe Guide`} />
+        <meta property="og:description" content={plant.summary || `Is ${plant.title} safe for cats? Find out on PawSafePlants.`} />
+        <meta property="og:url" content={`https://www.pawsafeplants.com/plants/${plant.slug}`} />
+        <meta property="og:type" content="article" />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
 
       <div style={{ 

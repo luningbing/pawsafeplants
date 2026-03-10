@@ -5,6 +5,8 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
+'use client';
+
 export async function getStaticProps() {
   const plantsDir = path.join(process.cwd(), 'content/plants');
   let plants = [];
@@ -32,7 +34,25 @@ export default function Home({ plants }) {
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [filter, setFilter] = useState('All');
+  const [currentSlide, setCurrentSlide] = useState(0);
   const unsplashPlaceholder = 'https://images.unsplash.com/photo-1545241047-6083a3684587';
+
+  // Cat carousel images - high quality, safe to use
+  const catCarouselImages = [
+    'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&w=1600&h=600&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&w=1600&h=600&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-4.0.3&w=1600&h=600&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?ixlib=rb-4.0.3&w=1600&h=600&fit=crop&q=80',
+    'https://images.unsplash.com/photo-1574158622682-e40e69881006?ixlib=rb-4.0.3&w=1600&h=600&fit=crop&q=80'
+  ];
+
+  // Auto-advance carousel every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % catCarouselImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [catCarouselImages.length]);
 
   const sageGreen = '#87A96B';
   const warmCream = '#FAF7F2';
@@ -109,9 +129,76 @@ export default function Home({ plants }) {
         <meta property="og:description" content="Your guide to cat-safe and toxic plants." />
         <meta property="og:url" content="https://www.pawsafeplants.com/" />
         <meta property="og:type" content="website" />
+        <link rel="alternate" type="application/rss+xml" title="PawSafe Plants Blog" href="/blog/rss" />
       </Head>
 
       <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>PawSafe Plants</h1>
+
+      {/* Cat Carousel */}
+      <div style={{
+        position: 'relative',
+        width: '100%',
+        maxWidth: '1200px',
+        margin: '0 auto 30px',
+        borderRadius: '16px',
+        overflow: 'hidden',
+        boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+        aspectRatio: '16 / 6'
+      }}>
+        {catCarouselImages.map((img, idx) => (
+          <div
+            key={idx}
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              opacity: idx === currentSlide ? 1 : 0,
+              transition: 'opacity 0.8s ease-in-out',
+              zIndex: idx === currentSlide ? 1 : 0
+            }}
+          >
+            <img
+              src={img}
+              alt={`Cute cat ${idx + 1}`}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                display: 'block'
+              }}
+            />
+          </div>
+        ))}
+        {/* Carousel indicators */}
+        <div style={{
+          position: 'absolute',
+          bottom: '12px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          gap: '8px',
+          zIndex: 2
+        }}>
+          {catCarouselImages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentSlide(idx)}
+              style={{
+                width: '10px',
+                height: '10px',
+                borderRadius: '50%',
+                border: 'none',
+                background: idx === currentSlide ? '#fff' : 'rgba(255,255,255,0.5)',
+                cursor: 'pointer',
+                padding: 0
+              }}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+      </div>
 
       {/* Search */}
       <div style={{ maxWidth: '800px', margin: '0 auto 20px', position: 'relative' }}>
@@ -295,6 +382,30 @@ export default function Home({ plants }) {
             ❌ Toxic Plants
           </Link>
         </div>
+      </div>
+
+      {/* Blog CTA */}
+      <div style={{ maxWidth: '800px', margin: '40px auto', textAlign: 'center', padding: '24px', background: '#fff', borderRadius: '16px', boxShadow: '0 4px 12px rgba(0,0,0,0.06)' }}>
+        <h3 style={{ marginBottom: '12px', color: '#6B8553', fontSize: '20px' }}>📚 Read Our Blog</h3>
+        <p style={{ marginBottom: '16px', color: '#555', fontSize: '15px', lineHeight: 1.6 }}>
+          Get the latest tips, guides, and plant safety news for cat owners.
+        </p>
+        <Link 
+          href="/blog" 
+          style={{
+            display: 'inline-block',
+            padding: '12px 28px',
+            background: '#6B8553',
+            color: '#fff',
+            textDecoration: 'none',
+            borderRadius: '20px',
+            fontWeight: 600,
+            fontSize: '15px',
+            boxShadow: '0 4px 12px rgba(107, 133, 83, 0.3)'
+          }}
+        >
+          Visit Blog
+        </Link>
       </div>
     </div>
   );
