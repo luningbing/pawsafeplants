@@ -6,6 +6,23 @@ import html from 'remark-html';
 import Link from 'next/link';
 import Head from 'next/head';
 
+export async function getStaticPaths() {
+  const blogDir = path.join(process.cwd(), 'content', 'blog');
+  let paths = [];
+  try {
+    const filenames = fs.readdirSync(blogDir).filter((f) => f.endsWith('.md'));
+    paths = filenames.map(filename => ({
+      params: { slug: filename.replace(/\.md$/, '') }
+    }));
+  } catch (e) {
+    console.error('Error reading blog directory:', e);
+  }
+  return {
+    paths,
+    fallback: false
+  };
+}
+
 export async function getStaticProps({ params }) {
   const { slug } = params;
   const fullPath = path.join(process.cwd(), 'content', 'blog', `${slug}.md`);

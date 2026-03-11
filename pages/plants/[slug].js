@@ -414,13 +414,6 @@ export default function PlantPage({ plant }) {
     petFriendly: toxicity.label === 'Safe for Cats' ? { icon: '🐱', label: 'Cat-Safe', level: 'safe' } : { icon: '🐱', label: 'Keep Away from Cats', level: 'caution' }
   };
 
-  // Care Guide icons (placeholder data - can be enhanced with actual data from markdown)
-  const careGuide = {
-    light: { icon: '☀️', label: 'Bright Indirect Light', level: 'medium' },
-    water: { icon: '💧', label: 'Moderate Watering', level: 'medium' },
-    petFriendly: toxicity.label === 'Safe for Cats' ? { icon: '🐱', label: 'Cat-Safe', level: 'safe' } : { icon: '🐱', label: 'Keep Away from Cats', level: 'caution' }
-  };
-
   return (
     <>
       <Head>

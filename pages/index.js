@@ -1,11 +1,11 @@
+'use client';
+
 import Link from 'next/link';
 import Head from 'next/head';
 import { useEffect, useMemo, useState } from 'react';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-
-'use client';
 
 export async function getStaticProps() {
   const plantsDir = path.join(process.cwd(), 'content/plants');
