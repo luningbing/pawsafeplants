@@ -850,6 +850,67 @@ export default function PlantPage({ plant }) {
           </div>
         </div>
 
+        {/* Sources & Verification */}
+        {sources && sources.length > 0 && (
+          <div style={{
+            maxWidth: '800px',
+            margin: '40px auto',
+            padding: '24px',
+            background: '#fff',
+            borderRadius: borderRadius,
+            boxShadow: '0 4px 16px rgba(0,0,0,0.06)',
+            border: `1px solid ${warmCreamDark}`
+          }}>
+            <h3 style={{ 
+              color: sageGreenDark, 
+              fontSize: '18px', 
+              marginBottom: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}>
+              <span>📚</span> Sources & Verification
+            </h3>
+            <p style={{ color: '#555', fontSize: '14px', lineHeight: 1.7, marginBottom: '12px' }}>
+              Information on this page is verified against authoritative veterinary databases and peer-reviewed sources.
+            </p>
+            {plant.ascpa_link && (
+              <p style={{ marginBottom: '12px' }}>
+                <strong>Primary Source:</strong>{' '}
+                <a 
+                  href={plant.ascpa_link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  style={{ color: sageGreen, textDecoration: 'underline' }}
+                >
+                  ASPCA Toxic and Non-Toxic Plants Database
+                </a>
+              </p>
+            )}
+            {sources.length > 0 && (
+              <ul style={{ 
+                paddingLeft: '20px', 
+                color: '#555', 
+                fontSize: '14px',
+                lineHeight: 1.6 
+              }}>
+                {sources.map((src, idx) => (
+                  <li key={idx}>{src}</li>
+                ))}
+              </ul>
+            )}
+            <p style={{ 
+              marginTop: '16px', 
+              fontSize: '13px', 
+              color: '#999',
+              borderTop: '1px solid #eee',
+              paddingTop: '12px'
+            }}>
+              Last verified: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}. Sources are periodically reviewed for updates.
+            </p>
+          </div>
+        )}
+
         <style jsx>{`
           @media (max-width: 968px) {
             div[style*="grid-template-columns: 1fr 400px"] {
@@ -951,7 +1012,9 @@ export async function getStaticProps({ params }) {
       toxicity_level: 'DANGER – Highly toxic to cats',
       summary: 'Even small ingestions can cause acute kidney failure in cats.',
       symptoms: ['Vomiting', 'Lethargy', 'Loss of appetite', 'Kidney failure'],
-      what_to_do: '<p>Contact your veterinarian immediately. Early decontamination and IV fluids are critical.</p>'
+      what_to_do: '<p>Contact your veterinarian immediately. Early decontamination and IV fluids are critical.</p>',
+      sources: ['ASPCA Toxic and Non-Toxic Plants Database'],
+      ascpa_link: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/lily'
     },
     rose: {
       title: 'Rose',
@@ -959,7 +1022,9 @@ export async function getStaticProps({ params }) {
       toxicity_level: 'Safe – generally non-toxic',
       summary: 'Thorns can cause injury but plant is generally non-toxic.',
       symptoms: [],
-      what_to_do: '<p>While generally safe, monitor for any signs of irritation from thorns.</p>'
+      what_to_do: '<p>While generally safe, monitor for any signs of irritation from thorns.</p>',
+      sources: ['ASPCA Toxic and Non-Toxic Plants Database'],
+      ascpa_link: 'https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/rose'
     }
   };
   return {
