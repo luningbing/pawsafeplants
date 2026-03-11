@@ -143,7 +143,7 @@ export default function Home({ plants }) {
         borderRadius: '16px',
         overflow: 'hidden',
         boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
-        aspectRatio: '16 / 6'
+        aspectRatio: '16 / 9'
       }}>
         {catCarouselImages.map((img, idx) => (
           <div
