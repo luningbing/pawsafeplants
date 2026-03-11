@@ -323,6 +323,8 @@ function SafeImage({ src, alt, fallback, style, containerStyle, unsplashFallback
       alt={alt} 
       style={style}
       onError={handleError}
+      loading="lazy"
+      decoding="async"
     />
   );
 }
@@ -340,6 +342,10 @@ export default function PlantPage({ plant }) {
   const [userName, setUserName] = useState('');
   const [userContent, setUserContent] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  
+  // Danger warning modal state
+  const [showDangerWarning, setShowDangerWarning] = useState(false);
+  const [dangerConfirmed, setDangerConfirmed] = useState(false);
 
   // JSON-LD structured data for SEO
   const jsonLd = {
@@ -357,6 +363,29 @@ export default function PlantPage({ plant }) {
     }
   };
 
+  // Danger warning check - show modal for highly toxic plants
+  useEffect(() => {
+    if (typeof window === 'undefined' || !plant) return;
+    const toxicity = getToxicityLevel(plant.toxicity_level);
+    const isDanger = toxicity.label === 'Toxic to Cats'; // Only for highest danger level
+    const storageKey = `danger-warning-${plant.slug}`;
+    
+    if (isDanger && !localStorage.getItem(storageKey) && !dangerConfirmed) {
+      // Small delay to avoid flash on page load
+      const timer = setTimeout(() => setShowDangerWarning(true), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [plant, dangerConfirmed]);
+
+  const handleDangerConfirm = () => {
+    if (plant) {
+      localStorage.setItem(`danger-warning-${plant.slug}`, 'confirmed');
+      setDangerConfirmed(true);
+      setShowDangerWarning(false);
+    }
+  };
+
+  // Analytics
   useEffect(() => {
     try {
       const body = { page_path: window.location.pathname, referrer: document.referrer }
@@ -425,6 +454,115 @@ export default function PlantPage({ plant }) {
         <meta property="og:type" content="article" />
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
+
+      {/* Danger Warning Modal */}
+      {showDangerWarning && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'rgba(0,0,0,0.75)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '20px'
+          }}
+          role="alertdialog"
+          aria-modal="true"
+          aria-labelledby="danger-title"
+        >
+          <div
+            style={{
+              background: '#fff',
+              borderRadius: '16px',
+              maxWidth: '500px',
+              width: '100%',
+              padding: '32px',
+              boxShadow: '0 16px 64px rgba(0,0,0,0.3)',
+              border: '2px solid #E85D5D',
+              textAlign: 'center'
+            }}
+          >
+            <div style={{ fontSize: '48px', marginBottom: '16px' }}>⚠️</div>
+            <h2 id="danger-title" style={{ 
+              color: '#E85D5D', 
+              fontSize: '24px', 
+              marginBottom: '12px',
+              fontWeight: 700
+            }}>
+              WARNING: Highly Toxic to Cats
+            </h2>
+            <p style={{ 
+              color: '#333', 
+              fontSize: '16px', 
+              lineHeight: 1.6, 
+              marginBottom: '24px'
+            }}>
+              <strong>{plant.title}</strong> is extremely dangerous to cats.
+              <br /><br />
+              Ingestion can cause severe illness or death, sometimes within hours.
+            </p>
+            <p style={{ 
+              color: '#555', 
+              fontSize: '15px', 
+              lineHeight: 1.6, 
+              marginBottom: '28px',
+              padding: '16px',
+              background: '#FFF5F5',
+              borderRadius: '8px',
+              border: '1px solid #FFE5E5'
+            }}>
+              <strong>Do not keep this plant in a home with cats.</strong>
+              <br />
+              If you suspect exposure, contact your veterinarian or pet poison hotline immediately.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <button
+                onClick={handleDangerConfirm}
+                style={{
+                  width: '100%',
+                  padding: '16px 24px',
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: '#fff',
+                  background: '#E85D5D',
+                  border: 'none',
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(232, 93, 93, 0.4)',
+                  transition: 'transform 0.1s, box-shadow 0.1s'
+                }}
+                onMouseDown={(e) => e.target.style.transform = 'scale(0.98)'}
+                onMouseUp={(e) => e.target.style.transform = 'scale(1)'}
+              >
+                I Understand the Risk
+              </button>
+              <Link
+                href="/pet-emergency"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  padding: '14px 24px',
+                  fontSize: '15px',
+                  color: '#6B8553',
+                  background: 'transparent',
+                  border: '1px solid #6B8553',
+                  borderRadius: '12px',
+                  textDecoration: 'none',
+                  textAlign: 'center',
+                  fontWeight: 600
+                }}
+              >
+                Learn How to Keep Cats Safe →
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div style={{ 
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", sans-serif',
