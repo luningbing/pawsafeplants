@@ -5,7 +5,7 @@ common_names:
   - Mums
   - Florist’s Daisy
   - Hardy Mum
-toxicity_level: ⚠️ MODERATE TOXICITY – GI & NEUROLOGICAL EFFECTS
+toxicity_level: Danger
 summary: >-
   Chrysanthemums contain pyrethrins and sesquiterpene lactones that can cause
   vomiting, diarrhea, drooling, and even depression or incoordination in cats.

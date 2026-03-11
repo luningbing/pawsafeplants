@@ -410,15 +410,16 @@ export default function PlantPage({ plant }) {
   }
 
   const getToxicityLevel = (level) => {
-    const L = String(level || '').toLowerCase();
-    if (L.includes('safe')) return { 
+    const L = String(level || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const clean = L.replace(/[^\w\s-]/g, '').trim();
+    if (clean.includes('safe')) return { 
       label: 'Safe for Cats', 
       color: '#fff', 
       bg: sageGreen, 
       icon: '✅',
       description: 'This plant is generally safe for cats and poses minimal risk.'
     };
-    if (L.includes('danger') || L.includes('toxic') || L.includes('extreme') || L.includes('fatal')) return { 
+    if (clean.includes('danger') || clean.includes('toxic') || clean.includes('extreme') || clean.includes('fatal')) return { 
       label: 'Toxic to Cats', 
       color: '#fff', 
       bg: '#E85D5D', 

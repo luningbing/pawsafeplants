@@ -1,7 +1,7 @@
 ---
 title: Bird of Paradise
 scientific_name: Strelitzia reginae
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Bird of Paradise contains hydrocyanic acid which can cause gastrointestinal
   irritation and vomiting in cats.

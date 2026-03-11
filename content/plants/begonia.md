@@ -4,7 +4,7 @@ scientific_name: Begonia semperflorens
 common_names:
   - Wax Begonia
   - Fibrous Begonia
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Begonias contain calcium oxalate crystals that can cause intense oral
   irritation, drooling, and digestive upset in cats. Immediate rinsing can help

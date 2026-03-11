@@ -5,7 +5,7 @@ common_names:
   - Pink Carnation
   - Sweet William
   - Florist’s Carnation
-toxicity_level: ⚠️ MILD TOXICITY – ORAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Carnations can cause mild gastrointestinal upset and skin irritation in cats.
   They’re not life-threatening, but best kept away from curious kitties.

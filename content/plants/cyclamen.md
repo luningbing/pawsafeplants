@@ -1,7 +1,7 @@
 ---
 title: Cyclamen
 scientific_name: Cyclamen persicum
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Cyclamen contains cyclamine which can cause severe vomiting and diarrhea in
   cats.

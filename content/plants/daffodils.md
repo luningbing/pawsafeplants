@@ -4,7 +4,7 @@ scientific_name: Narcissus spp.
 common_names:
   - Jonquil
   - Daffy Down Dilly
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – BULBS MOST CONCENTRATED
+toxicity_level: Danger
 summary: >-
   Beloved spring flowers that can irritate a cat’s mouth and GI tract. Bulbs
   contain the highest toxin concentration; petals and leaves are less toxic but

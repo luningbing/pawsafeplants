@@ -5,7 +5,7 @@ common_names:
   - Swiss Cheese Plant
   - Split-Leaf Philodendron
   - Mexican Breadfruit
-toxicity_level: ⚠️ MODERATE TOXICITY – ORAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Contains insoluble calcium oxalate crystals that cause intense burning and
   irritation of the mouth, tongue, and lips in cats. While rarely fatal, it

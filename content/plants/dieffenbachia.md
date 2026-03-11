@@ -1,7 +1,7 @@
 ---
 title: Dieffenbachia
 scientific_name: Dieffenbachia seguine
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Dieffenbachia contains calcium oxalate crystals which can cause severe oral
   irritation and swelling in cats.

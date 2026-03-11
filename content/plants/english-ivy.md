@@ -4,7 +4,7 @@ scientific_name: Hedera helix
 common_names:
   - Common Ivy
   - European Ivy
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – SAPONINS AND OXALATES
+toxicity_level: Danger
 summary: >-
   English Ivy contains triterpenoid saponins that can cause oral irritation,
   vomiting, and diarrhea in cats. Even small ingestions may lead to discomfort.

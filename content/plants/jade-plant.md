@@ -4,7 +4,7 @@ scientific_name: Crassula ovata
 common_names:
   - Money Plant
   - Friendship Tree
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – GASTROINTESTINAL DISTRESS
+toxicity_level: Danger
 summary: >-
   Jade plants contain compounds that can cause vomiting, diarrhea, and lethargy
   in cats if ingested. While not usually life-threatening, prompt veterinary

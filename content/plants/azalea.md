@@ -1,7 +1,7 @@
 ---
 title: Azalea
 scientific_name: Rhododendron
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Azalea contains grayanotoxins which can cause severe vomiting, diarrhea, and
   cardiovascular problems in cats.

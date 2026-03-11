@@ -1,7 +1,7 @@
 ---
 title: Tomato Plant
 scientific_name: Solanum lycopersicum
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Tomato plants contain solanine and tomatine which can cause gastrointestinal
   upset in cats.

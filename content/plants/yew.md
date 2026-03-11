@@ -1,7 +1,7 @@
 ---
 title: Yew
 scientific_name: Taxus
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Yew contains taxine which is extremely toxic to cats and can cause sudden
   death without warning.

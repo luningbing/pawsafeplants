@@ -5,7 +5,7 @@ common_names:
   - Red Rose
   - White Rose
   - Garden Rose
-toxicity_level: ✅ SAFE FOR CATS (with caution)
+toxicity_level: Safe
 summary: >-
   True roses (Rosa spp.) are non-toxic to cats! However, thorns can cause mouth
   or paw injuries, and store-bought bouquets may be treated with pesticides or

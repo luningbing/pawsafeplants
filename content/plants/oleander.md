@@ -5,7 +5,7 @@ common_names:
   - Rose Bay
   - Adelfa
   - Laurel Rosa
-toxicity_level: ☠️ EXTREME DANGER – POTENTIALLY FATAL
+toxicity_level: Danger
 summary: >-
   All parts contain cardiac glycosides extremely toxic to cats. Ingestion may
   cause severe heart problems, digestive upset, and can be fatal.

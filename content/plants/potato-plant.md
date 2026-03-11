@@ -1,7 +1,7 @@
 ---
 title: Potato Plant
 scientific_name: Solanum tuberosum
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Potato plants contain solanine which can cause gastrointestinal upset and
   neurological symptoms in cats.

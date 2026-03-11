@@ -94,9 +94,11 @@ export default function Home({ plants }) {
   };
 
   const getToxicityCategory = (level) => {
-    const L = String(level || '').toLowerCase();
-    if (L.includes('safe')) return 'Safe';
-    if (L.includes('danger') || L.includes('toxic')) return 'Danger';
+    const L = String(level || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    // Remove emojis and special chars
+    const clean = L.replace(/[^\w\s-]/g, '').trim();
+    if (clean.includes('safe')) return 'Safe';
+    if (clean.includes('danger') || clean.includes('toxic') || clean.includes('extreme') || clean.includes('fatal')) return 'Danger';
     return 'Caution';
   };
 

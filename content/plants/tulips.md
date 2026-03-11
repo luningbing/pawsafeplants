@@ -4,7 +4,7 @@ scientific_name: Tulipa spp.
 common_names:
   - Garden Tulip
   - Spring Tulip
-toxicity_level: ⚠️ LOW TO MODERATE TOXICITY – BULBS ARE MOST DANGEROUS
+toxicity_level: Danger
 summary: >-
   Tulips contain tulipalin A and B, which are most concentrated in the bulbs.
   Ingestion can cause drooling, vomiting, and diarrhea. Leaves and flowers are

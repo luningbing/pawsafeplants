@@ -1,7 +1,7 @@
 ---
 title: Kalanchoe
 scientific_name: Kalanchoe blossfeldiana
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – ORAL AND GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Kalanchoe contains bufadienolides which can cause severe vomiting and heart
   problems in cats.

@@ -8,7 +8,7 @@ common_names:
   - Coontie Palm
   - Cardboard Palm
   - Cycads and Zamias
-toxicity_level: ☠️ EXTREME DANGER – POTENTIALLY FATAL
+toxicity_level: Danger
 summary: >-
   Every part is highly toxic to cats—seeds (nuts) are most deadly. Even a single
   seed can cause severe liver failure, seizures, and death within 24–48 hours.

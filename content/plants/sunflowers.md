@@ -4,7 +4,7 @@ scientific_name: Helianthus annuus
 common_names:
   - Common Sunflower
   - Giant Sunflower
-toxicity_level: ✅ SAFE FOR CATS
+toxicity_level: Safe
 summary: >-
   Sunflowers are completely non-toxic to cats and dogs! Their bright blooms and
   tall stems make them a joyful, pet-safe choice for gardens and bouquets.

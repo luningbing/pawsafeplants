@@ -4,7 +4,7 @@ scientific_name: Aloe barbadensis miller
 common_names:
   - Medicinal Aloe
   - Burn Plant
-toxicity_level: ⚠️ MODERATE TOXICITY – GASTROINTESTINAL DISTRESS
+toxicity_level: Danger
 summary: >-
   While aloe gel is safe for human use, the latex (yellow sap near the leaf
   skin) contains saponins and anthraquinones that are toxic to cats. Ingestion

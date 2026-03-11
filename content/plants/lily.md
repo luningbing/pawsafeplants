@@ -1,6 +1,6 @@
 ---
 title: Lilies
-toxicity_level: Extreme Danger
+toxicity_level: Danger
 summary: All parts of lilies are toxic to cats.
 symptoms:
   - Vomiting

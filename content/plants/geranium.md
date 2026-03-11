@@ -4,7 +4,7 @@ scientific_name: Pelargonium x hortorum
 common_names:
   - Garden Geranium
   - Zonal Geranium
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – GASTROINTESTINAL IRRITATION
+toxicity_level: Danger
 summary: >-
   Geraniums contain geraniol and other compounds that can cause vomiting,
   diarrhea, and lethargy in cats. Ingestion should be avoided, though severe

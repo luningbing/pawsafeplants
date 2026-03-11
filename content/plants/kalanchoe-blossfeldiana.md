@@ -4,7 +4,7 @@ scientific_name: Kalanchoe blossfeldiana
 common_names:
   - Flaming Katy
   - Christmas Kalanchoe
-toxicity_level: ⚠️ MILD TO MODERATE TOXICITY – CARDIAC GLYCOSIDES
+toxicity_level: Danger
 summary: >-
   Kalanchoe contains cardiac glycosides that can cause vomiting, diarrhea, and
   abnormal heart rhythm if ingested by cats. While rarely fatal, it poses a
