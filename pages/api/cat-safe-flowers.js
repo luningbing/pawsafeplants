@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.SUPABASE_URL || ''
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || ''
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || ''
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || ''
 
 if (!supabaseUrl || !supabaseKey) {
   console.warn('Missing Supabase credentials for cat-safe-flowers API')
@@ -35,17 +35,28 @@ export default async function handler(req, res) {
             .limit(50)
 
           if (!error && data) {
-            flowers = data.map(item => ({
-              id: item.id,
-              name: item.display_name || item.file_path?.split('/').pop()?.replace(/\.(jpg|jpeg|png|webp)$/i, '') || 'Unknown Flower',
-              image: item.file_path,
-              category: item.category || 'flower',
-              is_flower: item.is_flower || false,
-              created_at: item.created_at,
-              updated_at: item.updated_at,
-              toxicity_level: 'Safe – generally non-toxic to cats', // 默认安全
-              summary: `Beautiful ${item.display_name || 'flower'} that is safe for cats. Perfect for cat-friendly homes and gardens.`
-            }))
+            console.log(`[cat-safe-flowers] Fetched ${data.length} records from media_metadata`)
+            flowers = data.map(item => {
+              const flower = {
+                id: item.id,
+                name: item.display_name || item.file_path?.split('/').pop()?.replace(/\.(jpg|jpeg|png|webp)$/i, '') || 'Unknown Flower',
+                image: item.file_path,
+                category: item.category || 'flower',
+                is_flower: item.is_flower || false,
+                created_at: item.created_at,
+                updated_at: item.updated_at,
+                toxicity_level: 'Safe – generally non-toxic to cats',
+                summary: `Beautiful ${item.display_name || 'flower'} that is safe for cats. Perfect for cat-friendly homes and gardens.`
+              }
+              // 检测并替换 Unsplash 链接
+              if (flower.image && flower.image.includes('images.unsplash.com')) {
+                const seed = flower.name.toLowerCase().replace(/\s+/g, '')
+                flower.image = `https://picsum.photos/seed/${seed}/800/600`
+                console.log(`[cat-safe-flowers] Replaced Unsplash image for ${flower.name} with Picsum`)
+              }
+              return flower
+            })
+            console.log(`[cat-safe-flowers] Processed ${flowers.length} flowers, sample:`, flowers[0]?.name, flowers[0]?.image?.substring(0, 60))
           }
         }
 
@@ -55,7 +66,7 @@ export default async function handler(req, res) {
             {
               id: 1,
               name: 'Rose',
-              image: 'https://images.unsplash.com/photo-1518709594023-a7b5d2e4cf76?w=400&h=400&fit=crop',
+              image: 'https://picsum.photos/seed/rose1/400/400',
               category: 'flower',
               is_flower: true,
               toxicity_level: 'Safe – generally non-toxic to cats',
@@ -66,7 +77,7 @@ export default async function handler(req, res) {
             {
               id: 2,
               name: 'Sunflower',
-              image: 'https://images.unsplash.com/photo-1506805945078-4b0c4d8d71b6?w=400&h=400&fit=crop',
+              image: 'https://picsum.photos/seed/sunflower1/400/400',
               category: 'flower',
               is_flower: true,
               toxicity_level: 'Safe – generally non-toxic to cats',
@@ -77,7 +88,7 @@ export default async function handler(req, res) {
             {
               id: 3,
               name: 'Daisy',
-              image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=400&fit=crop',
+              image: 'https://picsum.photos/seed/daisy1/400/400',
               category: 'flower',
               is_flower: true,
               toxicity_level: 'Safe – generally non-toxic to cats',
@@ -88,7 +99,7 @@ export default async function handler(req, res) {
             {
               id: 4,
               name: 'Orchid',
-              image: 'https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=400&h=400&fit=crop',
+              image: 'https://picsum.photos/seed/orchid1/400/400',
               category: 'flower',
               is_flower: true,
               toxicity_level: 'Safe – generally non-toxic to cats',
@@ -99,7 +110,7 @@ export default async function handler(req, res) {
             {
               id: 5,
               name: 'Zinnia',
-              image: 'https://images.unsplash.com/photo-1597818459942-2f9c4b8d0b9c?w=400&h=400&fit=crop',
+              image: 'https://picsum.photos/seed/zinnia1/400/400',
               category: 'flower',
               is_flower: true,
               toxicity_level: 'Safe – generally non-toxic to cats',
@@ -110,7 +121,7 @@ export default async function handler(req, res) {
             {
               id: 6,
               name: 'Marigold',
-              image: 'https://images.unsplash.com/photo-1598306943709-0d7d5d6e85b2?w=400&h=400&fit=crop',
+              image: 'https://picsum.photos/seed/marigold1/400/400',
               category: 'flower',
               is_flower: true,
               toxicity_level: 'Safe – generally non-toxic to cats',

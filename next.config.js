@@ -16,7 +16,8 @@ const nextConfig = {
       'images.unsplash.com',
       'images.pexels.com',
       'lh3.googleusercontent.com',
-      'rczfbgzghwiqpxihlexs.supabase.co' // 正确的Supabase项目域名
+      'rczfbgzghwiqpxihlexs.supabase.co',
+      'picsum.photos' // 添加 Picsum 域名
     ],
     formats: ['image/webp', 'image/avif'],
     // Enable image optimization for faster loading
