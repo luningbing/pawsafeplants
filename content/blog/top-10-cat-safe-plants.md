@@ -3,6 +3,7 @@ title: "Top 10 Cat-Safe Plants for a Happy Home"
 date: "2024-01-15"
 description: "Discover the top 10 cat-safe plants that are perfect for feline-friendly homes. Keep your cats safe while enjoying beautiful greenery."
 tags: ["cat safe plants", "pet friendly", "houseplants", "cat health"]
+image: "/images/hero/cat-main.jpg"
 ---
 
 # Top 10 Cat-Safe Plants for a Happy Home

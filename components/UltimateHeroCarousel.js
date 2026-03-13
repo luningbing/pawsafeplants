@@ -9,6 +9,11 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
   const [showPawPrint, setShowPawPrint] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  // 生成简单的 blur placeholder (SVG)
+  const generateBlurDataURL = () => {
+    return 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PC9zdmc+';
+  };
+
   // Auto-play with progress tracking
   useEffect(() => {
     if (!isAutoPlaying || slides.length <= 1) return;
@@ -140,12 +145,15 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
                   height: '120%',
                 }}
               >
-                <img
+                <Image
                   src={currentSlide.image_url || currentSlide.imageUrl || currentSlide.url || '/images/hero/cat-main.jpg'}
                   alt={`Hero slide ${currentIndex + 1}`}
+                  fill
+                  priority
+                  sizes="120vw"
+                  placeholder="blur"
+                  blurDataURL={generateBlurDataURL()}
                   style={{
-                    width: '100%',
-                    height: '100%',
                     objectFit: 'cover',
                     objectPosition: 'center',
                     backgroundColor: '#f3f4f6'
@@ -153,7 +161,7 @@ const UltimateHeroCarousel = ({ slides = [] }) => {
                   onError={(e) => {
                     console.error('❌ Image load error:', currentSlide, e);
                     // 使用本地备用图片
-                    e.target.src = '/images/hero/cat-main.jpg';
+                    e.currentTarget.src = '/images/hero/cat-main.jpg';
                   }}
                   onLoad={() => {
                     console.log('✅ Image loaded successfully:', currentSlide.image_url || currentSlide.imageUrl || currentSlide.url);
