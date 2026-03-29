@@ -5,10 +5,11 @@ const nextConfig = {
   swcMinify: true,
   
   // i18n configuration - ensure English as default
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
+  // Temporarily disabled to troubleshoot build issues
+  // i18n: {
+  //   defaultLocale: 'en',
+  //   locales: ['en'],
+  // },
   
   // Performance optimizations for <1.5s load time
   images: {

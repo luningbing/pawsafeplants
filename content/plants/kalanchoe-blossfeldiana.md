@@ -1,23 +1,29 @@
 ---
 title: Kalanchoe
 scientific_name: Kalanchoe blossfeldiana
-common_names:
-  - Flaming Katy
-  - Christmas Kalanchoe
-toxicity_level: Danger
+common_name: Kalanchoe
+aliases:
+  - flaming katy
+  - christmas kalanchoe
+  - kalanchoe blossfeldiana
+safety_status: toxic_to_cats
+toxicity_symptoms: >-
+  Vomiting, Diarrhea, Lethargy,  increased heart rate, Arrhythmias (in severe
+  cases)
+risk_level: high
+care_difficulty: easy
+light_level: bright_indirect
+is_featured_today: false
+affiliate_url: ''
+alternatives:
+  - christmas-cactus
+  - african-violet
+  - haworthia
 summary: >-
   Kalanchoe contains cardiac glycosides that can cause vomiting, diarrhea, and
   abnormal heart rhythm if ingested by cats. While rarely fatal, it poses a
   significant health risk.
-ascpa_link: >-
-  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe
 image: 'https://picsum.photos/800/600?random=1'
-symptoms:
-  - Vomiting
-  - Diarrhea
-  - Lethargy
-  - ' increased heart rate'
-  - Arrhythmias (in severe cases)
 what_to_do: |-
   **Seek immediate veterinary attention if ingestion is suspected.**
 
@@ -25,13 +31,15 @@ what_to_do: |-
   2. Bring a sample of the plant to the vet.
   3. Monitor heart rate and breathing.
   4. Treatment may include decontamination and heart monitoring.
-safe_alternatives:
-  - 'Christmas Cactus (non-toxic, seasonal blooms)'
-  - African Violet (safe flowering plant)
-  - Haworthia (succulent lookalike)
-sources:
-  - ASPCA Toxic and Non-Toxic Plants Database
-  - 'Veterinary Clinics of North America: Small Animal Practice'
+ascpa_link: >-
+  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe
+toxicity_level: Danger
+symptoms:
+  - Vomiting
+  - Diarrhea
+  - Lethargy
+  - ' increased heart rate'
+  - Arrhythmias (in severe cases)
 ---
 
 > ⚠️ **Disclaimer**:

@@ -1,2 +1,0 @@
-Deployment trigger for local images - 2025-03-10 00:50
-This file will trigger Vercel to redeploy with the latest local images.

@@ -1,0 +1,256 @@
+{
+  "total": 24,
+  "safe": 2,
+  "risky": 0,
+  "toxic": 22,
+  "plants": [
+    {
+      "slug": "aloe-vera",
+      "title": "Aloe Vera",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "medicinal aloe",
+        "burn plant",
+        "aloe barbadensis miller"
+      ]
+    },
+    {
+      "slug": "azalea",
+      "title": "Azalea",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "azalea",
+        "rhododendron"
+      ]
+    },
+    {
+      "slug": "begonia",
+      "title": "Begonia",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "wax begonia",
+        "fibrous begonia",
+        "begonia semperflorens"
+      ]
+    },
+    {
+      "slug": "bird-of-paradise",
+      "title": "Bird of Paradise",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "bird of paradise",
+        "crane flower",
+        "strelitzia reginae"
+      ]
+    },
+    {
+      "slug": "carnations",
+      "title": "Carnations",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "pink carnation",
+        "sweet william",
+        "florist’s carnation",
+        "dianthus caryophyllus"
+      ]
+    },
+    {
+      "slug": "chrysanthemums",
+      "title": "Chrysanthemums",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "mums",
+        "florist’s daisy",
+        "hardy mum",
+        "chrysanthemum morifolium"
+      ]
+    },
+    {
+      "slug": "cyclamen",
+      "title": "Cyclamen",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "cyclamen",
+        "persian violet",
+        "cyclamen persicum"
+      ]
+    },
+    {
+      "slug": "daffodils",
+      "title": "Daffodils",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "jonquil",
+        "daffy down dilly",
+        "narcissus spp."
+      ]
+    },
+    {
+      "slug": "dieffenbachia",
+      "title": "Dieffenbachia",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "dieffenbachia",
+        "dumb cane",
+        "dieffenbachia seguine"
+      ]
+    },
+    {
+      "slug": "english-ivy",
+      "title": "English Ivy",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "common ivy",
+        "european ivy",
+        "hedera helix"
+      ]
+    },
+    {
+      "slug": "geranium",
+      "title": "Geranium",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "garden geranium",
+        "zonal geranium",
+        "pelargonium x hortorum"
+      ]
+    },
+    {
+      "slug": "jade-plant",
+      "title": "Jade Plant",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "money plant",
+        "friendship tree",
+        "crassula ovata"
+      ]
+    },
+    {
+      "slug": "kalanchoe-blossfeldiana",
+      "title": "Kalanchoe",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "flaming katy",
+        "christmas kalanchoe",
+        "kalanchoe blossfeldiana"
+      ]
+    },
+    {
+      "slug": "kalanchoe",
+      "title": "Kalanchoe",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "kalanchoe",
+        "flaming katy",
+        "kalanchoe blossfeldiana"
+      ]
+    },
+    {
+      "slug": "lilies",
+      "title": "Lilies",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "lilies",
+        "true lilies",
+        "lilium"
+      ]
+    },
+    {
+      "slug": "monstera",
+      "title": "Monstera",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "swiss cheese plant",
+        "split-leaf philodendron",
+        "mexican breadfruit",
+        "monstera deliciosa"
+      ]
+    },
+    {
+      "slug": "oleander",
+      "title": "Oleander",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "rose bay",
+        "adelfa",
+        "laurel rosa",
+        "nerium oleander"
+      ]
+    },
+    {
+      "slug": "potato-plant",
+      "title": "Potato Plant",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "potato plant",
+        "potato",
+        "solanum tuberosum"
+      ]
+    },
+    {
+      "slug": "roses",
+      "title": "Roses",
+      "safety_status": "safe",
+      "aliases": [
+        "red rose",
+        "white rose",
+        "garden rose",
+        "rosa spp."
+      ]
+    },
+    {
+      "slug": "sago-palm",
+      "title": "Sago Palm",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "japanese sago palm",
+        "king sago",
+        "fern palm",
+        "coontie palm",
+        "cardboard palm",
+        "cycads and zamias",
+        "cycas revoluta"
+      ]
+    },
+    {
+      "slug": "sunflowers",
+      "title": "Sunflowers",
+      "safety_status": "safe",
+      "aliases": [
+        "common sunflower",
+        "giant sunflower",
+        "helianthus annuus"
+      ]
+    },
+    {
+      "slug": "tomato-plant",
+      "title": "Tomato Plant",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "tomato plant",
+        "tomato",
+        "solanum lycopersicum"
+      ]
+    },
+    {
+      "slug": "tulips",
+      "title": "Tulips",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "garden tulip",
+        "spring tulip",
+        "tulipa spp."
+      ]
+    },
+    {
+      "slug": "yew",
+      "title": "Yew",
+      "safety_status": "toxic_to_cats",
+      "aliases": [
+        "yew",
+        "english yew",
+        "taxus"
+      ]
+    }
+  ]
+}

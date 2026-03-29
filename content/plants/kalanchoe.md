@@ -1,23 +1,25 @@
 ---
 title: Kalanchoe
 scientific_name: Kalanchoe blossfeldiana
-toxicity_level: Danger
+common_name: Kalanchoe
+aliases:
+  - kalanchoe
+  - flaming katy
+  - kalanchoe blossfeldiana
+safety_status: toxic_to_cats
+toxicity_symptoms: 'Severe vomiting, Diarrhea, Heart problems, Death'
+risk_level: high
+care_difficulty: medium
+light_level: bright_indirect
+is_featured_today: false
+affiliate_url: ''
+alternatives:
+  - christmas-cactus
+  - sedum
 summary: >-
   Kalanchoe contains bufadienolides which can cause severe vomiting and heart
   problems in cats.
 image: 'https://picsum.photos/800/600?random=10'
-care_difficulty: Medium
-common_names:
-  - Kalanchoe
-  - Flaming Katy
-is_flower: true
-ascpa_link: >-
-  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe
-symptoms:
-  - Severe vomiting
-  - Diarrhea
-  - Heart problems
-  - Death
 what_to_do: >-
   **If your cat ingests kalanchoe:**
 
@@ -41,8 +43,13 @@ what_to_do: >-
   - Consider placing in hanging baskets or high shelves
 
   - Provide cat-safe alternatives like cat grass or catnip
-safe_alternatives:
-  - Christmas Cactus
-  - Sedum
+ascpa_link: >-
+  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/kalanchoe
+toxicity_level: Danger
+symptoms:
+  - Severe vomiting
+  - Diarrhea
+  - Heart problems
+  - Death
 ---
 > ⚠️ **Disclaimer**: PawSafePlants provides general educational information only. This content is **not veterinary advice**. If your cat has been exposed to any plant, **contact a licensed veterinarian or the ASPCA Animal Poison Control Center immediately**. We do not guarantee the accuracy, completeness, or timeliness of this information. Use at your own risk.

@@ -1,23 +1,24 @@
 ---
 title: Azalea
 scientific_name: Rhododendron
-toxicity_level: Danger
+common_name: Azalea
+aliases:
+  - azalea
+  - rhododendron
+safety_status: toxic_to_cats
+toxicity_symptoms: 'Severe vomiting, Diarrhea, Heart problems, Coma'
+risk_level: high
+care_difficulty: medium
+light_level: bright_indirect
+is_featured_today: false
+affiliate_url: ''
+alternatives:
+  - camellia
+  - gardenia
 summary: >-
   Azalea contains grayanotoxins which can cause severe vomiting, diarrhea, and
   cardiovascular problems in cats.
 image: 'https://picsum.photos/800/600?random=10'
-care_difficulty: Medium
-common_names:
-  - Azalea
-  - Rhododendron
-is_flower: true
-ascpa_link: >-
-  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/azalea
-symptoms:
-  - Severe vomiting
-  - Diarrhea
-  - Heart problems
-  - Coma
 what_to_do: >-
   **If your cat ingests azalea:**
 
@@ -41,8 +42,13 @@ what_to_do: >-
   - Consider placing in hanging baskets or high shelves
 
   - Provide cat-safe alternatives like cat grass or catnip
-safe_alternatives:
-  - Camellia
-  - Gardenia
+ascpa_link: >-
+  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/azalea
+toxicity_level: Danger
+symptoms:
+  - Severe vomiting
+  - Diarrhea
+  - Heart problems
+  - Coma
 ---
 > ⚠️ **Disclaimer**: PawSafePlants provides general educational information only. This content is **not veterinary advice**. If your cat has been exposed to any plant, **contact a licensed veterinarian or the ASPCA Animal Poison Control Center immediately**. We do not guarantee the accuracy, completeness, or timeliness of this information. Use at your own risk.

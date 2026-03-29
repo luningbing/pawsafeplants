@@ -852,7 +852,7 @@ export default function PlantPage({ plant }) {
         </div>
 
         {/* Sources & Verification */}
-        {sources && sources.length > 0 && (
+        {plant.sources && plant.sources.length > 0 && (
           <div style={{
             maxWidth: '800px',
             margin: '40px auto',
@@ -888,14 +888,14 @@ export default function PlantPage({ plant }) {
                 </a>
               </p>
             )}
-            {sources.length > 0 && (
+            {plant.sources && plant.sources.length > 0 && (
               <ul style={{ 
                 paddingLeft: '20px', 
                 color: '#555', 
                 fontSize: '14px',
                 lineHeight: 1.6 
               }}>
-                {sources.map((src, idx) => (
+                {plant.sources.map((src, idx) => (
                   <li key={idx}>{src}</li>
                 ))}
               </ul>

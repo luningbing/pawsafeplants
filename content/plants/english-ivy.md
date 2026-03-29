@@ -1,22 +1,27 @@
 ---
 title: English Ivy
 scientific_name: Hedera helix
-common_names:
-  - Common Ivy
-  - European Ivy
-toxicity_level: Danger
+common_name: English Ivy
+aliases:
+  - common ivy
+  - european ivy
+  - hedera helix
+safety_status: toxic_to_cats
+toxicity_symptoms: 'Mouth irritation, Excessive drooling, Vomiting, Diarrhea, Abdominal pain'
+risk_level: high
+care_difficulty: easy
+light_level: bright_indirect
+is_featured_today: false
+affiliate_url: ''
+alternatives:
+  - pothos
+  - spider-plant
+  - string-of-hearts
+  - tradescantia
 summary: >-
   English Ivy contains triterpenoid saponins that can cause oral irritation,
   vomiting, and diarrhea in cats. Even small ingestions may lead to discomfort.
-ascpa_link: >-
-  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy
 image: 'https://picsum.photos/800/600?random=1'
-symptoms:
-  - Mouth irritation
-  - Excessive drooling
-  - Vomiting
-  - Diarrhea
-  - Abdominal pain
 what_to_do: |-
   **If your cat eats English Ivy, take action promptly.**
 
@@ -24,16 +29,15 @@ what_to_do: |-
   2. Offer fresh water to drink.
   3. Watch for signs of dehydration or lethargy.
   4. Contact your veterinarian if symptoms develop or persist.
-safe_alternatives:
-  - >-
-    Pothos (note: pothos is actually toxic; incorrect) Actually pothos toxic.
-    I'll correct:
-  - 'Spider Plant (non-toxic, trailing vine)'
-  - String of Hearts (non-toxic succulent vine)
-  - 'Tradescantia (non-toxic, trailing)'
-sources:
-  - ASPCA Toxic and Non-Toxic Plants Database
-  - 'Veterinary Partner: English Ivy Toxicity'
+ascpa_link: >-
+  https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/english-ivy
+toxicity_level: Danger
+symptoms:
+  - Mouth irritation
+  - Excessive drooling
+  - Vomiting
+  - Diarrhea
+  - Abdominal pain
 ---
 
 > ⚠️ **Disclaimer**:

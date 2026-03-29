@@ -1,30 +1,36 @@
 ---
 title: Carnations
 scientific_name: Dianthus caryophyllus
-common_names:
-  - Pink Carnation
-  - Sweet William
-  - Florist’s Carnation
-toxicity_level: Danger
+common_name: Carnations
+aliases:
+  - pink carnation
+  - sweet william
+  - florist’s carnation
+  - dianthus caryophyllus
+safety_status: toxic_to_cats
+toxicity_symptoms: 'Mild drooling, Vomiting, Diarrhea, Skin redness (if rubbed against)'
+risk_level: high
+care_difficulty: easy
+light_level: bright_indirect
+is_featured_today: false
+affiliate_url: ''
+alternatives:
+  - roses
+  - orchids
+  - sunflowers
 summary: >-
   Carnations can cause mild gastrointestinal upset and skin irritation in cats.
   They’re not life-threatening, but best kept away from curious kitties.
+image: 'https://picsum.photos/800/600?random=2'
+what_to_do: "**Usually resolves at home—but monitor.**\n\n1. Wipe your cat’s mouth and paws with a damp cloth.\n2. Offer fresh water.\n3. Call your vet if vomiting persists beyond 4–6 hours.\n4. Great for bouquets—but place out of paw’s reach.\n\n> \U0001F4A1 Note: Carnations are common in Mother’s Day arrangements—safe in moderation, but not “cat-proof.”\n"
 ascpa_link: >-
   https://www.aspca.org/pet-care/animal-poison-control/toxic-and-non-toxic-plants/carnation
-image: 'https://picsum.photos/800/600?random=2'
+toxicity_level: Danger
 symptoms:
   - Mild drooling
   - Vomiting
   - Diarrhea
   - Skin redness (if rubbed against)
-what_to_do: "**Usually resolves at home—but monitor.**\n\n1. Wipe your cat’s mouth and paws with a damp cloth.\n2. Offer fresh water.\n3. Call your vet if vomiting persists beyond 4–6 hours.\n4. Great for bouquets—but place out of paw’s reach.\n\n> \U0001F4A1 Note: Carnations are common in Mother’s Day arrangements—safe in moderation, but not “cat-proof.”\n"
-safe_alternatives:
-  - Roses (thornless varieties)
-  - Orchids
-  - Sunflowers
-sources:
-  - ASPCA Toxic and Non-Toxic Plants Database
-  - Pet Poison Helpline
 ---
 
 > ⚠️ **Disclaimer**:
