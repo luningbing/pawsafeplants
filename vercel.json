@@ -1,82 +1,23 @@
 {
-  "version": 2,
-  "name": "pawsafeplants",
-  "routes": [
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1",
-      "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-      "headers": {
-        "Cache-Control": "public, max-age=300, s-maxage=300",
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
-      }
-    },
-    {
-      "src": "/_next/image(.*)",
-      "dest": "/_next/image$1",
-      "headers": {
-        "Cache-Control": "public, max-age=31536000, immutable"
-      }
-    },
-    {
-      "src": "/cat-safe-flowers",
-      "dest": "/cat-safe-flowers",
-      "headers": {
-        "Cache-Control": "public, max-age=1800, s-maxage=1800"
-      }
-    },
-    {
-      "src": "/occasions/(.*)",
-      "dest": "/occasions/$1",
-      "headers": {
-        "Cache-Control": "public, max-age=3600, s-maxage=3600"
-      }
-    },
-    {
-      "src": "/sitemap.xml",
-      "dest": "/sitemap.xml",
-      "headers": {
-        "Cache-Control": "public, max-age=86400, s-maxage=86400"
-      }
-    },
-    {
-      "src": "/robots.txt",
-      "dest": "/robots.txt",
-      "headers": {
-        "Cache-Control": "public, max-age=86400, s-maxage=86400"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1",
-      "headers": {
-        "X-DNS-Prefetch-Control": "on",
-        "X-Content-Type-Options": "nosniff",
-        "X-Frame-Options": "DENY",
-        "X-XSS-Protection": "1; mode=block",
-        "Referrer-Policy": "strict-origin-when-cross-origin",
-        "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
-        "Cache-Control": "no-cache, no-store, must-revalidate",
-        "Pragma": "no-cache",
-        "Expires": "0"
-      }
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
     }
-  ],
-  "functions": {
-    "app/api/**/*.js": {
-      "maxDuration": 10,
-      "memory": 512
-    },
-    "app/pages/api/**/*.js": {
-      "maxDuration": 10,
-      "memory": 512
-    }
-  },
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
-  "devCommand": "npm run dev"
+  ]
 }

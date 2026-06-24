@@ -1,0 +1,1195 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Ecommerce Campaign URL Builder | UTM + GA4 Checklist</title>
+  <meta name="description" content="Generate clean UTM campaign links for Shopify, WooCommerce, TikTok, Meta, Google Ads, email, SMS, affiliate, and QR traffic. Includes a GA4 Realtime checklist.">
+  <meta property="og:title" content="Free Ecommerce Campaign URL Builder">
+  <meta property="og:description" content="Create clean UTM/ad tracking links for your store and verify source, medium, campaign, and ecommerce events in GA4 Realtime.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/workflow.png">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-2: #eef6ff;
+      --ink: #102033;
+      --muted: #5f6f82;
+      --line: #d9e2ec;
+      --blue: #2563eb;
+      --teal: #0f766e;
+      --green: #16a34a;
+      --amber: #d97706;
+      --danger: #b91c1c;
+      --shadow: 0 16px 40px rgba(15, 23, 42, .08);
+      color-scheme: light;
+      font-family: Satoshi, Geist, Aptos, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      min-width: 0;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(217, 226, 236, .8);
+      background: rgba(248, 250, 252, .92);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar-inner {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 16px;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+      min-width: 0;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      color: #fff;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      min-width: 0;
+    }
+
+    .text-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .button {
+      min-height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0 14px;
+      background: var(--surface);
+      color: var(--ink);
+      font-weight: 750;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: transform .15s ease, border-color .15s ease, background .15s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: #b8c6d8;
+    }
+
+    .button.primary {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+    }
+
+    .button.accent {
+      background: #ecfdf5;
+      color: #065f46;
+      border-color: #a7f3d0;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .tool-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 420px);
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 22px;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .tool-header > *,
+    .builder > *,
+    .guide-band > *,
+    .cta > * {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      max-width: 820px;
+      overflow-wrap: anywhere;
+    }
+
+    h1 span {
+      display: block;
+    }
+
+    .subhead {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: clamp(16px, 2.2vw, 19px);
+      line-height: 1.6;
+      max-width: 760px;
+      overflow-wrap: anywhere;
+    }
+
+    .workflow-visual {
+      width: 100%;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: #fff;
+      display: block;
+    }
+
+    .builder {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, .88fr);
+      gap: 18px;
+      align-items: start;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      min-width: 0;
+    }
+
+    .panel-head {
+      padding: 18px 18px 0;
+    }
+
+    .panel-title {
+      margin: 0;
+      font-size: 19px;
+      letter-spacing: 0;
+    }
+
+    .panel-note {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    form {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 780;
+      color: #26374a;
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-width: 0;
+      min-height: 44px;
+      border: 1px solid #cbd6e2;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 10px 12px;
+      font: inherit;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, .14);
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px;
+      background: #f6f8fb;
+      border: 1px solid #e1e8f0;
+      border-radius: 8px;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .checkbox-row input {
+      width: 18px;
+      min-width: 18px;
+      height: 18px;
+      min-height: 18px;
+      margin-top: 1px;
+    }
+
+    .result-panel {
+      position: sticky;
+      top: 82px;
+    }
+
+    .result-body {
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .url-box {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #f4f8ff;
+      border: 1px solid #d7e5ff;
+    }
+
+    .url-output {
+      word-break: break-all;
+      overflow-wrap: anywhere;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #0f3f85;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .error {
+      color: var(--danger);
+      font-size: 14px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 420px;
+      font-size: 13px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+
+    th {
+      background: #f6f8fb;
+      color: #26374a;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .mini-section {
+      display: grid;
+      gap: 9px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .mini-section h3 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .checklist,
+    .note-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .tagline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: #eef2ff;
+      color: #3730a3;
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .guide-band {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .guide {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, .05);
+    }
+
+    .guide h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .guide p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .cta {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      border: 1px solid #b7e4d4;
+      background: #ecfdf5;
+      border-radius: 8px;
+    }
+
+    .cta h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .cta p {
+      margin: 0;
+      color: #315c4e;
+      line-height: 1.5;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%) translateY(18px);
+      background: var(--ink);
+      color: #fff;
+      padding: 11px 14px;
+      border-radius: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 40;
+      font-weight: 760;
+      box-shadow: var(--shadow);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    footer {
+      margin-top: 34px;
+      padding: 22px 0 4px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 980px) {
+      .tool-header,
+      .builder,
+      .guide-band,
+      .cta {
+        grid-template-columns: 1fr;
+      }
+
+      .result-panel {
+        position: static;
+      }
+
+      .workflow-visual {
+        max-height: 280px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner,
+      main {
+        width: 100%;
+        max-width: 1180px;
+      }
+
+      .topbar-inner {
+        min-height: auto;
+        padding: 12px 28px 12px 12px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      main {
+        padding: 28px 28px 56px 12px;
+      }
+
+      .field-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .top-actions {
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .result-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .brand {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: clamp(26px, 7vw, 29px);
+        line-height: 1.08;
+      }
+
+      .subhead {
+        font-size: 16px;
+      }
+
+      .workflow-visual {
+        object-fit: contain;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Free Ecommerce Campaign URL Builder",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Campaign URL Builder</span>
+      </div>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="#platforms">Platform paths</a>
+        <a class="text-link" href="#ga4">GA4 checklist</a>
+        <a class="button accent" href="https://promptbase.com" target="_blank" rel="noopener">Skill pack $8.99</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="tool-header" id="tool">
+      <div>
+        <p class="eyebrow">Free ecommerce tracking tool</p>
+        <h1><span>Free Ecommerce</span><span>Campaign URL Builder</span></h1>
+        <p class="subhead">Create clean UTM/ad links for your store. Check source, campaign, and ecommerce events in GA4 Realtime.</p>
+        <div class="tagline" aria-label="Supported use cases">
+          <span class="tag">Shopify</span>
+          <span class="tag">WooCommerce</span>
+          <span class="tag">TikTok</span>
+          <span class="tag">Meta Ads</span>
+          <span class="tag">Google Ads</span>
+          <span class="tag">GA4</span>
+        </div>
+      </div>
+      <img class="workflow-visual" src="assets/workflow.png" alt="Abstract workflow from traffic channels to ecommerce store to analytics dashboard">
+    </section>
+
+    <section class="builder" aria-label="Campaign URL builder">
+      <div class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Build one clean campaign link</h2>
+          <p class="panel-note">Start with one URL and one campaign name. Turn on macros only after checking the ad platform tokens.</p>
+        </div>
+
+        <form id="builderForm">
+          <div class="field-grid">
+            <div class="field full">
+              <label for="baseUrl">Store or landing page URL</label>
+              <input id="baseUrl" name="baseUrl" type="url" value="https://example.com/products/sample-product" autocomplete="url" required>
+            </div>
+
+            <div class="field">
+              <label for="platform">Store platform</label>
+              <select id="platform" name="platform">
+                <option value="shopify">Shopify</option>
+                <option value="woocommerce">WooCommerce</option>
+                <option value="bigcommerce">BigCommerce</option>
+                <option value="magento">Magento / Adobe Commerce</option>
+                <option value="wix">Wix</option>
+                <option value="squarespace">Squarespace</option>
+                <option value="webflow">Webflow</option>
+                <option value="shopline">SHOPLINE</option>
+                <option value="shoplazza">Shoplazza</option>
+                <option value="other">Other ecommerce platform</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="channel">Traffic channel</label>
+              <select id="channel" name="channel">
+                <option value="meta">Meta / Facebook / Instagram</option>
+                <option value="google">Google Ads / YouTube</option>
+                <option value="tiktok">TikTok</option>
+                <option value="snapchat">Snapchat</option>
+                <option value="reddit">Reddit</option>
+                <option value="x">X / Twitter</option>
+                <option value="pinterest">Pinterest</option>
+                <option value="applovin">AppLovin / mobile network</option>
+                <option value="programmatic">Programmatic / DSP</option>
+                <option value="native">Taboola / Outbrain native</option>
+                <option value="amazon">Amazon Ads / attribution</option>
+                <option value="email">Email</option>
+                <option value="sms">SMS</option>
+                <option value="affiliate">Affiliate</option>
+                <option value="qr">QR / offline</option>
+                <option value="custom">Custom</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="campaign">Campaign name</label>
+              <input id="campaign" name="campaign" type="text" value="spring_sale_travel_bag" required>
+            </div>
+
+            <div class="field">
+              <label for="content">Creative / content label</label>
+              <input id="content" name="content" type="text" value="hero_video">
+            </div>
+
+            <div class="field">
+              <label for="term">Keyword / audience term</label>
+              <input id="term" name="term" type="text" placeholder="optional">
+            </div>
+
+            <div class="field">
+              <label for="market">Target market</label>
+              <input id="market" name="market" type="text" placeholder="US, UK, EU, AU">
+            </div>
+
+            <div class="field">
+              <label for="goal">Campaign goal</label>
+              <select id="goal" name="goal">
+                <option value="product visits">Product visits</option>
+                <option value="purchases">Purchases</option>
+                <option value="leads">Leads</option>
+                <option value="app installs">App installs</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="ga4Status">GA4 status</label>
+              <select id="ga4Status" name="ga4Status">
+                <option value="created">GA4 created, not verified</option>
+                <option value="not-installed">GA4 not installed</option>
+                <option value="installed">Installed, not checked</option>
+                <option value="working">Installed and working</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="checkbox-row" for="macroMode">
+            <input id="macroMode" name="macroMode" type="checkbox">
+            <span>Add starter ad-platform macro placeholders where available. Verify every macro inside the platform before live spend.</span>
+          </label>
+        </form>
+      </div>
+
+      <div class="panel result-panel" aria-live="polite">
+        <div class="panel-head">
+          <h2 class="panel-title">Generated output</h2>
+          <p class="panel-note">Use the long URL directly or send it to your short-link tool after checking it.</p>
+        </div>
+        <div class="result-body">
+          <p class="error" id="errorText"></p>
+
+          <div class="url-box">
+            <div class="url-output" id="finalUrl"></div>
+            <div class="result-actions">
+              <button class="button primary" id="copyUrl" type="button">Copy URL</button>
+              <button class="button" id="downloadCsv" type="button">Download CSV</button>
+              <button class="button" id="downloadChecklist" type="button">Download checklist</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Value</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody id="paramTable"></tbody>
+            </table>
+          </div>
+
+          <div class="mini-section">
+            <h3>Macro notes</h3>
+            <ul class="note-list" id="macroNotes"></ul>
+          </div>
+
+          <div class="mini-section" id="ga4">
+            <h3>GA4 Realtime checklist</h3>
+            <ol class="checklist" id="ga4Checklist"></ol>
+          </div>
+
+          <div class="mini-section">
+            <h3>Ecommerce events to check</h3>
+            <ul class="note-list" id="eventList"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-band" id="platforms" aria-label="Platform guidance">
+      <article class="guide">
+        <h2>Beginner platform path</h2>
+        <p id="platformGuidance">Use the official Google &amp; YouTube channel first, then confirm the generated link in GA4 Realtime.</p>
+      </article>
+      <article class="guide">
+        <h2>Transparent tracking only</h2>
+        <p>Do not put email, phone number, customer name, address, or order notes in URLs. Avoid hidden redirects and duplicate GA4 tags.</p>
+      </article>
+      <article class="guide">
+        <h2>What to improve next</h2>
+        <p>After the basic visit appears in GA4, test product view, add to cart, checkout start, and purchase events where your store supports them.</p>
+      </article>
+    </section>
+
+    <section class="cta" aria-label="Custom setup">
+      <div>
+        <h2>Need this configured for your store?</h2>
+        <p>Use the free builder first. If GA4, platform settings, or channel naming gets confusing, request a custom setup workflow.</p>
+      </div>
+      <a class="button primary" href="https://promptbase.com" target="_blank" rel="noopener">Get the skill pack</a>
+    </section>
+
+    <footer>
+      <p>This starter tool creates transparent campaign URLs and checklists. It does not promise perfect attribution; browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can affect analytics.</p>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status">Copied</div>
+
+  <script>
+    const channelPresets = {
+      meta: {
+        source: "meta",
+        medium: "paid_social",
+        content: "{{ad.name}}",
+        note: "Meta macro examples vary by setup. Verify campaign, ad set, ad, and placement tokens inside Meta before launch."
+      },
+      google: {
+        source: "google",
+        medium: "paid_search",
+        content: "{creative}",
+        note: "Google Ads ValueTrack parameters depend on campaign type. Verify creative, keyword, device, and network tokens before launch."
+      },
+      tiktok: {
+        source: "tiktok",
+        medium: "paid_social",
+        content: "__AID__",
+        note: "TikTok macro formats can vary. Verify ad, ad group, campaign, and placement tokens in the ad platform before launch."
+      },
+      snapchat: {
+        source: "snapchat",
+        medium: "paid_social",
+        content: "<ad_macro>",
+        note: "Snapchat URL macros vary by account and help-center version. Use static naming unless Ads Manager confirms the token."
+      },
+      reddit: {
+        source: "reddit",
+        medium: "paid_social",
+        content: "<ad_id_or_name>",
+        note: "Reddit is often safest with static UTMs. Confirm whether campaign/ad macros are available in the account before launch."
+      },
+      x: {
+        source: "x",
+        medium: "paid_social",
+        content: "<ad_or_creative_name>",
+        note: "Use static UTMs unless the X Ads account confirms URL macro support. Preserve click IDs if the platform appends them."
+      },
+      pinterest: {
+        source: "pinterest",
+        medium: "paid_social",
+        content: "{creative_id}",
+        note: "Pinterest macro availability can depend on placement and account setup. Verify creative and campaign tokens before launch."
+      },
+      applovin: {
+        source: "applovin",
+        medium: "mobile_network",
+        content: "<creative_id_or_name>",
+        note: "AppLovin and similar app networks usually run through an MMP link. Confirm network macros and MMP sub-parameters together."
+      },
+      programmatic: {
+        source: "programmatic",
+        medium: "display",
+        content: "<creative_macro>",
+        note: "DSP macros are account-specific. Do not break click trackers; confirm line item, creative, site/app, and click ID fields before launch."
+      },
+      native: {
+        source: "native",
+        medium: "native",
+        content: "<ad_or_item_macro>",
+        note: "Native networks often provide site, publisher, item, and click macros. Verify exact token names in Taboola, Outbrain, or the buyer's network."
+      },
+      amazon: {
+        source: "amazon",
+        medium: "marketplace_ads",
+        content: "<creative_or_asin>",
+        note: "Do not rewrite Amazon Attribution tags. Preserve approved tag parameters and append UTMs only when the workflow allows it."
+      },
+      email: {
+        source: "email",
+        medium: "email",
+        content: "",
+        note: "Use a list, segment, or creative label in utm_content to compare email versions."
+      },
+      sms: {
+        source: "sms",
+        medium: "sms",
+        content: "",
+        note: "Keep SMS links short after verifying the full URL. Do not put phone numbers or customer data in URL parameters."
+      },
+      affiliate: {
+        source: "affiliate_partner",
+        medium: "affiliate",
+        content: "",
+        note: "Preserve affiliate IDs and partner parameters already present in the URL."
+      },
+      qr: {
+        source: "qr",
+        medium: "offline",
+        content: "",
+        note: "Use utm_content for location, package insert, event, or printed material names."
+      },
+      custom: {
+        source: "custom_source",
+        medium: "custom_medium",
+        content: "",
+        note: "Replace source and medium with your real channel naming convention before launch."
+      }
+    };
+
+    const platformGuidance = {
+      shopify: "Use the Google & YouTube channel first. For advanced tracking, test Shopify Customer Events/custom pixels only after the standard path is checked.",
+      woocommerce: "Use Google for WooCommerce, Site Kit, MonsterInsights, or another trusted GA4 plugin. Avoid installing multiple GA4 tags.",
+      bigcommerce: "Start with built-in analytics integrations, Script Manager, or tag manager settings. Confirm checkout/order events in your plan and theme.",
+      magento: "Use a trusted GA4 or GTM extension first. Magento tracking often needs staging and developer review before production.",
+      wix: "Use Wix marketing integrations or the Google Analytics connection first. Confirm consent banner behavior and premium domain requirements.",
+      squarespace: "Use the Google Analytics or Google Tag Manager settings before code injection. Confirm ecommerce event visibility.",
+      webflow: "Use site settings, custom code, or GTM. Webflow Ecommerce may need manual ecommerce event instrumentation.",
+      shopline: "Use platform marketing integrations or tag manager/custom code areas where supported. Verify checkout script limits.",
+      shoplazza: "Use platform app/integration or custom code areas where supported. Verify checkout and order event access.",
+      other: "Use the lowest-risk path first: official integration, trusted plugin, Google tag, GTM, then custom code only when necessary."
+    };
+
+    const form = document.getElementById("builderForm");
+    const finalUrlEl = document.getElementById("finalUrl");
+    const paramTable = document.getElementById("paramTable");
+    const macroNotes = document.getElementById("macroNotes");
+    const ga4Checklist = document.getElementById("ga4Checklist");
+    const eventList = document.getElementById("eventList");
+    const errorText = document.getElementById("errorText");
+    const platformGuidanceEl = document.getElementById("platformGuidance");
+    const toast = document.getElementById("toast");
+    const copyUrlButton = document.getElementById("copyUrl");
+    const downloadCsvButton = document.getElementById("downloadCsv");
+    const downloadChecklistButton = document.getElementById("downloadChecklist");
+    let latestRows = [];
+    let latestFinalUrl = "";
+
+    const getValue = id => document.getElementById(id).value.trim();
+    const isMacroMode = () => document.getElementById("macroMode").checked;
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function slugify(value, fallback) {
+      const normalized = value
+        .toLowerCase()
+        .trim()
+        .replace(/['"]/g, "")
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "");
+      return normalized || fallback;
+    }
+
+    function normalizeUrl(value) {
+      if (!value) return "";
+      if (/^https?:\/\//i.test(value)) return value;
+      return `https://${value}`;
+    }
+
+    function readableQueryString(searchParams) {
+      return searchParams
+        .toString()
+        .replace(/%7B/gi, "{")
+        .replace(/%7D/gi, "}")
+        .replace(/%5B/gi, "[")
+        .replace(/%5D/gi, "]")
+        .replace(/%7C/gi, "|");
+    }
+
+    function buildChecklist() {
+      return [
+        "Open GA4 Realtime.",
+        "Click the generated campaign URL.",
+        "Confirm the page opens correctly.",
+        "Confirm redirects preserve UTM parameters.",
+        "Confirm GA4 shows the visit.",
+        "Confirm source, medium, campaign, content, and term look right.",
+        "Confirm there are no duplicate UTM keys.",
+        "For ecommerce, check page_view, view_item, add_to_cart, begin_checkout, and purchase where supported."
+      ];
+    }
+
+    function renderList(target, items) {
+      target.innerHTML = items.map(item => `<li>${escapeHtml(item)}</li>`).join("");
+    }
+
+    function csvCell(value) {
+      const text = String(value ?? "");
+      return /[",\n\r]/.test(text) ? `"${text.replace(/"/g, '""')}"` : text;
+    }
+
+    function downloadText(filename, content, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadName(suffix, extension) {
+      const campaign = slugify(getValue("campaign"), "campaign");
+      const channel = slugify(getValue("channel"), "channel");
+      return `${campaign}_${channel}_${suffix}.${extension}`;
+    }
+
+    function buildCsv() {
+      const metadata = [
+        ["field", "value", "purpose"],
+        ["final_url", latestFinalUrl, "Generated campaign URL"],
+        ["store_platform", getValue("platform"), "Selected ecommerce platform"],
+        ["traffic_channel", getValue("channel"), "Selected traffic channel"],
+        ["campaign_goal", getValue("goal"), "Campaign objective"],
+        ["ga4_status", getValue("ga4Status"), "Current GA4 setup status"]
+      ];
+      const params = [
+        [],
+        ["parameter", "value", "purpose"],
+        ...latestRows.map(([name, value, purpose]) => [name, value, purpose])
+      ];
+      return [...metadata, ...params]
+        .map(row => row.map(csvCell).join(","))
+        .join("\n");
+    }
+
+    function buildChecklistText() {
+      const lines = [
+        "GA4 Realtime Campaign Checklist",
+        "",
+        `Final URL: ${latestFinalUrl || "No URL generated"}`,
+        `Store platform: ${getValue("platform")}`,
+        `Traffic channel: ${getValue("channel")}`,
+        `Campaign goal: ${getValue("goal")}`,
+        `GA4 status: ${getValue("ga4Status")}`,
+        "",
+        "Steps:",
+        ...buildChecklist().map((item, index) => `${index + 1}. ${item}`),
+        "",
+        "Ecommerce events to check:",
+        "- page_view",
+        "- view_item",
+        "- add_to_cart",
+        "- view_cart",
+        "- begin_checkout",
+        "- purchase",
+        "",
+        "Safety notes:",
+        "- Keep URLs transparent.",
+        "- Do not put customer data or private order details in URL parameters.",
+        "- Browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can affect analytics."
+      ];
+      return lines.join("\n");
+    }
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.setTimeout(() => toast.classList.remove("show"), 1600);
+    }
+
+    async function copyText(text, label) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+        }
+        showToast(label);
+      } catch (error) {
+        showToast("Copy failed");
+      }
+    }
+
+    function updateBuilder() {
+      const channel = getValue("channel");
+      const platform = getValue("platform");
+      const preset = channelPresets[channel] || channelPresets.custom;
+      const campaign = slugify(getValue("campaign"), "campaign_name");
+      const contentInput = slugify(getValue("content"), "");
+      const termInput = slugify(getValue("term"), "");
+      const marketInput = slugify(getValue("market"), "");
+      const macroEnabled = isMacroMode();
+
+      platformGuidanceEl.textContent = platformGuidance[platform] || platformGuidance.other;
+
+      let url;
+      try {
+        url = new URL(normalizeUrl(getValue("baseUrl")));
+        errorText.style.display = "none";
+        errorText.textContent = "";
+      } catch (error) {
+        finalUrlEl.textContent = "Enter a valid URL to generate the campaign link.";
+        errorText.textContent = "The URL needs a valid domain, such as https://example.com/products/sample-product.";
+        errorText.style.display = "block";
+        paramTable.innerHTML = "";
+        latestRows = [];
+        latestFinalUrl = "";
+        renderList(macroNotes, ["No URL generated yet."]);
+        return;
+      }
+
+      const params = new URLSearchParams(url.search);
+      const rows = [
+        ["utm_source", preset.source, "Traffic source"],
+        ["utm_medium", preset.medium, "Traffic medium"],
+        ["utm_campaign", campaign, "Campaign name"]
+      ];
+
+      params.set("utm_source", preset.source);
+      params.set("utm_medium", preset.medium);
+      params.set("utm_campaign", campaign);
+
+      const contentValue = contentInput || (macroEnabled ? preset.content : "");
+      if (contentValue) {
+        params.set("utm_content", contentValue);
+        rows.push(["utm_content", contentValue, macroEnabled && !contentInput ? "Dynamic creative/ad placeholder" : "Creative or content label"]);
+      }
+
+      if (termInput) {
+        params.set("utm_term", termInput);
+        rows.push(["utm_term", termInput, "Keyword, audience, or targeting label"]);
+      }
+
+      if (marketInput) {
+        params.set("_market", marketInput);
+        rows.push(["_market", marketInput, "Target market label"]);
+      }
+
+      url.search = readableQueryString(params);
+      const finalUrl = url.toString();
+      finalUrlEl.textContent = finalUrl;
+      latestRows = rows;
+      latestFinalUrl = finalUrl;
+
+      paramTable.innerHTML = rows.map(([name, value, purpose]) => `
+        <tr>
+          <td><code>${escapeHtml(name)}</code></td>
+          <td><code>${escapeHtml(value)}</code></td>
+          <td>${escapeHtml(purpose)}</td>
+        </tr>
+      `).join("");
+
+      const notes = [
+        preset.note,
+        macroEnabled
+          ? "Macro mode is on. Test the exact token inside the ad platform before live spend."
+          : "Macro mode is off. This is the safer beginner path for static UTM tracking.",
+        "Keep URLs transparent. Do not use cloaking, hidden redirects, or PII in URL parameters."
+      ];
+      renderList(macroNotes, notes);
+
+      renderList(ga4Checklist, buildChecklist());
+      renderList(eventList, ["page_view", "view_item", "add_to_cart", "view_cart", "begin_checkout", "purchase"]);
+    }
+
+    form.addEventListener("input", updateBuilder);
+    form.addEventListener("change", updateBuilder);
+
+    copyUrlButton.addEventListener("click", () => {
+      copyText(finalUrlEl.textContent, "URL copied");
+    });
+
+    downloadCsvButton.addEventListener("click", () => {
+      if (!latestFinalUrl) {
+        showToast("Enter a valid URL first");
+        return;
+      }
+      downloadText(downloadName("parameters", "csv"), buildCsv(), "text/csv;charset=utf-8");
+      showToast("CSV downloaded");
+    });
+
+    downloadChecklistButton.addEventListener("click", () => {
+      if (!latestFinalUrl) {
+        showToast("Enter a valid URL first");
+        return;
+      }
+      downloadText(downloadName("ga4_checklist", "txt"), buildChecklistText(), "text/plain;charset=utf-8");
+      showToast("Checklist downloaded");
+    });
+
+    updateBuilder();
+  </script>
+</body>
+</html>
