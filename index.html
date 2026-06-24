@@ -1121,10 +1121,10 @@
       params.set("utm_medium", preset.medium);
       params.set("utm_campaign", campaign);
 
-      const contentValue = contentInput || (macroEnabled ? preset.content : "");
+      const contentValue = macroEnabled && preset.content ? preset.content : contentInput;
       if (contentValue) {
         params.set("utm_content", contentValue);
-        rows.push(["utm_content", contentValue, macroEnabled && !contentInput ? "Dynamic creative/ad placeholder" : "Creative or content label"]);
+        rows.push(["utm_content", contentValue, macroEnabled && preset.content ? "Dynamic creative/ad placeholder" : "Creative or content label"]);
       }
 
       if (termInput) {
