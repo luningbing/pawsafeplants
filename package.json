@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "node -e \"console.log('Static site: no build step required')\""
+    "build": "node -e \"console.log('Static site: no build step required')\"",
+    "vercel-build": "npm run build"
   }
 }
