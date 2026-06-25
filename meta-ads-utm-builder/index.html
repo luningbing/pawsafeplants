@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meta Ads UTM Builder For Ecommerce | Free Campaign URL Builder</title>
+  <meta name="description" content="Create clean Meta Ads campaign URLs for ecommerce, decide when to use static UTMs or placeholders, and verify traffic plus ecommerce events in GA4 Realtime.">
+  <meta property="og:title" content="Meta Ads UTM Builder For Ecommerce">
+  <meta property="og:description" content="Build a clean Meta campaign link for your store and verify source, campaign, content, and ecommerce events in GA4 Realtime.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/meta-ads-utm-builder">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/meta-ads-utm-builder">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Campaign URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../shopify-utm-builder/">Shopify guide</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Channel guide</p>
+        <h1>Meta Ads UTM Builder For Ecommerce</h1>
+        <p class="subhead">Build a clean Meta campaign URL for your store, keep naming readable, and verify that GA4 still sees the visit plus the ecommerce events you care about.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../ga4-realtime-checklist/">Open the GA4 checklist</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Paid social traffic flowing into an ecommerce site and analytics view">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Best first path</h2>
+        <p>Use static UTMs first. Meta placeholders are useful later, but they are not required to prove that your store and GA4 are reading campaign traffic correctly.</p>
+      </article>
+      <article class="card">
+        <h2>Where it goes wrong</h2>
+        <p>Broken redirects, duplicate tags, and overcomplicated placeholder setups can make Meta traffic look inconsistent inside GA4.</p>
+      </article>
+      <article class="card">
+        <h2>Success signal</h2>
+        <p>GA4 Realtime shows the visit with <code>utm_source=meta</code>, <code>utm_medium=paid_social</code>, and the same campaign naming you set before launch.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>How to build a Meta ecommerce tracking link</h2>
+          <ol class="step-list">
+            <li>Paste the final store URL into the homepage builder and select <code>Meta / Facebook / Instagram</code>.</li>
+            <li>Use a campaign name that stays human-readable in both Ads Manager and GA4, such as <code>summer_drop_canvas_bag</code>.</li>
+            <li>Keep <code>utm_source=meta</code> and <code>utm_medium=paid_social</code> stable across campaigns.</li>
+            <li>Use <code>utm_content</code> only when you need creative or ad-level comparison.</li>
+            <li>Turn macro mode on only after the exact Meta token syntax is confirmed in your setup.</li>
+          </ol>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=summer_drop_canvas_bag&amp;utm_content=hero_video</div>
+        </article>
+
+        <article class="section">
+          <h2>Static UTMs versus Meta placeholders</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Use case</th>
+                  <th>Recommended path</th>
+                  <th>Reason</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>First launch</td>
+                  <td>Static UTMs</td>
+                  <td>Simpler to verify when you only need campaign-level reporting.</td>
+                </tr>
+                <tr>
+                  <td>Creative testing</td>
+                  <td>Static or placeholder <code>utm_content</code></td>
+                  <td>Useful if you want ad-level comparison and the token format is confirmed.</td>
+                </tr>
+                <tr>
+                  <td>Shared naming across teams</td>
+                  <td>Static UTMs</td>
+                  <td>Reduces confusion when multiple buyers or creators are involved.</td>
+                </tr>
+                <tr>
+                  <td>Advanced account setup</td>
+                  <td>Placeholder mode after validation</td>
+                  <td>Only worth it once the simple path is already proven.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>How to verify a Meta link in GA4</h2>
+          <ol class="step-list">
+            <li>Open GA4 Realtime before clicking the final Meta campaign URL.</li>
+            <li>Click the URL and confirm the landing page opens without dropping the query string.</li>
+            <li>Check source, medium, campaign, and content inside Realtime.</li>
+            <li>For ecommerce, confirm <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code>, and <code>purchase</code> where supported.</li>
+            <li>If the visit appears but the labels look wrong, inspect redirects and duplicate GA4 installs before changing the campaign itself.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Meta tracking mistakes to avoid</h2>
+          <ul class="note-list">
+            <li>Letting every campaign invent a new naming pattern for source, medium, or campaign.</li>
+            <li>Using placeholder tokens from old documentation without confirming they still work in the live account.</li>
+            <li>Appending UTMs to a URL that already carries other conflicting campaign values.</li>
+            <li>Assuming a shortener preserves the exact final parameters without clicking the long URL first.</li>
+            <li>Putting customer or order information into the URL just to make attribution easier.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Practical rule</h2>
+          <div class="mini-callout">
+            <strong>Campaign clarity first</strong>
+            If you can answer the reporting question with clean static UTMs, do that first and leave placeholder-heavy setups for later.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../google-ads-utm-builder/">
+              <strong>Google Ads UTM Builder</strong>
+              <span>Use this when you want a parallel setup pattern for search or YouTube traffic.</span>
+            </a>
+            <a class="related-link" href="../ga4-realtime-checklist/">
+              <strong>GA4 Realtime Checklist</strong>
+              <span>Walk through the same sanity check before you put money behind the campaign.</span>
+            </a>
+            <a class="related-link" href="../#tool">
+              <strong>Homepage Builder</strong>
+              <span>Generate the final Meta-ready long URL, then copy or download it.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Build the Meta link, then test it yourself</h2>
+        <p>The cheapest debugging path is still manual: generate one clean URL, click it, check GA4 Realtime, then launch with confidence.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point, not a guarantee of perfect attribution. Browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can all affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>
