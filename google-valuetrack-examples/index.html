@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google ValueTrack Examples | Free Search Campaign Parameter Guide</title>
+  <meta name="description" content="See practical Google ValueTrack examples for campaign, ad group, keyword, match type, and device tracking.">
+  <meta property="og:title" content="Google ValueTrack Examples">
+  <meta property="og:description" content="A practical Google tracking example page for transparent search campaign links and GA4 checks.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/google-valuetrack-examples">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/google-valuetrack-examples">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Search guide</p>
+        <h1>Google ValueTrack Examples</h1>
+        <p class="subhead">Use these starter examples to keep Google Ads links readable while still capturing campaign, ad group, keyword, match type, and device context.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../manual-url-setup-service/">Manual setup</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Google traffic flowing into an ecommerce store and reporting dashboard">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Best first path</h2>
+        <p>Keep the campaign readable, then layer in ValueTrack tokens only if the extra detail is worth the reporting complexity.</p>
+      </article>
+      <article class="card">
+        <h2>What usually breaks</h2>
+        <p>Campaign type differences and token support differences can make a generic template fail in the live account.</p>
+      </article>
+      <article class="card">
+        <h2>Success signal</h2>
+        <p>The URL stays transparent, the tokens expand correctly, and GA4 can still read the visit cleanly.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Readable example</h2>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaign=running_shoes_launch&amp;utm_content={creative}&amp;campaignid={campaignid}&amp;adgroupid={adgroupid}&amp;keyword={keyword}&amp;matchtype={matchtype}&amp;device={device}</div>
+          <p>The readable version works best when you need a human to inspect the URL and understand it quickly.</p>
+        </article>
+
+        <article class="section">
+          <h2>Lean example</h2>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaign=running_shoes_launch&amp;utm_content={creative}</div>
+          <p>The lean version is better when you only need a simple campaign label and do not want to overload the URL.</p>
+        </article>
+
+        <article class="section">
+          <h2>What to keep in mind</h2>
+          <ul class="note-list">
+            <li>Use the exact token format your account accepts.</li>
+            <li>Do not assume every campaign type behaves the same.</li>
+            <li>Keep the readable campaign label stable.</li>
+            <li>Test the final link before budget goes live.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>Simple search setup</strong>
+            This page is best for search and YouTube-style traffic when you want one clean template to start from.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../google-ads-utm-builder/">
+              <strong>Google Ads UTM Builder</strong>
+              <span>Build the final Google link from the homepage tool.</span>
+            </a>
+            <a class="related-link" href="../utm-naming-convention-template/">
+              <strong>UTM naming template</strong>
+              <span>Keep the campaign labels consistent.</span>
+            </a>
+            <a class="related-link" href="../ga4-realtime-checklist/">
+              <strong>GA4 Realtime checklist</strong>
+              <span>Confirm the click path still looks sane.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Use one Google template, then test the click path</h2>
+        <p>Search traffic is easier to manage when the naming logic stays boring and stable.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point, not a promise of perfect attribution. Confirm token support inside the live Google Ads account.</p>
+    </footer>
+  </main>
+</body>
+</html>
