@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout Attribution in GA4 | Ecommerce Campaign Tracking QA</title>
+  <meta name="description" content="Troubleshoot checkout attribution in GA4 when campaign source, medium, or purchase context changes after ecommerce users reach checkout.">
+  <meta property="og:title" content="Checkout Attribution in GA4">
+  <meta property="og:description" content="A practical checklist for checking campaign context across ecommerce checkout and purchase events.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/checkout-attribution-ga4">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/checkout-attribution-ga4">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../campaign-url-qa-checklist/">URL QA checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Checkout tracking guide</p>
+        <h1>Checkout Attribution in GA4</h1>
+        <p class="subhead">When source and campaign look correct on the landing page but disappear or change near checkout, inspect the checkout path instead of rebuilding every campaign URL.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Build a clean test URL</a>
+          <a class="button" href="../manual-url-setup-service/">Manual setup</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Campaign attribution flowing from landing page through checkout to GA4 purchase reporting">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Core question</h2>
+        <p>Does the same session keep campaign context from landing page to checkout to purchase?</p>
+      </article>
+      <article class="card">
+        <h2>Common break</h2>
+        <p>Checkout runs on a different domain, subdomain, embedded flow, or app-controlled step.</p>
+      </article>
+      <article class="card">
+        <h2>Practical test</h2>
+        <p>Click one campaign URL, complete a test checkout path, and compare the event sequence in GA4.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Checkout attribution QA steps</h2>
+          <ol class="step-list">
+            <li>Generate one clean campaign URL and save the exact source, medium, and campaign values.</li>
+            <li>Click the URL and confirm GA4 sees the landing visit.</li>
+            <li>Move through product view, add to cart, and begin checkout.</li>
+            <li>Watch whether the session continues or a new source appears.</li>
+            <li>Complete a supported test purchase path if your platform allows it.</li>
+            <li>Compare <code>begin_checkout</code> and <code>purchase</code> against the original campaign context.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>What can break attribution</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>Symptom</th>
+                  <th>Check next</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Checkout domain</td>
+                  <td>Checkout starts a new session or source.</td>
+                  <td>Cross-domain behavior, platform docs, checkout settings.</td>
+                </tr>
+                <tr>
+                  <td>Payment redirect</td>
+                  <td>Payment provider appears as source.</td>
+                  <td>Referral handling and return URL behavior.</td>
+                </tr>
+                <tr>
+                  <td>Consent banner</td>
+                  <td>Events start late or appear incomplete.</td>
+                  <td>Consent mode, region behavior, tag firing order.</td>
+                </tr>
+                <tr>
+                  <td>Duplicate tracking</td>
+                  <td>Events duplicate or disagree.</td>
+                  <td>Native integration, GTM, app scripts, theme code.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>What to record during QA</h2>
+          <pre class="code-block">Landing URL:
+UTM source:
+UTM medium:
+UTM campaign:
+Landing page event seen:
+view_item seen:
+add_to_cart seen:
+begin_checkout seen:
+purchase seen:
+Source changed during checkout:
+Notes:</pre>
+        </article>
+
+        <article class="section">
+          <h2>Important limits</h2>
+          <ul class="note-list">
+            <li>Some checkout behavior is controlled by the ecommerce platform and may not be fully editable.</li>
+            <li>GA4 Realtime is useful for launch QA but not a final truth source for every attribution question.</li>
+            <li>Privacy settings, consent, ad blockers, payment redirects, and cross-domain flows can affect reporting.</li>
+            <li>Transparent tracking is the goal. Do not hide redirects or misrepresent the destination.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>Landing page works, checkout breaks</strong>
+            Use this when source and campaign look right at first but change or disappear during checkout and purchase.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../ga4-purchase-event-not-showing/">
+              <strong>Purchase event not showing</strong>
+              <span>Use this when the final purchase event is missing.</span>
+            </a>
+            <a class="related-link" href="../campaign-url-qa-checklist/">
+              <strong>Campaign URL QA checklist</strong>
+              <span>Start with a clean URL before checkout debugging.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when checkout attribution needs a careful manual review.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Keep URL QA and checkout QA separate</h2>
+        <p>That split makes it much easier to explain what is broken and what still works.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a clean test URL</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical attribution QA path. It does not guarantee perfect attribution across every browser, consent state, checkout flow, or payment provider.</p>
+    </footer>
+  </main>
+</body>
+</html>
