@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Free Ecommerce Campaign URL Builder | UTM + GA4 Checklist</title>
-  <meta name="description" content="Generate clean UTM campaign links for Shopify, WooCommerce, TikTok, Meta, Google Ads, email, SMS, affiliate, and QR traffic. Includes a GA4 Realtime checklist.">
-  <meta property="og:title" content="Free Ecommerce Campaign URL Builder">
-  <meta property="og:description" content="Create clean UTM/ad tracking links for your store and verify source, medium, campaign, and ecommerce events in GA4 Realtime.">
+  <title>Free Ad Landing Page URL Builder | UTM + GA4 Checklist</title>
+  <meta name="description" content="Generate clean ad landing page URLs with UTMs for Shopify, WooCommerce, TikTok, Meta, Google Ads, email, SMS, affiliate, and QR traffic. Includes a GA4 Realtime checklist.">
+  <meta property="og:title" content="Free Ad Landing Page URL Builder">
+  <meta property="og:description" content="Create clean ad landing page URLs for your store and verify source, medium, campaign, and ecommerce events in GA4 Realtime.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/workflow.png">
   <meta property="og:url" content="https://pawsafeplants.vercel.app/">
@@ -32,6 +32,10 @@
 
     * {
       box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
     }
 
     html {
@@ -271,6 +275,13 @@
       font-size: 13px;
       font-weight: 780;
       color: #26374a;
+    }
+
+    .field-help {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
     }
 
     input,
@@ -595,7 +606,7 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Free Ecommerce Campaign URL Builder",
+      "name": "Free Ad Landing Page URL Builder",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "offers": {
@@ -611,7 +622,7 @@
     <div class="topbar-inner">
       <div class="brand">
         <span class="mark" aria-hidden="true">U</span>
-        <span>Campaign URL Builder</span>
+        <span>Landing Page URL Builder</span>
       </div>
       <nav class="top-actions" aria-label="Primary">
         <a class="text-link" href="shopify-utm-builder/">Shopify guide</a>
@@ -624,9 +635,9 @@
   <main>
     <section class="tool-header" id="tool">
       <div>
-        <p class="eyebrow">Free ecommerce tracking tool</p>
-        <h1><span>Free Ecommerce</span><span>Campaign URL Builder</span></h1>
-        <p class="subhead">Create clean UTM/ad links for your store. Check source, campaign, and ecommerce events in GA4 Realtime.</p>
+        <p class="eyebrow">Free ad landing-page URL tool</p>
+        <h1><span>Free Ad Landing</span><span>Page URL Builder</span></h1>
+        <p class="subhead">Build clean ad landing-page URLs for your store. Add UTMs, keep macros readable, and check source, campaign, and ecommerce events in GA4 Realtime.</p>
         <div class="tagline" aria-label="Supported use cases">
           <span class="tag">Shopify</span>
           <span class="tag">WooCommerce</span>
@@ -639,17 +650,17 @@
       <img class="workflow-visual" src="assets/workflow.png" alt="Abstract workflow from traffic channels to ecommerce store to analytics dashboard">
     </section>
 
-    <section class="builder" aria-label="Campaign URL builder">
+    <section class="builder" aria-label="Landing-page URL builder">
       <div class="panel">
         <div class="panel-head">
-          <h2 class="panel-title">Build one clean campaign link</h2>
-          <p class="panel-note">Start with one URL and one campaign name. Turn on macros only after checking the ad platform tokens.</p>
+          <h2 class="panel-title">Build one clean ad landing-page URL</h2>
+          <p class="panel-note">Start with one landing-page URL and one campaign name. Turn on macros only after checking the ad platform tokens.</p>
         </div>
 
         <form id="builderForm">
           <div class="field-grid">
             <div class="field full">
-              <label for="baseUrl">Store or landing page URL</label>
+              <label for="baseUrl">Final landing page URL</label>
               <input id="baseUrl" name="baseUrl" type="url" value="https://example.com/products/sample-product" autocomplete="url" required>
             </div>
 
@@ -697,6 +708,14 @@
             </div>
 
             <div class="field">
+              <label for="setupMode">Setup mode</label>
+              <select id="setupMode" name="setupMode">
+                <option value="beginner">Beginner-safe static UTMs</option>
+                <option value="advanced">Advanced macros</option>
+              </select>
+            </div>
+
+            <div class="field">
               <label for="content">Creative / content label</label>
               <input id="content" name="content" type="text" value="hero_video">
             </div>
@@ -732,10 +751,19 @@
             </div>
           </div>
 
-          <label class="checkbox-row" for="macroMode">
-            <input id="macroMode" name="macroMode" type="checkbox">
-            <span>Add starter ad-platform macro placeholders where available. Verify every macro inside the platform before live spend.</span>
-          </label>
+          <div class="field-grid" id="advancedFields" hidden>
+            <div class="field">
+              <label for="macroStyle">Advanced macro style</label>
+              <select id="macroStyle" name="macroStyle">
+                <option value="readable">Readable names</option>
+                <option value="stable">Stable IDs</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <p class="field-help" id="advancedModeInfo">Advanced mode adds platform macros for experienced users. Keep beginner mode if you only need a clean ad landing-page URL plus readable GA4 labels.</p>
+            </div>
+          </div>
         </form>
       </div>
 
@@ -843,13 +871,13 @@
     <section class="cta" aria-label="Custom setup">
       <div>
         <h2>Need this configured for your store?</h2>
-        <p>Use the free builder first. If GA4, platform settings, or channel naming gets confusing, request a custom setup workflow when service intake opens.</p>
+        <p>Use the free builder first. If your team needs channel-specific macros, landing-page URL cleanup, or a store-specific GA4 launch QA path, this can turn into a manual setup service instead of a DIY workflow.</p>
       </div>
       <a class="button primary" href="#tool">Build a free link</a>
     </section>
 
     <footer>
-      <p>This starter tool creates transparent campaign URLs and checklists. It does not promise perfect attribution; browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can affect analytics.</p>
+      <p>This starter tool creates transparent ad landing-page URLs and checklists. It does not promise perfect attribution; browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can affect analytics.</p>
     </footer>
   </main>
 
@@ -968,7 +996,34 @@
       other: "Use the lowest-risk path first: official integration, trusted plugin, Google tag, GTM, then custom code only when necessary."
     };
 
+    const advancedMacroCatalog = {
+      meta: {
+        readable: {
+          content: "{{ad.name}}",
+          extras: [
+            ["campaign_name", "{{campaign.name}}", "Meta campaign name placeholder"],
+            ["adset_name", "{{adset.name}}", "Meta ad set name placeholder"],
+            ["ad_name", "{{ad.name}}", "Meta ad name placeholder"]
+          ],
+          info: "Meta readable mode keeps your main utm_campaign static, then adds {{campaign.name}}, {{adset.name}}, and {{ad.name}} as extra parameters for advanced debugging.",
+          note: "Readable Meta macros are easier to inspect by eye, but they can drift if campaign, ad set, or ad names are renamed later."
+        },
+        stable: {
+          content: "{{ad.id}}",
+          extras: [
+            ["campaign_id", "{{campaign.id}}", "Meta campaign ID placeholder"],
+            ["adset_id", "{{adset.id}}", "Meta ad set ID placeholder"],
+            ["ad_id", "{{ad.id}}", "Meta ad ID placeholder"]
+          ],
+          info: "Meta stable mode keeps your main utm_campaign readable, then adds stable campaign, ad set, and ad ID placeholders for cleaner joins later.",
+          note: "Stable Meta IDs are safer for later reconciliation, but they are harder to read inside raw GA4 reports."
+        }
+      }
+    };
+
     const form = document.getElementById("builderForm");
+    const advancedFieldsEl = document.getElementById("advancedFields");
+    const advancedModeInfoEl = document.getElementById("advancedModeInfo");
     const finalUrlEl = document.getElementById("finalUrl");
     const paramTable = document.getElementById("paramTable");
     const macroNotes = document.getElementById("macroNotes");
@@ -984,7 +1039,7 @@
     let latestFinalUrl = "";
 
     const getValue = id => document.getElementById(id).value.trim();
-    const isMacroMode = () => document.getElementById("macroMode").checked;
+    const isAdvancedMode = () => getValue("setupMode") === "advanced";
 
     function escapeHtml(value) {
       return String(value)
@@ -1024,7 +1079,7 @@
     function buildChecklist() {
       return [
         "Open GA4 Realtime.",
-        "Click the generated campaign URL.",
+        "Click the generated landing-page URL.",
         "Confirm the page opens correctly.",
         "Confirm redirects preserve UTM parameters.",
         "Confirm GA4 shows the visit.",
@@ -1061,15 +1116,40 @@
       return `${campaign}_${channel}_${suffix}.${extension}`;
     }
 
+    function updateAdvancedFields(channel) {
+      const advancedEnabled = isAdvancedMode();
+      advancedFieldsEl.hidden = !advancedEnabled;
+
+      if (!advancedEnabled) {
+        advancedModeInfoEl.textContent = "Advanced mode adds platform macros for experienced users. Keep beginner mode if you only need a clean ad landing-page URL plus readable GA4 labels.";
+        return null;
+      }
+
+      const macroStyle = getValue("macroStyle");
+      const advancedPreset = advancedMacroCatalog[channel]?.[macroStyle] || null;
+
+      if (advancedPreset) {
+        advancedModeInfoEl.textContent = advancedPreset.info;
+      } else {
+        advancedModeInfoEl.textContent = "Advanced mode is on, but this channel stays on the safer static output for now. Only Meta macros are prefilled until the other channel maps are verified.";
+      }
+
+      return advancedPreset;
+    }
+
     function buildCsv() {
       const metadata = [
         ["field", "value", "purpose"],
-        ["final_url", latestFinalUrl, "Generated campaign URL"],
+        ["final_url", latestFinalUrl, "Generated ad landing-page URL"],
         ["store_platform", getValue("platform"), "Selected ecommerce platform"],
         ["traffic_channel", getValue("channel"), "Selected traffic channel"],
+        ["setup_mode", getValue("setupMode"), "Beginner-safe or advanced macro mode"],
         ["campaign_goal", getValue("goal"), "Campaign objective"],
         ["ga4_status", getValue("ga4Status"), "Current GA4 setup status"]
       ];
+      if (isAdvancedMode()) {
+        metadata.push(["macro_style", getValue("macroStyle"), "Readable names or stable IDs"]);
+      }
       const params = [
         [],
         ["parameter", "value", "purpose"],
@@ -1087,6 +1167,7 @@
         `Final URL: ${latestFinalUrl || "No URL generated"}`,
         `Store platform: ${getValue("platform")}`,
         `Traffic channel: ${getValue("channel")}`,
+        `Setup mode: ${getValue("setupMode")}`,
         `Campaign goal: ${getValue("goal")}`,
         `GA4 status: ${getValue("ga4Status")}`,
         "",
@@ -1106,6 +1187,9 @@
         "- Do not put customer data or private order details in URL parameters.",
         "- Browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can affect analytics."
       ];
+      if (isAdvancedMode()) {
+        lines.splice(7, 0, `Advanced macro style: ${getValue("macroStyle")}`);
+      }
       return lines.join("\n");
     }
 
@@ -1140,11 +1224,12 @@
       const channel = getValue("channel");
       const platform = getValue("platform");
       const preset = channelPresets[channel] || channelPresets.custom;
+      const advancedPreset = updateAdvancedFields(channel);
       const campaign = slugify(getValue("campaign"), "campaign_name");
       const contentInput = slugify(getValue("content"), "");
       const termInput = slugify(getValue("term"), "");
       const marketInput = slugify(getValue("market"), "");
-      const macroEnabled = isMacroMode();
+      const advancedEnabled = isAdvancedMode();
 
       platformGuidanceEl.textContent = platformGuidance[platform] || platformGuidance.other;
 
@@ -1154,7 +1239,7 @@
         errorText.style.display = "none";
         errorText.textContent = "";
       } catch (error) {
-        finalUrlEl.textContent = "Enter a valid URL to generate the campaign link.";
+        finalUrlEl.textContent = "Enter a valid URL to generate the landing-page URL.";
         errorText.textContent = "The URL needs a valid domain, such as https://example.com/products/sample-product.";
         errorText.style.display = "block";
         paramTable.innerHTML = "";
@@ -1175,10 +1260,10 @@
       params.set("utm_medium", preset.medium);
       params.set("utm_campaign", campaign);
 
-      const contentValue = macroEnabled && preset.content ? preset.content : contentInput;
+      const contentValue = advancedPreset?.content || contentInput;
       if (contentValue) {
         params.set("utm_content", contentValue);
-        rows.push(["utm_content", contentValue, macroEnabled && preset.content ? "Dynamic creative/ad placeholder" : "Creative or content label"]);
+        rows.push(["utm_content", contentValue, advancedPreset ? "Advanced creative placeholder" : "Creative or content label"]);
       }
 
       if (termInput) {
@@ -1189,6 +1274,13 @@
       if (marketInput) {
         params.set("_market", marketInput);
         rows.push(["_market", marketInput, "Target market label"]);
+      }
+
+      if (advancedPreset) {
+        advancedPreset.extras.forEach(([name, value, purpose]) => {
+          params.set(name, value);
+          rows.push([name, value, purpose]);
+        });
       }
 
       url.search = readableQueryString(params);
@@ -1206,12 +1298,18 @@
       `).join("");
 
       const notes = [
-        preset.note,
-        macroEnabled
-          ? "Macro mode is on. Test the exact token inside the ad platform before live spend."
-          : "Macro mode is off. This is the safer beginner path for static UTM tracking.",
-        "Keep URLs transparent. Do not use cloaking, hidden redirects, or PII in URL parameters."
+        preset.note
       ];
+      if (advancedPreset) {
+        notes.push(advancedPreset.note);
+        notes.push("Advanced macros are on. Test the exact placeholder expansion inside Meta before live spend.");
+      } else if (advancedEnabled) {
+        notes.push("Advanced mode is on, but this channel still uses the safer static output until its macro map is verified.");
+      } else {
+        notes.push("Beginner mode is on. This is the safer path for small sellers who only need one readable landing-page URL.");
+      }
+      notes.push("Keep your main utm_campaign human-readable unless you already have a reliable downstream naming and ID-join workflow.");
+      notes.push("Keep URLs transparent. Do not use cloaking, hidden redirects, or PII in URL parameters.");
       renderList(macroNotes, notes);
 
       renderList(ga4Checklist, buildChecklist());
