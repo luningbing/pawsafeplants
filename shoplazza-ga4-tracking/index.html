@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shoplazza GA4 Tracking Starter Guide | Ecommerce Campaign Tracking</title>
+  <meta name="description" content="A practical Shoplazza GA4 tracking starter guide for checking visits, redirects, and key ecommerce events before paid traffic scales.">
+  <meta property="og:title" content="Shoplazza GA4 Tracking Starter Guide">
+  <meta property="og:description" content="Use this Shoplazza GA4 starter guide to verify visits, source and medium values, and ecommerce events before real traffic scales.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/shoplazza-ga4-tracking">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/shoplazza-ga4-tracking">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Campaign URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../ga4-realtime-checklist/">GA4 checklist</a>
+        <a class="text-link" href="../shopline-ga4-tracking/">SHOPLINE setup</a>
+        <a class="button accent" href="../#tool">Build a free link</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Platform setup guide</p>
+        <h1>Shoplazza GA4 Tracking Starter Guide</h1>
+        <p class="subhead">This is the practical setup path for Shoplazza operators: make sure the campaign visit lands correctly, then verify the same session and ecommerce events inside GA4 before scale.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../ga4-realtime-checklist/">Open the GA4 checklist</a>
+          <a class="button" href="../#tool">Open the free builder</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Campaign traffic reaching an ecommerce platform and analytics report">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>First proof point</h2>
+        <p>The session appears in GA4 Realtime with the source, medium, and campaign labels you intended.</p>
+      </article>
+      <article class="card">
+        <h2>Second proof point</h2>
+        <p>The event path still looks believable after product view, cart, checkout, and purchase steps where supported.</p>
+      </article>
+      <article class="card">
+        <h2>Common issue</h2>
+        <p>The landing page reads correctly but later checkout or purchase tracking breaks because the platform path changes.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Starter workflow</h2>
+          <ol class="step-list">
+            <li>Generate one clean campaign URL from the homepage builder.</li>
+            <li>Open GA4 Realtime before clicking the URL.</li>
+            <li>Click the link and confirm the correct Shoplazza page opens with the parameters still attached.</li>
+            <li>Check the source, medium, and campaign values in Realtime.</li>
+            <li>Walk through the product and checkout flow where your platform setup supports it.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>What to verify on Shoplazza</h2>
+          <ul class="note-list">
+            <li>The platform integration or custom code path is not firing duplicate GA4 events.</li>
+            <li>Localization, redirects, or apps are not stripping your campaign parameters.</li>
+            <li>Purchase attribution remains connected to the original session instead of dropping later in the flow.</li>
+            <li>The event chain stays believable after the first page view.</li>
+          </ul>
+        </article>
+
+        <article class="section">
+          <h2>Good practical rule</h2>
+          <p>Keep the first version of the setup boring and testable. A simple repeatable verification loop is more useful than a fancy tracking setup you cannot explain when it breaks.</p>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../ga4-realtime-checklist/">
+              <strong>GA4 Realtime Checklist</strong>
+              <span>Run the same sanity check every time the store or tracking layer changes.</span>
+            </a>
+            <a class="related-link" href="../shopline-ga4-tracking/">
+              <strong>SHOPLINE GA4 Tracking</strong>
+              <span>Compare how another cross-border platform starter path is framed.</span>
+            </a>
+            <a class="related-link" href="../#tool">
+              <strong>Homepage Builder</strong>
+              <span>Generate a clean URL before you verify the platform.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Keep the verification loop simple</h2>
+        <p>Build the link, click it, watch GA4 Realtime, then confirm the event path before you trust campaign reporting at scale.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point, not a guarantee of perfect attribution. Browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can all affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>
