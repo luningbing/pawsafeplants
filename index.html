@@ -9,6 +9,8 @@
   <meta property="og:description" content="Create clean UTM/ad tracking links for your store and verify source, medium, campaign, and ecommerce events in GA4 Realtime.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/">
   <style>
     :root {
       --bg: #f8fafc;
@@ -451,6 +453,19 @@
       font-size: 14px;
     }
 
+    .guide-link {
+      display: inline-flex;
+      margin-top: 14px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 760;
+      text-decoration: none;
+    }
+
+    .guide-link:hover {
+      color: var(--blue);
+    }
+
     .cta {
       margin-top: 26px;
       display: grid;
@@ -598,9 +613,9 @@
         <span>Campaign URL Builder</span>
       </div>
       <nav class="top-actions" aria-label="Primary">
-        <a class="text-link" href="#platforms">Platform paths</a>
-        <a class="text-link" href="#ga4">GA4 checklist</a>
-        <a class="button accent" href="#ga4">Free GA4 checklist</a>
+        <a class="text-link" href="shopify-utm-builder/">Shopify guide</a>
+        <a class="text-link" href="tiktok-utm-builder/">TikTok guide</a>
+        <a class="button accent" href="ga4-realtime-checklist/">Free GA4 checklist</a>
       </nav>
     </div>
   </header>
@@ -774,15 +789,53 @@
     <section class="guide-band" id="platforms" aria-label="Platform guidance">
       <article class="guide">
         <h2>Beginner platform path</h2>
-        <p id="platformGuidance">Use the official Google &amp; YouTube channel first, then confirm the generated link in GA4 Realtime.</p>
+        <p id="platformGuidance">Start with one clean Shopify product or landing-page URL, then confirm the visit and ecommerce events in GA4 Realtime.</p>
+        <a class="guide-link" href="shopify-utm-builder/">Open Shopify guide</a>
+      </article>
+      <article class="guide">
+        <h2>TikTok UTM Builder</h2>
+        <p>Use static UTMs first, then add TikTok placeholders only after the account confirms the exact macro format you plan to use.</p>
+        <a class="guide-link" href="tiktok-utm-builder/">Open TikTok guide</a>
+      </article>
+      <article class="guide">
+        <h2>GA4 Realtime Checklist</h2>
+        <p>Click the final URL yourself, confirm redirects keep the UTMs, then check source, campaign, and ecommerce events in Realtime.</p>
+        <a class="guide-link" href="ga4-realtime-checklist/">Open GA4 checklist</a>
+      </article>
+    </section>
+
+    <section class="guide-band" aria-label="Channel guidance">
+      <article class="guide">
+        <h2>Meta Ads UTM Builder</h2>
+        <p>Keep campaign names readable, start with static UTMs, and only add Meta placeholders after the basic reporting path works.</p>
+        <a class="guide-link" href="meta-ads-utm-builder/">Open Meta guide</a>
+      </article>
+      <article class="guide">
+        <h2>Google Ads UTM Builder</h2>
+        <p>Use static UTMs first, then add ValueTrack only when keyword, device, or creative detail is genuinely worth the extra moving parts.</p>
+        <a class="guide-link" href="google-ads-utm-builder/">Open Google guide</a>
       </article>
       <article class="guide">
         <h2>Transparent tracking only</h2>
         <p>Do not put email, phone number, customer name, address, or order notes in URLs. Avoid hidden redirects and duplicate GA4 tags.</p>
       </article>
+    </section>
+
+    <section class="guide-band" aria-label="Platform tracking guidance">
       <article class="guide">
-        <h2>What to improve next</h2>
-        <p>After the basic visit appears in GA4, test product view, add to cart, checkout start, and purchase events where your store supports them.</p>
+        <h2>Shopify GA4 Tracking</h2>
+        <p>After the visit appears, confirm that product, cart, checkout, and purchase events still look believable in GA4.</p>
+        <a class="guide-link" href="shopify-ga4-tracking/">Open Shopify tracking guide</a>
+      </article>
+      <article class="guide">
+        <h2>SHOPLINE GA4 Tracking</h2>
+        <p>Use a simple verification loop to confirm the campaign visit survives platform redirects and later checkout behavior.</p>
+        <a class="guide-link" href="shopline-ga4-tracking/">Open SHOPLINE guide</a>
+      </article>
+      <article class="guide">
+        <h2>Shoplazza GA4 Tracking</h2>
+        <p>Check the landing visit first, then confirm the event path still makes sense after cart and checkout steps.</p>
+        <a class="guide-link" href="shoplazza-ga4-tracking/">Open Shoplazza guide</a>
       </article>
     </section>
 
