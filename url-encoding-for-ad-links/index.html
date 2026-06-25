@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URL Encoding for Ad Links | UTM and Macro Safety Guide</title>
+  <meta name="description" content="Learn when to URL encode ad link parameters, UTM values, macro values, nested URLs, and redirect destinations without hiding the tracking setup.">
+  <meta property="og:title" content="URL Encoding for Ad Links">
+  <meta property="og:description" content="A practical URL encoding guide for ad landing page URLs, UTMs, macros, and nested redirect values.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/url-encoding-for-ad-links">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/url-encoding-for-ad-links">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">URL safety guide</p>
+        <h1>URL Encoding for Ad Links</h1>
+        <p class="subhead">Encode URL values when the browser or ad platform needs it, but keep the tracking setup transparent so your team can still audit the final link.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../utm-parameter-cheat-sheet/">UTM cheat sheet</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Ad link parameters moving through browser and analytics checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Encode values</h2>
+        <p>Encode the part after each equals sign when it contains spaces, symbols, nested URLs, or platform tokens that break parsing.</p>
+      </article>
+      <article class="card">
+        <h2>Do not cloak</h2>
+        <p>Encoding is for valid URLs and stable parsing. It should not be used to hide redirects, customer data, or misleading destinations.</p>
+      </article>
+      <article class="card">
+        <h2>Always click test</h2>
+        <p>After encoding, open the final URL and verify the landing page, parameters, and GA4 Realtime view.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>When encoding helps</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Situation</th>
+                  <th>Before</th>
+                  <th>Safer encoded value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Space in campaign name</td>
+                  <td><code>spring sale</code></td>
+                  <td><code>spring%20sale</code></td>
+                </tr>
+                <tr>
+                  <td>Nested destination URL</td>
+                  <td><code>https://store.com/products/a?color=red</code></td>
+                  <td><code>https%3A%2F%2Fstore.com%2Fproducts%2Fa%3Fcolor%3Dred</code></td>
+                </tr>
+                <tr>
+                  <td>Pipe separated label</td>
+                  <td><code>campaign|adset|ad</code></td>
+                  <td><code>campaign%7Cadset%7Cad</code></td>
+                </tr>
+                <tr>
+                  <td>Curly-brace macro</td>
+                  <td><code>{{ad.name}}</code></td>
+                  <td><code>%7B%7Bad.name%7D%7D</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Readable URL example</h2>
+          <p>This is easy for a human to inspect and usually fine for direct landing-page UTMs.</p>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=spring_sale&amp;utm_content={{ad.name}}</div>
+        </article>
+
+        <article class="section">
+          <h2>Encoded value example</h2>
+          <p>This is useful when a platform, redirect tool, or nested URL parser needs reserved characters encoded.</p>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=spring_sale&amp;utm_content=%7B%7Bad.name%7D%7D</div>
+        </article>
+
+        <article class="section">
+          <h2>Safe encoding workflow</h2>
+          <ol class="step-list">
+            <li>Build the readable link first so you know what each field means.</li>
+            <li>Encode only the values that need it.</li>
+            <li>Keep a readable copy in your launch notes or CSV export.</li>
+            <li>Click the encoded URL and confirm that the browser opens the same landing page.</li>
+            <li>Check GA4 Realtime and the ad platform preview before launch.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Do not encode these problems away</h2>
+          <ul class="note-list">
+            <li>Hidden redirects that send users somewhere different from what the ad promises.</li>
+            <li>Customer emails, phone numbers, order notes, or other personal data.</li>
+            <li>Duplicate UTM keys that make reports inconsistent.</li>
+            <li>Broken final URLs that were never clicked before launch.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>Small but important</strong>
+            Encoding is not glamorous, but it prevents a surprising number of broken ad links and redirect handoffs.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../campaign-macro-quick-reference/">
+              <strong>Macro quick reference</strong>
+              <span>Compare common token styles before encoding values.</span>
+            </a>
+            <a class="related-link" href="../utm-parameter-cheat-sheet/">
+              <strong>UTM cheat sheet</strong>
+              <span>Know what each UTM field is supposed to mean.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when the final URL needs a careful QA pass.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Keep one readable copy and one final tested copy</h2>
+        <p>That tiny habit makes URL QA much less painful when ads, redirects, macros, and GA4 all meet at once.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide explains URL encoding for transparent campaign links. It should not be used for cloaking, misleading redirects, or personal data in URLs.</p>
+    </footer>
+  </main>
+</body>
+</html>

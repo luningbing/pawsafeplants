@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Affiliate URL Parameter Examples | Sub ID Tracking Templates</title>
+  <meta name="description" content="See practical affiliate URL parameter examples with UTM tags, sub ID fields, partner labels, placement labels, and GA4 verification steps.">
+  <meta property="og:title" content="Affiliate URL Parameter Examples">
+  <meta property="og:description" content="Starter affiliate tracking parameter examples for ecommerce sellers and partner managers.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/affiliate-url-parameter-examples">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/affiliate-url-parameter-examples">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Affiliate examples</p>
+        <h1>Affiliate URL Parameter Examples</h1>
+        <p class="subhead">Use these examples to keep partner traffic transparent, preserve network fields, and avoid handing affiliates a link that no one can debug later.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../affiliate-tracking-link-builder/">Affiliate builder guide</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Affiliate traffic flowing into an ecommerce reporting workflow">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Use case</h2>
+        <p>Partner links, creator links, coupon-site links, newsletter placements, and affiliate network handoffs.</p>
+      </article>
+      <article class="card">
+        <h2>Starter rule</h2>
+        <p>Preserve required network parameters and use sub IDs only for partner, placement, and creative labels.</p>
+      </article>
+      <article class="card">
+        <h2>Verification</h2>
+        <p>Open the link, follow redirects, and confirm the final page still contains the fields your reports need.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Readable sub ID example</h2>
+          <p>Use this when partners and operators need to understand the link by looking at it.</p>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=affiliate_partner&amp;utm_medium=affiliate&amp;utm_campaign=summer_partner_push&amp;sub1=partner_name&amp;sub2=newsletter_slot&amp;sub3=video_creative_01</div>
+        </article>
+
+        <article class="section">
+          <h2>Stable ID example</h2>
+          <p>Use this when your affiliate network or internal report already maps partner IDs, placement IDs, and creative IDs.</p>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=affiliate_partner&amp;utm_medium=affiliate&amp;utm_campaign=summer_partner_push&amp;sub1=partner_4827&amp;sub2=placement_19&amp;sub3=creative_034</div>
+        </article>
+
+        <article class="section">
+          <h2>Sub ID planning table</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Suggested meaning</th>
+                  <th>Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>sub1</code></td>
+                  <td>Partner or publisher</td>
+                  <td><code>partner_name</code></td>
+                </tr>
+                <tr>
+                  <td><code>sub2</code></td>
+                  <td>Placement, page, email, or creator slot</td>
+                  <td><code>newsletter_slot</code></td>
+                </tr>
+                <tr>
+                  <td><code>sub3</code></td>
+                  <td>Creative, coupon, or content label</td>
+                  <td><code>video_creative_01</code></td>
+                </tr>
+                <tr>
+                  <td><code>utm_campaign</code></td>
+                  <td>Merchant-side campaign name</td>
+                  <td><code>summer_partner_push</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Affiliate link QA checklist</h2>
+          <ol class="step-list">
+            <li>Ask whether the affiliate network requires specific parameter names.</li>
+            <li>Keep required network parameters untouched.</li>
+            <li>Use only the sub ID fields that you can actually report on later.</li>
+            <li>Click the final link and check every redirect.</li>
+            <li>Confirm that GA4 or the affiliate network sees a usable source path.</li>
+          </ol>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>Simple partner handoff</strong>
+            Use this page when you need a link template for partners, not a full affiliate platform migration.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../affiliate-tracking-link-builder/">
+              <strong>Affiliate builder guide</strong>
+              <span>Build and verify a partner link.</span>
+            </a>
+            <a class="related-link" href="../utm-naming-convention-template/">
+              <strong>UTM naming template</strong>
+              <span>Keep partner naming stable across campaigns.</span>
+            </a>
+            <a class="related-link" href="../ga4-realtime-checklist/">
+              <strong>GA4 Realtime checklist</strong>
+              <span>Check whether the click appears in analytics.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Give partners a link you can audit later</h2>
+        <p>Readable sub IDs make the first launch easier. Stable IDs make scale easier. Pick one intentionally.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point. Always preserve required affiliate network fields and avoid putting customer data in URLs.</p>
+    </footer>
+  </main>
+</body>
+</html>
