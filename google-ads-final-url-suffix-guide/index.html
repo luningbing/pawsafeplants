@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Ads Final URL Suffix Guide | UTM and ValueTrack QA</title>
+  <meta name="description" content="A beginner-safe guide to Google Ads final URL suffix, UTM parameters, ValueTrack placeholders, and GA4 Realtime checks for ecommerce landing pages.">
+  <meta property="og:title" content="Google Ads Final URL Suffix Guide">
+  <meta property="og:description" content="Build and QA Google Ads landing page URL parameters before launching paid traffic.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/google-ads-final-url-suffix-guide">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/google-ads-final-url-suffix-guide">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../google-ads-utm-builder/">Google guide</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Google Ads guide</p>
+        <h1>Google Ads Final URL Suffix Guide</h1>
+        <p class="subhead">Use a final URL suffix when you want Google Ads to append tracking parameters without rewriting the landing page URL itself. Keep it simple first, then test ValueTrack details only when needed.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Build a Google URL</a>
+          <a class="button" href="../google-valuetrack-examples/">ValueTrack examples</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Google Ads URL suffix flowing into ecommerce landing page analytics checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Beginner path</h2>
+        <p>Use static source, medium, and campaign values before adding keyword, creative, or device placeholders.</p>
+      </article>
+      <article class="card">
+        <h2>Where it breaks</h2>
+        <p>Existing UTMs, account-level templates, tracking templates, and landing page redirects can collide.</p>
+      </article>
+      <article class="card">
+        <h2>Success signal</h2>
+        <p>Google's test click reaches the right page and GA4 Realtime shows the expected campaign fields.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Simple final URL suffix</h2>
+          <p>This style is easier for a small ecommerce team to read and debug.</p>
+          <div class="code-block">utm_source=google&amp;utm_medium=paid_search&amp;utm_campaign=spring_sale&amp;utm_content=search_ad</div>
+        </article>
+
+        <article class="section">
+          <h2>ValueTrack-style starter suffix</h2>
+          <p>Use placeholders only when you need the extra reporting detail and have checked the campaign type in the live account.</p>
+          <div class="code-block">utm_source=google&amp;utm_medium=paid_search&amp;utm_campaign=spring_sale&amp;campaignid={campaignid}&amp;adgroupid={adgroupid}&amp;keyword={keyword}&amp;device={device}</div>
+        </article>
+
+        <article class="section">
+          <h2>QA sequence</h2>
+          <ol class="step-list">
+            <li>Start with the clean landing page URL and remove old duplicate UTMs if needed.</li>
+            <li>Decide whether tracking belongs in the final URL, final URL suffix, or account-level template.</li>
+            <li>Use one owner for each UTM field so the same value is not appended twice.</li>
+            <li>Run the Google Ads URL test or preview path where available.</li>
+            <li>Click through and check whether the final browser URL still contains the expected parameters.</li>
+            <li>Open GA4 Realtime and confirm source, medium, campaign, and any extra detail you expect.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Common mistakes</h2>
+          <ul class="note-list">
+            <li>Putting a full landing page URL into a suffix field instead of just the parameters.</li>
+            <li>Using both final URL UTMs and suffix UTMs for the same keys.</li>
+            <li>Adding ValueTrack placeholders before a plain static URL has been tested.</li>
+            <li>Assuming every placeholder is useful for every campaign type.</li>
+            <li>Checking only Google Ads preview while skipping GA4 Realtime.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>Search and Shopping QA</strong>
+            Use this page when you need a clean Google Ads suffix pattern before the campaign starts spending.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../google-ads-utm-builder/">
+              <strong>Google Ads UTM Builder</strong>
+              <span>Build a clean starter URL first.</span>
+            </a>
+            <a class="related-link" href="../google-valuetrack-examples/">
+              <strong>Google ValueTrack examples</strong>
+              <span>Compare common placeholder-style fields.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when suffix, template, and GA4 behavior need a human QA pass.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Keep the suffix small until the click path is proven</h2>
+        <p>A short suffix that works beats a clever suffix that nobody can debug when traffic starts.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free Google URL</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point. Confirm current Google Ads behavior and campaign-type support inside the live account before launch.</p>
+    </footer>
+  </main>
+</body>
+</html>
