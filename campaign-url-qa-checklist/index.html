@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campaign URL QA Checklist | Pre-Launch UTM and GA4 Checks</title>
+  <meta name="description" content="Use this campaign URL QA checklist before launching ads. Check landing page URL, UTMs, redirects, macros, short links, and GA4 Realtime.">
+  <meta property="og:title" content="Campaign URL QA Checklist">
+  <meta property="og:description" content="A practical pre-launch checklist for ad landing page URLs, UTMs, redirects, macros, and GA4 verification.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/campaign-url-qa-checklist">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/campaign-url-qa-checklist">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Pre-launch checklist</p>
+        <h1>Campaign URL QA Checklist</h1>
+        <p class="subhead">Use this checklist before putting a landing page URL into Meta, Google, TikTok, AppLovin, affiliate, email, SMS, QR, or another traffic source.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../manual-url-setup-service/">Manual setup</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Campaign URL checklist flowing from builder to analytics verification">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Before launch</h2>
+        <p>Confirm the final landing page, naming, redirects, macros, short links, and GA4 Realtime view.</p>
+      </article>
+      <article class="card">
+        <h2>After launch</h2>
+        <p>Recheck the same link from the live ad preview or published post, not only from your spreadsheet.</p>
+      </article>
+      <article class="card">
+        <h2>When to escalate</h2>
+        <p>If the URL works but reporting still fails, separate URL cleanup from tag, consent, and checkout debugging.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Pre-launch QA steps</h2>
+          <ol class="step-list">
+            <li>Start from the real final landing page URL, not an editor, preview, or old redirected URL.</li>
+            <li>Confirm the URL has one value for each UTM field you plan to use.</li>
+            <li>Check that <code>utm_source</code> and <code>utm_medium</code> match your naming convention.</li>
+            <li>Keep <code>utm_campaign</code> readable enough for a non-technical operator to understand later.</li>
+            <li>Use macros only after the live ad platform confirms the placeholder syntax.</li>
+            <li>Open the long URL in a browser before turning it into a short link.</li>
+            <li>Open GA4 Realtime, click the URL, and confirm the visit plus campaign labels.</li>
+            <li>For ecommerce, walk through product view, cart, checkout, and purchase checks where supported.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>QA table</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>Pass condition</th>
+                  <th>Red flag</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Landing page</td>
+                  <td>Correct public page opens.</td>
+                  <td>Preview URL, 404, redirect loop, wrong country page.</td>
+                </tr>
+                <tr>
+                  <td>UTMs</td>
+                  <td>One clear source, medium, campaign, content, and term pattern.</td>
+                  <td>Duplicate or conflicting UTM fields.</td>
+                </tr>
+                <tr>
+                  <td>Macros</td>
+                  <td>Placeholder format is confirmed in the ad account.</td>
+                  <td>Copying one platform's token style into another platform.</td>
+                </tr>
+                <tr>
+                  <td>Redirects</td>
+                  <td>Query parameters survive the click path.</td>
+                  <td>Shortener or redirect removes campaign labels.</td>
+                </tr>
+                <tr>
+                  <td>GA4</td>
+                  <td>Realtime shows visit and campaign fields.</td>
+                  <td>No visit, wrong source, missing ecommerce events.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Starter launch note</h2>
+          <pre class="code-block">Campaign URL QA
+
+Final landing page:
+Traffic channel:
+UTM source:
+UTM medium:
+UTM campaign:
+UTM content:
+Macros used:
+Short link used:
+GA4 Realtime checked:
+Ecommerce events checked:
+Known limits:
+</pre>
+        </article>
+
+        <article class="section">
+          <h2>Boundaries</h2>
+          <ul class="note-list">
+            <li>Keep URLs transparent and aligned with the actual landing page.</li>
+            <li>Do not put customer data, email addresses, phone numbers, or order notes in URL parameters.</li>
+            <li>Do not use hidden redirects, cloaking, or misleading destinations.</li>
+            <li>Do not rely on one report alone when consent, checkout, or cross-domain flows are involved.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>Launch-day guardrail</strong>
+            Use this page when a seller or operator needs one clear pre-flight check before spending money on traffic.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../utm-not-showing-in-ga4/">
+              <strong>UTM not showing in GA4</strong>
+              <span>Use this when the QA check fails.</span>
+            </a>
+            <a class="related-link" href="../duplicate-utm-parameters/">
+              <strong>Duplicate UTM parameters</strong>
+              <span>Clean up messy URLs before launch.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when you want the URL and GA4 path checked by hand.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Build, click, verify, then launch</h2>
+        <p>The checklist is simple on purpose. It gives a small team a repeatable way to catch broken links before spend starts.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This checklist is a practical QA routine, not a guarantee of perfect attribution. Browser privacy, consent settings, redirects, checkout behavior, and blockers can affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>

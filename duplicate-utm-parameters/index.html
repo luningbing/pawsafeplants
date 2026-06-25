@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duplicate UTM Parameters | Fix Campaign URL Tracking Conflicts</title>
+  <meta name="description" content="Learn how to find and fix duplicate UTM parameters in ad landing page URLs before they break GA4 campaign reporting.">
+  <meta property="og:title" content="Duplicate UTM Parameters">
+  <meta property="og:description" content="A practical guide for fixing repeated UTM source, medium, campaign, content, and term fields in campaign URLs.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/duplicate-utm-parameters">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/duplicate-utm-parameters">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../utm-parameter-cheat-sheet/">UTM cheat sheet</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">URL cleanup guide</p>
+        <h1>Duplicate UTM Parameters</h1>
+        <p class="subhead">Duplicate UTMs happen when a landing page, ad platform, shortener, or old campaign link already has tracking fields and a new tool appends another set on top.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Build a clean URL</a>
+          <a class="button" href="../utm-parameter-cheat-sheet/">Open UTM cheat sheet</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Campaign URL cleanup from duplicate parameters to a clean analytics path">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Bad pattern</h2>
+        <p>The same URL contains two different <code>utm_source</code>, <code>utm_medium</code>, or <code>utm_campaign</code> values.</p>
+      </article>
+      <article class="card">
+        <h2>Why it matters</h2>
+        <p>Analytics tools, redirects, and platforms may read different values, making reports hard to trust.</p>
+      </article>
+      <article class="card">
+        <h2>Best fix</h2>
+        <p>Keep one clear value for each UTM field and move extra detail into <code>utm_content</code> or a separate approved parameter.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Example of a messy URL</h2>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=facebook&amp;utm_medium=social&amp;utm_campaign=spring_sale&amp;utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=spring_sale_v2</div>
+        </article>
+
+        <article class="section">
+          <h2>Cleaner version</h2>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=spring_sale_v2&amp;utm_content=facebook_feed_ad</div>
+        </article>
+
+        <article class="section">
+          <h2>How to fix duplicate UTMs</h2>
+          <ol class="step-list">
+            <li>Scan the URL for repeated <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, or <code>utm_term</code>.</li>
+            <li>Choose one source value that matches the real traffic platform.</li>
+            <li>Choose one medium value that matches the channel type, such as <code>paid_social</code>, <code>paid_search</code>, <code>affiliate</code>, or <code>email</code>.</li>
+            <li>Keep one campaign value that your team can read later.</li>
+            <li>Move creative, placement, partner, or ad detail into <code>utm_content</code> or an approved extra field.</li>
+            <li>Click the cleaned URL and verify it in GA4 Realtime.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Common duplicate sources</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Where duplicates come from</th>
+                  <th>What happens</th>
+                  <th>Safer path</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Old campaign URL</td>
+                  <td>New builder adds UTMs to an already-tagged link.</td>
+                  <td>Start from the clean landing page URL when possible.</td>
+                </tr>
+                <tr>
+                  <td>Ad platform tracking template</td>
+                  <td>Platform appends tracking fields after your final URL.</td>
+                  <td>Keep one owner for each UTM field.</td>
+                </tr>
+                <tr>
+                  <td>Shortener or redirect tool</td>
+                  <td>Redirect rule adds another set of parameters.</td>
+                  <td>Test the final resolved URL, not just the short link.</td>
+                </tr>
+                <tr>
+                  <td>Affiliate link</td>
+                  <td>Partner and merchant both add campaign labels.</td>
+                  <td>Preserve required partner fields and keep UTMs consistent.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>Messy links before launch</strong>
+            Use this page when a URL is too long, has repeated UTMs, or gives different campaign values in different tools.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../utm-not-showing-in-ga4/">
+              <strong>UTM not showing in GA4</strong>
+              <span>Use this when the cleaned URL still does not appear correctly.</span>
+            </a>
+            <a class="related-link" href="../url-encoding-for-ad-links/">
+              <strong>URL encoding guide</strong>
+              <span>Use this when nested URLs or symbols break parsing.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when a link needs a human cleanup pass before launch.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Clean the URL before you shorten it</h2>
+        <p>Short links are easier to share, but the long URL should be clean and testable first.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a clean URL</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical cleanup path. Keep campaign URLs transparent and avoid personal data in URL parameters.</p>
+    </footer>
+  </main>
+</body>
+</html>

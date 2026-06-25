@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UTM Not Showing in GA4 | Ecommerce Tracking Troubleshooting</title>
+  <meta name="description" content="Troubleshoot why UTM parameters are not showing in GA4 after clicking an ad landing page URL. Check redirects, duplicate tags, consent, and campaign naming.">
+  <meta property="og:title" content="UTM Not Showing in GA4">
+  <meta property="og:description" content="A practical checklist for ecommerce sellers when UTM parameters do not appear in GA4 Realtime or reports.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/utm-not-showing-in-ga4">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/utm-not-showing-in-ga4">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Troubleshooting guide</p>
+        <h1>UTM Not Showing in GA4</h1>
+        <p class="subhead">If you clicked an ad landing page URL but GA4 does not show the source, medium, or campaign you expected, start with this simple debugging path before changing every setting at once.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Rebuild the URL</a>
+          <a class="button" href="../manual-url-setup-service/">Manual setup</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Campaign URL flowing through redirects into GA4 troubleshooting checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>First suspect</h2>
+        <p>A redirect, shortener, app, or platform layer removed the query string before GA4 received the page view.</p>
+      </article>
+      <article class="card">
+        <h2>Second suspect</h2>
+        <p>GA4 is installed twice, installed late, blocked by consent, or not firing on the actual landing page you clicked.</p>
+      </article>
+      <article class="card">
+        <h2>Fastest proof</h2>
+        <p>Click the exact final URL, inspect the address bar after every redirect, then check GA4 Realtime right away.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Quick debugging sequence</h2>
+          <ol class="step-list">
+            <li>Open the exact URL you plan to put into the ad platform.</li>
+            <li>After the page loads, check whether <code>utm_source</code>, <code>utm_medium</code>, and <code>utm_campaign</code> are still visible in the browser address bar.</li>
+            <li>If the UTMs disappear, check redirects, short links, app links, and landing page rules first.</li>
+            <li>If the UTMs remain, open GA4 Realtime and check whether any visit appears.</li>
+            <li>If the visit appears but campaign values are wrong, check duplicate UTM keys and naming conflicts.</li>
+            <li>If no visit appears, check GA4 install, consent settings, tag firing, and blockers.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Common causes</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Symptom</th>
+                  <th>Likely cause</th>
+                  <th>What to check</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>UTMs vanish after click</td>
+                  <td>Redirect strips query parameters</td>
+                  <td>Shortener, redirect app, platform redirect, old landing page rule.</td>
+                </tr>
+                <tr>
+                  <td>Visit appears, campaign is wrong</td>
+                  <td>Duplicate or conflicting UTM fields</td>
+                  <td>Look for repeated <code>utm_source</code> or mixed static and dynamic values.</td>
+                </tr>
+                <tr>
+                  <td>No visit in Realtime</td>
+                  <td>GA4 tag not firing</td>
+                  <td>Tag install, consent banner, GTM trigger, page template, blockers.</td>
+                </tr>
+                <tr>
+                  <td>First page works, purchase attribution fails</td>
+                  <td>Checkout or domain handoff issue</td>
+                  <td>Checkout domain, cross-domain settings, duplicate tags, ecommerce event setup.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Clean test URL</h2>
+          <p>Use a very plain URL first. Add macros or encoded nested values only after the basic click path is visible in GA4.</p>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=test_campaign&amp;utm_content=test_ad</div>
+        </article>
+
+        <article class="section">
+          <h2>What not to do</h2>
+          <ul class="note-list">
+            <li>Do not change GA4, GTM, redirects, and ad platform URL settings all at once.</li>
+            <li>Do not put private customer data into the URL while debugging.</li>
+            <li>Do not assume the issue is fixed because the first page view appears once.</li>
+            <li>Do not use hidden redirects or cloaking to force a reporting outcome.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>Stuck after first click</strong>
+            This page is for sellers who already built a URL but cannot see the expected campaign fields in GA4.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../ga4-realtime-checklist/">
+              <strong>GA4 Realtime checklist</strong>
+              <span>Run the basic verification path first.</span>
+            </a>
+            <a class="related-link" href="../duplicate-utm-parameters/">
+              <strong>Duplicate UTM parameters</strong>
+              <span>Fix repeated or conflicting tracking fields.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when redirects, tags, and GA4 still do not line up.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Rebuild the URL, then test one click</h2>
+        <p>Most GA4 campaign issues get clearer when you separate URL problems from tag and checkout problems.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical troubleshooting path, not a guarantee of perfect attribution. Consent settings, redirects, checkout behavior, browser privacy, and blockers can affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>
