@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Ads UTM Builder For Ecommerce | Free Campaign URL Builder</title>
+  <meta name="description" content="Create Google Ads or YouTube-ready ecommerce campaign URLs, decide when to use static UTMs or ValueTrack placeholders, and verify the result in GA4 Realtime.">
+  <meta property="og:title" content="Google Ads UTM Builder For Ecommerce">
+  <meta property="og:description" content="Build a clean Google Ads tracking link for your store and verify source, campaign, content, and ecommerce events in GA4 Realtime.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/google-ads-utm-builder">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/google-ads-utm-builder">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Campaign URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../meta-ads-utm-builder/">Meta guide</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Channel guide</p>
+        <h1>Google Ads UTM Builder For Ecommerce</h1>
+        <p class="subhead">Build a clean Google Ads or YouTube campaign URL, decide when static UTMs are enough, and add ValueTrack placeholders only when they make reporting genuinely better.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../ga4-realtime-checklist/">Open the GA4 checklist</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Search and video ad traffic flowing into an ecommerce site and analytics view">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Beginner path</h2>
+        <p>Use static UTMs for the first check. Add ValueTrack only when you actually need keyword, creative, device, or network detail and have tested the syntax.</p>
+      </article>
+      <article class="card">
+        <h2>What usually breaks</h2>
+        <p>Final URL mismatches, redirects that drop parameters, and guessing ValueTrack tokens without checking the real campaign type.</p>
+      </article>
+      <article class="card">
+        <h2>Success signal</h2>
+        <p>GA4 Realtime shows the visit with <code>utm_source=google</code>, <code>utm_medium=paid_search</code> or <code>paid_video</code>, and the campaign labels you meant to use.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>How to build a Google Ads ecommerce tracking link</h2>
+          <ol class="step-list">
+            <li>Paste the final store URL into the homepage builder and select <code>Google Ads / YouTube</code>.</li>
+            <li>Use one readable campaign name like <code>summer_drop_search</code> or <code>summer_drop_video</code>.</li>
+            <li>Keep static UTMs first if the main goal is simply to confirm reporting integrity.</li>
+            <li>Add <code>utm_content</code> only for useful creative-level comparison, such as a video concept or asset group label.</li>
+            <li>Turn macro mode on only after confirming the exact ValueTrack parameters for that Google campaign type.</li>
+          </ol>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaign=summer_drop_search&amp;utm_content=asset_group_a</div>
+        </article>
+
+        <article class="section">
+          <h2>Static UTMs versus ValueTrack</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Use case</th>
+                  <th>Recommended path</th>
+                  <th>Reason</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>First setup</td>
+                  <td>Static UTMs</td>
+                  <td>Fastest way to confirm the store and GA4 are reading traffic correctly.</td>
+                </tr>
+                <tr>
+                  <td>Keyword or device detail</td>
+                  <td>ValueTrack after validation</td>
+                  <td>Worth it only when that extra breakdown matters in reporting.</td>
+                </tr>
+                <tr>
+                  <td>YouTube campaign</td>
+                  <td>Static UTMs or campaign-specific placeholders</td>
+                  <td>Video setups often use different patterns than classic search campaigns.</td>
+                </tr>
+                <tr>
+                  <td>Shared team workflow</td>
+                  <td>Static UTMs first</td>
+                  <td>Cleaner for onboarding and easier to troubleshoot.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>How to verify a Google Ads link in GA4</h2>
+          <ol class="step-list">
+            <li>Open GA4 Realtime before clicking the final Google Ads URL.</li>
+            <li>Click the URL and confirm the landing page loads with the full query string intact.</li>
+            <li>Check source, medium, campaign, and content in Realtime.</li>
+            <li>For ecommerce, confirm <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code>, and <code>purchase</code> where supported.</li>
+            <li>If campaign labels look wrong, inspect the final URL logic and redirect behavior before editing the ads account again.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Google Ads tracking mistakes to avoid</h2>
+          <ul class="note-list">
+            <li>Mixing auto-tagging assumptions with manual UTMs without checking what you actually need in GA4.</li>
+            <li>Using ValueTrack placeholders from one campaign type inside another without validation.</li>
+            <li>Letting shorteners or redirect tools overwrite the final URL parameters.</li>
+            <li>Changing medium values every campaign until channel reports become hard to compare.</li>
+            <li>Skipping a manual click test because the URL looked correct in the ads interface.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Practical rule</h2>
+          <div class="mini-callout">
+            <strong>Use only the detail you need</strong>
+            If campaign-level reporting is enough to make a decision, static UTMs are usually a better first move than a complicated ValueTrack setup.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../meta-ads-utm-builder/">
+              <strong>Meta Ads UTM Builder</strong>
+              <span>Compare your paid social setup with the paid search or video setup on this page.</span>
+            </a>
+            <a class="related-link" href="../ga4-realtime-checklist/">
+              <strong>GA4 Realtime Checklist</strong>
+              <span>Use the same test routine before real spend starts.</span>
+            </a>
+            <a class="related-link" href="../#tool">
+              <strong>Homepage Builder</strong>
+              <span>Generate the final Google-ready URL, then copy or download it.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Build the Google link, then sanity-check it</h2>
+        <p>The fastest way to trust the setup is still simple: generate one clean URL, click it, verify GA4 Realtime, then scale from there.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point, not a guarantee of perfect attribution. Browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can all affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>
