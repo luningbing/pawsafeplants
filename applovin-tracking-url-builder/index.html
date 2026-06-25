@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AppLovin Tracking URL Builder | Free Mobile Network Campaign Links</title>
+  <meta name="description" content="Build clean AppLovin tracking URLs for mobile campaigns, keep naming readable, and verify the final click path before launch.">
+  <meta property="og:title" content="AppLovin Tracking URL Builder">
+  <meta property="og:description" content="Create a clean AppLovin campaign link for mobile traffic and verify the result before spend goes live.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/applovin-tracking-url-builder">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/applovin-tracking-url-builder">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Mobile network guide</p>
+        <h1>AppLovin Tracking URL Builder</h1>
+        <p class="subhead">Build one clean AppLovin tracking URL, keep the visible campaign naming simple, and confirm the click path still behaves after the approved tracker or MMP layer is added.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../manual-url-setup-service/">Manual setup</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Mobile traffic flowing into an ecommerce store and analytics view">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Best first path</h2>
+        <p>Use the homepage builder first, keep the AppLovin link readable, and only add network or MMP-level complexity after the click path is verified.</p>
+      </article>
+      <article class="card">
+        <h2>What usually breaks</h2>
+        <p>Network trackers, MMP links, and extra URL parameters can collide if the final click flow is not checked before traffic runs.</p>
+      </article>
+      <article class="card">
+        <h2>Success signal</h2>
+        <p>The final link opens the right page, preserves the approved tracker, and still leaves GA4 able to read the campaign source clearly.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>How to build an AppLovin tracking link</h2>
+          <ol class="step-list">
+            <li>Paste the final landing page URL into the homepage builder.</li>
+            <li>Select <code>AppLovin / mobile network</code> as the channel.</li>
+            <li>Keep the campaign name readable so the URL is still usable outside the network dashboard.</li>
+            <li>Use the advanced mode only after the approved tracker or MMP setup is confirmed.</li>
+            <li>Check that the final click path still preserves the parameters you need for reporting.</li>
+          </ol>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=applovin&amp;utm_medium=mobile_network&amp;utm_campaign=summer_game_install&amp;utm_content=creative_1</div>
+        </article>
+
+        <article class="section">
+          <h2>What to keep in mind</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Need</th>
+                  <th>Recommended path</th>
+                  <th>Reason</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Starter launch</td>
+                  <td>Readable UTM labels</td>
+                  <td>Easier to debug before you touch MMP or deep network settings.</td>
+                </tr>
+                <tr>
+                  <td>MMP workflow</td>
+                  <td>Preserve approved tracker first</td>
+                  <td>App and mobile network setups usually fail when the tracker gets rewritten too early.</td>
+                </tr>
+                <tr>
+                  <td>Creative-level comparison</td>
+                  <td>Advanced placeholders</td>
+                  <td>Useful only if your reporting stack already handles the extra fields cleanly.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>How to verify the AppLovin link</h2>
+          <ol class="step-list">
+            <li>Open GA4 Realtime before the click.</li>
+            <li>Click the final AppLovin URL yourself.</li>
+            <li>Confirm the landing page opens and the approved tracker survives the hop.</li>
+            <li>Check whether the campaign labels still look usable in GA4 or the downstream reporting layer.</li>
+            <li>If it breaks, simplify the link before adding more fields.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Common mistakes</h2>
+          <ul class="note-list">
+            <li>Rewriting the approved mobile tracker before you know what the MMP expects.</li>
+            <li>Mixing too many sub-parameters into one click and losing the reporting path.</li>
+            <li>Using a naming style that only makes sense inside one dashboard.</li>
+            <li>Skipping the manual click test before budget goes live.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>Start simple</strong>
+            This page is best when you need a readable starter pattern for mobile campaigns, not a giant app-attribution rewrite.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../">
+              <strong>Homepage builder</strong>
+              <span>Generate the final long URL first.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when the link and tracker setup still needs a human pass.</span>
+            </a>
+            <a class="related-link" href="../ga4-realtime-checklist/">
+              <strong>GA4 Realtime checklist</strong>
+              <span>Check whether the click and event path still look sane.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Build the AppLovin link, then test the click path</h2>
+        <p>For mobile campaigns, the cheapest debugging move is still to make the URL readable first and only then layer in tracker logic.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point, not a promise of perfect attribution. Preserve approved network or MMP trackers and verify the final click path before launch.</p>
+    </footer>
+  </main>
+</body>
+</html>

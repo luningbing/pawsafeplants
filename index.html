@@ -845,9 +845,26 @@
         <a class="guide-link" href="google-ads-utm-builder/">Open Google guide</a>
       </article>
       <article class="guide">
+        <h2>AppLovin Tracking URL Builder</h2>
+        <p>Use a readable mobile-network template first, then preserve the approved tracker or MMP path before you add more fields.</p>
+        <a class="guide-link" href="applovin-tracking-url-builder/">Open AppLovin guide</a>
+      </article>
+    </section>
+
+    <section class="guide-band" aria-label="Partner guidance">
+      <article class="guide">
+        <h2>Affiliate Tracking Link Builder</h2>
+        <p>Keep partner parameters readable, preserve existing affiliate data, and test the click path before you hand links to partners.</p>
+        <a class="guide-link" href="affiliate-tracking-link-builder/">Open affiliate guide</a>
+      </article>
+      <article class="guide">
         <h2>Manual setup service</h2>
         <p>Starter done-for-you setup for teams that want a clean landing-page URL, verified macro guidance, and a practical GA4 launch QA handoff.</p>
         <a class="guide-link" href="manual-url-setup-service/">See the starter offer</a>
+      </article>
+      <article class="guide">
+        <h2>Transparent tracking only</h2>
+        <p>Do not put email, phone number, customer name, address, or order notes in URLs. Avoid hidden redirects and duplicate GA4 tags.</p>
       </article>
     </section>
 
@@ -1018,6 +1035,102 @@
           ],
           info: "Meta stable mode keeps your main utm_campaign readable, then adds stable campaign, ad set, and ad ID placeholders for cleaner joins later.",
           note: "Stable Meta IDs are safer for later reconciliation, but they are harder to read inside raw GA4 reports."
+        }
+      },
+      google: {
+        readable: {
+          content: "{creative}",
+          extras: [
+            ["campaignid", "{campaignid}", "Google campaign ID placeholder"],
+            ["adgroupid", "{adgroupid}", "Google ad group ID placeholder"],
+            ["keyword", "{keyword}", "Google keyword placeholder"],
+            ["matchtype", "{matchtype}", "Google match type placeholder"],
+            ["device", "{device}", "Google device placeholder"]
+          ],
+          info: "Google readable mode keeps the main UTM labels simple and adds ValueTrack placeholders for campaign, ad group, keyword, match type, and device. Verify the exact behavior in the live Google Ads account before launch.",
+          note: "Google Ads ValueTrack support can vary by campaign type, so confirm the final URL in account before spending."
+        },
+        stable: {
+          content: "{creative}",
+          extras: [
+            ["campaignid", "{campaignid}", "Google campaign ID placeholder"],
+            ["adgroupid", "{adgroupid}", "Google ad group ID placeholder"],
+            ["creative", "{creative}", "Google creative ID placeholder"],
+            ["feeditemid", "{feeditemid}", "Google feed item placeholder"],
+            ["device", "{device}", "Google device placeholder"]
+          ],
+          info: "Google stable mode keeps the same readable campaign label and adds ID-style ValueTrack placeholders for cleaner downstream joins. Keep the page simple until the exact Google Ads token behavior is verified.",
+          note: "Use this only after confirming the campaign type and final URL behavior inside Google Ads."
+        }
+      },
+      tiktok: {
+        readable: {
+          content: "{{ad.name}}",
+          extras: [
+            ["campaign_name", "{{campaign.name}}", "TikTok campaign name placeholder"],
+            ["adgroup_name", "{{adgroup.name}}", "TikTok ad group name placeholder"],
+            ["ad_name", "{{ad.name}}", "TikTok ad name placeholder"],
+            ["placement", "{{placement.name}}", "TikTok placement name placeholder"]
+          ],
+          info: "TikTok readable mode keeps the main campaign label human-friendly and adds readable placeholders for campaign, ad group, ad, and placement. Treat the exact token syntax as account-verified until you test it live.",
+          note: "TikTok macro formats can differ across accounts and help-center versions, so verify the placeholders in Ads Manager before launch."
+        },
+        stable: {
+          content: "{{ad.id}}",
+          extras: [
+            ["campaign_id", "{{campaign.id}}", "TikTok campaign ID placeholder"],
+            ["adgroup_id", "{{adgroup.id}}", "TikTok ad group ID placeholder"],
+            ["ad_id", "{{ad.id}}", "TikTok ad ID placeholder"],
+            ["placement_id", "{{placement.id}}", "TikTok placement ID placeholder"]
+          ],
+          info: "TikTok stable mode keeps the UTM labels readable and adds ID-style placeholders that are easier to join later. Keep this as a starter template until the live account confirms the exact token expansion.",
+          note: "Use stable IDs only after checking the live click behavior in the real TikTok account."
+        }
+      },
+      applovin: {
+        readable: {
+          content: "{{creative_name}}",
+          extras: [
+            ["campaign_name", "{{campaign_name}}", "AppLovin campaign placeholder"],
+            ["adgroup_name", "{{adgroup_name}}", "AppLovin ad group placeholder"],
+            ["creative_name", "{{creative_name}}", "AppLovin creative placeholder"],
+            ["placement_name", "{{placement_name}}", "AppLovin placement placeholder"]
+          ],
+          info: "AppLovin usually sits inside a broader app-attribution stack, so this mode keeps the URL readable and leaves room for MMP verification. Treat the exact token names as starter placeholders until the network or MMP confirms them.",
+          note: "For AppLovin, check the approved network or MMP link format first and preserve any tracker already in place."
+        },
+        stable: {
+          content: "{{creative_id}}",
+          extras: [
+            ["campaign_id", "{{campaign_id}}", "AppLovin campaign ID placeholder"],
+            ["adgroup_id", "{{adgroup_id}}", "AppLovin ad group ID placeholder"],
+            ["creative_id", "{{creative_id}}", "AppLovin creative ID placeholder"],
+            ["placement_id", "{{placement_id}}", "AppLovin placement ID placeholder"]
+          ],
+          info: "AppLovin stable mode keeps the visible UTM labels simple and adds ID-style placeholders for later reconciliation. Use it when you need a starter template that can be mapped to the MMP or network reporting layer.",
+          note: "Keep the approved click tracker intact and verify the token names against the current AppLovin or MMP setup."
+        }
+      },
+      affiliate: {
+        readable: {
+          content: "partner_name",
+          extras: [
+            ["sub1", "partner_name", "Affiliate sub ID 1"],
+            ["sub2", "placement_name", "Affiliate sub ID 2"],
+            ["sub3", "creative_name", "Affiliate sub ID 3"]
+          ],
+          info: "Affiliate readable mode gives you a clean starter pattern for partner, placement, and creative level comparison. Keep it transparent and preserve any partner tracking already present in the URL.",
+          note: "Use this when the partner gives you sub-ID fields or when you want a simple readable affiliate naming convention."
+        },
+        stable: {
+          content: "partner_id",
+          extras: [
+            ["sub1", "partner_id", "Affiliate partner ID"],
+            ["sub2", "placement_id", "Affiliate placement ID"],
+            ["sub3", "creative_id", "Affiliate creative ID"]
+          ],
+          info: "Affiliate stable mode swaps the readable names for IDs so joins are easier later. It works best when your partner or network already expects sub-ID fields.",
+          note: "Use the stable version when the partner uses numeric IDs and you want a cleaner reporting bridge."
         }
       }
     };
