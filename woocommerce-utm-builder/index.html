@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WooCommerce UTM Builder | Free Campaign URL Template</title>
+  <meta name="description" content="Build clean WooCommerce campaign URLs with UTM parameters, verify redirects, and check source, medium, campaign, and ecommerce events in GA4.">
+  <meta property="og:title" content="WooCommerce UTM Builder">
+  <meta property="og:description" content="Create WooCommerce-ready ad landing page URLs and verify the campaign path in GA4 Realtime.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/woocommerce-utm-builder">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/woocommerce-utm-builder">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../manual-url-setup-service/">Manual setup</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Platform guide</p>
+        <h1>WooCommerce UTM Builder</h1>
+        <p class="subhead">Build one clean WooCommerce ad landing page URL, keep the campaign labels readable, and verify the visit plus ecommerce events before paid traffic scales.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../ga4-realtime-checklist/">Open GA4 checklist</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Ad traffic flowing into a WooCommerce store and analytics report">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Best first setup</h2>
+        <p>Use a product, category, or campaign landing page URL and add only the UTM fields you will actually read later.</p>
+      </article>
+      <article class="card">
+        <h2>What usually breaks</h2>
+        <p>WordPress plugins, redirects, caching, and duplicate tag installs can make the first visit look different from checkout reporting.</p>
+      </article>
+      <article class="card">
+        <h2>Success signal</h2>
+        <p>The final URL opens the right WooCommerce page and GA4 Realtime shows the expected source, medium, and campaign labels.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Starter WooCommerce URL</h2>
+          <p>Use a readable campaign name first. Add platform macros only after the ad account preview confirms the final click behavior.</p>
+          <div class="code-block">https://example.com/product/sample-product/?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaign=winter_boots_sale&amp;utm_content=search_ad_01</div>
+        </article>
+
+        <article class="section">
+          <h2>WooCommerce UTM workflow</h2>
+          <ol class="step-list">
+            <li>Paste the product, category, or landing page URL into the homepage builder.</li>
+            <li>Select the real traffic channel, such as Meta, Google Ads, TikTok, affiliate, or email.</li>
+            <li>Use lowercase source and medium values so reports stay consistent.</li>
+            <li>Click the final URL and check whether redirects preserve the UTM parameters.</li>
+            <li>Open GA4 Realtime and confirm the campaign appears before launching traffic.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>What to check in GA4</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Check</th>
+                  <th>Good signal</th>
+                  <th>If it fails</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Visit</td>
+                  <td>Realtime shows the clicked session.</td>
+                  <td>Check tag install, consent, cache, and browser blockers.</td>
+                </tr>
+                <tr>
+                  <td>Campaign labels</td>
+                  <td>Source, medium, and campaign match the URL.</td>
+                  <td>Check redirects and duplicate UTM keys.</td>
+                </tr>
+                <tr>
+                  <td>Ecommerce events</td>
+                  <td>Product, cart, checkout, and purchase events look believable.</td>
+                  <td>Check WooCommerce tracking plugin, theme code, or GTM setup.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Common WooCommerce mistakes</h2>
+          <ul class="note-list">
+            <li>Adding UTMs to a URL that already has conflicting campaign parameters.</li>
+            <li>Using a redirect plugin that drops parameters before the product page loads.</li>
+            <li>Installing GA4 through multiple plugins and getting duplicate events.</li>
+            <li>Assuming a purchase event works just because the first page view appears.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Low-risk path</h2>
+          <div class="mini-callout">
+            <strong>One URL, one test</strong>
+            Start with the simplest link that can answer the question: did this campaign visit reach the store and appear in GA4?
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../google-ads-utm-builder/">
+              <strong>Google Ads UTM Builder</strong>
+              <span>Useful when WooCommerce traffic starts from search or Shopping campaigns.</span>
+            </a>
+            <a class="related-link" href="../url-encoding-for-ad-links/">
+              <strong>URL encoding guide</strong>
+              <span>Use this when redirects or nested URLs break your parameters.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when plugin, redirect, and GA4 checks get messy.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Build the WooCommerce link, then verify it once</h2>
+        <p>A clean URL plus one GA4 Realtime check is the fastest way to catch tracking mistakes before budget moves.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point. WordPress plugins, consent settings, redirects, checkout behavior, and ad blockers can affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>
