@@ -49,8 +49,9 @@
         <p class="subhead">A done-for-you starter service for independent-store sellers, operators, and small teams who want one clean landing-page URL, channel-specific macro guidance, and a beginner-safe GA4 launch QA path without building a custom tracking stack.</p>
         <div class="hero-actions">
           <a class="button primary" href="../#tool">Open the free builder</a>
-          <a class="button" href="../ga4-realtime-checklist/">Open the GA4 checklist</a>
+          <a class="button" href="mailto:luningbing@gmail.com?subject=Manual%20URL%20setup%20request">Email the setup request</a>
         </div>
+        <p class="subhead"><strong>Contact:</strong> <a href="mailto:luningbing@gmail.com">luningbing@gmail.com</a></p>
       </div>
       <img class="workflow-visual" src="../assets/workflow.png" alt="Traffic channels flowing into an ecommerce store and analytics verification workflow">
     </section>
@@ -140,7 +141,7 @@
 
         <article class="section">
           <h2>Copy this intake brief</h2>
-          <p>Use the free builder first if you can. Then copy this brief and send it with your request so the setup starts with the right inputs.</p>
+          <p>Use the free builder first if you can. Then copy this brief and send it to <a href="mailto:luningbing@gmail.com">luningbing@gmail.com</a> so the setup starts with the right inputs.</p>
           <pre class="code-block" id="intakeTemplate">Manual URL setup request
 
 Store URL:
@@ -158,6 +159,7 @@ Main reporting question:
           <div class="hero-actions">
             <button class="button primary" id="copyTemplate" type="button">Copy intake brief</button>
             <button class="button" id="downloadTemplate" type="button">Download intake brief</button>
+            <a class="button" id="emailTemplate" href="mailto:luningbing@gmail.com?subject=Manual%20URL%20setup%20request">Email the brief</a>
           </div>
           <p id="copyStatus" aria-live="polite"></p>
         </article>
@@ -178,6 +180,14 @@ Main reporting question:
           <div class="mini-callout">
             <strong>USD 99 starter</strong>
             One store, one landing-page flow, one to two channels, one written handoff, one GA4 launch checklist.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Contact</h2>
+          <div class="mini-callout">
+            <strong>Email</strong>
+            <a href="mailto:luningbing@gmail.com">luningbing@gmail.com</a>
           </div>
         </article>
 
@@ -213,10 +223,10 @@ Main reporting question:
 
     <section class="cta" aria-label="Next step">
       <div>
-        <h2>Start with the free tool, then move to manual setup</h2>
-        <p>The cheapest path is still to generate the URL, click it, and test GA4. When the setup still feels messy, use this page as the handoff point for a done-for-you pass.</p>
+        <h2>Start with the free tool, then email the brief</h2>
+        <p>The cheapest path is still to generate the URL, click it, and test GA4. When the setup still feels messy, email the intake brief to <a href="mailto:luningbing@gmail.com">luningbing@gmail.com</a> for the manual setup pass.</p>
       </div>
-      <a class="button primary" href="../#tool">Build a free link</a>
+      <a class="button primary" href="mailto:luningbing@gmail.com?subject=Manual%20URL%20setup%20request">Email luningbing@gmail.com</a>
     </section>
 
     <footer>
@@ -228,6 +238,7 @@ Main reporting question:
     const intakeTemplate = document.getElementById("intakeTemplate");
     const copyTemplateButton = document.getElementById("copyTemplate");
     const downloadTemplateButton = document.getElementById("downloadTemplate");
+    const emailTemplateLink = document.getElementById("emailTemplate");
     const copyStatus = document.getElementById("copyStatus");
 
     function setStatus(message) {
@@ -274,6 +285,13 @@ Main reporting question:
     downloadTemplateButton.addEventListener("click", () => {
       downloadText("manual-url-setup-intake.txt", intakeTemplate.textContent.trim(), "text/plain;charset=utf-8");
       setStatus("Intake brief downloaded.");
+    });
+
+    emailTemplateLink.addEventListener("click", event => {
+      const subject = "Manual URL setup request";
+      const body = intakeTemplate.textContent.trim();
+      emailTemplateLink.href = `mailto:luningbing@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setStatus("Email draft opened.");
     });
   </script>
 </body>
