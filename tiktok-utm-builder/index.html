@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TikTok UTM Builder For Ecommerce | Free Campaign URL Builder</title>
+  <meta name="description" content="Create TikTok-ready ecommerce campaign URLs, decide when to keep static UTMs or use macros, and verify traffic plus ecommerce events in GA4 Realtime.">
+  <meta property="og:title" content="TikTok UTM Builder For Ecommerce">
+  <meta property="og:description" content="Build a clean TikTok tracking link for your store and verify source, campaign, content, and ecommerce events in GA4 Realtime.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/tiktok-utm-builder">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/tiktok-utm-builder">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Campaign URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../shopify-utm-builder/">Shopify guide</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Channel guide</p>
+        <h1>TikTok UTM Builder For Ecommerce</h1>
+        <p class="subhead">Build a clean TikTok ad link for your store, choose static UTMs or starter placeholders carefully, and make sure GA4 still reads the visit the way you expect.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../shopify-utm-builder/">Shopify setup guide</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Traffic channels connecting to an ecommerce store and analytics report">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Safe beginner path</h2>
+        <p>Use static TikTok UTMs first. Only switch on macros after the exact token names are confirmed inside TikTok Ads Manager.</p>
+      </article>
+      <article class="card">
+        <h2>Why TikTok links get messy</h2>
+        <p>People often mix TikTok placeholders, MMP links, shorteners, and store redirects without checking what survives the click.</p>
+      </article>
+      <article class="card">
+        <h2>What good looks like</h2>
+        <p>GA4 Realtime shows the visit with <code>utm_source=tiktok</code>, <code>utm_medium=paid_social</code>, and the campaign label you intended.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>How to build a TikTok ecommerce tracking link</h2>
+          <ol class="step-list">
+            <li>Paste the final store URL into the homepage builder and select <code>TikTok</code> as the traffic channel.</li>
+            <li>Use a plain campaign name such as <code>summer_bag_launch</code> so TikTok and GA4 stay readable together.</li>
+            <li>Keep static UTMs for the first round if you are still proving that traffic arrives correctly.</li>
+            <li>Use <code>utm_content</code> for creator, ad, or creative labels only when you really need that comparison.</li>
+            <li>Turn macro mode on only after checking TikTok's exact token format in the account you will launch from.</li>
+          </ol>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=tiktok&amp;utm_medium=paid_social&amp;utm_campaign=summer_bag_launch&amp;utm_content=ugc_hook_1</div>
+        </article>
+
+        <article class="section">
+          <h2>When to keep static UTMs versus macros</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Use case</th>
+                  <th>Recommended path</th>
+                  <th>Reason</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>First live test</td>
+                  <td>Static UTMs</td>
+                  <td>Less moving parts while you confirm the visit reaches GA4.</td>
+                </tr>
+                <tr>
+                  <td>Creative comparison</td>
+                  <td>Static or macro <code>utm_content</code></td>
+                  <td>Useful only when you actually need ad-level readback.</td>
+                </tr>
+                <tr>
+                  <td>MMP or mobile attribution stack</td>
+                  <td>Preserve the approved tracking link first</td>
+                  <td>Breaking an MMP or click tracker usually costs more than skipping extra UTMs.</td>
+                </tr>
+                <tr>
+                  <td>Beginner store owner</td>
+                  <td>Static UTMs</td>
+                  <td>Easier to debug than dynamic tokens during the first setup.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>How to check a TikTok link in GA4</h2>
+          <ol class="step-list">
+            <li>Open GA4 Realtime before clicking the link.</li>
+            <li>Click the final TikTok URL and confirm the landing page opens without stripping parameters.</li>
+            <li>Look for the visit in Realtime and confirm source, medium, campaign, and content.</li>
+            <li>Check whether your store setup also sends <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code>, and <code>purchase</code>.</li>
+            <li>If GA4 shows a visit but the labels look wrong, inspect link shorteners, redirect tools, and duplicate tag setups next.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>TikTok tracking mistakes to avoid</h2>
+          <ul class="note-list">
+            <li>Using placeholder tokens you found on a blog without confirming they still exist in your account.</li>
+            <li>Combining TikTok click parameters, MMP parameters, and UTMs in a way that breaks the final landing page.</li>
+            <li>Sending creator, ad, and audience labels into every field until the URL becomes hard to audit.</li>
+            <li>Changing naming logic every week and making campaign history impossible to compare.</li>
+            <li>Skipping the manual click test before traffic goes live.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Practical rule</h2>
+          <div class="mini-callout">
+            <strong>Clarity beats cleverness</strong>
+            If a static TikTok UTM link already answers the reporting question, keep it simple and leave macro-heavy setups for later.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../shopify-utm-builder/">
+              <strong>Shopify UTM Builder</strong>
+              <span>Best follow-up if TikTok traffic lands on a Shopify product, collection, or promo page.</span>
+            </a>
+            <a class="related-link" href="../ga4-realtime-checklist/">
+              <strong>GA4 Realtime Checklist</strong>
+              <span>Use this when the click lands but you are unsure whether analytics is reading it correctly.</span>
+            </a>
+            <a class="related-link" href="../#tool">
+              <strong>Homepage Builder</strong>
+              <span>Generate the full long URL, copy it, and download the checklist.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Build the TikTok link first, then test it yourself</h2>
+        <p>The safest first launch is still manual: generate the URL, click it, watch GA4 Realtime, and only then put real budget behind it.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point, not a guarantee of perfect attribution. Browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can all affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>
