@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GA4 Realtime Campaign Tracking Checklist | Ecommerce Guide</title>
+  <meta name="description" content="Use this GA4 Realtime campaign tracking checklist to confirm source, medium, campaign, redirects, and ecommerce events after clicking a campaign URL.">
+  <meta property="og:title" content="GA4 Realtime Campaign Tracking Checklist">
+  <meta property="og:description" content="Check whether a campaign URL really reaches GA4 with the source, medium, campaign, and ecommerce events you expected.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://pawsafeplants.vercel.app/ga4-realtime-checklist">
+  <link rel="canonical" href="https://pawsafeplants.vercel.app/ga4-realtime-checklist">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "GA4 Realtime Campaign Tracking Checklist",
+      "description": "A practical checklist for verifying campaign URL tracking and ecommerce events in GA4 Realtime.",
+      "step": [
+        { "@type": "HowToStep", "text": "Open GA4 Realtime before clicking the final campaign URL." },
+        { "@type": "HowToStep", "text": "Click the final campaign URL and confirm the page opens correctly." },
+        { "@type": "HowToStep", "text": "Confirm redirects preserve the UTM parameters." },
+        { "@type": "HowToStep", "text": "Confirm GA4 shows the visit and the source, medium, campaign, content, and term values look right." },
+        { "@type": "HowToStep", "text": "For ecommerce, confirm page_view, view_item, add_to_cart, begin_checkout, and purchase where supported." }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Campaign URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../shopify-utm-builder/">Shopify guide</a>
+        <a class="button accent" href="../#tool">Build a free link</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Verification guide</p>
+        <h1>GA4 Realtime Campaign Tracking Checklist</h1>
+        <p class="subhead">This is the simple test after every new campaign link: click the URL yourself, watch GA4 Realtime, and make sure the visit plus ecommerce events still look sane before traffic goes live.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../shopify-utm-builder/">Shopify guide</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Traffic channels going into an ecommerce site and analytics report">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>What this checks</h2>
+        <p>Landing-page load, redirect integrity, source and medium accuracy, campaign labels, and the key ecommerce events you expect to see next.</p>
+      </article>
+      <article class="card">
+        <h2>What this does not promise</h2>
+        <p>Realtime checks are strong for sanity testing, but privacy settings, consent mode, blockers, and complex checkout flows can still change final reporting.</p>
+      </article>
+      <article class="card">
+        <h2>When to run it</h2>
+        <p>Before launch, after changing a landing page, after adding new redirects, and after touching GA4, GTM, pixels, or ecommerce event code.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Realtime checklist</h2>
+          <ol class="step-list">
+            <li>Open GA4 Realtime before clicking the campaign URL.</li>
+            <li>Click the final long URL and confirm the page opens correctly.</li>
+            <li>Watch the browser address bar and confirm redirects did not strip the UTM parameters.</li>
+            <li>Confirm GA4 shows the visit in Realtime.</li>
+            <li>Check source, medium, campaign, content, and term.</li>
+            <li>Confirm there are no duplicate UTM keys or broken naming values.</li>
+            <li>For ecommerce, confirm the expected event chain where supported: <code>page_view</code>, <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code>, and <code>purchase</code>.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>What a clean result should look like</h2>
+          <ul class="note-list">
+            <li>The landing page matches the campaign and loads without a 404 or redirect loop.</li>
+            <li>The session shows the same source, medium, and campaign naming you intentionally set in the URL.</li>
+            <li>The UTM values remain readable and do not contain accidental duplicates or random fragments from other tools.</li>
+            <li>Ecommerce events appear in a believable order rather than disappearing after the first page view.</li>
+          </ul>
+        </article>
+
+        <article class="section">
+          <h2>Why the link can fail even when the URL looks fine</h2>
+          <ul class="note-list">
+            <li>A redirect tool, shortener, or app strips the query string after the click.</li>
+            <li>Consent settings delay or suppress analytics before the first hit is sent.</li>
+            <li>Multiple GA4 or GTM installs compete with each other and create inconsistent readings.</li>
+            <li>Checkout happens on a different subdomain or domain and the attribution is not preserved.</li>
+            <li>Mobile app webviews, blockers, or privacy settings reduce what GA4 can see.</li>
+          </ul>
+        </article>
+
+        <article class="section">
+          <h2>Good habit after the first check</h2>
+          <p>Keep a stable naming convention and repeat the same manual test every time you add a new traffic channel, landing page, or analytics layer. That rhythm catches expensive mistakes earlier than waiting for a campaign report to look strange three days later.</p>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Fastest workflow</h2>
+          <div class="mini-callout">
+            <strong>One click, one report, one decision</strong>
+            Generate the link, click it, open GA4 Realtime, and only move on when the visit looks believable.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../shopify-utm-builder/">
+              <strong>Shopify UTM Builder</strong>
+              <span>Use this when you want a platform-specific setup path for Shopify landing pages.</span>
+            </a>
+            <a class="related-link" href="../meta-ads-utm-builder/">
+              <strong>Meta Ads UTM Builder</strong>
+              <span>Use this when the campaign source is Facebook or Instagram and you need a clean paid social URL.</span>
+            </a>
+            <a class="related-link" href="../google-ads-utm-builder/">
+              <strong>Google Ads UTM Builder</strong>
+              <span>Use this when the paid traffic source is Google Ads or YouTube and you need a clean search or video URL.</span>
+            </a>
+            <a class="related-link" href="../tiktok-utm-builder/">
+              <strong>TikTok UTM Builder</strong>
+              <span>Use this when the paid traffic source is TikTok and you need to choose between static UTMs and macros.</span>
+            </a>
+            <a class="related-link" href="../#tool">
+              <strong>Homepage Builder</strong>
+              <span>Generate the URL, copy it, and download a plain-text version of the checklist.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Run this check before every new campaign</h2>
+        <p>The free builder plus this Realtime check is enough to catch a surprising number of broken links, stripped parameters, and naming mistakes before money gets wasted.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This checklist is a practical verification routine, not a guarantee of perfect attribution. Browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can all affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>
