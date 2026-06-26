@@ -202,6 +202,13 @@
       overflow-wrap: anywhere;
     }
 
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .workflow-visual {
       width: 100%;
       max-width: 100%;
@@ -688,6 +695,11 @@
         width: 100%;
       }
 
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
       .result-actions {
         display: grid;
         grid-template-columns: 1fr;
@@ -750,6 +762,11 @@
         <p class="eyebrow">Free ad landing-page URL tool</p>
         <h1><span>Free Ad Landing</span><span>Page URL Builder</span></h1>
         <p class="subhead">Build clean ad landing-page URLs for your store. Add UTMs, keep macros readable, and check source, campaign, and ecommerce events in GA4 Realtime.</p>
+        <div class="hero-actions" aria-label="Primary tool actions">
+          <a class="button primary" href="#tool">Build one URL</a>
+          <a class="button" href="bulk-utm-builder/">Batch URLs</a>
+          <a class="button" href="ad-url-qa-checker/">Check existing URL</a>
+        </div>
         <div class="tagline" aria-label="Supported use cases">
           <span class="tag">Shopify</span>
           <span class="tag">WooCommerce</span>
