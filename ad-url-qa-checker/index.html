@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ad URL QA Checker | UTM and Landing Page Link Check</title>
+  <meta name="description" content="Paste an ad landing page URL and check UTM fields, duplicate parameters, unsafe customer data, and launch QA risks before spending on traffic.">
+  <meta property="og:title" content="Ad URL QA Checker">
+  <meta property="og:description" content="Check whether a campaign landing page URL has readable UTMs, duplicate parameters, or risky customer data before launch.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/ad-url-qa-checker">
+  <link rel="canonical" href="https://whichadgotsale.com/ad-url-qa-checker">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+  <style>
+    .checker-grid {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(340px, 1.1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .checker-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display: grid;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 780;
+      color: #26374a;
+    }
+
+    .field textarea {
+      width: 100%;
+      min-height: 170px;
+      resize: vertical;
+      border: 1px solid #cbd6e2;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      padding: 10px 12px;
+      font: inherit;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.55;
+      outline: none;
+    }
+
+    .field textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, .14);
+    }
+
+    .field-help,
+    .status-line {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .qa-score {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid #d7e5ff;
+      border-radius: 8px;
+      background: #f4f8ff;
+    }
+
+    .qa-score strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      color: #0f3f85;
+      white-space: nowrap;
+    }
+
+    .qa-score p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .qa-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .checker-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Ad URL QA Checker",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  </script>
+  <script defer src="../assets/ga4.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../#tool">Build URL</a>
+        <a class="text-link" href="../bulk-utm-builder/">Bulk builder</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Free pre-launch check</p>
+        <h1>Ad URL QA Checker</h1>
+        <p class="subhead">Paste a campaign landing page URL and check the basics before spending: UTM coverage, duplicate parameters, unsafe customer data, and GA4 launch-readiness notes.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#checker">Check a URL</a>
+          <a class="button" href="../#tool">Build a clean URL</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Ad traffic flowing into ecommerce analytics">
+    </section>
+
+    <section class="checker-grid" id="checker" aria-label="Ad URL QA checker">
+      <div class="checker-panel">
+        <div class="field">
+          <label for="qaUrl">Ad landing page URL</label>
+          <textarea id="qaUrl" spellcheck="false">https://example.com/products/sample-product?utm_source=meta&utm_medium=paid_social&utm_campaign=spring_sale_travel_bag&utm_content=hero_video</textarea>
+          <p class="field-help">This checker runs in your browser. It does not follow redirects or store your URL.</p>
+        </div>
+        <div class="result-actions">
+          <button class="button primary" id="runUrlQa" type="button">Check URL</button>
+          <button class="button" id="loadQaSample" type="button">Load sample</button>
+        </div>
+        <p class="status-line">Use this before launch, after a short-link tool, or when UTMs are not showing in GA4.</p>
+      </div>
+
+      <div class="checker-panel">
+        <div class="qa-score">
+          <div>
+            <p id="qaTitle">URL QA score</p>
+            <p id="qaNote">Run the check to see launch risks.</p>
+          </div>
+          <strong id="qaScore">0/100</strong>
+        </div>
+
+        <div>
+          <h2 class="section-title">Findings</h2>
+          <ul class="qa-list" id="qaFindings"></ul>
+        </div>
+
+        <div>
+          <h2 class="section-title">Next steps</h2>
+          <ol class="qa-list" id="qaNextSteps"></ol>
+        </div>
+
+        <div class="result-actions">
+          <button class="button primary" id="copyQaSummary" type="button">Copy QA summary</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>What this checker can catch</h2>
+          <ul class="note-list">
+            <li>Missing <code>utm_source</code>, <code>utm_medium</code>, or <code>utm_campaign</code>.</li>
+            <li>Repeated UTM keys that can confuse reporting.</li>
+            <li>Private customer data such as email, phone, name, address, or order fields inside URL parameters.</li>
+            <li>Non-HTTPS URLs or values that should be reviewed before launch.</li>
+          </ul>
+        </article>
+
+        <article class="section">
+          <h2>What it cannot confirm</h2>
+          <p>This page does not crawl the destination, follow redirects, inspect checkout, or read your GA4 account. After this static check, click the final URL yourself and confirm the visit in GA4 Realtime.</p>
+        </article>
+      </div>
+
+      <aside class="stack" aria-label="Related tools">
+        <article class="section">
+          <h2>Related tools</h2>
+          <div class="related-links">
+            <a class="related-link" href="../#tool">
+              <strong>Single URL Builder</strong>
+              <span>Generate a clean ad landing page URL for one campaign.</span>
+            </a>
+            <a class="related-link" href="../bulk-utm-builder/">
+              <strong>Bulk UTM Builder</strong>
+              <span>Generate a CSV for several products or landing pages.</span>
+            </a>
+            <a class="related-link" href="../utm-not-showing-in-ga4/">
+              <strong>UTM Not Showing in GA4</strong>
+              <span>Debug after the URL is built and clicked.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <footer>
+      <p>This checker supports transparent campaign QA. It is not for hidden redirects, customer-data leakage, or policy evasion.</p>
+    </footer>
+  </main>
+
+  <script>
+    const qaUrl = document.getElementById("qaUrl");
+    const runUrlQa = document.getElementById("runUrlQa");
+    const loadQaSample = document.getElementById("loadQaSample");
+    const copyQaSummary = document.getElementById("copyQaSummary");
+    const qaTitle = document.getElementById("qaTitle");
+    const qaNote = document.getElementById("qaNote");
+    const qaScore = document.getElementById("qaScore");
+    const qaFindings = document.getElementById("qaFindings");
+    const qaNextSteps = document.getElementById("qaNextSteps");
+    let latestQa = {
+      score: 0,
+      title: "URL QA score",
+      note: "Run the check to see launch risks.",
+      findings: ["Paste a campaign landing page URL."],
+      nextSteps: ["Build or paste a URL first."]
+    };
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderList(target, items) {
+      target.innerHTML = items.map(item => `<li>${escapeHtml(item)}</li>`).join("");
+    }
+
+    function normalizeUrl(value) {
+      const trimmed = String(value || "").trim();
+      if (!trimmed) return "";
+      if (/^https?:\/\//i.test(trimmed)) return trimmed;
+      return `https://${trimmed}`;
+    }
+
+    function repeatedKeys(search) {
+      const counts = {};
+      const query = search.startsWith("?") ? search.slice(1) : search;
+      query.split("&").filter(Boolean).forEach(pair => {
+        const rawKey = pair.split("=")[0] || "";
+        const key = decodeURIComponent(rawKey.replace(/\+/g, " ")).toLowerCase();
+        counts[key] = (counts[key] || 0) + 1;
+      });
+      return Object.keys(counts).filter(key => counts[key] > 1);
+    }
+
+    function hasRiskyCustomerData(params) {
+      const riskyKeyPattern = /(email|phone|tel|mobile|name|address|order|customer|birthday|zipcode|postal)/i;
+      const emailValuePattern = /.+@.+\..+/;
+      const phoneValuePattern = /\+?\d[\d\s().-]{7,}/;
+      const risks = [];
+
+      params.forEach((value, key) => {
+        if (riskyKeyPattern.test(key)) {
+          risks.push(`Review parameter "${key}" because it may contain customer data.`);
+        } else if (emailValuePattern.test(value)) {
+          risks.push(`Review parameter "${key}" because the value looks like an email.`);
+        } else if (phoneValuePattern.test(value) && key.toLowerCase() !== "utm_campaign") {
+          risks.push(`Review parameter "${key}" because the value looks like a phone or ID.`);
+        }
+      });
+
+      return risks;
+    }
+
+    function checkUrl() {
+      const findings = [];
+      const nextSteps = [];
+      let score = 100;
+      let url;
+
+      try {
+        url = new URL(normalizeUrl(qaUrl.value));
+      } catch (error) {
+        latestQa = {
+          score: 0,
+          title: "Invalid URL",
+          note: "The checker needs a valid domain before it can review parameters.",
+          findings: ["The pasted text is not a valid URL."],
+          nextSteps: ["Paste a full product, collection, or landing page URL."]
+        };
+        renderQa();
+        return;
+      }
+
+      const params = url.searchParams;
+      const required = ["utm_source", "utm_medium", "utm_campaign"];
+      required.forEach(key => {
+        if (!params.get(key)) {
+          score -= 18;
+          findings.push(`Missing ${key}.`);
+          nextSteps.push(`Add ${key} before launch.`);
+        }
+      });
+
+      if (url.protocol !== "https:") {
+        score -= 12;
+        findings.push("URL is not HTTPS.");
+        nextSteps.push("Use an HTTPS landing page before paid traffic.");
+      }
+
+      const duplicates = repeatedKeys(url.search);
+      if (duplicates.length) {
+        score -= Math.min(20, duplicates.length * 8);
+        findings.push(`Duplicate parameter keys found: ${duplicates.join(", ")}.`);
+        nextSteps.push("Remove duplicate UTM keys so GA4 receives one clear value per field.");
+      }
+
+      const riskyItems = hasRiskyCustomerData(params);
+      if (riskyItems.length) {
+        score -= Math.min(30, riskyItems.length * 12);
+        findings.push(...riskyItems);
+        nextSteps.push("Remove customer data from URL parameters before launch.");
+      }
+
+      if (!params.get("utm_content")) {
+        score -= 5;
+        findings.push("utm_content is missing. This is optional, but useful for creative comparison.");
+        nextSteps.push("Add utm_content if you want to compare ads or placements later.");
+      }
+
+      if (!findings.length) {
+        findings.push("Core URL checks look clean.");
+      }
+
+      nextSteps.push("Click the final URL yourself and confirm the visit in GA4 Realtime.");
+      nextSteps.push("If a short-link tool is used, check the short link again after it redirects.");
+
+      score = Math.max(0, Math.min(100, score));
+      let title = "Needs cleanup before launch";
+      let note = "Fix the findings before spending on traffic.";
+      if (score >= 90) {
+        title = "Looks clean for a test click";
+        note = "Static checks look good. Still verify the visit in GA4 Realtime.";
+      } else if (score >= 70) {
+        title = "Usable, but check the warnings";
+        note = "The URL can be tested, but a few reporting details need attention.";
+      }
+
+      latestQa = { score, title, note, findings, nextSteps };
+      renderQa();
+    }
+
+    function renderQa() {
+      qaTitle.textContent = latestQa.title;
+      qaNote.textContent = latestQa.note;
+      qaScore.textContent = `${latestQa.score}/100`;
+      renderList(qaFindings, latestQa.findings);
+      renderList(qaNextSteps, latestQa.nextSteps);
+    }
+
+    function buildQaSummary() {
+      return [
+        "Ad URL QA Summary",
+        "",
+        `Score: ${latestQa.score}/100`,
+        `Status: ${latestQa.title}`,
+        `Note: ${latestQa.note}`,
+        "",
+        "Findings:",
+        ...latestQa.findings.map((item, index) => `${index + 1}. ${item}`),
+        "",
+        "Next steps:",
+        ...latestQa.nextSteps.map((item, index) => `${index + 1}. ${item}`),
+        "",
+        "Safety notes:",
+        "- Do not put customer data in URL parameters.",
+        "- This checker does not follow redirects or read GA4.",
+        "- Confirm the visit in GA4 Realtime before spending."
+      ].join("\n");
+    }
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
+
+    runUrlQa.addEventListener("click", checkUrl);
+    loadQaSample.addEventListener("click", () => {
+      qaUrl.value = "https://example.com/products/sample-product?utm_source=meta&utm_medium=paid_social&utm_campaign=spring_sale_travel_bag&utm_content=hero_video";
+      checkUrl();
+    });
+    copyQaSummary.addEventListener("click", async () => {
+      await copyText(buildQaSummary());
+      qaNote.textContent = "QA summary copied.";
+    });
+
+    checkUrl();
+  </script>
+</body>
+</html>
