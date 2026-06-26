@@ -107,6 +107,14 @@ document.addEventListener("click", event => {
     return;
   }
 
+  if (target.matches("a[href*='sample-tracking-qa-report']")) {
+    sendTrackingEvent("sample_report_cta_clicked", {
+      event_location: getSectionLabel(target),
+      link_path: getLinkPath(target)
+    });
+    return;
+  }
+
   if (target.matches("a[href$='#tool'], a[href='../#tool'], a[href='/#tool']")) {
     sendTrackingEvent("builder_cta_clicked", {
       event_location: getSectionLabel(target),
