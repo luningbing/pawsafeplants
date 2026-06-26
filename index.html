@@ -361,6 +361,43 @@
       flex-wrap: wrap;
     }
 
+    .readiness-card {
+      display: grid;
+      gap: 12px;
+      padding: 14px;
+      border: 1px solid #c8e6d7;
+      border-radius: 8px;
+      background: #f0fdf4;
+    }
+
+    .readiness-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .readiness-score {
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 850;
+      color: #065f46;
+      white-space: nowrap;
+    }
+
+    .readiness-title {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 850;
+    }
+
+    .readiness-note {
+      margin: 4px 0 0;
+      color: #315c4e;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
     .error {
       color: var(--danger);
       font-size: 14px;
@@ -884,6 +921,20 @@
               <button class="button accent" id="downloadQaReport" type="button">Download QA Report</button>
               <button class="button" id="downloadCsv" type="button">Download CSV</button>
               <button class="button" id="downloadChecklist" type="button">Download checklist</button>
+            </div>
+          </div>
+
+          <div class="readiness-card" aria-label="Launch readiness score">
+            <div class="readiness-head">
+              <div>
+                <p class="readiness-title" id="readinessTitle">Launch readiness</p>
+                <p class="readiness-note" id="readinessNote">Generate a URL to see the next safest launch step.</p>
+              </div>
+              <div class="readiness-score" id="readinessScore">0/100</div>
+            </div>
+            <ul class="note-list" id="readinessList"></ul>
+            <div class="result-actions">
+              <button class="button" id="copyReadinessPlan" type="button">Copy readiness plan</button>
             </div>
           </div>
 
@@ -1437,11 +1488,22 @@
     const toast = document.getElementById("toast");
     const copyUrlButton = document.getElementById("copyUrl");
     const copySetupBriefButton = document.getElementById("copySetupBrief");
+    const copyReadinessPlanButton = document.getElementById("copyReadinessPlan");
     const downloadQaReportButton = document.getElementById("downloadQaReport");
     const downloadCsvButton = document.getElementById("downloadCsv");
     const downloadChecklistButton = document.getElementById("downloadChecklist");
+    const readinessTitle = document.getElementById("readinessTitle");
+    const readinessNote = document.getElementById("readinessNote");
+    const readinessScore = document.getElementById("readinessScore");
+    const readinessList = document.getElementById("readinessList");
     let latestRows = [];
     let latestFinalUrl = "";
+    let latestReadiness = {
+      score: 0,
+      title: "Launch readiness",
+      note: "Generate a URL to see the next safest launch step.",
+      items: ["Paste a valid landing-page URL first."]
+    };
 
     const getValue = id => document.getElementById(id).value.trim();
     const isAdvancedMode = () => getValue("setupMode") === "advanced";
@@ -1542,6 +1604,116 @@
       return advancedPreset;
     }
 
+    function buildLaunchReadiness() {
+      const ga4Status = getValue("ga4Status");
+      const setupMode = getValue("setupMode");
+      const campaign = slugify(getValue("campaign"), "");
+      const content = slugify(getValue("content"), "");
+      const term = slugify(getValue("term"), "");
+      const market = slugify(getValue("market"), "");
+      const advancedMode = setupMode === "advanced";
+      const scoreParts = [];
+      const items = [];
+
+      if (latestFinalUrl) {
+        scoreParts.push(25);
+        items.push("Landing page URL is valid and has campaign parameters.");
+      } else {
+        items.push("Paste a valid product, collection, or landing page URL first.");
+      }
+
+      if (campaign) {
+        scoreParts.push(12);
+        items.push("Campaign name is present and readable.");
+      } else {
+        items.push("Add a simple campaign name before launch.");
+      }
+
+      if (content) {
+        scoreParts.push(6);
+        items.push("Creative/content label is present for a basic ad comparison.");
+      } else {
+        items.push("Add a creative label if you want to compare ads later.");
+      }
+
+      if (term || market) {
+        scoreParts.push(4);
+      }
+
+      if (ga4Status === "working") {
+        scoreParts.push(28);
+        items.push("GA4 is marked as working. Still click the final URL and check Realtime before spending.");
+      } else if (ga4Status === "installed") {
+        scoreParts.push(18);
+        items.push("GA4 is installed but not checked. Open Realtime and click the final URL before spending.");
+      } else if (ga4Status === "created") {
+        scoreParts.push(8);
+        items.push("GA4 is created but not verified. Install or confirm the Google tag, then check Realtime.");
+      } else {
+        items.push("GA4 is not installed. Set up GA4 before judging campaign performance.");
+      }
+
+      if (advancedMode) {
+        scoreParts.push(8);
+        items.push("Advanced macros are on. Test the exact placeholder expansion in the ad account before live spend.");
+      } else {
+        scoreParts.push(15);
+        items.push("Beginner-safe static UTMs are on. This is the safer first launch path.");
+      }
+
+      scoreParts.push(10);
+      items.push("Use the generated URL in the ad platform, then confirm redirects preserve all UTM values.");
+
+      const score = Math.min(100, scoreParts.reduce((total, value) => total + value, 0));
+      let title = "Needs setup before launch";
+      let note = "Do the missing basics before spending on traffic.";
+
+      if (score >= 85) {
+        title = "Ready for a small test click";
+        note = "This looks ready for a controlled test click, not a guarantee of perfect attribution.";
+      } else if (score >= 65) {
+        title = "Almost ready";
+        note = "The URL is useful now, but GA4 or macro checks still need attention.";
+      } else if (score >= 40) {
+        title = "Build first, verify next";
+        note = "You have a starting URL. Finish the tracking checks before launch.";
+      }
+
+      return { score, title, note, items };
+    }
+
+    function renderReadiness(readiness) {
+      latestReadiness = readiness;
+      readinessTitle.textContent = readiness.title;
+      readinessNote.textContent = readiness.note;
+      readinessScore.textContent = `${readiness.score}/100`;
+      renderList(readinessList, readiness.items);
+    }
+
+    function buildReadinessPlanText() {
+      return [
+        "Ad Launch Readiness Plan",
+        "",
+        `Score: ${latestReadiness.score}/100`,
+        `Status: ${latestReadiness.title}`,
+        `Note: ${latestReadiness.note}`,
+        "",
+        `Final landing page URL: ${latestFinalUrl || "No URL generated"}`,
+        `Store platform: ${getValue("platform")}`,
+        `Traffic channel: ${getValue("channel")}`,
+        `Setup mode: ${getValue("setupMode")}`,
+        `GA4 status: ${getValue("ga4Status")}`,
+        "",
+        "Next checks:",
+        ...latestReadiness.items.map((item, index) => `${index + 1}. ${item}`),
+        "",
+        "Safety notes:",
+        "- This score is a launch QA helper, not a promise of perfect attribution.",
+        "- Do not put customer data in URLs.",
+        "- Avoid hidden redirects and duplicate GA4 tags."
+      ].join("\n");
+    }
+
     function buildCsv() {
       const metadata = [
         ["field", "value", "purpose"],
@@ -1574,7 +1746,8 @@
         `Traffic channel: ${getValue("channel")}`,
         `Setup mode: ${getValue("setupMode")}`,
         `Campaign goal: ${getValue("goal")}`,
-        `GA4 status: ${getValue("ga4Status")}`
+        `GA4 status: ${getValue("ga4Status")}`,
+        `Launch readiness: ${latestReadiness.score}/100 - ${latestReadiness.title}`
       ];
 
       if (isAdvancedMode()) {
@@ -1585,6 +1758,9 @@
         "",
         "Copy these URL fields into the ad platform or campaign brief:",
         ...latestRows.map(([name, value, purpose]) => `- ${name}: ${value} (${purpose})`),
+        "",
+        "Launch readiness:",
+        ...latestReadiness.items.map((item, index) => `${index + 1}. ${item}`),
         "",
         "Before spending:",
         ...buildChecklist().map((item, index) => `${index + 1}. ${item}`),
@@ -1654,6 +1830,7 @@
       const checklistRows = buildChecklist().map(item => `<li>${escapeHtml(item)}</li>`).join("");
       const macroRows = macroItems.map(item => `<li>${escapeHtml(item)}</li>`).join("");
       const eventRows = eventItems.map(item => `<li><code>${escapeHtml(item)}</code></li>`).join("");
+      const readinessRows = latestReadiness.items.map(item => `<li>${escapeHtml(item)}</li>`).join("");
 
       return `<!doctype html>
 <html lang="en">
@@ -1693,6 +1870,7 @@
         <div><span class="label">Macro style</span>${escapeHtml(macroStyle)}</div>
         <div><span class="label">Campaign goal</span>${escapeHtml(goal)}</div>
         <div><span class="label">GA4 status</span>${escapeHtml(ga4Status)}</div>
+        <div><span class="label">Launch readiness</span>${escapeHtml(latestReadiness.score)}/100 - ${escapeHtml(latestReadiness.title)}</div>
       </div>
     </section>
 
@@ -1713,22 +1891,28 @@
     </section>
 
     <section>
-      <h2>4. GA4 Realtime QA Steps</h2>
+      <h2>4. Launch Readiness</h2>
+      <p>${escapeHtml(latestReadiness.note)}</p>
+      <ol>${readinessRows}</ol>
+    </section>
+
+    <section>
+      <h2>5. GA4 Realtime QA Steps</h2>
       <ol>${checklistRows}</ol>
     </section>
 
     <section>
-      <h2>5. Channel and Macro Notes</h2>
+      <h2>6. Channel and Macro Notes</h2>
       <ul>${macroRows}</ul>
     </section>
 
     <section>
-      <h2>6. Ecommerce Events To Check</h2>
+      <h2>7. Ecommerce Events To Check</h2>
       <ul>${eventRows}</ul>
     </section>
 
     <section>
-      <h2>7. Search Console and Sitemap Check</h2>
+      <h2>8. Search Console and Sitemap Check</h2>
       <ol>
         <li>Verify the site in Google Search Console with your own Google account.</li>
         <li>Submit the sitemap URL, usually <code>/sitemap.xml</code>.</li>
@@ -1737,7 +1921,7 @@
     </section>
 
     <section>
-      <h2>8. When To Get Manual Help</h2>
+      <h2>9. When To Get Manual Help</h2>
       <p>If GA4 Realtime does not show the visit, redirects strip UTMs, checkout loses attribution, or the ad platform macro format is unclear, use the manual setup service for one store and one to two channels.</p>
       <p>Contact: <a href="mailto:luningbing@gmail.com">luningbing@gmail.com</a></p>
     </section>
@@ -1799,6 +1983,12 @@
         latestRows = [];
         latestFinalUrl = "";
         renderList(macroNotes, ["No URL generated yet."]);
+        renderReadiness({
+          score: 0,
+          title: "Needs a valid URL",
+          note: "Paste a real landing page URL first.",
+          items: ["Paste the exact product, collection, or landing page your ad will send shoppers to."]
+        });
         return;
       }
 
@@ -1867,6 +2057,7 @@
 
       renderList(ga4Checklist, buildChecklist());
       renderList(eventList, ["page_view", "view_item", "add_to_cart", "view_cart", "begin_checkout", "purchase"]);
+      renderReadiness(buildLaunchReadiness());
     }
 
     form.addEventListener("input", updateBuilder);
@@ -1882,6 +2073,14 @@
         return;
       }
       copyText(buildSetupBriefText(), "Setup brief copied");
+    });
+
+    copyReadinessPlanButton.addEventListener("click", () => {
+      if (!latestFinalUrl) {
+        showToast("Enter a valid URL first");
+        return;
+      }
+      copyText(buildReadinessPlanText(), "Readiness plan copied");
     });
 
     downloadQaReportButton.addEventListener("click", () => {

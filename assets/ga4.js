@@ -66,6 +66,11 @@ document.addEventListener("click", event => {
     return;
   }
 
+  if (target.id === "copyReadinessPlan") {
+    sendTrackingEvent("launch_readiness_plan_copied", { event_location: "builder" });
+    return;
+  }
+
   if (target.id === "downloadQaReport") {
     sendTrackingEvent("tracking_qa_report_downloaded", { event_location: "builder" });
     return;
