@@ -71,6 +71,21 @@ document.addEventListener("click", event => {
     return;
   }
 
+  if (target.id === "generateBulkUrls") {
+    sendTrackingEvent("bulk_urls_generated", { event_location: "bulk_builder" });
+    return;
+  }
+
+  if (target.id === "copyBulkCsv") {
+    sendTrackingEvent("bulk_csv_copied", { event_location: "bulk_builder" });
+    return;
+  }
+
+  if (target.id === "downloadBulkCsv") {
+    sendTrackingEvent("bulk_csv_downloaded", { event_location: "bulk_builder" });
+    return;
+  }
+
   if (target.id === "downloadQaReport") {
     sendTrackingEvent("tracking_qa_report_downloaded", { event_location: "builder" });
     return;
@@ -114,6 +129,14 @@ document.addEventListener("click", event => {
 
   if (target.matches("a[href*='sample-tracking-qa-report']")) {
     sendTrackingEvent("sample_report_cta_clicked", {
+      event_location: getSectionLabel(target),
+      link_path: getLinkPath(target)
+    });
+    return;
+  }
+
+  if (target.matches("a[href*='bulk-utm-builder']")) {
+    sendTrackingEvent("bulk_builder_cta_clicked", {
       event_location: getSectionLabel(target),
       link_path: getLinkPath(target)
     });
