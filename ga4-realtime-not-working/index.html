@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GA4 Realtime Not Working | Ecommerce Campaign URL Checks</title>
+  <meta name="description" content="Troubleshoot GA4 Realtime when your ecommerce campaign test click does not appear after opening a UTM landing page URL.">
+  <meta property="og:title" content="GA4 Realtime Not Working">
+  <meta property="og:description" content="A beginner-friendly GA4 Realtime troubleshooting path for ecommerce sellers testing ad landing page URLs.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/ga4-realtime-not-working">
+  <link rel="canonical" href="https://whichadgotsale.com/ga4-realtime-not-working">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../ga4-realtime-checklist/">GA4 checklist</a>
+        <a class="button accent" href="../manual-url-setup-service/">Manual setup</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">GA4 troubleshooting</p>
+        <h1>GA4 Realtime Not Working</h1>
+        <p class="subhead">If your test click does not appear in GA4 Realtime, do not assume the ad URL is wrong. Check the tag, consent, browser, property, and landing page before changing campaign links.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../ga4-realtime-checklist/">Open the checklist</a>
+          <a class="button" href="../#tool">Build a test URL</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Campaign test click moving into GA4 Realtime checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>First suspect</h2>
+        <p>You are looking at the wrong GA4 property, data stream, or Realtime report view.</p>
+      </article>
+      <article class="card">
+        <h2>Second suspect</h2>
+        <p>The GA4 tag is missing, delayed, blocked by consent, or installed on a different template.</p>
+      </article>
+      <article class="card">
+        <h2>Best proof</h2>
+        <p>Use one clean UTM URL, one browser, and one GA4 property while you isolate the problem.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Quick test path</h2>
+          <ol class="step-list">
+            <li>Open GA4 and confirm you are in the correct property and web data stream.</li>
+            <li>Open Realtime before clicking your test URL.</li>
+            <li>Use an incognito window or a different browser with blockers disabled for one test.</li>
+            <li>Click a very plain UTM URL and wait a short moment.</li>
+            <li>If no visit appears, check whether the GA4 tag fires on that exact landing page.</li>
+            <li>If the visit appears without campaign fields, move to UTM troubleshooting instead.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Clean test URL</h2>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=test&amp;utm_medium=test&amp;utm_campaign=ga4_realtime_test</div>
+        </article>
+
+        <article class="section">
+          <h2>Common reasons Realtime looks empty</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Symptom</th>
+                  <th>Likely cause</th>
+                  <th>Check</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>No users at all</td>
+                  <td>Wrong property, missing tag, or blocker.</td>
+                  <td>Confirm measurement ID and test with blockers off.</td>
+                </tr>
+                <tr>
+                  <td>Home page appears, product page does not</td>
+                  <td>Tag missing from one template.</td>
+                  <td>Check product, collection, and landing-page templates.</td>
+                </tr>
+                <tr>
+                  <td>Visit appears late</td>
+                  <td>Consent, tag manager, or network delay.</td>
+                  <td>Retest after consent and avoid changing settings mid-test.</td>
+                </tr>
+                <tr>
+                  <td>Visit appears but not campaign values</td>
+                  <td>URL parameters were stripped or duplicated.</td>
+                  <td>Check address bar after redirects and inspect UTMs.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>What to avoid</h2>
+          <ul class="note-list">
+            <li>Do not test from five browsers, accounts, or properties at once.</li>
+            <li>Do not change tag manager, consent, and ad URL settings in the same test round.</li>
+            <li>Do not treat Realtime as final attribution truth. Use it as a first-click smoke test.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good fit</h2>
+          <div class="mini-callout">
+            <strong>First setup debugging</strong>
+            Use this page when nothing appears in GA4 after clicking your own campaign URL.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../utm-not-showing-in-ga4/">
+              <strong>UTM Not Showing in GA4</strong>
+              <span>Use this after Realtime shows a visit but campaign values are missing.</span>
+            </a>
+            <a class="related-link" href="../campaign-url-qa-checklist/">
+              <strong>Campaign URL QA Checklist</strong>
+              <span>Run the pre-launch URL and redirect checks.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this if the tag and URL path still need a human pass.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Make the test boring</h2>
+        <p>One property, one URL, one browser, one click. That is the fastest way to learn whether the issue is GA4, the store, or the campaign link.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a test URL</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical first-check workflow. Privacy tools, consent settings, redirects, and browser extensions can affect whether Realtime displays your test visit.</p>
+    </footer>
+  </main>
+</body>
+</html>

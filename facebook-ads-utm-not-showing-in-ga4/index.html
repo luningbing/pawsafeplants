@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Facebook Ads UTM Not Showing in GA4 | Meta Tracking Checklist</title>
+  <meta name="description" content="Troubleshoot Facebook Ads UTM parameters when Meta traffic reaches your ecommerce landing page but source, medium, campaign, or ad values are not showing in GA4.">
+  <meta property="og:title" content="Facebook Ads UTM Not Showing in GA4">
+  <meta property="og:description" content="A practical Meta Ads and GA4 troubleshooting checklist for ecommerce sellers before paid traffic scales.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/facebook-ads-utm-not-showing-in-ga4">
+  <link rel="canonical" href="https://whichadgotsale.com/facebook-ads-utm-not-showing-in-ga4">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../meta-ads-utm-builder/">Meta builder</a>
+        <a class="button accent" href="../manual-url-setup-service/">Manual setup</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Meta Ads troubleshooting</p>
+        <h1>Facebook Ads UTM Not Showing in GA4</h1>
+        <p class="subhead">If Facebook or Instagram clicks reach your store but GA4 does not show the campaign values you expected, debug the final landing page URL before rebuilding the whole analytics setup.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Rebuild the Meta URL</a>
+          <a class="button" href="../ga4-realtime-checklist/">Open GA4 checklist</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Facebook ad click flowing through URL parameters into GA4 checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Fastest check</h2>
+        <p>Click the exact final URL and confirm the UTM parameters remain visible after the landing page loads.</p>
+      </article>
+      <article class="card">
+        <h2>Most common issue</h2>
+        <p>A redirect, short link, app, or theme layer removes the query string before GA4 sees the page view.</p>
+      </article>
+      <article class="card">
+        <h2>Safest fallback</h2>
+        <p>Use static readable UTMs first. Add Meta placeholders only after the basic GA4 path is proven.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Start with a plain Meta URL</h2>
+          <p>Use a simple campaign name before testing advanced placeholders. This makes it clear whether the issue is Meta, the URL, the store, or GA4.</p>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=spring_sale&amp;utm_content=video_ad_01</div>
+        </article>
+
+        <article class="section">
+          <h2>Debugging sequence</h2>
+          <ol class="step-list">
+            <li>Paste the final URL into a normal browser tab and load it once.</li>
+            <li>Confirm <code>utm_source</code>, <code>utm_medium</code>, and <code>utm_campaign</code> remain in the address bar.</li>
+            <li>Open GA4 Realtime and click the same URL again.</li>
+            <li>If the visit appears without campaign values, check duplicate UTMs or redirect rules.</li>
+            <li>If no visit appears, check GA4 install, consent settings, duplicate tags, and browser blockers.</li>
+            <li>Only after static UTMs work, test Meta placeholders like campaign, ad set, or ad name fields.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Symptoms and likely causes</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Symptom</th>
+                  <th>Likely cause</th>
+                  <th>What to do next</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Facebook clicks show as direct</td>
+                  <td>UTMs were stripped or GA4 fired after a redirect.</td>
+                  <td>Test the final URL and each redirect hop.</td>
+                </tr>
+                <tr>
+                  <td>Campaign is empty</td>
+                  <td><code>utm_campaign</code> is missing, duplicated, or overwritten.</td>
+                  <td>Use one static campaign value and retest.</td>
+                </tr>
+                <tr>
+                  <td>Curly braces appear in GA4</td>
+                  <td>A Meta placeholder did not expand.</td>
+                  <td>Verify the exact token behavior in the ad account before launch.</td>
+                </tr>
+                <tr>
+                  <td>Visit works but purchase does not</td>
+                  <td>Checkout or ecommerce event setup is separate from the landing URL.</td>
+                  <td>Use the checkout attribution guide after the landing click works.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Do not hide the problem</h2>
+          <ul class="note-list">
+            <li>Do not put email, phone number, customer name, or order notes into the URL.</li>
+            <li>Do not use hidden redirects or cloaking to force a reporting result.</li>
+            <li>Do not change ad URL parameters, GA4, GTM, and store redirects at the same time.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Best for</h2>
+          <div class="mini-callout">
+            <strong>Small ecommerce launch QA</strong>
+            Use this page when you are about to spend on Facebook or Instagram ads and need a clean first-click proof path.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../meta-ads-utm-builder/">
+              <strong>Meta Ads UTM Builder</strong>
+              <span>Build a cleaner Meta landing page URL first.</span>
+            </a>
+            <a class="related-link" href="../meta-url-parameters-not-working/">
+              <strong>Meta URL Parameters Not Working</strong>
+              <span>Use the broader Meta parameter debugging path.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when the URL, redirects, and GA4 still do not line up.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Prove one Meta click before scaling spend</h2>
+        <p>A single clean click in GA4 Realtime is the cheapest way to catch broken campaign URLs before the budget starts moving.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free Meta URL</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical troubleshooting path, not a guarantee of perfect attribution. Browser privacy, consent settings, redirects, checkout behavior, and blockers can affect reporting.</p>
+    </footer>
+  </main>
+</body>
+</html>

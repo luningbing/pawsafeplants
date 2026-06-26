@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SHOPLINE UTM Builder | Ad Landing Page URL Builder</title>
+  <meta name="description" content="Build clean SHOPLINE campaign URLs for Meta, Google Ads, TikTok, affiliate, email, and SMS traffic, then verify source and campaign values in GA4.">
+  <meta property="og:title" content="SHOPLINE UTM Builder">
+  <meta property="og:description" content="Create SHOPLINE-ready ad landing page URLs and verify UTM traffic in GA4 before paid campaigns scale.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/shopline-utm-builder">
+  <link rel="canonical" href="https://whichadgotsale.com/shopline-utm-builder">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../shopline-ga4-tracking/">SHOPLINE GA4</a>
+        <a class="button accent" href="../manual-url-setup-service/">Manual setup</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Platform URL builder</p>
+        <h1>SHOPLINE UTM Builder</h1>
+        <p class="subhead">Create one clean SHOPLINE ad landing page URL, keep campaign naming consistent, and verify the visit in GA4 before sending real paid traffic.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Open the free builder</a>
+          <a class="button" href="../shopline-ga4-tracking/">Open SHOPLINE GA4 guide</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="SHOPLINE campaign links flowing into GA4 checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Best first setup</h2>
+        <p>Use static UTMs for source, medium, campaign, and content before testing platform macros or short links.</p>
+      </article>
+      <article class="card">
+        <h2>Common risk</h2>
+        <p>Redirects, language routing, apps, or checkout behavior can change what GA4 receives.</p>
+      </article>
+      <article class="card">
+        <h2>Success signal</h2>
+        <p>The final SHOPLINE page opens and GA4 Realtime shows the intended campaign labels.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>How to build a SHOPLINE UTM link</h2>
+          <ol class="step-list">
+            <li>Paste the final SHOPLINE product, collection, or campaign page URL into the homepage builder.</li>
+            <li>Select the traffic channel, such as Meta, Google Ads, TikTok, affiliate, email, or SMS.</li>
+            <li>Use a readable campaign name like <code>spring_sale_best_sellers</code>.</li>
+            <li>Use <code>utm_content</code> for creative or placement detail only when you need it.</li>
+            <li>Click the generated URL and verify the query string survives the landing page load.</li>
+          </ol>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=tiktok&amp;utm_medium=paid_social&amp;utm_campaign=spring_sale_best_sellers&amp;utm_content=creator_video_01</div>
+        </article>
+
+        <article class="section">
+          <h2>Recommended naming pattern</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Example</th>
+                  <th>Use it for</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>utm_source</code></td>
+                  <td><code>tiktok</code></td>
+                  <td>The traffic platform or partner.</td>
+                </tr>
+                <tr>
+                  <td><code>utm_medium</code></td>
+                  <td><code>paid_social</code></td>
+                  <td>The traffic type.</td>
+                </tr>
+                <tr>
+                  <td><code>utm_campaign</code></td>
+                  <td><code>spring_sale_best_sellers</code></td>
+                  <td>The promotion, launch, or campaign.</td>
+                </tr>
+                <tr>
+                  <td><code>utm_content</code></td>
+                  <td><code>creator_video_01</code></td>
+                  <td>Creative, ad, creator, or placement detail.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>SHOPLINE QA checks</h2>
+          <ul class="note-list">
+            <li>Check whether the store redirects from one locale, currency, or path to another.</li>
+            <li>Make sure campaign parameters remain after any automatic redirect.</li>
+            <li>Verify GA4 Realtime before judging purchase attribution.</li>
+            <li>Keep private customer data out of URL parameters.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../shopline-ga4-tracking/">
+              <strong>SHOPLINE GA4 Tracking</strong>
+              <span>Verify landing visits and ecommerce events after the URL works.</span>
+            </a>
+            <a class="related-link" href="../tiktok-utm-builder/">
+              <strong>TikTok UTM Builder</strong>
+              <span>Useful for SHOPLINE sellers running TikTok ads.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when the platform redirects or GA4 checks get messy.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Build the URL, then verify one visit</h2>
+        <p>That simple loop catches most SHOPLINE campaign tracking mistakes before paid traffic scales.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free link</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point, not a guarantee of perfect attribution. Platform redirects, checkout behavior, consent settings, and blockers can affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>

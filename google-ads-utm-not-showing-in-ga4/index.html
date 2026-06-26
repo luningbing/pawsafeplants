@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Ads UTM Not Showing in GA4 | Final URL Suffix Checklist</title>
+  <meta name="description" content="Troubleshoot Google Ads UTM parameters and final URL suffix settings when campaign values are missing or wrong in GA4.">
+  <meta property="og:title" content="Google Ads UTM Not Showing in GA4">
+  <meta property="og:description" content="A beginner-safe checklist for Google Ads landing page URLs, final URL suffixes, ValueTrack, and GA4 Realtime checks.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/google-ads-utm-not-showing-in-ga4">
+  <link rel="canonical" href="https://whichadgotsale.com/google-ads-utm-not-showing-in-ga4">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../google-ads-utm-builder/">Google builder</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Google Ads troubleshooting</p>
+        <h1>Google Ads UTM Not Showing in GA4</h1>
+        <p class="subhead">When paid search clicks reach your store but GA4 does not show the expected campaign, keyword, or ad labels, separate final URL problems from suffix and ValueTrack problems.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Build a Google Ads URL</a>
+          <a class="button" href="../google-ads-final-url-suffix-guide/">Open suffix guide</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Google Ads click flowing through a final URL suffix into GA4 checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>First check</h2>
+        <p>Confirm whether UTMs are appended to the final URL, the final URL suffix, or a tracking template.</p>
+      </article>
+      <article class="card">
+        <h2>Common issue</h2>
+        <p>UTMs are duplicated across account, campaign, ad group, or ad-level settings and GA4 receives conflicting values.</p>
+      </article>
+      <article class="card">
+        <h2>Simple fallback</h2>
+        <p>Test one static URL first, then add ValueTrack fields only after the visit appears in GA4 Realtime.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Clean starter URL</h2>
+          <p>Use this shape before adding keyword, device, match type, or creative placeholders.</p>
+          <div class="code-block">https://example.com/products/sample-product?utm_source=google&amp;utm_medium=paid_search&amp;utm_campaign=spring_search&amp;utm_content=text_ad</div>
+        </article>
+
+        <article class="section">
+          <h2>Final URL suffix pattern</h2>
+          <p>If you use the Google Ads final URL suffix, keep the suffix focused and make sure the final URL itself does not already contain the same fields.</p>
+          <div class="code-block">utm_source=google&amp;utm_medium=paid_search&amp;utm_campaign=spring_search&amp;utm_term={keyword}&amp;utm_content={creative}</div>
+        </article>
+
+        <article class="section">
+          <h2>Debugging sequence</h2>
+          <ol class="step-list">
+            <li>Open the landing page without Google Ads and confirm the store page works.</li>
+            <li>Check whether UTMs are already attached to the final URL.</li>
+            <li>Check account, campaign, ad group, and ad-level final URL suffix settings.</li>
+            <li>Temporarily test a static campaign URL in GA4 Realtime.</li>
+            <li>If static UTMs work, add one ValueTrack field at a time.</li>
+            <li>If campaign values still look wrong, inspect duplicate parameters and redirect behavior.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Where Google Ads values can break</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>Risk</th>
+                  <th>Cleaner move</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Final URL</td>
+                  <td>Already contains old UTMs.</td>
+                  <td>Use one clean URL or move UTMs into suffix.</td>
+                </tr>
+                <tr>
+                  <td>Final URL suffix</td>
+                  <td>Conflicts with account-level rules.</td>
+                  <td>Check every level before adding more fields.</td>
+                </tr>
+                <tr>
+                  <td>ValueTrack</td>
+                  <td>Placeholder does not apply to the campaign type.</td>
+                  <td>Verify the field inside Google Ads documentation and preview tools.</td>
+                </tr>
+                <tr>
+                  <td>GA4</td>
+                  <td>Visit appears but campaign fields are missing.</td>
+                  <td>Check redirects, duplicate tags, consent, and parameter conflicts.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Best for</h2>
+          <div class="mini-callout">
+            <strong>Paid search launch checks</strong>
+            Use this when Google Ads clicks are live or close to launch and the GA4 campaign labels are missing or messy.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../google-ads-final-url-suffix-guide/">
+              <strong>Google Ads Final URL Suffix Guide</strong>
+              <span>Use a safer suffix structure before scaling.</span>
+            </a>
+            <a class="related-link" href="../google-valuetrack-examples/">
+              <strong>Google ValueTrack Examples</strong>
+              <span>Compare keyword, creative, device, and network fields.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual setup service</strong>
+              <span>Use this when suffix rules and GA4 still do not line up.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Test one Google Ads URL before launch</h2>
+        <p>One verified click path is better than a complicated suffix that nobody has tested in GA4.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free URL</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical troubleshooting path. Confirm Google Ads settings and current platform behavior in your own account before launch.</p>
+    </footer>
+  </main>
+</body>
+</html>
