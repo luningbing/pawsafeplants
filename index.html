@@ -880,6 +880,7 @@
             <div class="url-output" id="finalUrl"></div>
             <div class="result-actions">
               <button class="button primary" id="copyUrl" type="button">Copy URL</button>
+              <button class="button" id="copySetupBrief" type="button">Copy ad setup brief</button>
               <button class="button accent" id="downloadQaReport" type="button">Download QA Report</button>
               <button class="button" id="downloadCsv" type="button">Download CSV</button>
               <button class="button" id="downloadChecklist" type="button">Download checklist</button>
@@ -1430,6 +1431,7 @@
     const platformGuidanceEl = document.getElementById("platformGuidance");
     const toast = document.getElementById("toast");
     const copyUrlButton = document.getElementById("copyUrl");
+    const copySetupBriefButton = document.getElementById("copySetupBrief");
     const downloadQaReportButton = document.getElementById("downloadQaReport");
     const downloadCsvButton = document.getElementById("downloadCsv");
     const downloadChecklistButton = document.getElementById("downloadChecklist");
@@ -1556,6 +1558,40 @@
       return [...metadata, ...params]
         .map(row => row.map(csvCell).join(","))
         .join("\n");
+    }
+
+    function buildSetupBriefText() {
+      const lines = [
+        "Ad Landing Page Setup Brief",
+        "",
+        `Final landing page URL: ${latestFinalUrl || "No URL generated"}`,
+        `Store platform: ${getValue("platform")}`,
+        `Traffic channel: ${getValue("channel")}`,
+        `Setup mode: ${getValue("setupMode")}`,
+        `Campaign goal: ${getValue("goal")}`,
+        `GA4 status: ${getValue("ga4Status")}`
+      ];
+
+      if (isAdvancedMode()) {
+        lines.push(`Advanced macro style: ${getValue("macroStyle")}`);
+      }
+
+      lines.push(
+        "",
+        "Copy these URL fields into the ad platform or campaign brief:",
+        ...latestRows.map(([name, value, purpose]) => `- ${name}: ${value} (${purpose})`),
+        "",
+        "Before spending:",
+        ...buildChecklist().map((item, index) => `${index + 1}. ${item}`),
+        "",
+        "Safety notes:",
+        "- Keep URLs transparent.",
+        "- Do not put customer emails, phone numbers, names, addresses, or order details in URL parameters.",
+        "- Do not use hidden redirects or duplicate GA4 tags.",
+        "- Browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and ad blockers can affect analytics."
+      );
+
+      return lines.join("\n");
     }
 
     function buildChecklistText() {
@@ -1833,6 +1869,14 @@
 
     copyUrlButton.addEventListener("click", () => {
       copyText(finalUrlEl.textContent, "URL copied");
+    });
+
+    copySetupBriefButton.addEventListener("click", () => {
+      if (!latestFinalUrl) {
+        showToast("Enter a valid URL first");
+        return;
+      }
+      copyText(buildSetupBriefText(), "Setup brief copied");
     });
 
     downloadQaReportButton.addEventListener("click", () => {

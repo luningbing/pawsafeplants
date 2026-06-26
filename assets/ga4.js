@@ -61,6 +61,11 @@ document.addEventListener("click", event => {
     return;
   }
 
+  if (target.id === "copySetupBrief") {
+    sendTrackingEvent("ad_setup_brief_copied", { event_location: "builder" });
+    return;
+  }
+
   if (target.id === "downloadQaReport") {
     sendTrackingEvent("tracking_qa_report_downloaded", { event_location: "builder" });
     return;
