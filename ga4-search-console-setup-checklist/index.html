@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GA4 and Google Search Console Setup Checklist | Ecommerce Sellers</title>
+  <meta name="description" content="A beginner-friendly GA4 and Google Search Console setup checklist for ecommerce sellers who need to track campaign traffic, verify Google indexing, and submit a sitemap.">
+  <meta property="og:title" content="GA4 and Google Search Console Setup Checklist">
+  <meta property="og:description" content="Set up GA4 for traffic checks, connect Search Console for Google visibility, and submit a sitemap without getting buried in analytics jargon.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/ga4-search-console-setup-checklist">
+  <link rel="canonical" href="https://whichadgotsale.com/ga4-search-console-setup-checklist">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "GA4 and Google Search Console Setup Checklist",
+      "description": "A beginner-friendly checklist for setting up GA4, verifying Google Search Console, and submitting a sitemap for an ecommerce site.",
+      "step": [
+        { "@type": "HowToStep", "text": "Create or confirm a Google Analytics 4 property for the store." },
+        { "@type": "HowToStep", "text": "Install the Google tag or use the ecommerce platform's official GA4 integration." },
+        { "@type": "HowToStep", "text": "Click a campaign landing page URL and confirm the visit in GA4 Realtime." },
+        { "@type": "HowToStep", "text": "Add the domain or URL-prefix property in Google Search Console." },
+        { "@type": "HowToStep", "text": "Verify site ownership and submit the sitemap URL." }
+      ]
+    }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../ga4-realtime-checklist/">GA4 checklist</a>
+        <a class="button accent" href="../manual-url-setup-service/">Manual setup</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Free setup checklist</p>
+        <h1>GA4 and Google Search Console Setup Checklist</h1>
+        <p class="subhead">For small ecommerce sellers who need the basics: see campaign traffic in GA4, help Google discover the site, and submit a sitemap without turning the first launch into a technical project.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">Build a campaign URL</a>
+          <a class="button" href="../manual-url-setup-service/">Get manual help</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Ad traffic, ecommerce store, and analytics verification workflow">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>GA4 answers</h2>
+        <p>Did the campaign click reach the store, and do the traffic source, campaign, and ecommerce events look believable?</p>
+      </article>
+      <article class="card">
+        <h2>Search Console answers</h2>
+        <p>Can Google verify the site, read the sitemap, and report indexing or search performance issues?</p>
+      </article>
+      <article class="card">
+        <h2>Cost</h2>
+        <p>GA4 and Google Search Console are free. Extra cost only appears if your store needs a paid app, developer work, or deeper tracking setup.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>What you need before starting</h2>
+          <ul class="note-list">
+            <li>A Google account you can keep long term.</li>
+            <li>Access to the ecommerce store admin, theme, tag area, or official analytics integration.</li>
+            <li>Your store domain, for example <code>https://example.com</code>.</li>
+            <li>Your sitemap URL. Many sites use <code>/sitemap.xml</code>, for example <code>https://example.com/sitemap.xml</code>.</li>
+            <li>One test landing page URL that you can click yourself.</li>
+          </ul>
+        </article>
+
+        <article class="section">
+          <h2>Part 1: GA4 setup</h2>
+          <ol class="step-list">
+            <li>Create or open a Google Analytics 4 property for the store.</li>
+            <li>Create a web data stream for the store domain and copy the Measurement ID. It normally starts with <code>G-</code>.</li>
+            <li>Install the Google tag directly, through Google Tag Manager, or through the ecommerce platform's official GA4 integration.</li>
+            <li>Turn on the simplest useful checks first: page views, campaign UTMs, and ecommerce events the platform can support.</li>
+            <li>Click a real campaign landing-page URL and check GA4 Realtime before judging any report.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Part 2: Search Console setup</h2>
+          <ol class="step-list">
+            <li>Add the store as a property in Google Search Console. Domain property is broader; URL-prefix property is often easier for beginners.</li>
+            <li>Verify ownership using the method you can actually complete: DNS record, HTML file, HTML tag, Google Analytics, or Google Tag Manager.</li>
+            <li>Submit the sitemap URL after verification.</li>
+            <li>Wait for Google to process it. Submitting a sitemap helps discovery, but it does not guarantee every page will rank or index immediately.</li>
+            <li>Check indexing, page errors, and search performance after data starts appearing.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Beginner launch order</h2>
+          <ol class="step-list">
+            <li>Generate one clean ad landing-page URL with readable UTMs.</li>
+            <li>Install or confirm GA4.</li>
+            <li>Click the generated URL and check GA4 Realtime.</li>
+            <li>Verify the domain in Search Console.</li>
+            <li>Submit the sitemap.</li>
+            <li>Only then start adding more ad channels, macros, redirects, or short links.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Common beginner mistakes</h2>
+          <ul class="note-list">
+            <li>Adding several GA4 tags at once and creating duplicate events.</li>
+            <li>Submitting a sitemap before the domain is verified.</li>
+            <li>Using advanced ad macros before one static UTM link has been tested.</li>
+            <li>Assuming Search Console traffic and GA4 traffic will match exactly. They answer different questions.</li>
+            <li>Putting customer emails, phone numbers, names, or order details into URL parameters.</li>
+          </ul>
+        </article>
+
+        <article class="section">
+          <h2>Official Google references</h2>
+          <p>Use these when the Google interface changes or your store platform shows a slightly different screen.</p>
+          <div class="related-links">
+            <a class="related-link" href="https://support.google.com/analytics/answer/9304153" rel="nofollow">
+              <strong>Google Analytics setup help</strong>
+              <span>Google's official GA4 setup guidance for websites and apps.</span>
+            </a>
+            <a class="related-link" href="https://support.google.com/webmasters/answer/34592" rel="nofollow">
+              <strong>Verify site ownership in Search Console</strong>
+              <span>Google's official ownership verification methods.</span>
+            </a>
+            <a class="related-link" href="https://support.google.com/webmasters/answer/7451001" rel="nofollow">
+              <strong>Submit a sitemap to Search Console</strong>
+              <span>Google's official sitemap submission help.</span>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Small seller rule</h2>
+          <div class="mini-callout">
+            <strong>Start boring</strong>
+            One URL, one channel, one campaign name, one Realtime check. Add complexity after the simple path works.
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>When to ask for help</h2>
+          <ul class="note-list">
+            <li>You cannot tell whether GA4 is installed.</li>
+            <li>The sitemap is rejected or missing important pages.</li>
+            <li>Realtime does not show the test click.</li>
+            <li>The store has several redirect, checkout, or app layers.</li>
+          </ul>
+        </article>
+
+        <article class="section">
+          <h2>Also useful</h2>
+          <div class="related-links">
+            <a class="related-link" href="../ga4-realtime-checklist/">
+              <strong>GA4 Realtime Checklist</strong>
+              <span>Test whether a campaign URL reaches GA4 before traffic goes live.</span>
+            </a>
+            <a class="related-link" href="../utm-not-showing-in-ga4/">
+              <strong>UTM Not Showing in GA4</strong>
+              <span>Debug common reasons campaign values disappear.</span>
+            </a>
+            <a class="related-link" href="../manual-url-setup-service/">
+              <strong>Manual Setup Service</strong>
+              <span>Get a done-for-you starter pass for one store and one to two channels.</span>
+            </a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Set up the measurement loop before scaling ads</h2>
+        <p>The clean order is simple: build the landing-page URL, check GA4 Realtime, verify Search Console, submit the sitemap, then launch more channels.</p>
+      </div>
+      <a class="button primary" href="../#tool">Build a free campaign URL</a>
+    </section>
+
+    <footer>
+      <p>This checklist is for transparent measurement and search discovery. It is not a promise of perfect attribution, instant indexing, or guaranteed traffic.</p>
+    </footer>
+  </main>
+</body>
+</html>
