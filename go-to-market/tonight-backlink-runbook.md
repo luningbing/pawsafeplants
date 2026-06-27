@@ -7,17 +7,18 @@ Goal: get the first safe backlinks and referral experiments live without paying 
 - GitHub repository backlink: https://github.com/luningbing/pawsafeplants
 - GitHub README screenshot link to: https://whichadgotsale.com/
 - Live site: https://whichadgotsale.com/
+- Product Hunt draft scheduled: June 29, 2026 at 12:01am PT / 03:01pm GMT+8
+- Product Hunt draft URL: https://www.producthunt.com/products/whichadgotsale?launch=whichadgotsale
 - Prepared screenshot: `go-to-market/assets/whichadgotsale-homepage-1280x720.png`
 - Prepared copy: `go-to-market/backlink-submission-kit.md`
 
 ## Submit First
 
 1. Product Hunt
-   - Open: https://www.producthunt.com/posts/new
+   - Open: https://www.producthunt.com/products/whichadgotsale?launch=whichadgotsale
    - Cost: free
-   - Needs: user login
-   - Use screenshot: `go-to-market/assets/whichadgotsale-homepage-1280x720.png`
-   - Use copy from: Product Hunt Copy section
+   - Status: scheduled for June 29, 2026 at 12:01am PT / 03:01pm GMT+8
+   - Needs: monitor after launch starts
    - Do not buy promotion.
 
 2. Uneed
@@ -66,6 +67,7 @@ For each submitted directory, record:
 ## Success Signals To Watch In GA4
 
 - Referral traffic from directory domains
+- Product Hunt referral traffic after June 29, 2026 03:01pm GMT+8
 - `builder_cta_clicked`
 - `ad_url_qa_checker_cta_clicked`
 - `campaign_url_copied`

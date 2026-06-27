@@ -1,6 +1,6 @@
 platform,url,status,cost,requires_user_action,listing_url,submitted_date,notes
 GitHub,https://github.com/luningbing/pawsafeplants,live,free,no,https://github.com/luningbing/pawsafeplants,2026-06-27,"Public README links to whichadgotsale.com and includes screenshot."
-Product Hunt,https://www.producthunt.com/posts/new,pending,free,yes,,,"Needs user login. Use Product Hunt Copy and homepage screenshot."
+Product Hunt,https://www.producthunt.com/products/whichadgotsale?launch=whichadgotsale,scheduled,free,no,https://www.producthunt.com/products/whichadgotsale?launch=whichadgotsale,2026-06-28,"Scheduled for June 29, 2026 at 12:01am PT / 03:01pm GMT+8. No paid promotion."
 Uneed,https://www.uneed.best/submit-a-tool,pending,free_or_optional_paid_boost,yes,,,"Needs user login. Do not buy boost before GA4 referral proof."
 SaaSHub,https://www.saashub.com/submit,pending,free_or_optional_paid_promo,yes,,,"Needs login or browser challenge. Do not buy sponsored placement."
 Fazier,https://fazier.com/submit,hold,possible_reciprocal_backlink,yes,,,"Submit only if reciprocal backlink is approved."
