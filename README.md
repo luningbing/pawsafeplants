@@ -20,6 +20,12 @@ It helps Shopify, WooCommerce, Wix, BigCommerce, Shoplazza, Shopline, and indepe
 - Bulk URL builder: [https://whichadgotsale.com/bulk-utm-builder/](https://whichadgotsale.com/bulk-utm-builder/)
 - Ad URL QA checker: [https://whichadgotsale.com/ad-url-qa-checker/](https://whichadgotsale.com/ad-url-qa-checker/)
 - GA4 Realtime checklist: [https://whichadgotsale.com/ga4-realtime-checklist/](https://whichadgotsale.com/ga4-realtime-checklist/)
+- Manual setup offer: [https://whichadgotsale.com/manual-url-setup-service/](https://whichadgotsale.com/manual-url-setup-service/)
+
+## Launch Notes
+
+- Product Hunt launch-day playbook: [go-to-market/product-hunt-launch-day-playbook.md](go-to-market/product-hunt-launch-day-playbook.md)
+- Backlink tracker: [go-to-market/backlink-tracker.csv](go-to-market/backlink-tracker.csv)
 
 ## Privacy
 

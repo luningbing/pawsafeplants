@@ -557,6 +557,34 @@
       line-height: 1.5;
     }
 
+    .service-strip {
+      margin: 0 0 22px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: center;
+      padding: 18px;
+      border: 1px solid #c7d2fe;
+      background: #f5f7ff;
+      border-radius: 8px;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, .05);
+    }
+
+    .service-strip h2 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .service-strip p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .service-strip strong {
+      color: var(--ink);
+    }
+
     .guide-band {
       margin-top: 26px;
       display: grid;
@@ -654,6 +682,7 @@
       .tool-header,
       .builder,
       .beginner-path,
+      .service-strip,
       .guide-band,
       .cta {
         grid-template-columns: 1fr;
@@ -773,6 +802,7 @@
         <div class="hero-actions" aria-label="Primary tool actions">
           <a class="button primary" href="#tool">Build a trackable ad URL</a>
           <a class="button" href="ad-url-qa-checker/">Check an existing URL</a>
+          <a class="button" href="manual-url-setup-service/">Done-for-you setup</a>
         </div>
         <p class="hero-note">No login. No customer data. No hidden redirects.</p>
         <div class="tagline" aria-label="Supported use cases">
@@ -811,6 +841,14 @@
           <span>Open the generated URL yourself, then use Realtime to see whether the visit appears.</span>
         </li>
       </ol>
+    </section>
+
+    <section class="service-strip" aria-label="Done-for-you setup offer">
+      <div>
+        <h2>Not sure how to configure this in your ad account or GA4?</h2>
+        <p>Start free. If you get stuck, the <strong>USD 99 starter setup</strong> gives you one store, one landing-page flow, one to two channels, and a written GA4 launch QA handoff.</p>
+      </div>
+      <a class="button primary" href="manual-url-setup-service/">See manual setup</a>
     </section>
 
     <section class="builder" aria-label="Landing-page URL builder">

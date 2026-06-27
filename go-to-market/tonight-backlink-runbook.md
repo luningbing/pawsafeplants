@@ -13,6 +13,7 @@ Goal: get the first safe backlinks and referral experiments live without paying 
 - Uneed listing preview: https://www.uneed.best/tool/whichadgotsale
 - Prepared screenshot: `go-to-market/assets/whichadgotsale-homepage-1280x720.png`
 - Prepared copy: `go-to-market/backlink-submission-kit.md`
+- Launch-day playbook: `go-to-market/product-hunt-launch-day-playbook.md`
 
 ## Submit First
 
@@ -76,5 +77,9 @@ For each submitted directory, record:
 - `campaign_url_copied`
 - `ad_url_qa_checked`
 - `tracking_qa_report_downloaded`
+- `manual_setup_cta_clicked`
+- `manual_setup_email_clicked`
 
 If directories send visitors but no action events, improve the homepage promise and button area before submitting more links.
+
+For the Product Hunt launch-day sequence, use `go-to-market/product-hunt-launch-day-playbook.md`.
