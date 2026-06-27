@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Free Ad Landing Page URL Builder | UTM + GA4 Checklist</title>
-  <meta name="description" content="Generate clean ad landing page URLs with UTMs for Shopify, WooCommerce, TikTok, Meta, Google Ads, email, SMS, affiliate, and QR traffic. Includes a GA4 Realtime checklist.">
-  <meta property="og:title" content="Free Ad Landing Page URL Builder">
-  <meta property="og:description" content="Create clean ad landing page URLs for your store and verify source, medium, campaign, and ecommerce events in GA4 Realtime.">
+  <title>Find Which Ad Sent the Sale | Free Ad Landing Page URL Builder</title>
+  <meta name="description" content="Build clean ad landing page URLs for ecommerce campaigns, then check source, campaign, and creative labels in GA4 Realtime before spending more.">
+  <meta property="og:title" content="Find Which Ad Sent the Sale">
+  <meta property="og:description" content="Create trackable ad landing page URLs for your store and verify source, campaign, creative, and ecommerce events in GA4 Realtime.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/workflow.png">
   <meta property="og:url" content="https://whichadgotsale.com/">
@@ -207,6 +207,14 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+    }
+
+    .hero-note {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.5;
     }
 
     .workflow-visual {
@@ -727,7 +735,7 @@
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Free Ad Landing Page URL Builder",
+      "name": "WhichAdGotSale Free Ad Landing Page URL Builder",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
       "offers": {
@@ -744,7 +752,7 @@
     <div class="topbar-inner">
       <div class="brand">
         <span class="mark" aria-hidden="true">U</span>
-        <span>Landing Page URL Builder</span>
+        <span>WhichAdGotSale</span>
       </div>
       <nav class="top-actions" aria-label="Primary">
         <a class="text-link" href="#beginner-path">Beginner path</a>
@@ -760,13 +768,13 @@
     <section class="tool-header" id="tool">
       <div>
         <p class="eyebrow">Free ad landing-page URL tool</p>
-        <h1><span>Free Ad Landing</span><span>Page URL Builder</span></h1>
-        <p class="subhead">Build clean ad landing-page URLs for your store. Add UTMs, keep macros readable, and check source, campaign, and ecommerce events in GA4 Realtime.</p>
+        <h1><span>Find Which Ad</span><span>Sent the Sale</span></h1>
+        <p class="subhead">Build a clean landing page URL for each ad, then check it in GA4 before you spend more. Made for small ecommerce sellers who need source, campaign, and creative labels they can trust.</p>
         <div class="hero-actions" aria-label="Primary tool actions">
-          <a class="button primary" href="#tool">Build one URL</a>
-          <a class="button" href="bulk-utm-builder/">Batch URLs</a>
-          <a class="button" href="ad-url-qa-checker/">Check existing URL</a>
+          <a class="button primary" href="#tool">Build a trackable ad URL</a>
+          <a class="button" href="ad-url-qa-checker/">Check an existing URL</a>
         </div>
+        <p class="hero-note">No login. No customer data. No hidden redirects.</p>
         <div class="tagline" aria-label="Supported use cases">
           <span class="tag">Shopify</span>
           <span class="tag">WooCommerce</span>
@@ -925,7 +933,7 @@
       <div class="panel result-panel" aria-live="polite">
         <div class="panel-head">
           <h2 class="panel-title">Generated output</h2>
-          <p class="panel-note">Use the long URL directly or send it to your short-link tool after checking it.</p>
+          <p class="panel-note">Copy this into your ad platform final URL field, then click it yourself and check GA4 Realtime.</p>
         </div>
         <div class="result-body">
           <p class="error" id="errorText"></p>
@@ -933,7 +941,7 @@
           <div class="url-box">
             <div class="url-output" id="finalUrl"></div>
             <div class="result-actions">
-              <button class="button primary" id="copyUrl" type="button">Copy URL</button>
+              <button class="button primary" id="copyUrl" type="button">Copy final ad URL</button>
               <button class="button" id="copySetupBrief" type="button">Copy ad setup brief</button>
               <button class="button accent" id="downloadQaReport" type="button">Download QA Report</button>
               <button class="button" id="downloadCsv" type="button">Download CSV</button>
