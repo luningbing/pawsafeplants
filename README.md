@@ -2,6 +2,8 @@
 
 [WhichAdGotSale](https://whichadgotsale.com/) is a free ad landing page URL builder for small ecommerce sellers.
 
+[![WhichAdGotSale homepage screenshot](go-to-market/assets/whichadgotsale-homepage-1280x720.png)](https://whichadgotsale.com/)
+
 It helps Shopify, WooCommerce, Wix, BigCommerce, Shoplazza, Shopline, and independent-store operators create clean campaign URLs for Meta Ads, TikTok Ads, Google Ads, AppLovin, affiliate traffic, email, SMS, QR codes, and other paid channels.
 
 ## What It Does

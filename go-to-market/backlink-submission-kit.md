@@ -26,7 +26,7 @@ Tags:
 UTM builder, GA4, ecommerce analytics, Shopify, WooCommerce, Meta Ads, TikTok Ads, Google Ads, campaign tracking, landing page URL, ad attribution, marketing tools
 
 Logo/image note:
-Use a clean screenshot of the homepage hero and generated URL result. Do not use any internal company data, customer URLs, or private campaign names.
+Use a clean screenshot of the homepage hero. The prepared asset is `go-to-market/assets/whichadgotsale-homepage-1280x720.png`. Do not use any internal company data, customer URLs, or private campaign names.
 
 ## Directory Priorities
 
