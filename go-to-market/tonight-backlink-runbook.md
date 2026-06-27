@@ -9,6 +9,8 @@ Goal: get the first safe backlinks and referral experiments live without paying 
 - Live site: https://whichadgotsale.com/
 - Product Hunt draft scheduled: June 29, 2026 at 12:01am PT / 03:01pm GMT+8
 - Product Hunt draft URL: https://www.producthunt.com/products/whichadgotsale?launch=whichadgotsale
+- Uneed free waiting line scheduled: November 21, 2026
+- Uneed listing preview: https://www.uneed.best/tool/whichadgotsale
 - Prepared screenshot: `go-to-market/assets/whichadgotsale-homepage-1280x720.png`
 - Prepared copy: `go-to-market/backlink-submission-kit.md`
 
@@ -22,11 +24,12 @@ Goal: get the first safe backlinks and referral experiments live without paying 
    - Do not buy promotion.
 
 2. Uneed
-   - Open: https://www.uneed.best/submit-a-tool
-   - Cost: free listing available, paid boosts optional
-   - Needs: user login
-   - Use copy from: Core Listing section
-   - Do not buy featured placement tonight.
+   - Open: https://www.uneed.best/edit/waiting-line/38937
+   - Cost: free waiting line
+   - Status: scheduled for November 21, 2026 via the free line
+   - Listing preview: https://www.uneed.best/tool/whichadgotsale
+   - Paid options observed and skipped: exact-date scheduling $29.99, fast-track $14.99
+   - Do not buy paid scheduling until GA4 shows referral proof.
 
 3. SaaSHub
    - Open: https://www.saashub.com/submit
