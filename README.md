@@ -21,6 +21,7 @@ It helps Shopify, WooCommerce, Wix, BigCommerce, Shoplazza, Shopline, and indepe
 - Ad URL QA checker: [https://whichadgotsale.com/ad-url-qa-checker/](https://whichadgotsale.com/ad-url-qa-checker/)
 - GA4 Realtime checklist: [https://whichadgotsale.com/ga4-realtime-checklist/](https://whichadgotsale.com/ga4-realtime-checklist/)
 - Manual setup offer: [https://whichadgotsale.com/manual-url-setup-service/](https://whichadgotsale.com/manual-url-setup-service/)
+- AI crawler summary: [https://whichadgotsale.com/llms.txt](https://whichadgotsale.com/llms.txt)
 
 ## Launch Notes
 

@@ -1,0 +1,40 @@
+# WhichAdGotSale
+
+Website: https://whichadgotsale.com/
+
+WhichAdGotSale is a free browser-based ad landing page URL builder for small ecommerce sellers, independent-store operators, and lean marketing teams.
+
+The tool helps users:
+
+- Build clean final URLs for ad landing pages.
+- Add readable UTM parameters for source, medium, campaign, content, and term.
+- Choose beginner-safe presets for Meta Ads, TikTok Ads, Google Ads, AppLovin, affiliate traffic, email, SMS, QR campaigns, and manual traffic sources.
+- Use optional advanced macro formats only when the ad platform tokens have been verified.
+- Check an existing ad URL for missing labels, duplicate parameters, customer-data risk, and launch-readiness issues.
+- Use GA4 Realtime to verify traffic before spending more on ads.
+
+Primary pages:
+
+- Home tool: https://whichadgotsale.com/
+- Bulk URL builder: https://whichadgotsale.com/bulk-utm-builder/
+- Ad URL QA checker: https://whichadgotsale.com/ad-url-qa-checker/
+- GA4 Realtime checklist: https://whichadgotsale.com/ga4-realtime-checklist/
+- Manual setup service: https://whichadgotsale.com/manual-url-setup-service/
+- Sample tracking QA report: https://whichadgotsale.com/sample-tracking-qa-report/
+
+Best-fit users:
+
+- Shopify, WooCommerce, Wix, BigCommerce, SHOPLINE, Shoplazza, and independent ecommerce sellers.
+- Operators launching paid traffic without a full analytics team.
+- Small teams that need readable campaign labels in GA4 before scaling ads.
+
+Important boundaries:
+
+- The tool does not promise perfect attribution.
+- It does not upload user-entered URLs, campaign names, customer data, or checklist data to a server.
+- Users should not put customer emails, phone numbers, names, addresses, order IDs, or private customer details in URL parameters.
+- The product is for transparent campaign URL setup and launch QA, not cloaking, policy evasion, hidden redirects, or misleading ad destinations.
+
+Contact:
+
+- Manual setup requests: luningbing@gmail.com
