@@ -655,6 +655,62 @@
       color: var(--blue);
     }
 
+    .faq-section {
+      margin-top: 26px;
+      display: grid;
+      gap: 16px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, .05);
+    }
+
+    .faq-head {
+      display: grid;
+      gap: 8px;
+      max-width: 780px;
+    }
+
+    .faq-head h2 {
+      margin: 0;
+      font-size: 24px;
+      line-height: 1.18;
+    }
+
+    .faq-head p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .faq-item {
+      border: 1px solid #dce6f1;
+      border-radius: 8px;
+      background: #f8fbff;
+      padding: 14px;
+    }
+
+    .faq-item summary {
+      cursor: pointer;
+      font-weight: 820;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    .faq-item p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
     .cta {
       margin-top: 26px;
       display: grid;
@@ -715,6 +771,7 @@
       .service-strip,
       .sample-strip,
       .guide-band,
+      .faq-grid,
       .cta {
         grid-template-columns: 1fr;
       }
@@ -803,6 +860,54 @@
         "price": "0",
         "priceCurrency": "USD"
       }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an ad landing page URL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An ad landing page URL is the final page link you put into an ad platform. For ecommerce sellers, it is usually a product, collection, or landing page URL with UTM parameters added so GA4 can show source, medium, campaign, and creative labels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need GA4 before I run ads?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You should at least install GA4 and check Realtime before spending on ads. GA4 is free, and the basic check is simple: click your final ad URL yourself, then confirm the visit appears with the expected source, medium, and campaign labels."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can Shopify sellers use this?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Shopify sellers can paste a product, collection, or landing page URL, choose the traffic channel, generate a final ad URL, and then check the visit in GA4 Realtime. The same workflow also works for WooCommerce, Wix, BigCommerce, SHOPLINE, Shoplazza, and many independent stores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should beginners use ad platform macros?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most beginners should start with readable static UTM values first. Advanced macros are useful later, but they should be tested inside the ad account before live spend because token syntax and expansion behavior can vary by channel and account setup."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this replace a full attribution tool?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. This is a starter URL builder and launch QA helper. It helps sellers avoid messy campaign links and verify GA4 Realtime, but browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and blockers can still affect attribution."
+          }
+        }
+      ]
     }
   </script>
   <script defer src="assets/ga4.js"></script>
@@ -1337,6 +1442,40 @@
         <p>Check the landing visit first, then confirm the event path still makes sense after cart and checkout steps.</p>
         <a class="guide-link" href="shoplazza-ga4-tracking/">Open Shoplazza guide</a>
       </article>
+    </section>
+
+    <section class="faq-section" aria-label="Beginner FAQ">
+      <div class="faq-head">
+        <p class="eyebrow">Beginner FAQ</p>
+        <h2>Quick answers before you launch traffic</h2>
+        <p>These are the questions a small seller usually has before pasting a URL into Meta, TikTok, Google Ads, AppLovin, affiliate, email, or SMS campaigns.</p>
+      </div>
+      <div class="faq-grid">
+        <details class="faq-item" open>
+          <summary>What is an ad landing page URL?</summary>
+          <p>It is the final page link you put into the ad platform. For ecommerce, it is usually a product, collection, or landing page URL with source, medium, campaign, and creative labels added.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Do I need GA4 before I run ads?</summary>
+          <p>Yes, at least the free basic setup. Click your final ad URL yourself, then check GA4 Realtime to confirm the visit and campaign labels appear before spending more.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Can Shopify sellers use this?</summary>
+          <p>Yes. Paste a Shopify product, collection, or landing page URL, choose the ad channel, generate the final URL, then check the visit in GA4 Realtime.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Should beginners use ad platform macros?</summary>
+          <p>Start with readable static UTMs first. Use advanced macros only after the ad account confirms the exact token format and you have clicked a test URL.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is this a full attribution tool?</summary>
+          <p>No. It is a starter URL builder and launch QA helper. Browser privacy, consent settings, redirects, checkout behavior, cross-domain flows, and blockers can still affect attribution.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What should I do if I am not technical?</summary>
+          <p>Click the sample button first, replace the example URL with your store URL, keep beginner mode on, copy the final URL, and check GA4 Realtime. If you get stuck, use the manual setup offer.</p>
+        </details>
+      </div>
     </section>
 
     <section class="cta" aria-label="Custom setup">
