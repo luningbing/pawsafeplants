@@ -23,6 +23,11 @@ Primary pages:
 - GA4 Realtime checklist: https://whichadgotsale.com/ga4-realtime-checklist/
 - Manual setup service: https://whichadgotsale.com/manual-url-setup-service/
 - Sample tracking QA report: https://whichadgotsale.com/sample-tracking-qa-report/
+- Shopify ad attribution in GA4: https://whichadgotsale.com/shopify-ad-attribution-ga4/
+- Meta Ads URL parameters in GA4: https://whichadgotsale.com/meta-ads-url-parameters-ga4/
+- TikTok ad URL tracking in GA4: https://whichadgotsale.com/tiktok-ad-url-tracking-ga4/
+- Google Ads final URL tracking template: https://whichadgotsale.com/google-ads-final-url-tracking-template/
+- Ecommerce UTM builder alternative: https://whichadgotsale.com/utm-builder-alternative-ecommerce/
 
 High-intent beginner questions the site answers:
 
@@ -32,6 +37,11 @@ High-intent beginner questions the site answers:
 - Should beginners use ad platform macros?
 - Is this a full attribution tool?
 - What should I do if I am not technical?
+- How do I track which Shopify ad made a sale in GA4?
+- Why are Meta Ads URL parameters not showing in GA4?
+- How should TikTok ad URLs be tracked in GA4?
+- Should Google Ads beginners use a final URL suffix or tracking template?
+- What is a free UTM builder alternative for ecommerce ad landing pages?
 
 Best-fit users:
 

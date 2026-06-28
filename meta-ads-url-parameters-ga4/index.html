@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meta Ads URL Parameters Not Showing in GA4 | Beginner Fix</title>
+  <meta name="description" content="Fix Facebook and Instagram ad URL parameters not showing in GA4 with static UTMs first, optional Meta macros later, and a Realtime verification loop.">
+  <meta property="og:title" content="Meta Ads URL Parameters Not Showing in GA4">
+  <meta property="og:description" content="A beginner-safe way to set Meta Ads URL parameters for ecommerce landing pages and verify them in GA4 Realtime.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/meta-ads-url-parameters-ga4">
+  <link rel="canonical" href="https://whichadgotsale.com/meta-ads-url-parameters-ga4">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+  <script defer src="../assets/ga4.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../meta-ads-utm-builder/">Meta guide</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Meta Ads + GA4</p>
+        <h1>Meta Ads URL parameters not showing in GA4</h1>
+        <p class="subhead">For small sellers, the safest fix is usually not a complex macro setup. First build a static UTM landing page URL, click it, and confirm the visit in GA4 Realtime.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#builder">Build a Meta ad URL</a>
+          <a class="button" href="../meta-url-parameter-examples/">See Meta examples</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Meta ad traffic flowing into ecommerce analytics checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Beginner default</h2>
+        <p>Use static values such as <code>utm_source=meta</code> and <code>utm_medium=paid_social</code> before testing dynamic placeholders.</p>
+      </article>
+      <article class="card">
+        <h2>Advanced option</h2>
+        <p>Meta macros can be useful, but only after the exact placeholder format is confirmed inside the ad account.</p>
+      </article>
+      <article class="card">
+        <h2>What to inspect</h2>
+        <p>Check final URL, URL parameters, redirects, duplicate UTMs, short links, and GA4 Realtime before editing live ads.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Use this starter pattern first</h2>
+          <p>Put the clean product or landing page in the final URL field, then add a readable UTM pattern. This gives GA4 something stable to report even before macros are involved.</p>
+          <div class="code-block">utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=spring_sale_travel_bag&amp;utm_content=ugc_video_angle_01</div>
+          <ol class="step-list">
+            <li>Paste the store landing page into the builder.</li>
+            <li>Select Meta as the traffic channel.</li>
+            <li>Keep <code>utm_campaign</code> readable for the first test.</li>
+            <li>Copy the generated URL into the Meta ad destination or URL parameter area according to your account setup.</li>
+            <li>Click a preview or test link, then check GA4 Realtime.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>When to use Meta macros</h2>
+          <p>Macros are better for accounts that need ad set and ad-level reporting without manually naming every URL. Beginners should add them after static UTMs work.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Need</th>
+                  <th>Safer first value</th>
+                  <th>Advanced value to verify</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Campaign</td>
+                  <td><code>spring_sale_travel_bag</code></td>
+                  <td><code>{{campaign.name}}</code> or campaign ID macros if your account confirms them.</td>
+                </tr>
+                <tr>
+                  <td>Ad set</td>
+                  <td><code>prospecting_broad</code></td>
+                  <td><code>{{adset.name}}</code> or a stable ad set ID token.</td>
+                </tr>
+                <tr>
+                  <td>Ad creative</td>
+                  <td><code>ugc_video_angle_01</code></td>
+                  <td><code>{{ad.name}}</code> or a stable ad ID token.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Debug checklist</h2>
+          <ol class="step-list">
+            <li>Open the final landing page URL in a browser and make sure the UTM values remain in the address bar.</li>
+            <li>Remove duplicate <code>utm_source</code>, <code>utm_medium</code>, or <code>utm_campaign</code> values.</li>
+            <li>Check whether a redirect or short link strips parameters.</li>
+            <li>Test one static URL before testing a macro URL.</li>
+            <li>In GA4 Realtime, inspect source, medium, campaign, page path, and event sequence.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Common reason GA4 still looks blank</h2>
+          <ul class="note-list">
+            <li>The user clicked inside an ad platform preview that does not behave like a real landing page click.</li>
+            <li>The website has a consent banner, tag issue, or duplicate GA4 install.</li>
+            <li>The campaign labels are present in the URL but GA4 reports are delayed outside Realtime.</li>
+            <li>The URL was edited at campaign level but the ad uses a different final URL.</li>
+            <li>The macro tokens did not expand before the click reached the site.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Plain rule</h2>
+          <div class="mini-callout">
+            <strong>Static first, macros second.</strong>
+            If static UTMs do not appear in GA4, dynamic macros will only make the debugging harder.
+          </div>
+        </article>
+        <article class="section">
+          <h2>Related guides</h2>
+          <div class="related-links">
+            <a class="related-link" href="../meta-ads-utm-builder/"><strong>Meta Ads UTM Builder</strong><span>Generate a simple Meta-ready landing page URL.</span></a>
+            <a class="related-link" href="../meta-url-parameters-not-working/"><strong>Meta URL Parameters Not Working</strong><span>Use a longer troubleshooting path.</span></a>
+            <a class="related-link" href="../manual-url-setup-service/"><strong>Manual setup service</strong><span>Get the URL pattern checked before live spend.</span></a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Test one Meta landing page URL before you change the campaign</h2>
+        <p>Build a clean URL, click it yourself, and only then copy the pattern into Meta Ads.</p>
+      </div>
+      <a class="button primary" href="../#builder">Build a Meta ad URL</a>
+    </section>
+
+    <footer>
+      <p>This guide is for transparent campaign URL setup and GA4 launch QA. It is not for cloaking, hidden redirects, or misleading ad destinations.</p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Google Ads Final URL Tracking Template | GA4 Ecommerce Setup</title>
+  <meta name="description" content="A beginner guide to Google Ads final URL suffix, tracking templates, static UTMs, ValueTrack, and GA4 Realtime checks for ecommerce landing pages.">
+  <meta property="og:title" content="Google Ads Final URL Tracking Template">
+  <meta property="og:description" content="Set up Google Ads landing page tracking for GA4 without breaking ecommerce URLs, redirects, or reporting.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/google-ads-final-url-tracking-template">
+  <link rel="canonical" href="https://whichadgotsale.com/google-ads-final-url-tracking-template">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+  <script defer src="../assets/ga4.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../google-ads-utm-builder/">Google guide</a>
+        <a class="button accent" href="../ga4-realtime-checklist/">GA4 checklist</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Google Ads + GA4</p>
+        <h1>Google Ads final URL tracking template for ecommerce GA4 checks</h1>
+        <p class="subhead">Use a simple final URL suffix first, understand where tracking templates fit, and verify the landing page visit in GA4 before you add more ValueTrack detail.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#builder">Build a Google ad URL</a>
+          <a class="button" href="../google-valuetrack-examples/">See ValueTrack examples</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Google ad click flowing into ecommerce and GA4 checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>Final URL</h2>
+        <p>The final URL is the page shoppers land on. For ecommerce, this is often a product, collection, or landing page.</p>
+      </article>
+      <article class="card">
+        <h2>Final URL suffix</h2>
+        <p>The suffix can add UTM parameters without changing the visible landing page field.</p>
+      </article>
+      <article class="card">
+        <h2>Tracking template</h2>
+        <p>Use templates carefully. They are powerful, but unnecessary complexity can break beginner reporting.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Beginner setup</h2>
+          <p>For a small store, start with a readable static UTM suffix. Keep auto-tagging in mind, but do not use manual UTMs and ValueTrack fields randomly without a naming plan.</p>
+          <div class="code-block">utm_source=google&amp;utm_medium=paid_search&amp;utm_campaign=summer_sale_travel_bag&amp;utm_content=search_ad_01</div>
+          <ol class="step-list">
+            <li>Put the real product or landing page in the final URL field.</li>
+            <li>Add a final URL suffix only after checking the page loads cleanly.</li>
+            <li>Use readable campaign values first.</li>
+            <li>Use ValueTrack only when the extra keyword, match type, creative, or device detail will be read later.</li>
+            <li>Click a test link and verify the visit in GA4 Realtime.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Which Google Ads field should you use?</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Use it for</th>
+                  <th>Beginner caution</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Final URL</td>
+                  <td>The actual ecommerce landing page.</td>
+                  <td>Do not paste a broken redirect chain as the first test.</td>
+                </tr>
+                <tr>
+                  <td>Final URL suffix</td>
+                  <td>Simple UTM parameters appended to the final URL.</td>
+                  <td>Avoid duplicate UTMs already present in the final URL.</td>
+                </tr>
+                <tr>
+                  <td>Tracking template</td>
+                  <td>Advanced click tracking or account-level routing.</td>
+                  <td>Use only when you understand how it changes the landing URL.</td>
+                </tr>
+                <tr>
+                  <td>ValueTrack</td>
+                  <td>Dynamic values such as keyword, match type, device, creative, or placement.</td>
+                  <td>Verify that the final expanded URL still opens and reports correctly.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>GA4 verification steps</h2>
+          <ol class="step-list">
+            <li>Open the generated or previewed final landing page URL.</li>
+            <li>Confirm the page loads without a tracking error.</li>
+            <li>Check that UTM values are still visible after redirects.</li>
+            <li>Open GA4 Realtime and look for source, medium, campaign, and page path.</li>
+            <li>If auto-tagging is enabled, keep your GA4 reporting expectations clear before judging manual UTMs.</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Common mistakes</h2>
+          <ul class="note-list">
+            <li>Using both final URL parameters and final URL suffix values that conflict.</li>
+            <li>Adding a tracking template from an old account without testing the expanded URL.</li>
+            <li>Expecting GA4 standard reports to update instantly instead of checking Realtime first.</li>
+            <li>Using too many dynamic fields when nobody will read the extra report dimensions.</li>
+            <li>Changing campaign naming rules every launch.</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Safe first path</h2>
+          <div class="mini-callout">
+            <strong>Final URL suffix is enough for many sellers.</strong>
+            Start there, then add ValueTrack only when the basic click is visible in GA4.
+          </div>
+        </article>
+        <article class="section">
+          <h2>Related guides</h2>
+          <div class="related-links">
+            <a class="related-link" href="../google-ads-utm-builder/"><strong>Google Ads UTM Builder</strong><span>Generate a simple Google Ads landing page URL.</span></a>
+            <a class="related-link" href="../google-ads-final-url-suffix-guide/"><strong>Final URL Suffix Guide</strong><span>Use the shorter suffix-only version.</span></a>
+            <a class="related-link" href="../google-ads-utm-not-showing-in-ga4/"><strong>Google Ads UTM Not Showing</strong><span>Debug GA4 reporting after the click.</span></a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Build the URL, then test the expanded click</h2>
+        <p>Google Ads tracking fields are easier to manage after one clean URL has already passed the GA4 Realtime check.</p>
+      </div>
+      <a class="button primary" href="../#builder">Build a Google ad URL</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical starting point, not Google Ads legal or policy advice. Always follow your ad account settings and platform documentation.</p>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopify Ad Attribution in GA4 | Track Which Ad Made a Sale</title>
+  <meta name="description" content="A beginner-safe Shopify GA4 workflow to build ad landing page URLs, verify campaign visits, and understand where purchase attribution can break.">
+  <meta property="og:title" content="Shopify Ad Attribution in GA4">
+  <meta property="og:description" content="Track Shopify ad landing page visits in GA4 with clean UTMs, Realtime checks, and a practical purchase attribution checklist.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/shopify-ad-attribution-ga4">
+  <link rel="canonical" href="https://whichadgotsale.com/shopify-ad-attribution-ga4">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+  <script defer src="../assets/ga4.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>Landing Page URL Builder</span>
+      </a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../">Home tool</a>
+        <a class="text-link" href="../shopify-utm-builder/">Shopify UTM guide</a>
+        <a class="button accent" href="../manual-url-setup-service/">Manual setup</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Shopify + GA4</p>
+        <h1>How to track which Shopify ad made a sale in GA4</h1>
+        <p class="subhead">Start with one clean ad landing page URL, confirm the click in GA4 Realtime, then check whether the later Shopify purchase still carries believable campaign context.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#builder">Build a free ad URL</a>
+          <a class="button" href="../ga4-realtime-checklist/">Open GA4 checklist</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="Ad traffic flowing into ecommerce and analytics checks">
+    </section>
+
+    <section class="summary-grid" aria-label="Quick summary">
+      <article class="card">
+        <h2>First proof</h2>
+        <p>The first thing to prove is simple: after clicking your ad URL, GA4 Realtime should show the source, medium, and campaign you expected.</p>
+      </article>
+      <article class="card">
+        <h2>Sale proof</h2>
+        <p>A purchase event is a separate check. Shopify checkout, consent, duplicate tags, and cross-domain behavior can affect what GA4 receives.</p>
+      </article>
+      <article class="card">
+        <h2>Safe default</h2>
+        <p>Use readable static UTMs before adding platform macros. Beginners should not debug macros before the basic GA4 path works.</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Beginner workflow</h2>
+          <ol class="step-list">
+            <li>Paste the Shopify product, collection, or landing page into the free builder.</li>
+            <li>Choose the ad channel, such as Meta, TikTok, Google Ads, affiliate, or email.</li>
+            <li>Use a readable campaign name like <code>summer_sale_travel_bag</code>.</li>
+            <li>Click the generated URL yourself and make sure Shopify loads the correct page.</li>
+            <li>Open GA4 Realtime and confirm the visit appears with the expected campaign labels.</li>
+            <li>After that, test cart, checkout, and purchase events if your store setup supports them.</li>
+          </ol>
+          <div class="code-block">https://example.com/products/travel-bag?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=summer_sale_travel_bag&amp;utm_content=ugc_video_angle_01</div>
+        </article>
+
+        <article class="section">
+          <h2>What GA4 can and cannot prove</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Check</th>
+                  <th>Good signal</th>
+                  <th>Common limitation</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Landing visit</td>
+                  <td>Realtime shows source, medium, campaign, and page path.</td>
+                  <td>Redirects or duplicate UTMs may overwrite the values.</td>
+                </tr>
+                <tr>
+                  <td>Product event</td>
+                  <td><code>view_item</code> appears after the product page loads.</td>
+                  <td>The theme or app may not send ecommerce event data.</td>
+                </tr>
+                <tr>
+                  <td>Cart event</td>
+                  <td><code>add_to_cart</code> fires when the shopper adds a product.</td>
+                  <td>Cart drawers and apps can bypass a simple tag setup.</td>
+                </tr>
+                <tr>
+                  <td>Purchase event</td>
+                  <td><code>purchase</code> appears with transaction and revenue fields.</td>
+                  <td>Checkout setup, consent, and cross-domain behavior can affect attribution.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>Why Shopify sales attribution looks wrong</h2>
+          <ul class="note-list">
+            <li>The ad URL never had UTMs, or the UTM naming changed between campaigns.</li>
+            <li>A redirect, short link, app link, or checkout path dropped the query string.</li>
+            <li>Multiple GA4 tags are installed and they send conflicting events.</li>
+            <li>The purchase event is missing, delayed, duplicated, or not tied to ecommerce parameters.</li>
+            <li>The buyer returns later from direct, email, or another channel before purchasing.</li>
+          </ul>
+        </article>
+
+        <article class="section">
+          <h2>Simple verification loop</h2>
+          <ol class="step-list">
+            <li>Build one final ad landing page URL.</li>
+            <li>Click it from a clean browser session or incognito window.</li>
+            <li>Check GA4 Realtime for the visit and campaign labels.</li>
+            <li>Run a test cart path only after the landing visit looks right.</li>
+            <li>Document the final URL pattern before copying it into more ads.</li>
+          </ol>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>Good first goal</h2>
+          <div class="mini-callout">
+            <strong>Do not start with perfect attribution.</strong>
+            Start by proving that one ad click reaches one Shopify page and shows the correct labels in GA4.
+          </div>
+        </article>
+        <article class="section">
+          <h2>Related guides</h2>
+          <div class="related-links">
+            <a class="related-link" href="../shopify-utm-builder/"><strong>Shopify UTM Builder</strong><span>Build the actual Shopify campaign URL.</span></a>
+            <a class="related-link" href="../checkout-attribution-ga4/"><strong>Checkout Attribution in GA4</strong><span>Check what happens after the landing page.</span></a>
+            <a class="related-link" href="../manual-url-setup-service/"><strong>Manual setup service</strong><span>Get one store and one to two channels checked for USD 99.</span></a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="Next step">
+      <div>
+        <h2>Build the Shopify ad URL before you scale spend</h2>
+        <p>One verified URL pattern is more useful than a messy spreadsheet of campaign links nobody has tested.</p>
+      </div>
+      <a class="button primary" href="../#builder">Build a free ad URL</a>
+    </section>
+
+    <footer>
+      <p>This guide is a practical launch QA workflow, not a promise of perfect attribution. Browser privacy, consent settings, redirects, checkout behavior, and ad blockers can affect analytics.</p>
+    </footer>
+  </main>
+</body>
+</html>
