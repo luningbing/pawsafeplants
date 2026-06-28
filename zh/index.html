@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>跨境自建站广告归因链接工具 | WhichAdGotSale</title>
+  <meta name="description" content="给中国跨境自建站卖家的免费广告归因链接配置工具。生成 Meta、TikTok、Google Ads 等投放落地页 URL，用 GA4 Realtime 先验证流量来源、活动和素材。">
+  <meta property="og:title" content="跨境自建站广告归因链接工具">
+  <meta property="og:description" content="生成广告投放落地页 URL，配置 UTM 参数，用 GA4 Realtime 检查哪个渠道、活动和素材带来访问。">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/zh/">
+  <link rel="canonical" href="https://whichadgotsale.com/zh/">
+  <link rel="alternate" hreflang="en" href="https://whichadgotsale.com/">
+  <link rel="alternate" hreflang="zh-CN" href="https://whichadgotsale.com/zh/">
+  <link rel="alternate" hreflang="x-default" href="https://whichadgotsale.com/">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+  <style>
+    .tool-panel {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .zh-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .zh-field {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .zh-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .zh-field label {
+      font-size: 13px;
+      font-weight: 780;
+      color: #26374a;
+    }
+
+    .zh-field input,
+    .zh-field select {
+      width: 100%;
+      min-width: 0;
+      min-height: 44px;
+      border: 1px solid #cbd6e2;
+      border-radius: 8px;
+      background: #fff;
+      color: #102033;
+      padding: 10px 12px;
+      font: inherit;
+      outline: none;
+    }
+
+    .zh-field input:focus,
+    .zh-field select:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+    }
+
+    .output-box {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid #d7e5ff;
+      border-radius: 8px;
+      background: #f4f8ff;
+      word-break: break-all;
+      color: #0f3f85;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .status-line {
+      min-height: 20px;
+      color: #5f6f82;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .zh-note {
+      margin-top: 12px;
+      color: #5f6f82;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .tool-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .zh-form {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "WhichAdGotSale 跨境自建站广告归因链接工具",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  </script>
+  <script defer src="../assets/ga4.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>WhichAdGotSale</span>
+      </a>
+      <nav class="top-actions" aria-label="主要导航">
+        <a class="text-link" href="#tool">生成链接</a>
+        <a class="text-link" href="#workflow">归因流程</a>
+        <a class="text-link" href="../manual-url-setup-service/#brief-generator">人工配置</a>
+        <a class="button accent" href="../">English</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">给跨境自建站卖家</p>
+        <h1>先把广告归因链接配对，再去看 GA4</h1>
+        <p class="subhead">很多自建站投放看不清“哪个广告带来订单”，第一步不是上复杂系统，而是先把 Meta、TikTok、Google Ads 的落地页 URL 配干净，用 GA4 Realtime 验证来源、活动和素材。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#tool">生成广告归因链接</a>
+          <button class="button" id="loadZhSample" type="button">加载示例</button>
+          <a class="button" href="../manual-url-setup-service/#brief-generator">我想让你帮我配</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../assets/workflow.png" alt="广告流量进入独立站并在 GA4 中验证的流程">
+    </section>
+
+    <section class="summary-grid" aria-label="适合谁">
+      <article class="card">
+        <h2>适合小白卖家</h2>
+        <p>不需要先懂宏参、GTM 或服务端埋点。先生成一条能看懂的投放链接，再用 GA4 验证。</p>
+      </article>
+      <article class="card">
+        <h2>面向跨境投放</h2>
+        <p>覆盖 Meta、TikTok、Google Ads、联盟、邮件、短信、二维码等常见跨境流量渠道。</p>
+      </article>
+      <article class="card">
+        <h2>不是玄学归因</h2>
+        <p>它帮你把 URL 和 GA4 检查流程做对，但不承诺绕过浏览器隐私、支付跳转和广告屏蔽带来的限制。</p>
+      </article>
+    </section>
+
+    <section class="tool-panel" id="tool" aria-label="中文广告归因链接生成器">
+      <article class="section">
+        <h2>广告落地页 URL 生成器</h2>
+        <p>把你要投放的商品页、集合页或 Landing Page 填进来，选择渠道后生成带 UTM 的最终链接。</p>
+        <form class="zh-form" id="zhBuilderForm">
+          <div class="zh-field full">
+            <label for="zhBaseUrl">落地页 URL</label>
+            <input id="zhBaseUrl" name="zhBaseUrl" type="url" value="https://example.com/products/travel-bag">
+          </div>
+          <div class="zh-field">
+            <label for="zhPlatform">建站平台</label>
+            <select id="zhPlatform" name="zhPlatform">
+              <option value="shopify">Shopify</option>
+              <option value="woocommerce">WooCommerce</option>
+              <option value="shopline">SHOPLINE</option>
+              <option value="shoplazza">Shoplazza</option>
+              <option value="wix">Wix</option>
+              <option value="other">其他自建站</option>
+            </select>
+          </div>
+          <div class="zh-field">
+            <label for="zhChannel">投放渠道</label>
+            <select id="zhChannel" name="zhChannel">
+              <option value="meta">Meta / Facebook / Instagram</option>
+              <option value="tiktok">TikTok Ads</option>
+              <option value="google">Google Ads</option>
+              <option value="youtube">YouTube</option>
+              <option value="applovin">AppLovin</option>
+              <option value="affiliate">联盟 / Affiliate</option>
+              <option value="email">邮件</option>
+              <option value="sms">短信</option>
+              <option value="qr">二维码</option>
+              <option value="custom">其他渠道</option>
+            </select>
+          </div>
+          <div class="zh-field">
+            <label for="zhCampaign">活动名称</label>
+            <input id="zhCampaign" name="zhCampaign" type="text" value="summer_sale_travel_bag">
+          </div>
+          <div class="zh-field">
+            <label for="zhContent">素材 / 广告标签</label>
+            <input id="zhContent" name="zhContent" type="text" value="ugc_video_angle_01">
+          </div>
+          <div class="zh-field">
+            <label for="zhTerm">人群 / 关键词</label>
+            <input id="zhTerm" name="zhTerm" type="text" value="prospecting_broad">
+          </div>
+          <div class="zh-field">
+            <label for="zhMarket">市场</label>
+            <input id="zhMarket" name="zhMarket" type="text" value="US">
+          </div>
+        </form>
+      </article>
+
+      <aside class="section">
+        <h2>生成结果</h2>
+        <p>复制这个链接到广告平台的最终落地页 URL 或 URL 参数位置。投放前先自己点一次。</p>
+        <div class="output-box" id="zhFinalUrl"></div>
+        <div class="hero-actions">
+          <button class="button primary" id="copyZhUrl" type="button">复制链接</button>
+          <button class="button" id="copyZhChecklist" type="button">复制 GA4 检查清单</button>
+        </div>
+        <p class="status-line" id="zhStatus" aria-live="polite"></p>
+        <p class="zh-note">默认使用静态 UTM，适合新手。Meta、TikTok、Google Ads 的动态宏参可以后续加，但要先在广告账户里确认格式。</p>
+      </aside>
+    </section>
+
+    <section class="content-grid" id="workflow">
+      <div class="stack">
+        <article class="section">
+          <h2>广告归因从这 4 步开始</h2>
+          <ol class="step-list">
+            <li>每个广告渠道使用一条清晰的落地页 URL。</li>
+            <li>用 <code>utm_source</code>、<code>utm_medium</code>、<code>utm_campaign</code>、<code>utm_content</code> 标记来源、媒介、活动和素材。</li>
+            <li>投放前打开 GA4 Realtime，自己点击最终 URL。</li>
+            <li>确认 GA4 里能看到访问、页面和对应的 campaign 标签，再开始花广告费。</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>常见错误</h2>
+          <ul class="note-list">
+            <li>一个链接里重复出现两套 <code>utm_source</code> 或 <code>utm_campaign</code>。</li>
+            <li>短链、跳转页或插件把 UTM 参数吃掉了。</li>
+            <li>Shopify 或其他建站平台里装了多个 GA4 标签，事件重复或丢失。</li>
+            <li>一开始就上复杂宏参，结果不知道是宏参错了，还是 GA4 没装好。</li>
+            <li>把邮箱、手机号、订单号等客户隐私放进 URL 参数。</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>什么时候需要人工配置</h2>
+          <div class="mini-callout">
+            <strong>如果 GA4 看不到访问，不要硬猜。</strong>
+            可以先生成需求 brief，我会按一个店铺、一条落地页链路、一到两个广告渠道来帮你检查。Starter 服务价是 USD 99。
+          </div>
+          <div class="hero-actions">
+            <a class="button primary" href="../manual-url-setup-service/#brief-generator">生成配置需求 brief</a>
+          </div>
+        </article>
+
+        <article class="section">
+          <h2>边界</h2>
+          <ul class="note-list">
+            <li>不做隐藏跳转、违规规避、虚假目标页。</li>
+            <li>不承诺 100% 完美广告归因。</li>
+            <li>不把客户隐私写进 URL。</li>
+            <li>优先使用免费 GA4 和透明 URL 检查。</li>
+          </ul>
+        </article>
+      </aside>
+    </section>
+
+    <section class="cta" aria-label="下一步">
+      <div>
+        <h2>先生成一条链接，再看 GA4 有没有收到</h2>
+        <p>这就是小团队最便宜、最快的广告归因起点。先把基础做对，再考虑更复杂的 Pixel、CAPI、服务端追踪或商业归因系统。</p>
+      </div>
+      <a class="button primary" href="#tool">开始生成</a>
+    </section>
+
+    <footer>
+      <p>WhichAdGotSale 是广告落地页 URL 配置和 GA4 启动检查工具，不是完整商业归因平台。浏览器隐私、Consent、跳转、支付链路和广告屏蔽都可能影响最终数据。</p>
+    </footer>
+  </main>
+
+  <script>
+    const zhPresets = {
+      meta: ["meta", "paid_social"],
+      tiktok: ["tiktok", "paid_social"],
+      google: ["google", "paid_search"],
+      youtube: ["youtube", "paid_video"],
+      applovin: ["applovin", "paid_network"],
+      affiliate: ["affiliate", "partner"],
+      email: ["email", "email"],
+      sms: ["sms", "sms"],
+      qr: ["qr", "offline"],
+      custom: ["custom", "campaign"]
+    };
+
+    const zhFinalUrl = document.getElementById("zhFinalUrl");
+    const zhStatus = document.getElementById("zhStatus");
+    const zhForm = document.getElementById("zhBuilderForm");
+
+    function zhValue(id) {
+      const field = document.getElementById(id);
+      return field && "value" in field ? field.value.trim() : "";
+    }
+
+    function zhSlug(value, fallback) {
+      const cleaned = value
+        .trim()
+        .toLowerCase()
+        .replace(/[\s]+/g, "_")
+        .replace(/[^a-z0-9_{}.-]/g, "_")
+        .replace(/_+/g, "_")
+        .replace(/^_+|_+$/g, "");
+      return cleaned || fallback;
+    }
+
+    function normalizeUrl(value) {
+      if (/^https?:\/\//i.test(value)) return value;
+      return `https://${value}`;
+    }
+
+    function buildZhUrl() {
+      const channel = zhValue("zhChannel") || "meta";
+      const preset = zhPresets[channel] || zhPresets.custom;
+      let url;
+      try {
+        url = new URL(normalizeUrl(zhValue("zhBaseUrl")));
+      } catch (error) {
+        zhFinalUrl.textContent = "请输入有效 URL，例如 https://example.com/products/sample-product";
+        return "";
+      }
+
+      const params = new URLSearchParams(url.search);
+      params.set("utm_source", preset[0]);
+      params.set("utm_medium", preset[1]);
+      params.set("utm_campaign", zhSlug(zhValue("zhCampaign"), "campaign_name"));
+
+      const content = zhSlug(zhValue("zhContent"), "");
+      const term = zhSlug(zhValue("zhTerm"), "");
+      const market = zhSlug(zhValue("zhMarket"), "");
+      if (content) params.set("utm_content", content);
+      if (term) params.set("utm_term", term);
+      if (market) params.set("_market", market.toUpperCase());
+
+      url.search = params.toString();
+      const finalUrl = url.toString();
+      zhFinalUrl.textContent = finalUrl;
+      return finalUrl;
+    }
+
+    function buildZhChecklist() {
+      return [
+        "GA4 广告归因基础检查清单",
+        "",
+        `最终广告落地页 URL: ${buildZhUrl()}`,
+        `建站平台: ${zhValue("zhPlatform") || "I do not know"}`,
+        `投放渠道: ${zhValue("zhChannel") || "I do not know"}`,
+        "",
+        "投放前检查:",
+        "1. 打开 GA4 Realtime。",
+        "2. 自己点击最终广告落地页 URL。",
+        "3. 确认页面能正常打开，没有被短链或跳转吃掉参数。",
+        "4. 在 GA4 Realtime 里看 source / medium / campaign。",
+        "5. 如果是 Shopify 或自建站电商，再检查 view_item、add_to_cart、begin_checkout、purchase 是否按预期出现。",
+        "",
+        "注意: 不要把邮箱、手机号、姓名、订单号等客户隐私放进 URL 参数。"
+      ].join("\n");
+    }
+
+    async function copyZhText(text, message) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const textarea = document.createElement("textarea");
+          textarea.value = text;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+        }
+        zhStatus.textContent = message;
+      } catch (error) {
+        zhStatus.textContent = "复制失败，可以手动选中复制。";
+      }
+    }
+
+    document.getElementById("loadZhSample").addEventListener("click", () => {
+      document.getElementById("zhBaseUrl").value = "https://example.com/products/travel-bag";
+      document.getElementById("zhPlatform").value = "shopify";
+      document.getElementById("zhChannel").value = "meta";
+      document.getElementById("zhCampaign").value = "summer_sale_travel_bag";
+      document.getElementById("zhContent").value = "ugc_video_angle_01";
+      document.getElementById("zhTerm").value = "prospecting_broad";
+      document.getElementById("zhMarket").value = "US";
+      buildZhUrl();
+      document.getElementById("tool").scrollIntoView({ behavior: "smooth", block: "start" });
+      zhStatus.textContent = "示例已加载。";
+    });
+
+    document.getElementById("copyZhUrl").addEventListener("click", () => {
+      const finalUrl = buildZhUrl();
+      if (finalUrl) copyZhText(finalUrl, "广告链接已复制。");
+    });
+
+    document.getElementById("copyZhChecklist").addEventListener("click", () => {
+      copyZhText(buildZhChecklist(), "GA4 检查清单已复制。");
+    });
+
+    zhForm.addEventListener("input", buildZhUrl);
+    zhForm.addEventListener("change", buildZhUrl);
+    buildZhUrl();
+  </script>
+</body>
+</html>

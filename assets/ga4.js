@@ -68,6 +68,23 @@ document.addEventListener("click", event => {
     return;
   }
 
+  if (target.id === "loadZhSample") {
+    sendTrackingEvent("zh_sample_builder_loaded", {
+      event_location: getSectionLabel(target)
+    });
+    return;
+  }
+
+  if (target.id === "copyZhUrl") {
+    sendTrackingEvent("zh_campaign_url_copied", { event_location: "zh_builder" });
+    return;
+  }
+
+  if (target.id === "copyZhChecklist") {
+    sendTrackingEvent("zh_ga4_checklist_copied", { event_location: "zh_builder" });
+    return;
+  }
+
   if (target.id === "copySetupBrief") {
     sendTrackingEvent("ad_setup_brief_copied", { event_location: "builder" });
     return;

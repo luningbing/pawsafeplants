@@ -1,8 +1,9 @@
 # WhichAdGotSale
 
 Website: https://whichadgotsale.com/
+Chinese page: https://whichadgotsale.com/zh/
 
-WhichAdGotSale is a free browser-based ad landing page URL builder for small ecommerce sellers, independent-store operators, and lean marketing teams.
+WhichAdGotSale is a free browser-based ad landing page URL builder for small ecommerce sellers, independent-store operators, cross-border ecommerce sellers, and lean marketing teams.
 
 The tool helps users:
 
@@ -14,11 +15,13 @@ The tool helps users:
 - Check an existing ad URL for missing labels, duplicate parameters, customer-data risk, and launch-readiness issues.
 - Generate a manual setup brief that can be copied, downloaded, or sent by email for the USD 99 starter service.
 - Use GA4 Realtime to verify traffic before spending more on ads.
+- Use the Chinese page for Chinese cross-border independent-store sellers who want ad attribution URL setup before checking GA4.
 - Answer beginner questions about ad landing page URLs, UTM parameters, GA4 Realtime checks, Shopify campaign links, and advanced macros.
 
 Primary pages:
 
 - Home tool: https://whichadgotsale.com/
+- Chinese ad attribution URL tool: https://whichadgotsale.com/zh/
 - Bulk URL builder: https://whichadgotsale.com/bulk-utm-builder/
 - Ad URL QA checker: https://whichadgotsale.com/ad-url-qa-checker/
 - GA4 Realtime checklist: https://whichadgotsale.com/ga4-realtime-checklist/
@@ -43,6 +46,7 @@ High-intent beginner questions the site answers:
 - How should TikTok ad URLs be tracked in GA4?
 - Should Google Ads beginners use a final URL suffix or tracking template?
 - What is a free UTM builder alternative for ecommerce ad landing pages?
+- 中文跨境自建站卖家如何先配置广告归因链接再看 GA4?
 
 Best-fit users:
 
