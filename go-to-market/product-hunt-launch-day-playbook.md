@@ -95,6 +95,7 @@ Chinese:
 - `ad_url_qa_checker_cta_clicked`
 - `ad_url_qa_checked`
 - `tracking_qa_report_downloaded`
+- `result_manual_setup_cta_clicked`
 - `manual_setup_cta_clicked`
 - `manual_setup_email_clicked`
 
@@ -102,7 +103,7 @@ Decision rules:
 
 - Visitors but no builder events: make the first CTA and headline clearer.
 - Builder/sample events but no copy/download events: improve the form defaults or result panel.
-- Copy/download events but no manual setup clicks: keep free tool as acquisition and add one stronger service CTA.
+- Copy/download events but no manual setup clicks: keep free tool as acquisition and improve the result-panel service CTA.
 - Manual setup clicks but no email: make the intake brief shorter and add a clearer price/turnaround line.
 
 ## No-Spam Backlink Moves

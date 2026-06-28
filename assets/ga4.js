@@ -136,6 +136,18 @@ document.addEventListener("click", event => {
     return;
   }
 
+  if (target.id === "resultManualSetupCta") {
+    sendTrackingEvent("result_manual_setup_cta_clicked", {
+      event_location: "generated_output",
+      link_path: getLinkPath(target)
+    });
+    sendTrackingEvent("manual_setup_cta_clicked", {
+      event_location: "generated_output",
+      link_path: getLinkPath(target)
+    });
+    return;
+  }
+
   if (target.matches("a[href*='manual-url-setup-service']")) {
     sendTrackingEvent("manual_setup_cta_clicked", {
       event_location: getSectionLabel(target),

@@ -78,6 +78,7 @@ For each submitted directory, record:
 - `campaign_url_copied`
 - `ad_url_qa_checked`
 - `tracking_qa_report_downloaded`
+- `result_manual_setup_cta_clicked`
 - `manual_setup_cta_clicked`
 - `manual_setup_email_clicked`
 

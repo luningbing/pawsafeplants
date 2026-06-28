@@ -406,6 +406,33 @@
       flex-wrap: wrap;
     }
 
+    .result-nudge {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid #fed7aa;
+      border-radius: 8px;
+      background: #fff7ed;
+    }
+
+    .result-nudge h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .result-nudge p {
+      margin: 0;
+      color: #7c4a1d;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .result-nudge strong {
+      color: var(--ink);
+    }
+
     .readiness-card {
       display: grid;
       gap: 12px;
@@ -770,6 +797,7 @@
       .beginner-path,
       .service-strip,
       .sample-strip,
+      .result-nudge,
       .guide-band,
       .faq-grid,
       .cta {
@@ -1130,6 +1158,14 @@
               <button class="button" id="downloadCsv" type="button">Download CSV</button>
               <button class="button" id="downloadChecklist" type="button">Download checklist</button>
             </div>
+          </div>
+
+          <div class="result-nudge" aria-label="Manual setup next step">
+            <div>
+              <h3>If GA4 does not show this visit, do not guess.</h3>
+              <p>I can set up <strong>one store + one to two ad channels for USD 99</strong>, then send back the final URL pattern and GA4 launch QA steps.</p>
+            </div>
+            <a class="button primary" id="resultManualSetupCta" href="manual-url-setup-service/">See setup offer</a>
           </div>
 
           <div class="readiness-card" aria-label="Launch readiness score">
