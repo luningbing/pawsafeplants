@@ -12,6 +12,80 @@
   <meta property="og:url" content="https://whichadgotsale.com/manual-url-setup-service">
   <link rel="canonical" href="https://whichadgotsale.com/manual-url-setup-service">
   <link rel="stylesheet" href="../assets/guide-pages.css">
+  <style>
+    .brief-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .brief-field {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .brief-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .brief-field label {
+      font-size: 13px;
+      font-weight: 780;
+      color: #26374a;
+    }
+
+    .brief-field input,
+    .brief-field select,
+    .brief-field textarea {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid #cbd6e2;
+      border-radius: 8px;
+      background: #fff;
+      color: #102033;
+      padding: 10px 12px;
+      font: inherit;
+      outline: none;
+    }
+
+    .brief-field input,
+    .brief-field select {
+      min-height: 44px;
+    }
+
+    .brief-field textarea {
+      min-height: 96px;
+      resize: vertical;
+      line-height: 1.45;
+    }
+
+    .brief-field input:focus,
+    .brief-field select:focus,
+    .brief-field textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+    }
+
+    .brief-output {
+      min-height: 220px;
+      white-space: pre-wrap;
+    }
+
+    .brief-status {
+      min-height: 20px;
+      color: #5f6f82;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 720px) {
+      .brief-form {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -49,8 +123,8 @@
         <h1>Manual Ad Landing Page URL Setup</h1>
         <p class="subhead">A done-for-you starter service for independent-store sellers, operators, and small teams who want one clean landing-page URL, channel-specific macro guidance, and a beginner-safe GA4 launch QA path without building a custom tracking stack.</p>
         <div class="hero-actions">
-          <a class="button primary" href="../#builder">Open the free builder</a>
-          <a class="button" href="mailto:luningbing@gmail.com?subject=Manual%20URL%20setup%20request">Email the setup request</a>
+          <a class="button primary" href="#brief-generator">Generate setup brief</a>
+          <a class="button" href="../#builder">Open the free builder</a>
         </div>
         <p class="subhead"><strong>Contact:</strong> <a href="mailto:luningbing@gmail.com">luningbing@gmail.com</a></p>
       </div>
@@ -164,30 +238,89 @@
           </div>
         </article>
 
-        <article class="section">
-          <h2>Copy this intake brief</h2>
-          <p>Use the free builder first if you can. Then copy this brief and send it to <a href="mailto:luningbing@gmail.com">luningbing@gmail.com</a> so the setup starts with the right inputs.</p>
-          <pre class="code-block" id="intakeTemplate">Manual URL setup request
+        <article class="section" id="brief-generator">
+          <h2>Generate a setup brief</h2>
+          <p>Fill what you know. Leave anything unclear as <code>I do not know</code>. The browser will generate a clean request you can copy, download, or send by email.</p>
+          <form class="brief-form" id="setupBriefForm">
+            <div class="brief-field">
+              <label for="briefStoreUrl">Store URL</label>
+              <input id="briefStoreUrl" name="briefStoreUrl" type="url" placeholder="https://yourstore.com">
+            </div>
+            <div class="brief-field">
+              <label for="briefLandingUrl">Landing page URL</label>
+              <input id="briefLandingUrl" name="briefLandingUrl" type="url" placeholder="https://yourstore.com/products/product-name">
+            </div>
+            <div class="brief-field">
+              <label for="briefPlatform">Store platform</label>
+              <select id="briefPlatform" name="briefPlatform">
+                <option value="Shopify">Shopify</option>
+                <option value="WooCommerce">WooCommerce</option>
+                <option value="Wix">Wix</option>
+                <option value="BigCommerce">BigCommerce</option>
+                <option value="SHOPLINE">SHOPLINE</option>
+                <option value="Shoplazza">Shoplazza</option>
+                <option value="Other / I do not know">Other / I do not know</option>
+              </select>
+            </div>
+            <div class="brief-field">
+              <label for="briefChannels">Traffic channels</label>
+              <input id="briefChannels" name="briefChannels" type="text" placeholder="Meta, TikTok, Google Ads">
+            </div>
+            <div class="brief-field">
+              <label for="briefMarkets">Target markets</label>
+              <input id="briefMarkets" name="briefMarkets" type="text" placeholder="US, UK, CA">
+            </div>
+            <div class="brief-field">
+              <label for="briefGa4Status">GA4 status</label>
+              <select id="briefGa4Status" name="briefGa4Status">
+                <option value="I do not know">I do not know</option>
+                <option value="Not installed">Not installed</option>
+                <option value="Created, not verified">Created, not verified</option>
+                <option value="Installed, not checked">Installed, not checked</option>
+                <option value="Working in Realtime">Working in Realtime</option>
+              </select>
+            </div>
+            <div class="brief-field">
+              <label for="briefLaunchDate">Launch date</label>
+              <input id="briefLaunchDate" name="briefLaunchDate" type="text" placeholder="This week, next Monday, or exact date">
+            </div>
+            <div class="brief-field">
+              <label for="briefMacroNeed">Macro guidance</label>
+              <select id="briefMacroNeed" name="briefMacroNeed">
+                <option value="Static UTMs first">Static UTMs first</option>
+                <option value="Need channel macro guidance too">Need channel macro guidance too</option>
+                <option value="I do not know">I do not know</option>
+              </select>
+            </div>
+            <div class="brief-field full">
+              <label for="briefExamples">Working or broken links</label>
+              <textarea id="briefExamples" name="briefExamples" placeholder="Paste one or two current ad links, short links, or messy URLs if you have them."></textarea>
+            </div>
+            <div class="brief-field full">
+              <label for="briefQuestion">Main reporting question</label>
+              <textarea id="briefQuestion" name="briefQuestion" placeholder="Example: I want to know which Meta ad sent the first purchase."></textarea>
+            </div>
+          </form>
+          <pre class="code-block brief-output" id="generatedBrief">Manual URL setup request
 
-Store URL:
-Landing page URL:
-Store platform:
-Traffic channels:
-Target markets:
-Current GA4 status:
-Current UTM naming convention:
-Examples of working or broken links:
-Need static UTMs only or macro guidance too:
-Things you do not know yet:
-Launch date:
-Main reporting question:
+Store URL: I do not know
+Landing page URL: I do not know
+Store platform: Shopify
+Traffic channels: I do not know
+Target markets: I do not know
+Current GA4 status: I do not know
+Need static UTMs only or macro guidance too: Static UTMs first
+Examples of working or broken links: I do not know
+Launch date: I do not know
+Main reporting question: I want to know which ad sent the sale.
 </pre>
           <div class="hero-actions">
-            <button class="button primary" id="copyTemplate" type="button">Copy intake brief</button>
-            <button class="button" id="downloadTemplate" type="button">Download intake brief</button>
-            <a class="button" id="emailTemplate" href="mailto:luningbing@gmail.com?subject=Manual%20URL%20setup%20request">Email the brief</a>
+            <button class="button primary" id="generateServiceBrief" type="button">Generate brief</button>
+            <button class="button" id="copyServiceBrief" type="button">Copy brief</button>
+            <button class="button" id="downloadServiceBrief" type="button">Download brief</button>
+            <a class="button" id="emailServiceBrief" href="mailto:luningbing@gmail.com?subject=Manual%20URL%20setup%20request">Email the brief</a>
           </div>
-          <p id="copyStatus" aria-live="polite"></p>
+          <p class="brief-status" id="briefStatus" aria-live="polite"></p>
         </article>
 
         <article class="section">
@@ -269,14 +402,45 @@ Main reporting question:
   </main>
 
   <script>
-    const intakeTemplate = document.getElementById("intakeTemplate");
-    const copyTemplateButton = document.getElementById("copyTemplate");
-    const downloadTemplateButton = document.getElementById("downloadTemplate");
-    const emailTemplateLink = document.getElementById("emailTemplate");
-    const copyStatus = document.getElementById("copyStatus");
+    const generatedBrief = document.getElementById("generatedBrief");
+    const generateServiceBriefButton = document.getElementById("generateServiceBrief");
+    const copyServiceBriefButton = document.getElementById("copyServiceBrief");
+    const downloadServiceBriefButton = document.getElementById("downloadServiceBrief");
+    const emailServiceBriefLink = document.getElementById("emailServiceBrief");
+    const briefStatus = document.getElementById("briefStatus");
 
     function setStatus(message) {
-      copyStatus.textContent = message;
+      briefStatus.textContent = message;
+    }
+
+    function fieldValue(id, fallback = "I do not know") {
+      const field = document.getElementById(id);
+      const value = field && "value" in field ? field.value.trim() : "";
+      return value || fallback;
+    }
+
+    function buildServiceBrief() {
+      return [
+        "Manual URL setup request",
+        "",
+        `Store URL: ${fieldValue("briefStoreUrl")}`,
+        `Landing page URL: ${fieldValue("briefLandingUrl")}`,
+        `Store platform: ${fieldValue("briefPlatform")}`,
+        `Traffic channels: ${fieldValue("briefChannels")}`,
+        `Target markets: ${fieldValue("briefMarkets")}`,
+        `Current GA4 status: ${fieldValue("briefGa4Status")}`,
+        `Need static UTMs only or macro guidance too: ${fieldValue("briefMacroNeed")}`,
+        `Examples of working or broken links: ${fieldValue("briefExamples")}`,
+        `Launch date: ${fieldValue("briefLaunchDate")}`,
+        `Main reporting question: ${fieldValue("briefQuestion", "I want to know which ad sent the sale.")}`,
+        "",
+        "I understand the starter scope is USD 99 for one store, one landing-page flow, and one to two traffic channels. Please tell me before any extra paid app, developer work, server-side tracking, or larger scope is needed."
+      ].join("\n");
+    }
+
+    function renderServiceBrief() {
+      generatedBrief.textContent = buildServiceBrief();
+      setStatus("Setup brief generated. You can copy it, download it, or open an email draft.");
     }
 
     async function copyText(text) {
@@ -312,20 +476,29 @@ Main reporting question:
       URL.revokeObjectURL(url);
     }
 
-    copyTemplateButton.addEventListener("click", () => {
-      copyText(intakeTemplate.textContent.trim());
+    generateServiceBriefButton.addEventListener("click", renderServiceBrief);
+
+    copyServiceBriefButton.addEventListener("click", () => {
+      renderServiceBrief();
+      copyText(generatedBrief.textContent.trim());
     });
 
-    downloadTemplateButton.addEventListener("click", () => {
-      downloadText("manual-url-setup-intake.txt", intakeTemplate.textContent.trim(), "text/plain;charset=utf-8");
-      setStatus("Intake brief downloaded.");
+    downloadServiceBriefButton.addEventListener("click", () => {
+      renderServiceBrief();
+      downloadText("manual-url-setup-brief.txt", generatedBrief.textContent.trim(), "text/plain;charset=utf-8");
+      setStatus("Setup brief downloaded.");
     });
 
-    emailTemplateLink.addEventListener("click", event => {
+    emailServiceBriefLink.addEventListener("click", event => {
+      renderServiceBrief();
       const subject = "Manual URL setup request";
-      const body = intakeTemplate.textContent.trim();
-      emailTemplateLink.href = `mailto:luningbing@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const body = generatedBrief.textContent.trim();
+      emailServiceBriefLink.href = `mailto:luningbing@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       setStatus("Email draft opened.");
+    });
+
+    document.getElementById("setupBriefForm").addEventListener("input", () => {
+      generatedBrief.textContent = buildServiceBrief();
     });
   </script>
 </body>

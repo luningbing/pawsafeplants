@@ -128,6 +128,30 @@ document.addEventListener("click", event => {
     return;
   }
 
+  if (target.id === "generateServiceBrief") {
+    sendTrackingEvent("manual_setup_brief_generated", { event_location: "manual_setup_service" });
+    return;
+  }
+
+  if (target.id === "copyServiceBrief") {
+    sendTrackingEvent("manual_setup_brief_copied", { event_location: "manual_setup_service" });
+    return;
+  }
+
+  if (target.id === "downloadServiceBrief") {
+    sendTrackingEvent("manual_setup_brief_downloaded", { event_location: "manual_setup_service" });
+    return;
+  }
+
+  if (target.id === "emailServiceBrief") {
+    sendTrackingEvent("manual_setup_brief_email_clicked", { event_location: "manual_setup_service" });
+    sendTrackingEvent("manual_setup_email_clicked", {
+      event_location: "manual_setup_service",
+      link_path: "mailto"
+    });
+    return;
+  }
+
   if (target.matches("a[href^='mailto:']")) {
     sendTrackingEvent("manual_setup_email_clicked", {
       event_location: getSectionLabel(target),

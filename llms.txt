@@ -12,6 +12,7 @@ The tool helps users:
 - Choose beginner-safe presets for Meta Ads, TikTok Ads, Google Ads, AppLovin, affiliate traffic, email, SMS, QR campaigns, and manual traffic sources.
 - Use optional advanced macro formats only when the ad platform tokens have been verified.
 - Check an existing ad URL for missing labels, duplicate parameters, customer-data risk, and launch-readiness issues.
+- Generate a manual setup brief that can be copied, downloaded, or sent by email for the USD 99 starter service.
 - Use GA4 Realtime to verify traffic before spending more on ads.
 - Answer beginner questions about ad landing page URLs, UTM parameters, GA4 Realtime checks, Shopify campaign links, and advanced macros.
 
