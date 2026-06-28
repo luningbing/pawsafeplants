@@ -341,6 +341,36 @@
       margin-top: 1px;
     }
 
+    .sample-strip {
+      margin: 18px 18px 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      background: #eff6ff;
+    }
+
+    .sample-strip h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .sample-strip p {
+      margin: 0;
+      color: #36506c;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .sample-strip code {
+      color: #0f3f85;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
     .result-panel {
       position: sticky;
       top: 82px;
@@ -683,6 +713,7 @@
       .builder,
       .beginner-path,
       .service-strip,
+      .sample-strip,
       .guide-band,
       .cta {
         grid-template-columns: 1fr;
@@ -800,7 +831,8 @@
         <h1><span>Find Which Ad</span><span>Sent the Sale</span></h1>
         <p class="subhead">Build a clean landing page URL for each ad, then check it in GA4 before you spend more. Made for small ecommerce sellers who need source, campaign, and creative labels they can trust.</p>
         <div class="hero-actions" aria-label="Primary tool actions">
-          <a class="button primary" href="#builder">Build a trackable ad URL</a>
+          <button class="button primary" id="loadSampleHero" type="button">Try a sample ad URL</button>
+          <a class="button" href="#builder">Build with my URL</a>
           <a class="button" href="ad-url-qa-checker/">Check an existing URL</a>
           <a class="button" href="manual-url-setup-service/">Done-for-you setup</a>
         </div>
@@ -856,6 +888,14 @@
         <div class="panel-head">
           <h2 class="panel-title">Build one clean ad landing-page URL</h2>
           <p class="panel-note">Start with one landing-page URL and one campaign name. Turn on macros only after checking the ad platform tokens.</p>
+        </div>
+
+        <div class="sample-strip" aria-label="Sample ad URL">
+          <div>
+            <h3>Not sure what to enter?</h3>
+            <p>Load a Shopify + Meta example and see the final URL instantly. Replace <code>example.com</code> with your store before launch.</p>
+          </div>
+          <button class="button primary" id="loadSampleBuilder" type="button">Load sample</button>
         </div>
 
         <form id="builderForm">
@@ -1565,6 +1605,8 @@
     const downloadQaReportButton = document.getElementById("downloadQaReport");
     const downloadCsvButton = document.getElementById("downloadCsv");
     const downloadChecklistButton = document.getElementById("downloadChecklist");
+    const loadSampleHeroButton = document.getElementById("loadSampleHero");
+    const loadSampleBuilderButton = document.getElementById("loadSampleBuilder");
     const readinessTitle = document.getElementById("readinessTitle");
     const readinessNote = document.getElementById("readinessNote");
     const readinessScore = document.getElementById("readinessScore");
@@ -2030,6 +2072,27 @@
       }
     }
 
+    function setFieldValue(id, value) {
+      const field = document.getElementById(id);
+      if (field) field.value = value;
+    }
+
+    function loadSampleAdUrl() {
+      setFieldValue("baseUrl", "https://example.com/products/travel-bag");
+      setFieldValue("platform", "shopify");
+      setFieldValue("channel", "meta");
+      setFieldValue("campaign", "summer_sale_travel_bag");
+      setFieldValue("setupMode", "beginner");
+      setFieldValue("content", "ugc_video_angle_01");
+      setFieldValue("term", "prospecting_broad");
+      setFieldValue("market", "US");
+      setFieldValue("goal", "purchases");
+      setFieldValue("ga4Status", "installed");
+      updateBuilder();
+      document.getElementById("builder").scrollIntoView({ behavior: "smooth", block: "start" });
+      showToast("Sample URL generated");
+    }
+
     function updateBuilder() {
       const channel = getValue("channel");
       const platform = getValue("platform");
@@ -2135,6 +2198,8 @@
 
     form.addEventListener("input", updateBuilder);
     form.addEventListener("change", updateBuilder);
+    loadSampleHeroButton.addEventListener("click", loadSampleAdUrl);
+    loadSampleBuilderButton.addEventListener("click", loadSampleAdUrl);
 
     copyUrlButton.addEventListener("click", () => {
       copyText(finalUrlEl.textContent, "URL copied");

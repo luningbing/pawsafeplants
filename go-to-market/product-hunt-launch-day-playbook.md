@@ -90,6 +90,7 @@ Chinese:
 ## GA4 Events To Watch
 
 - `builder_cta_clicked`
+- `sample_builder_loaded`
 - `campaign_url_copied`
 - `ad_url_qa_checker_cta_clicked`
 - `ad_url_qa_checked`
@@ -100,7 +101,7 @@ Chinese:
 Decision rules:
 
 - Visitors but no builder events: make the first CTA and headline clearer.
-- Builder events but no copy/download events: improve the form defaults or result panel.
+- Builder/sample events but no copy/download events: improve the form defaults or result panel.
 - Copy/download events but no manual setup clicks: keep free tool as acquisition and add one stronger service CTA.
 - Manual setup clicks but no email: make the intake brief shorter and add a clearer price/turnaround line.
 

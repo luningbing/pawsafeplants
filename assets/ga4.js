@@ -61,6 +61,13 @@ document.addEventListener("click", event => {
     return;
   }
 
+  if (target.id === "loadSampleHero" || target.id === "loadSampleBuilder") {
+    sendTrackingEvent("sample_builder_loaded", {
+      event_location: getSectionLabel(target)
+    });
+    return;
+  }
+
   if (target.id === "copySetupBrief") {
     sendTrackingEvent("ad_setup_brief_copied", { event_location: "builder" });
     return;

@@ -73,6 +73,7 @@ For each submitted directory, record:
 - Referral traffic from directory domains
 - Product Hunt referral traffic after June 29, 2026 03:01pm GMT+8
 - `builder_cta_clicked`
+- `sample_builder_loaded`
 - `ad_url_qa_checker_cta_clicked`
 - `campaign_url_copied`
 - `ad_url_qa_checked`
