@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TikTok 广告链接怎么配置 GA4 | 跨境独立站 UTM</title>
+  <meta name="description" content="TikTok Ads 投独立站时，怎么配置落地页 URL 和 UTM 参数到 GA4？给跨境小卖家的 TikTok 广告归因基础流程。">
+  <meta property="og:title" content="TikTok 广告链接怎么配置 GA4">
+  <meta property="og:description" content="先用一条清晰的 TikTok UTM 链接验证 GA4，再考虑广告组、素材和达人维度。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="../../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/zh/tiktok-ad-url-ga4/">
+  <link rel="canonical" href="https://whichadgotsale.com/zh/tiktok-ad-url-ga4/">
+  <link rel="alternate" hreflang="en" href="https://whichadgotsale.com/tiktok-ad-url-tracking-ga4">
+  <link rel="alternate" hreflang="zh-CN" href="https://whichadgotsale.com/zh/tiktok-ad-url-ga4/">
+  <link rel="alternate" hreflang="x-default" href="https://whichadgotsale.com/tiktok-ad-url-tracking-ga4">
+  <link rel="stylesheet" href="../../assets/guide-pages.css">
+  <script defer src="../../assets/ga4.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>WhichAdGotSale 中文</span>
+      </a>
+      <nav class="top-actions" aria-label="主要导航">
+        <a class="text-link" href="../#tool">生成链接</a>
+        <a class="text-link" href="../meta-ads-utm-ga4/">Meta 排查</a>
+        <a class="text-link" href="../../manual-url-setup-service/#brief-generator">人工配置</a>
+        <a class="button accent" href="../../tiktok-ad-url-tracking-ga4">English</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">TikTok Ads + 独立站</p>
+        <h1>TikTok 广告先把 URL 配清楚，再看 GA4</h1>
+        <p class="subhead">TikTok 流量来得快，素材多，达人多。如果链接命名一开始就乱，后面很难判断到底是哪个视频、哪个广告组、哪个市场带来的有效访问。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">生成 TikTok 广告链接</a>
+          <a class="button" href="../../manual-url-setup-service/#brief-generator">我想让你帮我配</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../../assets/workflow.png" alt="TikTok 广告流量进入独立站并在 GA4 中验证">
+    </section>
+
+    <section class="summary-grid" aria-label="TikTok 卖家痛点">
+      <article class="card">
+        <h2>素材多，命名乱</h2>
+        <p>UGC、达人、Spark Ads、剪辑版本都很多，建议从 <code>utm_content</code> 开始规范。</p>
+      </article>
+      <article class="card">
+        <h2>先验证点击</h2>
+        <p>别等烧完预算才看报表。先用 GA4 Realtime 验证一次真实点击。</p>
+      </article>
+      <article class="card">
+        <h2>宏参后置</h2>
+        <p>TikTok 动态参数可以后续加，但第一条测试链接建议用静态 UTM。</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>适合 TikTok 的基础链接</h2>
+          <div class="code-block">https://example.com/products/travel-bag?utm_source=tiktok&amp;utm_medium=paid_social&amp;utm_campaign=summer_sale_travel_bag&amp;utm_content=spark_ad_ugc_01</div>
+          <p>这条链接能让你在 GA4 里先看清：来源是 TikTok，媒介是 paid_social，活动是什么，素材是哪条。</p>
+        </article>
+
+        <article class="section">
+          <h2>小独立站怎么命名</h2>
+          <ol class="step-list">
+            <li><code>utm_source</code> 固定用 <code>tiktok</code>，不要一会儿写 <code>tt</code> 一会儿写 <code>tiktok_ads</code>。</li>
+            <li><code>utm_medium</code> 付费广告用 <code>paid_social</code>，达人自然链接可以单独用 creator 或 organic_social。</li>
+            <li><code>utm_campaign</code> 写活动，比如 <code>summer_sale_travel_bag</code>。</li>
+            <li><code>utm_content</code> 写素材，比如 <code>spark_ad_ugc_01</code>、<code>creator_lisa_video_02</code>。</li>
+            <li>市场可以用额外字段，比如 <code>_market=US</code>，方便你自己排查。</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>GA4 检查顺序</h2>
+          <ul class="note-list">
+            <li>打开 GA4 Realtime，再点击最终 TikTok 落地页 URL。</li>
+            <li>确认页面不是 404，也不是跳到了首页。</li>
+            <li>确认地址栏参数没有被短链、跳转页或 App Link 吃掉。</li>
+            <li>确认 GA4 里能看到 source、medium、campaign。</li>
+            <li>如果是 Shopify，再继续看商品浏览、加购、结账、购买事件。</li>
+          </ul>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>别一开始就做复杂表</h2>
+          <div class="mini-callout">
+            <strong>先把第一条 TikTok 链接跑通。</strong>
+            小卖家最怕不是数据少，而是数据从第一天就乱。
+          </div>
+        </article>
+        <article class="section">
+          <h2>下一步</h2>
+          <div class="related-links">
+            <a class="related-link" href="../#tool"><strong>生成 TikTok 链接</strong><span>用中文工具生成第一条测试 URL。</span></a>
+            <a class="related-link" href="../shopify-ad-attribution-ga4/"><strong>Shopify 广告归因</strong><span>继续检查订单链路。</span></a>
+            <a class="related-link" href="../../manual-url-setup-service/#brief-generator"><strong>人工配置 brief</strong><span>不想自己排查就发配置需求。</span></a>
+          </div>
+        </article>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

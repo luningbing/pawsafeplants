@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopify 广告归因怎么做 | 小独立站 GA4 检查</title>
+  <meta name="description" content="给 Shopify 小独立站卖家的广告归因入门：先配广告落地页 UTM 链接，再用 GA4 Realtime 检查来源、活动、素材和购买事件。">
+  <meta property="og:title" content="Shopify 广告归因怎么做">
+  <meta property="og:description" content="不是先买复杂归因系统，而是先把 Shopify 广告落地页链接和 GA4 基础检查做对。">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="../../assets/workflow.png">
+  <meta property="og:url" content="https://whichadgotsale.com/zh/shopify-ad-attribution-ga4/">
+  <link rel="canonical" href="https://whichadgotsale.com/zh/shopify-ad-attribution-ga4/">
+  <link rel="alternate" hreflang="en" href="https://whichadgotsale.com/shopify-ad-attribution-ga4">
+  <link rel="alternate" hreflang="zh-CN" href="https://whichadgotsale.com/zh/shopify-ad-attribution-ga4/">
+  <link rel="alternate" hreflang="x-default" href="https://whichadgotsale.com/shopify-ad-attribution-ga4">
+  <link rel="stylesheet" href="../../assets/guide-pages.css">
+  <script defer src="../../assets/ga4.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../">
+        <span class="mark" aria-hidden="true">U</span>
+        <span>WhichAdGotSale 中文</span>
+      </a>
+      <nav class="top-actions" aria-label="主要导航">
+        <a class="text-link" href="../#tool">生成链接</a>
+        <a class="text-link" href="../meta-ads-utm-ga4/">Meta 排查</a>
+        <a class="text-link" href="../../manual-url-setup-service/#brief-generator">人工配置</a>
+        <a class="button accent" href="../../shopify-ad-attribution-ga4">English</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Shopify 小独立站</p>
+        <h1>Shopify 广告归因先别搞复杂，先看 GA4 有没有收到正确链接</h1>
+        <p class="subhead">很多卖家说“Meta 后台有订单，Shopify 有订单，但 GA4 看不清哪个广告来的”。第一步不是上大系统，而是先把广告落地页 URL、UTM 命名和 GA4 Realtime 检查跑通。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="../#tool">生成 Shopify 广告链接</a>
+          <a class="button" href="../../manual-url-setup-service/#brief-generator">生成配置需求 brief</a>
+        </div>
+      </div>
+      <img class="workflow-visual" src="../../assets/workflow.png" alt="广告流量进入 Shopify 并在 GA4 中检查">
+    </section>
+
+    <section class="summary-grid" aria-label="卖家痛点">
+      <article class="card">
+        <h2>订单有了，来源乱了</h2>
+        <p>Shopify 能看到订单，不代表 GA4 能看清 campaign、素材和投放渠道。</p>
+      </article>
+      <article class="card">
+        <h2>先查落地页访问</h2>
+        <p>购买归因前，先确认一次广告点击能带着 UTM 进入商品页或 Landing Page。</p>
+      </article>
+      <article class="card">
+        <h2>再查购物事件</h2>
+        <p>访问对了，再看 <code>view_item</code>、<code>add_to_cart</code>、<code>begin_checkout</code>、<code>purchase</code>。</p>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>小卖家最稳的 5 步</h2>
+          <ol class="step-list">
+            <li>不要先追求“完美归因”，先为每个主要投放渠道生成一条干净 URL。</li>
+            <li>Shopify 商品页、集合页、Landing Page 都可以，但先选一个最常用的落地页测试。</li>
+            <li>用固定命名：<code>utm_source=meta</code>、<code>utm_medium=paid_social</code>、<code>utm_campaign=summer_sale_xxx</code>。</li>
+            <li>打开 GA4 Realtime，自己点一次最终广告 URL。</li>
+            <li>确认 Realtime 里能看到访问和 campaign，再去看后面的加购、结账、购买事件。</li>
+          </ol>
+        </article>
+
+        <article class="section">
+          <h2>Shopify 里最容易出问题的地方</h2>
+          <ul class="note-list">
+            <li>主题、Pixel、第三方插件重复安装 GA4，导致事件重复或来源混乱。</li>
+            <li>广告链接先跳短链、跳活动页，再进商品页，中间把 UTM 参数丢了。</li>
+            <li>结账链路和支付跳转后，购买事件没有带上合理的来源上下文。</li>
+            <li>每个投手、每次活动命名不一致，最后 GA4 里全是散乱 campaign。</li>
+          </ul>
+        </article>
+
+        <article class="section">
+          <h2>一条 Shopify 广告链接应该长这样</h2>
+          <div class="code-block">https://example.com/products/travel-bag?utm_source=meta&amp;utm_medium=paid_social&amp;utm_campaign=summer_sale_travel_bag&amp;utm_content=ugc_video_angle_01</div>
+          <p>这条链接的目标不是“看起来短”，而是让 GA4 和人都能读懂：来源是 Meta，媒介是 paid_social，活动是夏季促销，素材是某条 UGC 视频。</p>
+        </article>
+      </div>
+
+      <aside class="stack">
+        <article class="section">
+          <h2>先别花冤枉钱</h2>
+          <div class="mini-callout">
+            <strong>免费 GA4 足够做第一轮检查。</strong>
+            等你确认基础链路跑通，再考虑 Pixel、CAPI、服务端埋点或商业归因工具。
+          </div>
+        </article>
+        <article class="section">
+          <h2>下一步</h2>
+          <div class="related-links">
+            <a class="related-link" href="../#tool"><strong>生成中文广告归因链接</strong><span>先配一条 Shopify 测试链接。</span></a>
+            <a class="related-link" href="../meta-ads-utm-ga4/"><strong>Meta 参数不进 GA4</strong><span>如果 Facebook / Instagram 广告来源看不到，按这个排。</span></a>
+            <a class="related-link" href="../../manual-url-setup-service/#brief-generator"><strong>让我帮你配</strong><span>生成需求 brief，适合不想自己排查的卖家。</span></a>
+          </div>
+        </article>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

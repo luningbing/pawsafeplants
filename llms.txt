@@ -22,6 +22,9 @@ Primary pages:
 
 - Home tool: https://whichadgotsale.com/
 - Chinese ad attribution URL tool: https://whichadgotsale.com/zh/
+- Chinese Shopify ad attribution guide: https://whichadgotsale.com/zh/shopify-ad-attribution-ga4/
+- Chinese Meta Ads UTM to GA4 guide: https://whichadgotsale.com/zh/meta-ads-utm-ga4/
+- Chinese TikTok ad URL to GA4 guide: https://whichadgotsale.com/zh/tiktok-ad-url-ga4/
 - Bulk URL builder: https://whichadgotsale.com/bulk-utm-builder/
 - Ad URL QA checker: https://whichadgotsale.com/ad-url-qa-checker/
 - GA4 Realtime checklist: https://whichadgotsale.com/ga4-realtime-checklist/
@@ -47,6 +50,9 @@ High-intent beginner questions the site answers:
 - Should Google Ads beginners use a final URL suffix or tracking template?
 - What is a free UTM builder alternative for ecommerce ad landing pages?
 - 中文跨境自建站卖家如何先配置广告归因链接再看 GA4?
+- Shopify 小独立站广告归因怎么做?
+- Meta 广告 UTM 参数为什么不显示到 GA4?
+- TikTok 广告链接怎么配置才能在 GA4 里看清来源?
 
 Best-fit users:
 
