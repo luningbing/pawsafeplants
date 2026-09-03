@@ -52,9 +52,49 @@ function sendTrackingEvent(eventName, params = {}) {
   gtag("event", eventName, builderContext(params));
 }
 
+function isProfitPlannerPage() {
+  return window.location.pathname.includes("/tiktok-shop-profit-planner");
+}
+
+function sendProfitPlannerEvent(eventName, params = {}) {
+  sendTrackingEvent(eventName, {
+    event_location: "tiktok_shop_profit_planner",
+    ...params
+  });
+}
+
 document.addEventListener("click", event => {
-  const target = event.target.closest("a, button");
+  const target = event.target.closest("a, button, label");
   if (!target) return;
+
+  if (isProfitPlannerPage()) {
+    const plannerEvents = {
+      loadSample: "profit_planner_sample_loaded",
+      loadAnomaly: "profit_planner_anomaly_loaded",
+      downloadTemplate: "profit_planner_template_downloaded",
+      downloadReport: "profit_planner_report_downloaded",
+      ordersFile: "profit_planner_orders_import_started",
+      financeFile: "profit_planner_finance_import_started",
+      csvFile: "profit_planner_normalized_import_started"
+    };
+    const plannerTargetId = target.id || target.getAttribute("for");
+    if (plannerEvents[plannerTargetId]) {
+      sendProfitPlannerEvent(plannerEvents[plannerTargetId]);
+      return;
+    }
+    if (target.dataset.feedbackType) {
+      sendProfitPlannerEvent("profit_planner_feedback_clicked", {
+        feedback_type: target.dataset.feedbackType
+      });
+      return;
+    }
+    if (target.matches("a[href*='tiktok-utm-builder'], a[href*='tiktok-ad-url-tracking-ga4'], a[href*='ga4-realtime-checklist'], a[href*='manual-url-setup-service']")) {
+      sendProfitPlannerEvent("profit_planner_related_link_clicked", {
+        link_path: getLinkPath(target)
+      });
+      return;
+    }
+  }
 
   if (target.id === "copyUrl") {
     sendTrackingEvent("campaign_url_copied", { event_location: "builder" });
