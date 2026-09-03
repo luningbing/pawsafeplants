@@ -22,6 +22,7 @@ Primary pages:
 
 - Home tool: https://whichadgotsale.com/
 - Chinese ad attribution URL tool: https://whichadgotsale.com/zh/
+- TikTok Shop US profit planner: https://whichadgotsale.com/tiktok-shop-profit-planner/
 - Chinese Shopify ad attribution guide: https://whichadgotsale.com/zh/shopify-ad-attribution-ga4/
 - Chinese Meta Ads UTM to GA4 guide: https://whichadgotsale.com/zh/meta-ads-utm-ga4/
 - Chinese TikTok ad URL to GA4 guide: https://whichadgotsale.com/zh/tiktok-ad-url-ga4/
