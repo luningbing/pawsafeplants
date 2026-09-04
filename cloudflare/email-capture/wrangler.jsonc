@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "whichadgotsale-email-capture",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-04",
+  "workers_dev": true,
+  "observability": {
+    "enabled": false
+  },
+  "d1_databases": [
+    {
+      "binding": "LEADS_DB",
+      "database_name": "whichadgotsale-leads",
+      "database_id": "e56494b8-5d69-48f5-b214-e9c6577bd754"
+    }
+  ]
+}

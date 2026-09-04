@@ -1,0 +1,14 @@
+{
+  "name": "whichadgotsale-email-capture",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:apply:local": "wrangler d1 execute whichadgotsale-leads --local --file=schema.sql",
+    "db:apply:remote": "wrangler d1 execute whichadgotsale-leads --remote --file=schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.129.0"
+  }
+}
