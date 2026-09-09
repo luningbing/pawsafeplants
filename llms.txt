@@ -23,6 +23,7 @@ Primary pages:
 - Home tool: https://whichadgotsale.com/
 - Chinese ad attribution URL tool: https://whichadgotsale.com/zh/
 - TikTok Shop US profit planner: https://whichadgotsale.com/tiktok-shop-profit-planner/
+- TikTok Shop creator commission calculator: https://whichadgotsale.com/tiktok-shop-creator-commission-calculator/
 - TikTok Shop payout mismatch checklist: https://whichadgotsale.com/tiktok-shop-payout-doesnt-match-orders/
 - Chinese Shopify ad attribution guide: https://whichadgotsale.com/zh/shopify-ad-attribution-ga4/
 - Chinese Meta Ads UTM to GA4 guide: https://whichadgotsale.com/zh/meta-ads-utm-ga4/
@@ -52,6 +53,8 @@ High-intent beginner questions the site answers:
 - Should Google Ads beginners use a final URL suffix or tracking template?
 - What is a free UTM builder alternative for ecommerce ad landing pages?
 - Why does a TikTok Shop payout not match the order total?
+- How much TikTok Shop creator commission can an order afford?
+- Is a 30% or 50% TikTok Shop affiliate commission still profitable?
 - How do I reconcile TikTok Shop Orders and Finance exports?
 - 中文跨境自建站卖家如何先配置广告归因链接再看 GA4?
 - Shopify 小独立站广告归因怎么做?
