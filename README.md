@@ -23,6 +23,7 @@ It helps Shopify, WooCommerce, Wix, BigCommerce, Shoplazza, Shopline, and indepe
 - Manual setup offer: [https://whichadgotsale.com/manual-url-setup-service/](https://whichadgotsale.com/manual-url-setup-service/)
 - TikTok Shop US profit planner: [https://whichadgotsale.com/tiktok-shop-profit-planner/](https://whichadgotsale.com/tiktok-shop-profit-planner/)
 - TikTok Shop creator commission calculator: [https://whichadgotsale.com/tiktok-shop-creator-commission-calculator/](https://whichadgotsale.com/tiktok-shop-creator-commission-calculator/)
+- TikTok Shop fee calculator: [https://whichadgotsale.com/tiktok-shop-fee-calculator/](https://whichadgotsale.com/tiktok-shop-fee-calculator/)
 - TikTok Shop payout mismatch checklist: [https://whichadgotsale.com/tiktok-shop-payout-doesnt-match-orders/](https://whichadgotsale.com/tiktok-shop-payout-doesnt-match-orders/)
 - AI crawler summary: [https://whichadgotsale.com/llms.txt](https://whichadgotsale.com/llms.txt)
 

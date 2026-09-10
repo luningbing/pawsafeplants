@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TikTok Shop Fee Calculator | Seller Fees &amp; Commission</title>
+  <meta name="description" content="Estimate TikTok Shop seller fees, creator commission and profit per order. Use your own category rate, shipping, returns, product cost and ad cost.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:title" content="TikTok Shop Fee Calculator">
+  <meta property="og:description" content="See the platform fee, creator commission, total fee stack and estimated profit on one TikTok Shop order.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://whichadgotsale.com/tiktok-shop-fee-calculator">
+  <link rel="canonical" href="https://whichadgotsale.com/tiktok-shop-fee-calculator">
+  <link rel="stylesheet" href="../assets/guide-pages.css">
+  <script defer src="../assets/ga4.js"></script>
+  <script src="../assets/tiktok-shop-profit-core.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"WebApplication",
+        "name":"TikTok Shop Fee Calculator",
+        "url":"https://whichadgotsale.com/tiktok-shop-fee-calculator",
+        "applicationCategory":"BusinessApplication",
+        "operatingSystem":"Any",
+        "isAccessibleForFree":true,
+        "description":"A browser-based calculator for estimating TikTok Shop seller fees, creator commission and profit per order.",
+        "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+        "featureList":["Editable TikTok Shop fee rate","Creator commission cost","Total percentage-based fee stack","Estimated order profit","Fee and cost breakdown"]
+      },
+      {
+        "@type":"FAQPage",
+        "mainEntity":[
+          {
+            "@type":"Question",
+            "name":"How much does TikTok Shop charge sellers?",
+            "acceptedAnswer":{"@type":"Answer","text":"There is no single rate that applies to every order. The referral fee can depend on market, category, fulfillment and current programs. Enter the rate shown for your product in Seller Center, then add creator commission separately when it applies."}
+          },
+          {
+            "@type":"Question",
+            "name":"Is creator commission included in the TikTok Shop seller fee?",
+            "acceptedAnswer":{"@type":"Answer","text":"Creator commission is separate from the platform referral fee, but both reduce the amount left from a creator-driven order. This calculator shows them separately and together."}
+          },
+          {
+            "@type":"Question",
+            "name":"Why can the TikTok Shop payout be lower than this estimate?",
+            "acceptedAnswer":{"@type":"Answer","text":"An actual Finance settlement can also contain refunds, shipping charges or reimbursements, service fees and other adjustments. Reconcile the order and Finance exports before treating a planning estimate as the final payout."}
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root{--fee-accent:#009995;--fee-soft:#e7f6f4;--fee-dark:#171718;--fee-danger:#a84242}.fee-shell{margin-top:26px;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(330px,.95fr);gap:18px;align-items:start}.calc-form{display:grid;gap:18px}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field{display:grid;gap:7px}.field label{font-size:13px;font-weight:750}.field small{color:var(--muted);line-height:1.45}.input-wrap{display:flex;align-items:center;border:1px solid var(--line);border-radius:6px;background:#fff;min-height:46px;transition:border-color .18s ease,box-shadow .18s ease}.input-wrap:focus-within{border-color:var(--fee-accent);box-shadow:0 0 0 3px rgba(0,153,149,.14)}.input-wrap span{padding:0 0 0 12px;color:var(--muted);font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace}.input-wrap input{width:100%;min-width:0;border:0;background:transparent;padding:12px;font:14px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink);outline:0}.result-stack{display:grid;gap:12px;position:sticky;top:82px}.result-hero{padding:22px;border-radius:8px;background:var(--fee-dark);color:#fff;border-top:3px solid var(--fee-accent)}.result-label{color:#b8b9ba;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}.result-value{margin:6px 0;font:800 clamp(38px,7vw,60px)/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.05em}.result-copy{margin:0;color:#dadbdc;line-height:1.5}.result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px;background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 16px}.result-card{padding:14px 0;border-top:2px solid var(--line)}.result-card:nth-child(-n+2){border-top:0}.result-card span{display:block;color:var(--muted);font-size:12px}.result-card strong{display:block;margin-top:4px;font:750 22px ui-monospace,SFMono-Regular,Menlo,monospace}.result-guidance{padding:14px;border-left:4px solid var(--fee-accent);background:var(--fee-soft);color:#315c4e;line-height:1.55}.result-guidance.error{border-color:var(--fee-danger);background:#fff1f1;color:#753737}.form-actions{display:flex;gap:10px;flex-wrap:wrap}.button:active{transform:translateY(1px) scale(.99)}.source-note{font-size:12px;color:var(--muted);line-height:1.55}.source-note a{color:var(--fee-accent);font-weight:700}.fee-ledger{display:grid;gap:0}.ledger-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}.ledger-row:last-child{border-bottom:0}.ledger-row span{color:var(--muted);font-size:13px}.ledger-row strong{font:700 13px ui-monospace,SFMono-Regular,Menlo,monospace}.ledger-row.total span,.ledger-row.total strong{color:var(--ink);font-weight:800}.formula-line{padding:14px;border-radius:8px;background:#f4f6f7;color:#3f4143;font:12px/1.65 ui-monospace,SFMono-Regular,Menlo,monospace}.privacy-stamp{display:inline-flex;margin-top:18px;padding:7px 9px;border:1px solid var(--line);border-radius:4px;color:var(--muted);font:700 11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.05em}.mark{background:var(--fee-dark);position:relative}.mark:after{content:"";position:absolute;inset:5px;border-left:2px solid var(--fee-accent);border-bottom:2px solid var(--fee-accent);border-radius:3px}.mark span{position:relative;z-index:1}@media(max-width:980px){.fee-shell{grid-template-columns:1fr}.result-stack{position:static}}@media(max-width:640px){.field-grid,.result-grid{grid-template-columns:1fr}.result-card:nth-child(2){border-top:2px solid var(--line)}.fee-shell{margin-top:18px}.form-actions{display:grid}.form-actions .button{width:100%}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../"><span class="mark" aria-hidden="true"><span>F</span></span><span>WhichAdGotSale</span></a>
+      <nav class="top-actions" aria-label="Primary">
+        <a class="text-link" href="../tiktok-shop-creator-commission-calculator/">Commission ceiling</a>
+        <a class="button accent" href="../tiktok-shop-profit-planner/">Full profit planner</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">TikTok Shop seller economics</p>
+        <h1>See the fee stack on one TikTok Shop order.</h1>
+        <p class="subhead">Estimate the platform fee and creator commission first, then see what remains after product cost, shipping, expected returns and ads.</p>
+        <span class="privacy-stamp">FREE · NO LOGIN · CALCULATES IN YOUR BROWSER</span>
+      </div>
+      <article class="section">
+        <h2>Use your Seller Center rate</h2>
+        <p>The referral fee is editable because rates can vary by category, market, fulfillment method and program. The example starts at 6%, but it is not a universal rate.</p>
+      </article>
+    </section>
+
+    <section class="fee-shell" aria-label="TikTok Shop fee calculator">
+      <form class="section calc-form" id="feeForm">
+        <div>
+          <p class="eyebrow">Order inputs</p>
+          <h2>Calculate seller fees and profit</h2>
+          <p>Start with one representative delivered order. No values are uploaded.</p>
+        </div>
+        <div class="field-grid">
+          <div class="field"><label for="price">Selling price</label><div class="input-wrap"><span>$</span><input id="price" type="number" min="0" step="0.01" value="49.99" inputmode="decimal"></div></div>
+          <div class="field"><label for="discount">Seller-funded discount</label><div class="input-wrap"><span>$</span><input id="discount" type="number" min="0" step="0.01" value="0" inputmode="decimal"></div></div>
+          <div class="field"><label for="referral">Platform referral fee</label><div class="input-wrap"><input id="referral" type="number" min="0" max="100" step="0.1" value="6" inputmode="decimal"><span style="padding:0 12px 0 0">%</span></div><small>Replace the example with the current rate for your category.</small></div>
+          <div class="field"><label for="creator">Creator commission</label><div class="input-wrap"><input id="creator" type="number" min="0" max="100" step="0.1" value="20" inputmode="decimal"><span style="padding:0 12px 0 0">%</span></div><small>Use 0 when the order is not creator-driven.</small></div>
+          <div class="field"><label for="cogs">Product cost</label><div class="input-wrap"><span>$</span><input id="cogs" type="number" min="0" step="0.01" value="14" inputmode="decimal"></div></div>
+          <div class="field"><label for="shipping">Seller shipping + packaging</label><div class="input-wrap"><span>$</span><input id="shipping" type="number" min="0" step="0.01" value="6" inputmode="decimal"></div></div>
+          <div class="field"><label for="returns">Expected return rate</label><div class="input-wrap"><input id="returns" type="number" min="0" max="100" step="0.1" value="8" inputmode="decimal"><span style="padding:0 12px 0 0">%</span></div></div>
+          <div class="field"><label for="returnCost">Extra cost per return</label><div class="input-wrap"><span>$</span><input id="returnCost" type="number" min="0" step="0.01" value="4" inputmode="decimal"></div></div>
+          <div class="field"><label for="ad">Ad cost per order</label><div class="input-wrap"><span>$</span><input id="ad" type="number" min="0" step="0.01" value="5" inputmode="decimal"></div><small>Keep this when ads and creator commission both apply.</small></div>
+        </div>
+        <div class="form-actions">
+          <button class="button primary" type="submit">Calculate fee stack</button>
+          <button class="button" type="button" id="reset">Reset example</button>
+        </div>
+        <p class="source-note">Planning estimate only. Verify the current referral fee and any promotion-specific rate in Seller Center. <a href="https://seller-us.tiktok.com/university/essay?knowledge_id=5988482086864682" target="_blank" rel="noreferrer">View TikTok Shop fee guidance</a></p>
+      </form>
+
+      <section class="result-stack" aria-live="polite">
+        <div class="result-hero">
+          <div class="result-label">Platform fee + creator commission</div>
+          <div class="result-value" id="feeStack">$0.00</div>
+          <p class="result-copy" id="feeShare">0.0% of net sales before product, shipping, return and ad costs.</p>
+        </div>
+        <div class="result-grid">
+          <div class="result-card"><span>Platform referral fee</span><strong id="referralFee">$0.00</strong></div>
+          <div class="result-card"><span>Creator commission</span><strong id="creatorCost">$0.00</strong></div>
+          <div class="result-card"><span>Left after both fees</span><strong id="afterFees">$0.00</strong></div>
+          <div class="result-card"><span>Estimated profit</span><strong id="netProfit">$0.00</strong></div>
+        </div>
+        <div class="result-guidance" id="guidance">Enter the order economics to see the fee stack.</div>
+        <a class="button" href="../tiktok-shop-profit-planner/">Open the full profit and payout planner</a>
+      </section>
+    </section>
+
+    <section class="content-grid">
+      <div class="stack">
+        <article class="section">
+          <h2>Your per-order breakdown</h2>
+          <div class="fee-ledger">
+            <div class="ledger-row"><span>Net sales after seller discount</span><strong id="sales">$0.00</strong></div>
+            <div class="ledger-row"><span>Platform referral fee</span><strong id="ledgerReferral">−$0.00</strong></div>
+            <div class="ledger-row"><span>Creator commission</span><strong id="ledgerCreator">−$0.00</strong></div>
+            <div class="ledger-row"><span>Product + shipping + ads</span><strong id="sellerCosts">−$0.00</strong></div>
+            <div class="ledger-row"><span>Expected return loss</span><strong id="returnLoss">−$0.00</strong></div>
+            <div class="ledger-row total"><span>Estimated profit</span><strong id="ledgerProfit">$0.00</strong></div>
+          </div>
+        </article>
+        <article class="section">
+          <h2>What counts as a TikTok Shop fee?</h2>
+          <p>The platform referral fee and creator commission are different charges. The referral fee follows the marketplace rate that applies to the order. Creator commission is the rate you offer or agree to for creator-driven sales.</p>
+          <p>Product cost, seller-paid fulfillment, expected return loss and ad spend are not platform fees, but they still decide whether the order makes money. That is why the calculator keeps the fee stack and the full profit estimate separate.</p>
+        </article>
+        <article class="section">
+          <h2>Formula used</h2>
+          <div class="formula-line">net sales = selling price − seller-funded discount<br>fee stack = net sales × (referral fee rate + creator commission rate)<br>estimated profit = net sales − fee stack − product cost − shipping − expected return loss − ad cost</div>
+        </article>
+        <article class="section">
+          <h2>Frequently asked questions</h2>
+          <div class="related-links">
+            <div class="related-link"><strong>How much does TikTok Shop charge sellers?</strong><span>Use the current rate for your category and account. There is no single percentage that safely represents every order.</span></div>
+            <div class="related-link"><strong>Is creator commission included?</strong><span>It is separate from the referral fee, but both are included in the fee-stack result when creator commission is entered.</span></div>
+            <div class="related-link"><strong>Is the result the same as my payout?</strong><span>No. Actual settlements can include timing differences, refunds, shipping entries and other adjustments.</span></div>
+          </div>
+        </article>
+      </div>
+      <aside class="stack">
+        <article class="section">
+          <h2>Three numbers to verify</h2>
+          <ol class="step-list">
+            <li>The referral fee for your category</li>
+            <li>The creator commission on this order</li>
+            <li>Whether ads also paid for the sale</li>
+          </ol>
+        </article>
+        <article class="section">
+          <h2>Related tools</h2>
+          <div class="related-links">
+            <a class="related-link" href="../tiktok-shop-creator-commission-calculator/"><strong>Creator commission calculator</strong><span>Find the break-even and target-margin commission ceilings.</span></a>
+            <a class="related-link" href="../tiktok-shop-profit-planner/"><strong>Full TikTok Shop profit planner</strong><span>Model profit and reconcile Seller Center exports locally.</span></a>
+            <a class="related-link" href="../tiktok-shop-payout-doesnt-match-orders/"><strong>Payout mismatch checklist</strong><span>Trace why orders and settlement totals differ.</span></a>
+          </div>
+        </article>
+      </aside>
+    </section>
+
+    <footer><p>This independent calculator is not affiliated with TikTok. It provides a planning estimate, not tax, accounting or marketplace compliance advice.</p></footer>
+  </main>
+
+  <script>
+    const defaults={price:49.99,discount:0,referral:6,creator:20,cogs:14,shipping:6,returns:8,returnCost:4,ad:5};
+    const ids=Object.keys(defaults);const $=id=>document.getElementById(id);const money=n=>{const value=Number.isFinite(n)?n:0;return(value<0?'−$':'$')+Math.abs(value).toFixed(2)};const minusMoney=n=>'−$'+Math.abs(Number.isFinite(n)?n:0).toFixed(2);const pct=n=>(Number.isFinite(n)?n:0).toFixed(1)+'%';
+    function values(){const input={};ids.forEach(id=>input[id]=Math.max(0,Number.parseFloat($(id).value)||0));return input}
+    function calculate(track=false){const input=values();const result=TikTokShopProfitCore.calculate(input);if(!result.valid){['feeStack','referralFee','creatorCost','afterFees','netProfit','sales','ledgerProfit'].forEach(id=>$(id).textContent='$0.00');['ledgerReferral','ledgerCreator','sellerCosts','returnLoss'].forEach(id=>$(id).textContent='−$0.00');$('feeShare').textContent='Selling price must be higher than the seller-funded discount.';$('guidance').textContent='Fix the selling price and discount before using this estimate.';$('guidance').classList.add('error');return}const fees=result.referralFee+result.creatorCost,feeRate=input.referral+input.creator,afterFees=result.sales-fees,sellerCosts=input.cogs+input.shipping+input.ad;$('feeStack').textContent=money(fees);$('feeShare').textContent=pct(feeRate)+' of net sales before product, shipping, return and ad costs.';$('referralFee').textContent=money(result.referralFee);$('creatorCost').textContent=money(result.creatorCost);$('afterFees').textContent=money(afterFees);$('netProfit').textContent=money(result.netProfit);$('sales').textContent=money(result.sales);$('ledgerReferral').textContent=minusMoney(result.referralFee);$('ledgerCreator').textContent=minusMoney(result.creatorCost);$('sellerCosts').textContent=minusMoney(sellerCosts);$('returnLoss').textContent=minusMoney(result.expectedReturnLoss);$('ledgerProfit').textContent=money(result.netProfit);$('guidance').classList.remove('error');if(result.netProfit<0){$('guidance').textContent='This order loses money after the entered fees and costs. Check price, creator rate, product cost, shipping and ad spend before scaling.';$('guidance').classList.add('error')}else if(result.marginPct<10)$('guidance').textContent='The order is above break-even, but the remaining margin is thin at '+pct(result.marginPct)+'.';else $('guidance').textContent='The entered fee stack leaves an estimated '+money(result.netProfit)+' profit and '+pct(result.marginPct)+' margin per order.';if(track&&typeof sendTrackingEvent==='function')sendTrackingEvent('tiktok_shop_fee_calculated',{event_location:'tiktok_shop_fee_calculator',referral_rate:input.referral,creator_rate:input.creator})}
+    $('feeForm').addEventListener('submit',event=>{event.preventDefault();calculate(true)});ids.forEach(id=>$(id).addEventListener('input',()=>calculate(false)));$('reset').addEventListener('click',()=>{ids.forEach(id=>$(id).value=defaults[id]);calculate(false)});calculate(false);
+  </script>
+</body>
+</html>
