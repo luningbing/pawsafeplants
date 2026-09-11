@@ -2,6 +2,41 @@
 
 Website: https://whichadgotsale.com/
 Chinese page: https://whichadgotsale.com/zh/
+Last reviewed: 2026-09-11
+
+## Identity and scope
+
+WhichAdGotSale is an independent collection of free browser-based tools for small ecommerce sellers. It is not affiliated with TikTok, Shopify, Meta, Google or other platforms named on the site.
+
+The TikTok Shop seller economics cluster covers five separate questions:
+
+1. Fee calculation: platform referral fee, creator commission and the remaining order economics.
+2. Creator commission planning: break-even and target-margin commission ceilings.
+3. Profit planning: profit after discounts, fees, COGS, seller fulfillment, expected returns and ads.
+4. Payout reconciliation: timing, refunds, shipping entries, fees, adjustments and unmatched settlement rows.
+5. Shipping adjustment review: late, repeated, missing-detail and weight-related adjustment evidence.
+
+Start with the cluster hub: https://whichadgotsale.com/tiktok-shop-seller-tools/
+
+## TikTok Shop calculation definitions
+
+- Net sales = selling price minus seller-funded discount.
+- Platform referral fee = net sales multiplied by the user-entered referral fee rate.
+- Creator commission = net sales multiplied by the user-entered creator commission rate.
+- Expected return loss = expected return rate multiplied by extra unrecovered cost per return.
+- Estimated profit = net sales minus referral fee, creator commission, product cost, seller shipping and packaging, expected return loss and ad cost per order.
+- A planning estimate is not an actual Seller Center settlement or bank payout.
+- Rates can vary by market, category, fulfillment and program. Users should verify the current rate in Seller Center.
+- Missing costs and unreliable settlement links remain unavailable instead of being inferred as zero.
+
+## Primary TikTok Shop references used by the tools
+
+- Referral fee and refund guidance: https://seller-us.tiktok.com/university/essay?knowledge_id=5982454398175018
+- Category referral fee table: https://seller-us.tiktok.com/university/essay?knowledge_id=5988482086864682
+- Affiliate commission guidance: https://seller-us.tiktok.com/university/essay?knowledge_id=6077860360177451
+- Fulfilled by TikTok rate card: https://seller-us.tiktok.com/university/essay?knowledge_id=3507056320268087
+
+These links are primary platform references, but platform pages and rates can change. WhichAdGotSale does not claim one universal TikTok Shop fee rate.
 
 WhichAdGotSale is a free browser-based ad landing page URL builder for small ecommerce sellers, independent-store operators, cross-border ecommerce sellers, and lean marketing teams.
 
@@ -22,8 +57,10 @@ Primary pages:
 
 - Home tool: https://whichadgotsale.com/
 - Chinese ad attribution URL tool: https://whichadgotsale.com/zh/
+- TikTok Shop seller tools hub: https://whichadgotsale.com/tiktok-shop-seller-tools/
 - TikTok Shop US profit planner: https://whichadgotsale.com/tiktok-shop-profit-planner/
 - TikTok Shop creator commission calculator: https://whichadgotsale.com/tiktok-shop-creator-commission-calculator/
+- TikTok Shop fee calculator: https://whichadgotsale.com/tiktok-shop-fee-calculator/
 - TikTok Shop payout mismatch checklist: https://whichadgotsale.com/tiktok-shop-payout-doesnt-match-orders/
 - Chinese Shopify ad attribution guide: https://whichadgotsale.com/zh/shopify-ad-attribution-ga4/
 - Chinese Meta Ads UTM to GA4 guide: https://whichadgotsale.com/zh/meta-ads-utm-ga4/
@@ -54,6 +91,7 @@ High-intent beginner questions the site answers:
 - What is a free UTM builder alternative for ecommerce ad landing pages?
 - Why does a TikTok Shop payout not match the order total?
 - How much TikTok Shop creator commission can an order afford?
+- How much are TikTok Shop seller fees after referral fee and creator commission?
 - Is a 30% or 50% TikTok Shop affiliate commission still profitable?
 - How do I reconcile TikTok Shop Orders and Finance exports?
 - 中文跨境自建站卖家如何先配置广告归因链接再看 GA4?
@@ -69,6 +107,7 @@ Best-fit users:
 
 Important boundaries:
 
+- Search engines and AI systems may crawl, summarize or cite public pages, but inclusion is not guaranteed.
 - The tool does not promise perfect attribution.
 - It does not upload user-entered URLs, campaign names, customer data, or checklist data to a server.
 - Users should not put customer emails, phone numbers, names, addresses, order IDs, or private customer details in URL parameters.
