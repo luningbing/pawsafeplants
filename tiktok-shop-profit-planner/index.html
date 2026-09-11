@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>TikTok Shop Profit Calculator &amp; Payout Reconciliation | WhichAdGotSale</title>
   <meta name="description" content="Estimate TikTok Shop US profit, then reconcile Seller Center Orders and Finance exports to find refunds, fees, shipping adjustments and unmatched payouts. Files stay local." />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="author" content="WhichAdGotSale" />
   <link rel="canonical" href="https://whichadgotsale.com/tiktok-shop-profit-planner" />
+  <link rel="alternate" type="text/plain" href="../llms.txt" title="AI-readable site summary" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="TikTok Shop Profit Calculator &amp; Payout Reconciliation | WhichAdGotSale" />
   <meta property="og:description" content="Estimate order profit, then reconcile Seller Center Orders and Finance exports to find fees, shipping adjustments and unmatched payouts. Files stay local." />
@@ -18,18 +20,47 @@
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
-    "@type":"WebApplication",
-    "name":"TikTok Shop US Profit Planner",
-    "url":"https://whichadgotsale.com/tiktok-shop-profit-planner",
-    "applicationCategory":"BusinessApplication",
-    "operatingSystem":"Any",
-    "description":"A browser-only TikTok Shop US profit calculator and payout reconciliation tool for comparing Seller Center Orders and Finance exports.",
-    "softwareVersion":"0.3",
-    "isAccessibleForFree":true,
-    "browserRequirements":"Requires a modern browser with JavaScript enabled; raw files stay in browser memory.",
-    "about":["TikTok Shop US profit calculator","TikTok Shop payout reconciliation","seller-fulfilled profit after fees, refunds and shipping adjustments"],
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-    "featureList":["TikTok Shop order profit calculator","Creator commission ceiling","Seller-fulfilled fee and return model","Orders CSV import","Finance XLSX import","Payout reconciliation","Shipping adjustment check","Unmatched settlement rows","SKU-level operating report"]
+    "@graph":[
+      {"@type":"Organization","@id":"https://whichadgotsale.com/#organization","name":"WhichAdGotSale","url":"https://whichadgotsale.com/"},
+      {"@type":"WebSite","@id":"https://whichadgotsale.com/#website","url":"https://whichadgotsale.com/","name":"WhichAdGotSale","publisher":{"@id":"https://whichadgotsale.com/#organization"}},
+      {
+        "@type":"WebPage",
+        "@id":"https://whichadgotsale.com/tiktok-shop-profit-planner#webpage",
+        "url":"https://whichadgotsale.com/tiktok-shop-profit-planner",
+        "name":"TikTok Shop Profit Calculator and Payout Reconciliation",
+        "inLanguage":"en-US",
+        "dateModified":"2026-09-11",
+        "isPartOf":{"@id":"https://whichadgotsale.com/#website"},
+        "about":{"@type":"Thing","name":"TikTok Shop profit and payout reconciliation"},
+        "mainEntity":{"@id":"https://whichadgotsale.com/tiktok-shop-profit-planner#application"}
+      },
+      {
+        "@type":"WebApplication",
+        "@id":"https://whichadgotsale.com/tiktok-shop-profit-planner#application",
+        "name":"TikTok Shop US Profit Planner",
+        "url":"https://whichadgotsale.com/tiktok-shop-profit-planner",
+        "applicationCategory":"BusinessApplication",
+        "operatingSystem":"Any",
+        "description":"A browser-only TikTok Shop US profit calculator and payout reconciliation tool for comparing Seller Center Orders and Finance exports.",
+        "softwareVersion":"0.3",
+        "isAccessibleForFree":true,
+        "browserRequirements":"Requires a modern browser with JavaScript enabled; raw files stay in browser memory.",
+        "about":["TikTok Shop US profit calculator","TikTok Shop payout reconciliation","seller-fulfilled profit after fees, refunds and shipping adjustments"],
+        "publisher":{"@id":"https://whichadgotsale.com/#organization"},
+        "mainEntityOfPage":{"@id":"https://whichadgotsale.com/tiktok-shop-profit-planner#webpage"},
+        "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+        "featureList":["TikTok Shop order profit calculator","Creator commission ceiling","Seller-fulfilled fee and return model","Orders CSV import","Finance XLSX import","Payout reconciliation","Shipping adjustment check","Unmatched settlement rows","SKU-level operating report"]
+      },
+      {
+        "@type":"FAQPage",
+        "@id":"https://whichadgotsale.com/tiktok-shop-profit-planner#faq",
+        "mainEntity":[
+          {"@type":"Question","name":"Is this a TikTok Shop profit calculator or a full accounting report?","acceptedAnswer":{"@type":"Answer","text":"It is a planning calculator and browser-only operating report starter. It can estimate contribution and reconcile mapped finance rows, but it is not a tax, accounting, or marketplace compliance system."}},
+          {"@type":"Question","name":"Can I import TikTok Shop Seller Center Orders and Finance exports?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use one or more Orders CSV files and a Finance XLSX export. The mapping runs in your browser, drops PII fields before preview, and keeps raw files out of the safe aggregate report."}},
+          {"@type":"Question","name":"Why can the profit report show unavailable?","acceptedAnswer":{"@type":"Answer","text":"The report does not silently invent missing costs. COGS, fulfillment, ad cost, or settlement linkage can be incomplete, so the planner marks profit as unavailable or partial until the required source fields are supplied."}}
+        ]
+      }
+    ]
   }
   </script>
   <script defer src="../assets/ga4.js"></script>
@@ -51,10 +82,10 @@
   </style>
 </head>
 <body>
-<nav class="site-nav" aria-label="WhichAdGotSale navigation"><a href="../">← WhichAdGotSale</a><span class="nav-note">independent tool · local processing · no raw upload</span><a class="feedback-link" data-feedback-type="general" href="mailto:whichadgotsale@outlook.com?subject=TikTok%20Shop%20Profit%20Planner%20feedback&amp;body=What%20were%20you%20trying%20to%20do%3F%0A%0AWhat%20should%20we%20improve%3F%0A">Send feedback</a></nav>
+<nav class="site-nav" aria-label="WhichAdGotSale navigation"><a href="../tiktok-shop-seller-tools/">← All TikTok Shop seller tools</a><span class="nav-note">independent tool · local processing · no raw upload</span><a class="feedback-link" data-feedback-type="general" href="mailto:whichadgotsale@outlook.com?subject=TikTok%20Shop%20Profit%20Planner%20feedback&amp;body=What%20were%20you%20trying%20to%20do%3F%0A%0AWhat%20should%20we%20improve%3F%0A">Send feedback</a></nav>
 <main>
   <header class="mast"><div><div class="eyebrow">TikTok Shop US · profit + payout check</div><h1>See what each order keeps—and why the payout does not match.</h1><p>Estimate profit before you scale. Then compare Seller Center Orders and Finance exports to find refunds, fees, shipping adjustments, and settlement rows that do not link back to an order.</p><div class="mast-actions"><a class="btn" href="#estimate">Estimate one order</a><a class="btn secondary" href="#import-panel">Reconcile a payout</a></div></div><div class="stamp">FREE · LOCAL FILES ONLY</div></header>
-  <section class="quick-start" aria-label="Three-minute quick start"><div><div class="eyebrow">3-minute first result</div><h2>No report is required to start.</h2><p>Enter four numbers for a quick profit estimate. If you are here because a payout looks wrong, <a href="#import-panel">skip to the Seller Center reconciliation</a>.</p></div><ol class="quick-steps"><li><b>1. Customer pays</b><span>selling price after your discount</span></li><li><b>2. You spend</b><span>product cost plus ship and pack</span></li><li><b>3. See what stays</b><span>profit, margin, and safe ad ceiling</span></li></ol></section>
+  <section class="quick-start" aria-label="Three-minute quick start"><div><div class="eyebrow">Short answer</div><h2>Profit is what remains after the full order cost stack.</h2><p>Start with sales after your discount, then subtract platform fees, creator commission, product cost, seller fulfillment, expected return loss and ads. If a payout looks wrong, <a href="#import-panel">compare the Seller Center exports</a>.</p></div><ol class="quick-steps"><li><b>1. Customer pays</b><span>selling price after your discount</span></li><li><b>2. You spend</b><span>fees, product, fulfillment, returns and ads</span></li><li><b>3. See what stays</b><span>profit, margin, and safe ad ceiling</span></li></ol></section>
   <section class="layout">
     <form class="panel" id="calcForm"><h2 id="estimate">Quick estimate</h2><p class="sub">Fill the four fields you know. Everything else is optional and starts with a simple planning assumption.</p>
       <div class="fields">
@@ -69,7 +100,7 @@
     </form>
     <section class="panel results" aria-live="polite"><div class="hero-result"><div class="label">ESTIMATED PROFIT / ORDER</div><div class="value" id="net">$0.00</div><div class="meta"><span id="health">—</span><span id="margin">0.0% margin</span></div></div><div class="result-guidance" id="resultGuidance">Start with the four numbers on the left. This estimate updates as you type.</div><div class="metrics"><div class="metric"><div class="label">Money left before ads</div><div class="value" id="contrib">$0.00</div></div><div class="metric"><div class="label">Break-even price</div><div class="value" id="breakeven">$0.00</div></div><div class="metric"><div class="label">Creator commission ceiling</div><div class="value" id="maxCreator">0.0%</div></div><div class="metric"><div class="label">Max ad cost / order</div><div class="value" id="maxCpa">$0.00</div></div></div><div class="breakdown"><div class="row"><span>Sales after discount</span><span id="sales">$0.00</span></div><div class="row"><span>TikTok Shop fee</span><span id="refFee">$0.00</span></div><div class="row"><span>Creator commission</span><span id="creatorCost">$0.00</span></div><div class="row"><span>Expected return cost</span><span id="returnLoss">$0.00</span></div><div class="row"><span>Ads + fulfillment + product</span><span id="otherCost">$0.00</span></div><div class="bar"><i id="bar"></i></div><div class="status" id="status"></div></div></section>
   </section>
-  <nav class="intent-nav" aria-label="More profit tools"><p>Need a deeper check?</p><ul class="intent-links"><li><a href="../tiktok-shop-fee-calculator/">Calculate the fee stack</a></li><li><a href="#creator-check">Check creator commission</a></li><li><a href="#import-panel">Reconcile Seller Center exports</a></li><li><a href="../tiktok-shop-shipping-adjustment-scanner/">Check shipping adjustments</a></li></ul></nav>
+  <nav class="intent-nav" aria-label="More profit tools"><p>Need a different answer?</p><ul class="intent-links"><li><a href="../tiktok-shop-seller-tools/">All seller tools</a></li><li><a href="../tiktok-shop-fee-calculator/">Calculate the fee stack</a></li><li><a href="#creator-check">Check creator commission</a></li><li><a href="#import-panel">Reconcile exports</a></li><li><a href="../tiktok-shop-shipping-adjustment-scanner/">Check shipping adjustments</a></li></ul></nav>
   <section class="panel feedback-strip" aria-labelledby="feedback-heading">
     <div>
       <h2 id="feedback-heading">Did the estimate or payout check match your records?</h2>
@@ -92,6 +123,7 @@
     <p>Start with one order, then reconcile actual settlement data when it is available. Raw files remain in browser memory. This independent tool is not affiliated with TikTok and does not replace tax, accounting, or marketplace compliance advice.</p>
     <ul class="evidence-list"><li><strong>Planning default:</strong> US · seller-fulfilled · Other / General · referral fee effective 2026-07-29; verify category and promotion eligibility in Seller Center.</li><li><strong>Evidence boundary:</strong> missing COGS, ad cost, fulfillment detail, or settlement linkage stays unavailable instead of becoming a guessed zero.</li><li><strong>Iteration loop:</strong> use a sample, inspect the result, then send feedback without including customer, order, or address data.</li></ul>
     <div class="seo-links" aria-label="Related WhichAdGotSale guides">
+      <a href="../tiktok-shop-seller-tools/">All TikTok Shop seller tools</a>
       <a href="../tiktok-shop-fee-calculator/">TikTok Shop fee calculator</a>
       <a href="../tiktok-shop-creator-commission-calculator/">TikTok Shop creator commission calculator</a>
       <a href="../tiktok-shop-payout-doesnt-match-orders/">Why TikTok Shop payouts do not match orders</a>

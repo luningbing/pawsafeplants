@@ -231,9 +231,17 @@ h1 {
   align-items: start;
 }
 
+.hero > *,
+.content-grid > *,
+.summary-grid > *,
+.cta > * {
+  min-width: 0;
+}
+
 .stack {
   display: grid;
   gap: 18px;
+  min-width: 0;
 }
 
 .section {
@@ -242,6 +250,7 @@ h1 {
   border-radius: 8px;
   box-shadow: var(--shadow);
   padding: 22px;
+  min-width: 0;
 }
 
 .section h2 {
@@ -303,6 +312,9 @@ h1 {
 }
 
 .table-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: 8px;
