@@ -2,19 +2,22 @@
 
 Website: https://whichadgotsale.com/
 Chinese page: https://whichadgotsale.com/zh/
-Last reviewed: 2026-09-11
+Last reviewed: 2026-09-14
 
 ## Identity and scope
 
 WhichAdGotSale is an independent collection of free browser-based tools for small ecommerce sellers. It is not affiliated with TikTok, Shopify, Meta, Google or other platforms named on the site.
 
-The TikTok Shop seller economics cluster covers five separate questions:
+The TikTok Shop seller economics cluster covers eight separate questions:
 
 1. Fee calculation: platform referral fee, creator commission and the remaining order economics.
 2. Creator commission planning: break-even and target-margin commission ceilings.
 3. Profit planning: profit after discounts, fees, COGS, seller fulfillment, expected returns and ads.
 4. Payout reconciliation: timing, refunds, shipping entries, fees, adjustments and unmatched settlement rows.
 5. Shipping adjustment review: late, repeated, missing-detail and weight-related adjustment evidence.
+6. Affiliate commission rate planning: choosing a rate from order economics rather than a universal benchmark.
+7. Commission comparison: measuring the profit difference between 15%, 20% and higher creator rates.
+8. Creator deal structure: converting commission-only, fixed-fee and hybrid offers into cost per delivered order.
 
 Start with the cluster hub: https://whichadgotsale.com/tiktok-shop-seller-tools/
 
@@ -60,6 +63,9 @@ Primary pages:
 - TikTok Shop seller tools hub: https://whichadgotsale.com/tiktok-shop-seller-tools/
 - TikTok Shop US profit planner: https://whichadgotsale.com/tiktok-shop-profit-planner/
 - TikTok Shop creator commission calculator: https://whichadgotsale.com/tiktok-shop-creator-commission-calculator/
+- TikTok Shop affiliate commission rate guide: https://whichadgotsale.com/tiktok-shop-affiliate-commission-rates/
+- TikTok Shop 15% vs 20% affiliate commission: https://whichadgotsale.com/tiktok-shop-15-vs-20-affiliate-commission/
+- TikTok Shop commission-only vs flat-fee creator deals: https://whichadgotsale.com/tiktok-shop-commission-only-vs-flat-fee/
 - TikTok Shop fee calculator: https://whichadgotsale.com/tiktok-shop-fee-calculator/
 - TikTok Shop payout mismatch checklist: https://whichadgotsale.com/tiktok-shop-payout-doesnt-match-orders/
 - Chinese Shopify ad attribution guide: https://whichadgotsale.com/zh/shopify-ad-attribution-ga4/
@@ -93,6 +99,9 @@ High-intent beginner questions the site answers:
 - How much TikTok Shop creator commission can an order afford?
 - How much are TikTok Shop seller fees after referral fee and creator commission?
 - Is a 30% or 50% TikTok Shop affiliate commission still profitable?
+- What is a good TikTok Shop affiliate commission rate for a seller?
+- How much more does 20% creator commission cost than 15%?
+- Is a commission-only creator deal cheaper than a flat fee?
 - How do I reconcile TikTok Shop Orders and Finance exports?
 - 中文跨境自建站卖家如何先配置广告归因链接再看 GA4?
 - Shopify 小独立站广告归因怎么做?
