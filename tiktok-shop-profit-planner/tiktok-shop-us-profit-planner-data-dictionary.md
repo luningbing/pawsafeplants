@@ -15,6 +15,13 @@
 | `quantity` | number | 推荐 | 两者 | Orders/Settlement | 数量指标 unavailable |
 | `gross_sales` | USD/order line | 订单+结算至少一侧 | 两者 | Orders: `SKU Subtotal Before Discount`; Finance: `Subtotal before discounts` | 正数折前商品金额；销售额 unavailable |
 | `seller_funded_discount` | USD/order line | 可选 | 两者 | Orders: `SKU Seller Discount`; Finance: `- Seller discounts` | 正数表示卖家折扣成本；平台折扣不进入此字段 |
+| `platform_item_discount` | USD/order line | 可选 | order | Orders: `SKU Platform Discount` | 平台承担的商品行折扣；不当作卖家成本，但参与商品金额守恒校验 |
+| `payment_platform_discount` | USD/order line | 可选 | order | Orders: `Payment platform discount` | 支付环节平台优惠；与商品行平台折扣分开，不强行塞入商品小计公式 |
+| `product_sales_after_discount` | USD/order line | 可选 | order | Orders: `SKU Subtotal After Discount` | 商品折后金额；用于商品销售额和加权件单价 |
+| `shipping_revenue` | USD/order | 可选 | order | Orders: `Shipping Fee After Discount` | 每个 `order_id` 仅计一次；属于客户支付拆分，不等于卖家履约成本 |
+| `other_revenue` | USD/order line | 可选 | order | Orders: `Retail Delivery Fee` | 付款金额的其他收入叶子；保留来源符号 |
+| `payment_amount` | USD/order | 可选 | order | Orders: `Order Amount` | 每个 `order_id` 仅计一次，用于与“商品折后金额 + 运费收入 + 其他收入”比较 |
+| `paid_scope` | enum | 可选 | order | Orders: `Paid Time` + `Order Amount` | `included` / `review_missing_paid_time` / `excluded_unpaid`；没有该字段的旧模板保留全部订单行 |
 | `refund_amount` | USD/order line | 可选 | settlement | Finance: `- Refund subtotal after seller discounts` | 正数表示退款成本，退款回冲可为负；Orders 的订单级退款未验证前不自动映射 |
 | `referral_fee` | USD/order line | 结算推荐 | settlement | Finance: `- Referral fee` | 正数表示费用成本，退款回冲可为负；不默认为 0 |
 | `shipping_charge_or_reimbursement` | USD/order line | 可选 | settlement | Finance shipping 叶子字段净和 | signed contribution：补贴/买家运费为正，扣费为负；不得 `abs()` |
@@ -31,6 +38,11 @@
 - 同一订单允许多个 `package_id`（拆包），但完全重复的 `record_type + order_id + order_line_id + settlement_date` 计为重复键。
 - 金额可为负；必须按字段转换规则处理，不得对整列统一 `abs()`。
 - `gross_sales` 和 `seller_funded_discount` 使用折前金额减卖家折扣的经营表达；平台折扣不作为卖家成本。
+- 商品金额校验使用 `gross_sales = product_sales_after_discount + seller_funded_discount + platform_item_discount`；`payment_platform_discount` 单独展示，不混入这条商品行恒等式。
+- 付款拆分使用 `derived payment = product_sales_after_discount + shipping_revenue + other_revenue`，并与去重后的 `payment_amount` 比较。差异用于提示平台支付优惠、补贴或未映射收入，不自动判定为错误。
+- 件单价必须先汇总再相除：`SUM(product_sales_after_discount) / SUM(quantity)`；不得平均每天或每行已经计算出的单价。
+- `shipping_revenue` 与 `payment_amount` 按 `order_id` 去重后计一次；商品金额、折扣、数量按订单行汇总。
+- 有 `paid_scope` 时排除 `excluded_unpaid`，保留 `review_missing_paid_time` 并显式提示复核；不得用 `Order Amount = 0` 推断样品单。
 - Finance 源字段中费用通常为负；`referral_fee`、`creator_commission_actual` 转成“正数表示成本”，但退款回冲仍可为负。
 - `refund_amount` 使用退款后卖家折扣口径，normalized 正数表示退款成本。
 - 百分比字段若来自扩展文件，必须在 0–100；本标准表不直接保存百分比费率。
