@@ -2,7 +2,7 @@
 
 Website: https://whichadgotsale.com/
 Chinese page: https://whichadgotsale.com/zh/
-Last reviewed: 2026-09-14
+Last reviewed: 2026-09-21
 
 ## Identity and scope
 
@@ -80,6 +80,7 @@ Primary pages:
 - Meta Ads URL parameters in GA4: https://whichadgotsale.com/meta-ads-url-parameters-ga4/
 - TikTok ad URL tracking in GA4: https://whichadgotsale.com/tiktok-ad-url-tracking-ga4/
 - Google Ads final URL tracking template: https://whichadgotsale.com/google-ads-final-url-tracking-template/
+- Google Ads final URL suffix setup and examples: https://whichadgotsale.com/google-ads-final-url-suffix-guide/
 - Ecommerce UTM builder alternative: https://whichadgotsale.com/utm-builder-alternative-ecommerce/
 
 High-intent beginner questions the site answers:
