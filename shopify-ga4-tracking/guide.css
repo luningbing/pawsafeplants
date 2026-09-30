@@ -1,0 +1,66 @@
+.guide-updated {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.section {
+  overflow-wrap: anywhere;
+}
+
+.section[id],
+.section li[id] {
+  scroll-margin-top: 100px;
+}
+
+.section h3 {
+  margin: 20px 0 8px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+
+.section .guide-note {
+  margin-top: 16px;
+}
+
+.guide-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 0;
+  color: var(--muted);
+  line-height: 1.45;
+  text-underline-offset: 3px;
+}
+
+table caption {
+  padding: 12px 10px;
+  color: var(--muted);
+  text-align: left;
+  line-height: 1.5;
+}
+
+tbody th {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 13px;
+}
+
+.code-block {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.guide-nav a:focus-visible,
+.table-wrap:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .section[id],
+  .section li[id] {
+    scroll-margin-top: 200px;
+  }
+}

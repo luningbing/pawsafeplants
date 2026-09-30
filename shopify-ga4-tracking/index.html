@@ -3,16 +3,29 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Shopify GA4 Tracking Starter Guide | Ecommerce Campaign Tracking</title>
-  <meta name="description" content="A practical Shopify GA4 tracking starter guide for checking visits, redirects, and key ecommerce events before paid traffic scales.">
-  <meta property="og:title" content="Shopify GA4 Tracking Starter Guide">
-  <meta property="og:description" content="Use this Shopify GA4 starter guide to verify visits, source and medium values, and ecommerce events before real traffic scales.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="../assets/workflow.png">
+  <title>Shopify GA4 Ecommerce Tracking Setup &amp; Purchase Checks | WhichAdGotSale</title>
+  <meta name="description" content="Set up Shopify GA4 with Google &amp; YouTube, verify ecommerce and purchase events, check transaction IDs, and troubleshoot duplicate tracking without adding another tag.">
+  <meta property="og:title" content="Shopify GA4 Ecommerce Tracking Setup">
+  <meta property="og:description" content="Connect GA4, inspect one purchase, and check for duplicate senders. A Shopify setup and verification guide with official references.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://whichadgotsale.com/assets/workflow.png">
   <meta property="og:url" content="https://whichadgotsale.com/shopify-ga4-tracking">
   <link rel="canonical" href="https://whichadgotsale.com/shopify-ga4-tracking">
   <link rel="stylesheet" href="../assets/guide-pages.css">
+  <link rel="stylesheet" href="./guide.css">
   <script defer src="../assets/ga4.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": "https://whichadgotsale.com/shopify-ga4-tracking#article",
+    "headline": "Shopify GA4 Ecommerce Tracking Setup",
+    "description": "Connect Shopify to GA4, verify ecommerce purchase parameters, and troubleshoot duplicate tracking.",
+    "dateModified": "2026-09-30",
+    "inLanguage": "en",
+    "mainEntityOfPage": "https://whichadgotsale.com/shopify-ga4-tracking"
+  }
+  </script>
 </head>
 <body>
   <header class="topbar">
@@ -32,12 +45,13 @@
   <main>
     <section class="hero">
       <div>
-        <p class="eyebrow">Platform setup guide</p>
-        <h1>Shopify GA4 Tracking Starter Guide</h1>
-        <p class="subhead">This is the practical setup path after your URL is built: make sure the visit lands, the source and medium show up, and Shopify is sending believable ecommerce events into GA4.</p>
+        <p class="eyebrow">Shopify setup and verification</p>
+        <h1>Shopify GA4 Ecommerce Tracking Setup</h1>
+        <p class="subhead">Connect GA4 through Google &amp; YouTube, then inspect one purchase with its order ID, currency, value, and items. A page view alone does not prove that ecommerce tracking works.</p>
+        <p class="guide-updated">Updated <time datetime="2026-09-30">September 30, 2026</time> · Official references below</p>
         <div class="hero-actions">
-          <a class="button primary" href="../ga4-realtime-checklist/">Open the GA4 checklist</a>
-          <a class="button" href="../shopify-utm-builder/">Open Shopify UTM guide</a>
+          <a class="button primary" href="#install">Start the setup</a>
+          <a class="button" href="#verify-purchase">Verify a purchase</a>
         </div>
       </div>
       <img class="workflow-visual" src="../assets/workflow.png" alt="Ecommerce traffic moving through a Shopify store into analytics">
@@ -45,63 +59,145 @@
 
     <section class="summary-grid" aria-label="Quick summary">
       <article class="card">
-        <h2>First thing to prove</h2>
-        <p>The store opens correctly from the campaign URL and GA4 Realtime sees the visit with the same campaign labels you set.</p>
+        <h2>Connect the intended property</h2>
+        <p>Use the Google &amp; YouTube connection flow. Confirm the destination before adding or removing any tracking.</p>
       </article>
       <article class="card">
-        <h2>Second thing to prove</h2>
-        <p>Key ecommerce events like <code>view_item</code>, <code>add_to_cart</code>, <code>begin_checkout</code>, and <code>purchase</code> appear in a believable order.</p>
+        <h2>Inspect the order, not just the visit</h2>
+        <p>Check <code>purchase</code> parameters against a known order. Keep item value, tax, and shipping separate.</p>
       </article>
       <article class="card">
-        <h2>Most common problem</h2>
-        <p>Multiple apps, duplicate GA4 installs, or a checkout flow that behaves differently from the landing page.</p>
+        <h2>Separate QA from real traffic</h2>
+        <p>Log test visits and orders. A successful test is implementation evidence, not a new customer or a product-demand signal.</p>
       </article>
     </section>
 
     <section class="content-grid">
       <div class="stack">
-        <article class="section">
-          <h2>Starter workflow</h2>
+        <article class="section" id="install">
+          <h2>1. Install GA4 through Google &amp; YouTube</h2>
           <ol class="step-list">
-            <li>Generate one clean campaign URL from the homepage builder.</li>
-            <li>Open GA4 Realtime before clicking that URL.</li>
-            <li>Click the link and confirm Shopify opens the correct product, collection, or landing page.</li>
-            <li>Confirm source, medium, and campaign are visible in Realtime.</li>
-            <li>Walk through product view, add to cart, and checkout steps if your store setup supports them.</li>
+            <li><strong>Choose the GA4 property.</strong> In Google Analytics, use the existing property intended for this store, or create one if needed. Create or confirm its web data stream and record the destination ID.</li>
+            <li><strong>Open Shopify admin.</strong> Install or open the <strong>Google &amp; YouTube</strong> sales channel.</li>
+            <li><strong>Complete its Google tag connection flow.</strong> Follow the current connection instructions linked in <a href="#source-shopify">Shopify's setup documentation</a>, using the property from step 1. Confirm the saved GA4 destination; do not paste an additional theme tag to finish the same installation.</li>
+            <li><strong>Make the storefront accessible.</strong> Shopify notes that Analytics cannot track events while the online store is in private mode. Use an accessible storefront for the checks below.</li>
+          </ol>
+          <p class="guide-note">Shopify says a Merchant Center connection is not required for GA4 tag setup. It also documents automatic collection of certain ecommerce events after setup; that is not a guarantee that every custom storefront or event is covered. Verify your actual journey. <a href="#source-shopify">[1]</a></p>
+        </article>
+
+        <article class="section" id="events">
+          <h2>2. Check the ecommerce journey</h2>
+          <p>Use one product and one controlled session. These are acceptance checks for your implementation, not a claim that all four events fire automatically in every store. <a href="#source-ecommerce">[3]</a></p>
+          <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable ecommerce event checks">
+            <table>
+              <caption>Ecommerce events to inspect</caption>
+              <thead>
+                <tr><th scope="col">Action</th><th scope="col">Event</th><th scope="col">What to inspect</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Open a product</th><td><code>view_item</code></td><td>The intended product appears in <code>items</code>.</td></tr>
+                <tr><th scope="row">Add it to the cart</th><td><code>add_to_cart</code></td><td>Item identity and quantity match the action.</td></tr>
+                <tr><th scope="row">Start checkout</th><td><code>begin_checkout</code></td><td>Cart items, currency, and value match this checkout.</td></tr>
+                <tr><th scope="row">Complete an order</th><td><code>purchase</code></td><td>Order ID, currency, value, and item details match the order.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="section" id="verify-purchase">
+          <h2>3. Verify one purchase and its parameters</h2>
+          <ol class="step-list">
+            <li><strong>Enable debugging for your device.</strong> Use Google Tag Assistant or your integration's supported debugging method. Do not add a second GA4 installation just to populate DebugView.</li>
+            <li><strong>Open GA4 → Admin → Data display → DebugView.</strong> Choose your debug device, follow the shopping journey, and open the collected events to inspect their parameters. DebugView requires debug mode; privacy controls or missing analytics consent can prevent events from appearing. <a href="#source-debugview">[2]</a></li>
+            <li><strong>Use a known, authorized QA order.</strong> First establish whether your integration emits events for the test checkout mode you use. A missing event in an unsupported test mode is not enough to diagnose live tracking. If a real paid order is necessary, obtain the store owner's approval first.</li>
+            <li><strong>Compare the payload with the order.</strong> Check a non-empty <code>transaction_id</code>, the correct <code>currency</code>, item IDs and quantities, and <code>value</code>. Google's ecommerce example defines value as the sum of item price × quantity, with tax and shipping separate. Do not compare that value blindly with an all-in order total. <a href="#source-ecommerce">[3]</a></li>
+          </ol>
+          <p class="guide-note">Example purchase parameters only—not installation code. This illustration has two $20 items, $5 shipping, and $3 tax. The item value is $40, not $48. Never reuse the example transaction ID in live events.</p>
+          <pre class="code-block"><code id="purchase-example">{
+  "transaction_id": "QA-EXAMPLE-1001",
+  "currency": "USD",
+  "value": 40,
+  "shipping": 5,
+  "tax": 3,
+  "items": [
+    {
+      "item_id": "EXAMPLE-SKU",
+      "item_name": "Example product",
+      "price": 20,
+      "quantity": 2
+    }
+  ]
+}</code></pre>
+          <p class="guide-note">Use DebugView to inspect delivery, not to settle campaign attribution. Google recommends Acquisition reports for more accurate attribution analysis. <a href="#source-debugview">[2]</a></p>
+        </article>
+
+        <article class="section" id="duplicates">
+          <h2>4. Troubleshoot duplicate purchases</h2>
+          <ol class="step-list">
+            <li><strong>Inventory the senders.</strong> Review the channel integration, theme tags, GTM tags, custom pixels, and tracking apps. Multiple destinations are not automatically a duplicate: look for two independent senders delivering the same order to the same GA4 destination.</li>
+            <li><strong>Check order IDs.</strong> Each order needs a unique, non-empty ID that remains stable when the same order is sent again. Do not use a constant ID or customer-identifying information.</li>
+            <li><strong>Check delivery as well as reported purchases.</strong> Google deduplicates same-ID <code>purchase</code> events collected through web streams, not app streams. That does not prove you have only one sender. Empty or reused IDs can also undercount purchases. <a href="#source-deduplication">[4]</a></li>
+            <li><strong>Change one path at a time.</strong> Save the existing configuration before disabling a confirmed redundant sender, then repeat the order-level check. Do not remove every tag or disable a different destination simply because it appears in your inventory.</li>
           </ol>
         </article>
 
-        <article class="section">
-          <h2>What to check on Shopify</h2>
+        <article class="section" id="qa-traffic">
+          <h2>5. Keep acceptance tests out of growth claims</h2>
           <ul class="note-list">
-            <li>The campaign URL is not being rewritten by a redirect or app before the first page loads.</li>
-            <li>There is one clear GA4 path instead of several overlapping app or theme installs.</li>
-            <li>Your main store domain and checkout behavior preserve attribution the way you expect.</li>
-            <li>The purchase event does not disappear only because the visit looked correct on the first page.</li>
+            <li>Record the QA date, test device, campaign labels, and test order IDs in a private test log.</li>
+            <li>Review developer-traffic filtering before treating debug visits as excluded. Debug mode alone is not evidence that report data is clean. <a href="#source-debugview">[2]</a></li>
+            <li>Keep consent controls intact. A test without analytics consent is a different case from a broken tag.</li>
+            <li>Once event collection passes, test a labeled campaign link separately. UTMs describe the visit; they do not install ecommerce events.</li>
           </ul>
         </article>
 
-        <article class="section">
-          <h2>When the visit appears but revenue reporting does not</h2>
-          <p>This usually means the landing-page measurement is alive but ecommerce event wiring is incomplete, duplicated, or disrupted later in the journey. Treat that as a tracking-setup issue, not a campaign-URL issue.</p>
+        <article class="section" id="faq">
+          <h2>Common setup questions</h2>
+          <h3>Do I need Merchant Center to connect GA4?</h3>
+          <p>No. Shopify's GA4 setup instructions explicitly separate tag setup from connecting Merchant Center. <a href="#source-shopify">[1]</a></p>
+          <h3>Realtime shows a visit. Is purchase tracking ready?</h3>
+          <p>Not yet. Inspect an order's <code>purchase</code> event and its parameters. A visit is only one part of the acceptance check.</p>
+          <h3>Why is DebugView empty?</h3>
+          <p>Confirm debug mode, the selected device and property, and analytics consent before changing the installation. DebugView is not a substitute for checking the integration's delivery method. <a href="#source-debugview">[2]</a></p>
+        </article>
+
+        <article class="section" id="sources">
+          <h2>Official references</h2>
+          <p>The setup route and event rules above were checked against these references on September 30, 2026. This guide has not been independently validated on your Shopify store.</p>
+          <ol class="note-list">
+            <li id="source-shopify"><a href="https://help.shopify.com/en/manual/reports-and-analytics/google-analytics/google-analytics-setup">Shopify: Setting up Google Analytics 4</a></li>
+            <li id="source-debugview"><a href="https://support.google.com/analytics/answer/7201382?hl=en">Google: Monitor events in DebugView</a></li>
+            <li id="source-ecommerce"><a href="https://developers.google.com/analytics/devguides/collection/ga4/ecommerce">Google: Measure ecommerce</a></li>
+            <li id="source-deduplication"><a href="https://support.google.com/analytics/answer/12313109?hl=en">Google: Minimize duplicate key events with transaction IDs</a></li>
+          </ol>
         </article>
       </div>
 
       <aside class="stack">
+        <nav class="section guide-nav" aria-label="On this page">
+          <h2>On this page</h2>
+          <a href="#install">Install the connection</a>
+          <a href="#events">Check ecommerce events</a>
+          <a href="#verify-purchase">Verify a purchase</a>
+          <a href="#duplicates">Find duplicate senders</a>
+          <a href="#qa-traffic">Separate QA traffic</a>
+          <a href="#faq">Setup questions</a>
+          <a href="#sources">Official references</a>
+        </nav>
         <article class="section">
           <h2>Also useful</h2>
           <div class="related-links">
             <a class="related-link" href="../shopify-utm-builder/">
               <strong>Shopify UTM Builder</strong>
-              <span>Start here when you still need the actual campaign link.</span>
+              <span>Build a labeled campaign link after event collection is verified.</span>
             </a>
             <a class="related-link" href="../ga4-realtime-checklist/">
               <strong>GA4 Realtime Checklist</strong>
-              <span>Use the same repeatable verification steps every time.</span>
+              <span>Check whether your labeled visit reaches GA4.</span>
             </a>
             <a class="related-link" href="../#builder">
               <strong>Homepage Builder</strong>
-              <span>Generate a clean long URL before you test the store.</span>
+              <span>Create a campaign URL without adding another tracking tag.</span>
             </a>
           </div>
         </article>
@@ -110,8 +206,8 @@
 
     <section class="cta" aria-label="Next step">
       <div>
-        <h2>Use one clean URL and one clean verification loop</h2>
-        <p>The most reliable Shopify debugging sequence is simple: build the URL, click it, watch GA4 Realtime, then inspect ecommerce events before scale.</p>
+        <h2>Purchase collection verified? Test the campaign link next.</h2>
+        <p>Keep installation checks and attribution checks separate. Build one clean link and record the test before relying on the report.</p>
       </div>
       <a class="button primary" href="../#builder">Build a free link</a>
     </section>
