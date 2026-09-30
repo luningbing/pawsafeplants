@@ -29,13 +29,30 @@ test("local assets, internal links and fragment targets exist", () => {
     const url = match[1];
     if (/^https?:/.test(url)) continue;
     const [relativePath, fragment] = url.split("#");
-    const target = relativePath ? path.resolve(pageDir, relativePath) : path.join(pageDir, "index.html");
+    const target = relativePath
+      ? relativePath.startsWith("/")
+        ? path.resolve(root, `.${relativePath}`)
+        : path.resolve(pageDir, relativePath)
+      : path.join(pageDir, "index.html");
     assert.ok(fs.existsSync(target), `missing local target: ${url}`);
     if (fragment) {
       const targetHtml = fs.statSync(target).isDirectory()
         ? fs.readFileSync(path.join(target, "index.html"), "utf8")
         : fs.readFileSync(target, "utf8");
       assert.ok(targetHtml.includes(`id="${fragment}"`), `missing fragment: ${url}`);
+    }
+  }
+});
+
+test("local assets resolve on both production clean URLs and slash URLs", () => {
+  for (const baseUrl of [canonical, `${canonical}/`]) {
+    for (const match of html.matchAll(/<(?:link|script|img)\b[^>]*?\b(?:href|src)="([^"]+)"/g)) {
+      const reference = match[1];
+      if (/^https?:/.test(reference)) continue;
+      const resolvedUrl = new URL(reference, baseUrl);
+      const target = path.resolve(root, `.${resolvedUrl.pathname}`);
+      assert.ok(fs.existsSync(target), `missing runtime asset: ${resolvedUrl.href}`);
+      assert.ok(fs.statSync(target).isFile(), `runtime asset is not a file: ${resolvedUrl.href}`);
     }
   }
 });
